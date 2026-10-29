@@ -42,7 +42,7 @@ const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,hr
     }catch{
       if(current!==sequence)return;
       status.textContent=matches.length?`${matches.length} matching topic${matches.length===1?'':'s'}. Full-text search is temporarily unavailable.`:'Full-text search is temporarily unavailable. Try a topic name or browse the syllabus.';
-      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}syllabus/`,'Every available guide and planned chapter, in syllabus order.');
+      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}syllabus/`,'Every topic in the current notes, grouped by module.');
     }
   }
   let timer:ReturnType<typeof setTimeout>;

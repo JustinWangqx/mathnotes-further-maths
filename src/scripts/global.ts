@@ -1,10 +1,19 @@
 const toggle = document.querySelector<HTMLButtonElement>('.mobile-toggle');
 const sidebar = document.querySelector<HTMLElement>('.sidebar');
+const mobileLayout = window.matchMedia('(max-width: 760px)');
+function syncNavigation() {
+  const hidden = mobileLayout.matches && toggle?.getAttribute('aria-expanded') !== 'true';
+  if (sidebar) { sidebar.inert = hidden; sidebar.setAttribute('aria-hidden', String(hidden)); }
+}
+syncNavigation();
+mobileLayout.addEventListener('change', syncNavigation);
 toggle?.addEventListener('click', () => {
   const expanded = toggle.getAttribute('aria-expanded') === 'true';
   toggle.setAttribute('aria-expanded', String(!expanded));
   toggle.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   sidebar?.classList.toggle('is-open', !expanded);
+  syncNavigation();
+  if (expanded) toggle.focus();
 });
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') toggle.click();
