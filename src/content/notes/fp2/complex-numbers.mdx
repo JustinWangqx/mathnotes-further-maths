@@ -1,97 +1,15 @@
 ---
 title: Complex numbers
-description: Use polar form and de Moivre’s theorem to turn complex multiplication, powers and roots into geometry.
+description: "5 exam question types: short methods, essential formulas and worked examples from the supplied notes."
 module: fp2
 topicId: complex
 syllabus: "2.5"
-minutes: 14
+minutes: 8
 updated: "2026-10-29"
 prerequisites: [Trigonometry in radians, Basic complex arithmetic, Binomial expansion]
 sources: [FP2 CH5 Complex Number.pdf, FP2 CH5 Complex Number 1.pdf, "(FP2) 5. Complex numbers 作业 ANS.pdf"]
 ---
 
-## The idea
+import QuestionTypeGuide from "../../../components/QuestionTypeGuide.astro";
 
-A complex number is both an algebraic object and a point in a plane. Cartesian form is useful for adding; polar form makes multiplication, powers and roots much easier to see.
-
-For $z=x+iy$, the **modulus** is $r=\sqrt{x^2+y^2}$. An **argument** $\theta$ is an angle measured anticlockwise from the positive real axis, so
-
-$$z=r(\cos\theta+i\sin\theta)=re^{i\theta}.$$
-
-For $z\ne0$, arguments differ by integer multiples of $2\pi$. We use the principal argument convention $-\pi<\operatorname{Arg}(z)\le\pi$. Zero has no defined argument.
-
-## Arithmetic and geometry
-
-If $z_1=r_1e^{i\theta_1}$ and $z_2=r_2e^{i\theta_2}$, then
-
-$$z_1z_2=r_1r_2e^{i(\theta_1+\theta_2)},\qquad \frac{z_1}{z_2}=\frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}\quad(z_2\ne0).$$
-
-Multiplication scales moduli and adds angles. Division divides moduli and subtracts angles.
-
-The conjugate of $x+iy$ is $x-iy$, and $z\overline z=|z|^2$. This is why conjugates remove imaginary terms from a denominator:
-
-$$\frac1z=\frac{\overline z}{|z|^2}\quad(z\ne0).$$
-
-## De Moivre’s theorem
-
-For an integer $n$,
-
-$$[r(\cos\theta+i\sin\theta)]^n=r^n[\cos(n\theta)+i\sin(n\theta)].$$
-
-For negative $n$, require $r>0$. When using fractional powers, list the possible arguments explicitly rather than assuming there is a single answer.
-
-## Example 1: a complex power
-
-Find $(1+i\sqrt3)^3$.
-
-**Step 1. Find the modulus and argument.** The modulus is $2$. The point is in quadrant I with argument $\pi/3$.
-
-$$1+i\sqrt3=2(\cos(\pi/3)+i\sin(\pi/3)).$$
-
-**Step 2. Apply de Moivre.**
-
-$$ (1+i\sqrt3)^3=8(\cos\pi+i\sin\pi)=\boxed{-8}.$$
-
-The angle triples and the modulus is cubed. Those are separate operations.
-
-## Finding every root
-
-To solve $z^n=Re^{i\Theta}$ for $R>0$ and positive integer $n$, use
-
-$$z_k=R^{1/n}\exp\!\left(i\frac{\Theta+2k\pi}{n}\right),\qquad k=0,1,\ldots,n-1.$$
-
-The $n$ roots lie evenly around a circle of radius $R^{1/n}$. The angular spacing is $2\pi/n$. Taking $k=n$ would repeat the first root.
-
-## Example 2: cube roots of a negative number
-
-Solve $z^3=-8$.
-
-Write $-8=8e^{i(\pi+2k\pi)}$. The modulus of each root is $2$, and the three arguments are
-
-$$\frac\pi3,\quad \pi,\quad \frac{5\pi}3.$$
-
-Therefore,
-
-$$\boxed{z=1+i\sqrt3,\quad -2,\quad 1-i\sqrt3.}$$
-
-Each root has modulus $2$, and consecutive roots differ by $2\pi/3$. Cubing any one of them gives $-8$.
-
-## Roots of unity and identities
-
-The roots of $z^n=1$ are $e^{2k\pi i/n}$ for $k=0,\ldots,n-1$. They form a regular polygon on the unit circle. Translating an equation such as $(z-a)^n=R$ translates the resulting root diagram by $a$.
-
-De Moivre also connects algebra to trigonometric identities. Expanding $(\cos\theta+i\sin\theta)^3$ and equating real parts gives
-
-$$\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta=4\cos^3\theta-3\cos\theta.$$
-
-The imaginary parts similarly give $\sin3\theta=3\sin\theta-4\sin^3\theta$.
-
-## Common mistakes
-
-- Using a calculator’s inverse tangent without checking the quadrant.
-- Mixing degrees and radians in an exponential expression.
-- Multiplying the modulus by $n$ instead of raising it to the power $n$.
-- Dividing only the principal argument when finding roots and losing the other solutions.
-- Giving arguments outside the requested interval or counting the same root twice.
-
-Sketch the roots on an Argand diagram as a quick check. The symmetry will often reveal a missing root or an incorrect angle.
+<QuestionTypeGuide topicId="complex" />

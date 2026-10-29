@@ -4,7 +4,7 @@ import TopicCard from '../components/TopicCard.astro';
 import Icon from '../components/Icon.astro';
 import {availableTopics,modules,url} from '../data/curriculum';
 ---
-<Base title="Study notes" active="notes"><div class="page-heading"><span class="eyebrow">YOUR LIBRARY</span><h1>A clearer way through.</h1><p>Start with an idea. Follow the working. Make it your own.</p></div>
+<Base title="Study notes" active="notes"><div class="page-heading"><span class="eyebrow">YOUR LIBRARY</span><h1>Find the question type.</h1><p>Each type has a short method, essential formulas and a worked example from your notes.</p></div>
 <div class="filter-bar"><label>Module<select data-filter="module" aria-label="Module"><option value="all">All modules</option>{modules.slice(0,3).map(m=><option value={m.id}>{m.title}</option>)}</select></label><label class="filter-search">Find a topic<input type="search" placeholder="Try complex numbers or 复数" data-filter="query"/></label></div>
 <p class="result-line"><strong data-result-count>14</strong> topic guides <span>· Based on your current notes</span></p>
 <div class="topic-grid">{availableTopics.map(topic=><div data-filter-card data-module={topic.module} data-search={`${topic.title} ${topic.description} ${topic.aliases.join(' ')}`}><TopicCard topic={topic}/></div>)}</div>

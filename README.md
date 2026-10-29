@@ -2,7 +2,7 @@
 
 A static study website for the **14 topics represented in the supplied notes**: 5 FP1, 4 FP2 and 5 Further Statistics topics. Topics without source notes are omitted.
 
-Features include 14 English guides, 28 original worked examples, 48 original practice questions with hints and solutions, a formula index, official paper references, English/Chinese alias search, print layouts and device-local study status. No login, database or external font service is needed.
+Features include 14 English guides organised into 78 numbered question types, each with a short method, formulas and a worked example, 48 original practice questions with hints and solutions, a formula index, official paper references, English/Chinese alias search, print layouts and device-local study status. No login, database or external font service is needed.
 
 ## Run locally
 
@@ -39,7 +39,8 @@ To deploy at another domain or path, change those environment variables and the 
 
 ## Edit content
 
-- `src/content/notes/`: MDX guides with LaTeX maths, scope and source filenames.
+- `src/content/notes/`: chapter metadata and the shared exam-type layout.
+- `src/data/question-types.json`: numbered question types, concise methods, formulas, examples, worked answers and source pages.
 - `src/data/curriculum.ts`: the supported topic list, navigation and Chinese search aliases.
 - `src/data/practice.ts` and `extra-practice.json`: original questions and worked answers.
 - `src/data/formulae.ts`: formula reference entries and conditions.
@@ -49,7 +50,7 @@ Add the topic, guide, questions and aliases together. Every guide needs frontmat
 
 ## Sources and review
 
-The original PDF collection is deliberately excluded from the repository and deployment. The supplied coursebook and extracted exam questions are not redistributed. This site contains newly written explanations, diagrams and practice, with links to official Cambridge resources. See `docs/content-scope.md` for the exact topic selection.
+The original PDF collection is deliberately excluded from the repository and deployment. The supplied coursebook and extracted exam questions are not redistributed. The guides adapt the question types and textbook/worksheet examples in the supplied notes. Every example records its source page; formula-only illustrations are labelled separately. Practice questions are original. Links point to official Cambridge exam resources. See `docs/content-scope.md` for the exact topic selection.
 
 The syllabus reference is CIE 9231 for 2026–2027. The guides are an initial editorial release, not a claim of exhaustive syllabus coverage or independent teacher review. Mathematical corrections should be submitted as GitHub Issues with a page, section and explanation.
 

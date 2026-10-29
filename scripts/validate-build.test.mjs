@@ -60,3 +60,29 @@ test('search bundle and English/Chinese aliases are included',()=>{
  const css=files.filter(f=>f.endsWith('.css')).map(f=>readFileSync(f,'utf8')).join('');
  assert.ok(!css.includes('fonts.googleapis.com'));assert.ok(css.includes('.woff2'));
 });
+
+test('all 78 question types render a method, formula, worked example and traceable source',()=>{
+ const data=JSON.parse(readFileSync('src/data/question-types.json','utf8'));
+ assert.equal(Object.keys(data).length,14);
+ assert.equal(Object.values(data).reduce((n,types)=>n+types.length,0),78);
+ let rendered=0;
+ for(const page of pages.filter(p=>/\/9231\/[^/]+\/[^/]+\/index\.html$/.test(p))){
+  const html=readFileSync(page,'utf8');
+  const count=(html.match(/class="exam-type"/g)||[]).length;
+  assert.ok(count>=3,page);
+  assert.equal((html.match(/class="type-method"/g)||[]).length,count,page);
+  assert.equal((html.match(/class="type-formula"/g)||[]).length,count,page);
+  assert.equal((html.match(/class="type-example"/g)||[]).length,count,page);
+  assert.equal((html.match(/class="example-source"/g)||[]).length,count,page);
+  assert.ok(!html.includes('id="the-idea"'),page);
+  for(let i=1;i<=count;i++)assert.ok(html.includes(`id="type-${i}"`),page);
+  rendered+=count;
+ }
+ assert.equal(rendered,78);
+ for(const types of Object.values(data))for(const [i,type] of types.entries()){
+  assert.equal(type.number,i+1);assert.ok(type.method.length<400);
+  assert.ok(type.formula.includes('$'));assert.ok(type.question.trim().length>0);
+  assert.ok(type.steps.length>=1&&type.steps.length<=4);
+  assert.ok(type.answer&&type.source.file&&type.source.pages&&type.source.label);
+ }
+});

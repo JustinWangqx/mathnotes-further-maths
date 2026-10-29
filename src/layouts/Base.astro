@@ -7,7 +7,7 @@ import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import { modules, url, repoUrl } from '../data/curriculum';
 interface Props { title?: string; description?: string; active?: string; noindex?: boolean }
-const {title='A little clarity. A lot of possibility.',description='Clear CIE A Level Further Mathematics notes, original worked examples and topic practice. English explanations with Chinese search aliases.',active='home',noindex=false}=Astro.props;
+const {title='A little clarity. A lot of possibility.',description='CIE A Level Further Mathematics by exam question type: short methods, formulas, worked examples and practice. English explanations with Chinese search aliases.',active='home',noindex=false}=Astro.props;
 const nav=[['home','Overview','', 'home'],['notes','Study notes','notes/','book'],['practice','Practice','practice/','pen'],['papers','Past papers','past-papers/','papers'],['formulae','Formula index','formulae/','formula'],['syllabus','Topic map','syllabus/','map']];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <aside class="sidebar" id="sidebar" data-pagefind-ignore>
   <nav aria-label="Main navigation"><p class="nav-label">YOUR STUDY DESK</p>{nav.map(([key,label,href,icon])=><a class:list={['nav-item',{active:active===key}]} aria-current={active===key?'page':undefined} href={url(href)}><Icon name={icon} size={19}/><span>{label}</span>{key==='notes'&&<span class="nav-count">14</span>}</a>)}</nav>
   <nav class="module-nav" aria-label="Modules"><p class="nav-label">EXPLORE THE COURSE</p>{modules.map(m=><a class="module-link" href={url(`9231/${m.id}/`)}><span class={`module-dot ${m.color}`}></span>{m.title}</a>)}</nav>
-  <div class="sidebar-bottom"><div class="sidebar-note"><span class="small-serif">One idea at a time.</span><p>Understanding comes before memorising.</p><a href={url('notes/')}>Find your next topic <Icon name="arrow" size={15}/></a></div><a class="utility-link" href={url('resources/')}><Icon name="link" size={17}/> Resources</a><a class="utility-link" href={url('about/')}><Icon name="info" size={17}/> About & corrections</a><span class="sidebar-edition">2026–2027 syllabus edition</span></div>
+  <div class="sidebar-bottom"><div class="sidebar-note"><span class="small-serif">One question type at a time.</span><p>Method. Formula. Worked example.</p><a href={url('notes/')}>Find your next topic <Icon name="arrow" size={15}/></a></div><a class="utility-link" href={url('resources/')}><Icon name="link" size={17}/> Resources</a><a class="utility-link" href={url('about/')}><Icon name="info" size={17}/> About & corrections</a><span class="sidebar-edition">2026–2027 syllabus edition</span></div>
 </aside>
 <div class="page-shell"><main id="main" data-pagefind-body={!noindex || undefined} data-pagefind-ignore={noindex || undefined}><slot/></main><footer data-pagefind-ignore><a href={url()} class="footer-brand">MathNotes<span>·</span></a><p>Made for the moment it finally makes sense.</p><div><a href={url('about/')}>About</a><a href={repoUrl}>GitHub <Icon name="external" size={12}/></a></div></footer></div>
 <script>

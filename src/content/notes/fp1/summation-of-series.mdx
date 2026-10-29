@@ -1,62 +1,15 @@
 ---
 title: Summation of series
-description: Combine standard sums with partial fractions and telescoping to simplify finite and infinite series.
+description: "3 exam question types: short methods, essential formulas and worked examples from the supplied notes."
 module: fp1
 topicId: series
 syllabus: "1.3"
-minutes: 10
+minutes: 5
 updated: "2026-10-29"
 prerequisites: [Partial fractions, Algebraic limits]
-sources: [FP1 CH2 Rational functions &CH3  series.pdf, FP1 CH3 Part2.pdf, "(FP1) 3. Summation of series.pdf"]
+sources: ["FP1 CH2 Rational functions &CH3  series.pdf", "(FP1) 3. Summation of series.pdf"]
 ---
 
-## Two useful approaches
+import QuestionTypeGuide from "../../../components/QuestionTypeGuide.astro";
 
-Polynomial terms often reduce to standard summations. Rational terms often simplify by partial fractions, revealing consecutive terms that cancel. Write a finite sum first; the infinite case comes from a limit of that finite result.
-
-## Standard sums
-
-For a positive integer $n$,
-
-$$\sum_{r=1}^n r=\frac{n(n+1)}2,\quad \sum_{r=1}^n r^2=\frac{n(n+1)(2n+1)}6,$$
-$$\sum_{r=1}^n r^3=\left[\frac{n(n+1)}2\right]^2.$$
-
-Expand a polynomial summand, then apply linearity. If a sum starts later, subtract the omitted initial terms.
-
-## Example 1: expand a polynomial term
-
-Find $\sum_{r=1}^n r(r+1)$.
-
-$$\sum_{r=1}^n(r^2+r)=\frac{n(n+1)(2n+1)}6+\frac{n(n+1)}2.$$
-
-Taking out $n(n+1)/6$ leaves $2n+4$, so
-
-$$\boxed{\sum_{r=1}^n r(r+1)=\frac{n(n+1)(n+2)}3.}$$
-
-Check $n=1$: both sides give $2$.
-
-## The method of differences
-
-If $u_r=v_r-v_{r+1}$, then
-
-$$\sum_{r=1}^n u_r=v_1-v_{n+1}.$$
-
-Write the first few terms and the last few terms to see the cancellation. For a gap larger than one, more boundary terms survive.
-
-## Example 2: a telescoping sum
-
-Use partial fractions:
-
-$$\frac1{r(r+1)}=\frac1r-\frac1{r+1}.$$
-
-Therefore,
-
-$$S_n=(1-\tfrac12)+(\tfrac12-\tfrac13)+\cdots+(\tfrac1n-\tfrac1{n+1})=1-\frac1{n+1}.$$
-
-Since $1/(n+1)\to0$, the infinite series converges to $1$.
-
-## Convergence and care with indices
-
-A series converges when its partial sums have a finite limit. Showing only that $u_r\to0$ is not enough: the harmonic series has terms tending to zero but diverges.
-
-If parameters occur, inspect the final boundary term and state the parameter values for which its limit exists. Never discard a term simply because its index contains $n$.
+<QuestionTypeGuide topicId="series" />

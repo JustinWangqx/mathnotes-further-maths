@@ -1,24 +1,25 @@
 ---
 import {getCollection,render} from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import Icon from '../../../components/Icon.astro';
 import PracticeCard from '../../../components/PracticeCard.astro';
 import {moduleFor,topics,url,repoUrl,papersUrl} from '../../../data/curriculum';
 import {questions} from '../../../data/practice';
+import {questionTypes} from '../../../data/question-types';
 export async function getStaticPaths(){const notes=await getCollection('notes');return notes.map(note=>({params:{module:note.data.module,slug:note.id.split('/').pop()},props:{note}}));}
 const {note}=Astro.props;
-const {Content,headings}=await render(note);
+const {Content}=await render(note);
 const module=moduleFor(note.data.module);
 const topic=topics.find(t=>t.id===note.data.topicId)!;
 const practice=questions.filter(q=>q.topic===topic.id);
+const types=questionTypes[topic.id];
 const issueUrl=`${repoUrl}/issues/new?title=${encodeURIComponent(`Correction: ${note.data.title}`)}&body=${encodeURIComponent('Page: '+note.data.title+'\n\nSection / question:\n\nWhat should change:\n\nReason or working:\n')}`;
 ---
 <Base title={note.data.title} description={note.data.description} active="notes"><span class="sr-only" data-pagefind-meta="type">Study notes</span><span class="sr-only" data-pagefind-filter="module">{module.title}</span><div class="sr-only" data-pagefind-weight="0.5">{topic.aliases.join(' ')}</div>
 <a class="back-link" href={url(`9231/${module.id}/`)}>← {module.title}</a>
-<div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><p>{note.data.description}</p><div class="lesson-meta"><span><Icon name="clock" size={15}/>{note.data.minutes} min read</span><span>Updated 29 Oct 2026</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
-<div class="prerequisites"><strong>Before you begin</strong><p>{note.data.prerequisites.join(' · ')}</p></div><div class="prose"><Content/></div>
+<div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><p>{note.data.description}</p><div class="lesson-meta"><span class="type-count">{types.length} question types</span><span>Updated 29 Oct 2026</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
+<div class="exam-route" aria-label="Note format"><span>QUESTION TYPE</span><span aria-hidden="true">→</span><span>METHOD & FORMULA</span><span aria-hidden="true">→</span><span>WORKED EXAMPLE</span></div><div class="prose exam-guide"><Content/></div>
 <section id="practice" class="topic-practice"><span class="eyebrow">YOUR TURN</span><h2>Put it into practice.</h2><p class="muted">Original questions for this topic. Try each one before opening the solution.</p>{practice.map((q,i)=><PracticeCard question={q} number={i+1}/>)}</section>
-<div class="completion-box"><div><strong>One more idea understood.</strong><p>Your study status is saved on this device.</p></div><button class="button primary" data-complete={topic.id} aria-pressed="false">Mark topic as studied</button></div>
-<div class="source-note"><strong>About these notes</strong><p>Original English explanations and practice, organised around CIE 9231 ({note.data.syllabus}) and the supplied study collection. Scope: the methods covered on this page; this is not a claim of complete objective coverage. No independent teacher review has been recorded yet.</p><details><summary>Source collection references</summary><ul>{note.data.sources.map(source=><li>{source}</li>)}</ul><p>Source PDFs remain private. Examples and practice here are newly written.</p></details><div class="source-links"><a href={papersUrl}>Official exam resources ↗</a><a href={issueUrl}>Suggest a correction ↗</a></div></div>
-</article><aside class="toc" aria-label="On this page" data-pagefind-ignore><p class="nav-label">ON THIS PAGE</p><nav>{headings.filter(h=>h.depth===2).map(h=><a href={`#${h.slug}`}>{h.text}</a>)}<a href="#practice">Practice questions</a></nav><div class="toc-tip"><span class="small-serif">Take your time.</span><p>A line of working is worth understanding before moving to the next.</p></div></aside></div>
+<div class="completion-box"><div><strong>Question types revised.</strong><p>Your study status is saved on this device.</p></div><button class="button primary" data-complete={topic.id} aria-pressed="false">Mark topic as studied</button></div>
+<div class="source-note"><strong>Source notes</strong><p>Question types follow the annotated study collection. Textbook examples are identified by their example number and note page; formula-only illustrations are labelled separately. This page covers the listed question types. Independent teacher review has not yet been recorded.</p><details><summary>Source collection references</summary><ul>{note.data.sources.map(source=><li>{source}</li>)}</ul><p>The source PDFs are kept outside the public build. The separate practice questions are original exercises.</p></details><div class="source-links"><a href={papersUrl}>Official exam resources ↗</a><a href={issueUrl}>Suggest a correction ↗</a></div></div>
+</article><aside class="toc" aria-label="Question types" data-pagefind-ignore><p class="nav-label">QUESTION TYPES</p><nav>{types.map(type=><a href={`#${type.id}`}><span class="toc-type-number">{String(type.number).padStart(2,'0')}</span>{type.title}</a>)}<a href="#practice">Practice questions</a></nav><div class="toc-tip"><span class="small-serif">Exam routine</span><p>Identify the type. Write the formula. Substitute carefully.</p></div></aside></div>
 </Base>

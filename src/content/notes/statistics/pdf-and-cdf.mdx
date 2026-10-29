@@ -1,102 +1,15 @@
 ---
 title: Probability density & distribution
-description: Turn areas into probabilities, move between a PDF and a CDF, and calculate moments and transformed distributions.
+description: "4 exam question types: short methods, essential formulas and worked examples from the supplied notes."
 module: statistics
 topicId: pdf-cdf
 syllabus: "4.1"
-minutes: 13
+minutes: 6
 updated: "2026-10-29"
 prerequisites: [Definite integration, Differentiation, Basic probability]
 sources: [FS CH1 PDF CDF.pdf]
 ---
 
-## The idea
+import QuestionTypeGuide from "../../../components/QuestionTypeGuide.astro";
 
-For a continuous random variable, probability is represented by **area**, not the height of a graph. A probability density function (PDF) $f$ describes how probability is distributed along the number line. A cumulative distribution function (CDF) $F$ gives the probability accumulated up to a point.
-
-## What makes a valid density?
-
-A PDF must satisfy both conditions:
-
-$$f(x)\ge0,\qquad \int_{-\infty}^{\infty}f(x)\,dx=1.$$
-
-Then
-
-$$P(a<X<b)=\int_a^b f(x)\,dx.$$
-
-A density value can exceed $1$; the total area must be $1$. For a continuous variable, $P(X=x)=0$, so including or excluding an individual endpoint does not change an interval probability.
-
-## From PDF to CDF
-
-The definition is
-
-$$F(x)=P(X\le x)=\int_{-\infty}^{x}f(t)\,dt.$$
-
-A CDF is nondecreasing, takes values in $[0,1]$, and tends to $0$ and $1$ at the two extremes. For a continuous distribution, it is continuous. Where differentiable, $F'(x)=f(x)$.
-
-For piecewise densities, carry forward the probability from earlier intervals. Restarting the integral at zero in each piece would make you lose accumulated area.
-
-## Example 1: normalise and accumulate
-
-Let $f(x)=kx$ for $0\le x\le2$, and $f(x)=0$ otherwise. Find $k$, the CDF and the median.
-
-**Normalise the area.**
-
-$$1=\int_0^2kx\,dx=2k\quad\Longrightarrow\quad k=\frac12.$$
-
-**Integrate to a variable upper limit.**
-
-$$F(x)=\begin{cases}0,&x<0,\\x^2/4,&0\le x\le2,\\1,&x>2.\end{cases}$$
-
-For instance, $P(1<X<2)=F(2)-F(1)=1-1/4=3/4$.
-
-**Find the median.** The median $m$ satisfies $F(m)=1/2$, so $m^2/4=1/2$. Since $m\in[0,2]$,
-
-$$\boxed{m=\sqrt2.}$$
-
-## Moments and variance
-
-For a function $g$ whose expectation exists,
-
-$$E[g(X)]=\int_{-\infty}^{\infty}g(x)f(x)\,dx.$$
-
-In particular,
-
-$$E(X)=\int xf(x)\,dx,\qquad E(X^2)=\int x^2f(x)\,dx,$$
-$$\operatorname{Var}(X)=E(X^2)-[E(X)]^2.$$
-
-The integration limits cover the full support, including every piece of a piecewise density. For the density in Example 1, $E(X)=4/3$, $E(X^2)=2$, and the variance is $2/9$.
-
-## Example 2: transform using a CDF
-
-Suppose $f_X(x)=2x$ for $0\le x\le1$, and $Y=X^2$. Find the distribution of $Y$.
-
-**Step 1. Determine the support.** Squaring maps $[0,1]$ to $[0,1]$.
-
-**Step 2. Translate the event.** For $0<y<1$, use $X\ge0$:
-
-$$F_Y(y)=P(X^2\le y)=P(X\le\sqrt y).$$
-
-**Step 3. Use the original CDF.** Since $F_X(x)=x^2$ on $[0,1]$,
-
-$$F_Y(y)=F_X(\sqrt y)=y.$$
-
-Thus $F_Y(y)=0$ for $y\le0$, $y$ for $0<y<1$, and $1$ for $y\ge1$. Differentiating gives density $1$ on $(0,1)$ and zero elsewhere, so $Y$ is uniform on $[0,1]$.
-
-## Piecewise distributions: a checklist
-
-1. Write the support before integrating.
-2. Check nonnegativity and total area.
-3. Build the CDF from left to right, preserving the accumulated area.
-4. Check continuity at each boundary and the final value $1$.
-5. For a quantile, find which piece contains the target probability before solving.
-
-## Common mistakes
-
-- Treating $f(x)$ as $P(X=x)$.
-- Forgetting the CDF pieces outside the support.
-- Integrating $f(x)$ instead of $xf(x)$ for the mean.
-- Confusing $E(X^2)$ with $[E(X)]^2$.
-- Transforming a variable without checking its support or whether the transformation is monotone.
-
-For a non-monotone transformation, split the event into the relevant intervals. The simple square-root step in Example 2 works because $X$ is nonnegative.
+<QuestionTypeGuide topicId="pdf-cdf" />

@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import {topics,url} from '../data/curriculum';
 const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,href:t.slug?url(`9231/${t.module}/${t.slug}/`):url(`syllabus/#${t.id}`),available:!!t.slug}));
 ---
-<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search explanations, methods and practice. English and Chinese topic names both work.</p></div>
+<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search question types, methods and practice. English and Chinese topic names both work.</p></div>
 <div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and topics</label><input id="site-search" type="search" placeholder="Try polynomial roots, 复数, PDF…" autocomplete="off" autofocus aria-controls="search-results"/></div>
 <div class="search-suggestions"><span>A few starting points</span>{['polynomial roots','复数','概率密度','积分'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div><p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic or a phrase to begin.</p><div id="search-results"></div><noscript><p class="search-fallback">Search needs JavaScript. You can still browse every guide in the <a href={url('notes/')}>notes library</a> and the <a href={url('syllabus/')}>topic map</a>.</p></noscript>
 <script id="topic-aliases" type="application/json" set:html={JSON.stringify(aliases)}/>

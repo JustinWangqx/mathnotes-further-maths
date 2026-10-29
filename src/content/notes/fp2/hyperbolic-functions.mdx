@@ -1,54 +1,15 @@
 ---
 title: Hyperbolic functions
-description: Build hyperbolic identities from exponentials and use them in equations, derivatives and integrals.
+description: "4 exam question types: short methods, essential formulas and worked examples from the supplied notes."
 module: fp2
 topicId: hyperbolic
 syllabus: "2.1"
-minutes: 11
+minutes: 6
 updated: "2026-10-29"
 prerequisites: [Exponential functions, Logarithms, Basic calculus]
 sources: [FP2 CH1 Hyperbolic Functions.pdf]
 ---
 
-## Start from the definitions
+import QuestionTypeGuide from "../../../components/QuestionTypeGuide.astro";
 
-$$\sinh x=\frac{e^x-e^{-x}}2,\qquad \cosh x=\frac{e^x+e^{-x}}2,\qquad \tanh x=\frac{\sinh x}{\cosh x}.$$
-
-The key identity is $\cosh^2x-\sinh^2x=1$. It follows directly by subtracting the squares of the definitions. Also, $\sinh$ and $\tanh$ are odd, while $\cosh$ is even.
-
-For real $x$, $\cosh x\ge1$ and $-1<\tanh x<1$. These ranges help reject impossible solutions.
-
-## Identities and calculus
-
-Dividing the key identity by $\cosh^2x$ gives $1-\tanh^2x=\operatorname{sech}^2x$.
-
-$$\frac{d}{dx}\sinh x=\cosh x,\quad \frac{d}{dx}\cosh x=\sinh x,\quad \frac{d}{dx}\tanh x=\operatorname{sech}^2x.$$
-
-Use the chain rule when the argument is not simply $x$. The corresponding antiderivatives follow immediately.
-
-## Example 1: solve a hyperbolic equation
-
-Solve $\cosh x=5/4$. Put $u=e^x>0$:
-
-$$\frac{u+u^{-1}}2=\frac54\quad\Longrightarrow\quad2u^2-5u+2=0.$$
-
-The roots are $u=2$ and $u=1/2$, giving $x=\pm\ln2$. The two solutions agree with the even symmetry of $\cosh$.
-
-## Inverse functions
-
-The inverse $\operatorname{arsinh}$ is defined for every real input. Restricting $\cosh$ to $x\ge0$ gives $\operatorname{arcosh}$, whose domain is $x\ge1$. The domain of $\operatorname{artanh}$ is $-1<x<1$.
-
-$$\operatorname{arsinh}x=\ln(x+\sqrt{x^2+1}),$$
-$$\operatorname{arcosh}x=\ln(x+\sqrt{x^2-1}),\qquad \operatorname{artanh}x=\frac12\ln\frac{1+x}{1-x}.$$
-
-Their derivatives are $1/\sqrt{1+x^2}$, $1/\sqrt{x^2-1}$ for $x>1$, and $1/(1-x^2)$ on the respective domains.
-
-## Example 2: a substitution
-
-Evaluate $\int_0^1(1+x^2)^{-1/2}\,dx$. Let $x=\sinh u$. Then $dx=\cosh u\,du$ and $\sqrt{1+\sinh^2u}=\cosh u$.
-
-The integral becomes $\int_0^{\operatorname{arsinh}1}1\,du$, so its value is $\ln(1+\sqrt2)$.
-
-## Common mistakes
-
-The hyperbolic identity has a minus sign, while $\cosh$ differentiates to positive $\sinh$. Inverse notation describes an inverse function, not a reciprocal. Keep the inverse-function domains and the sign of square roots explicit.
+<QuestionTypeGuide topicId="hyperbolic" />

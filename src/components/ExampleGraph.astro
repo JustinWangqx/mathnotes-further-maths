@@ -1,0 +1,39 @@
+---
+interface Props {name: string}
+const {name}=Astro.props;
+const plots: Record<string,{label:string;fn:(x:number)=>number;x:[number,number];y:[number,number];poles?:number[];oblique?:boolean}>={
+  reciprocal:{label:'Sketch: y = 1/(x − 2)',fn:x=>1/(x-2),x:[-3,7],y:[-4,4],poles:[2]},
+  'two-poles':{label:'Sketch: y = 1/[(x − 1)(x − 2)]',fn:x=>1/((x-1)*(x-2)),x:[-1,4],y:[-8,6],poles:[1,2]},
+  'linear-quadratic':{label:'Sketch: y = x/[(x − 3)(x + 1)]',fn:x=>x/((x-3)*(x+1)),x:[-5,7],y:[-4,4],poles:[-1,3]},
+  'quadratic-quadratic':{label:'Sketch: y = (x − 1)(x − 2)/[(2x − 1)(x + 1)]',fn:x=>(x-1)*(x-2)/((2*x-1)*(x+1)),x:[-4,5],y:[-4,4],poles:[-1,.5]},
+  oblique:{label:'Sketch: y = x²/(x + 1)',fn:x=>x*x/(x+1),x:[-5,5],y:[-8,8],poles:[-1],oblique:true},
+  bounded:{label:'Sketch: y = (x² − x − 2)/(x² − x + 5)',fn:x=>(x*x-x-2)/(x*x-x+5),x:[-6,7],y:[-1,2]},
+  hyperbolic:{label:'Sketch: y = |3 cosh(x + 1) − 4|',fn:x=>Math.abs(3*Math.cosh(x+1)-4),x:[-4,2],y:[-.5,9]},
+};
+const plot=plots[name];
+const argand=name==='complex-roots';
+const bounds=argand?{x:[-2,2],y:[-2,2]}:plot;
+const W=argand?360:500,H=argand?360:280,P=32;
+const X=(x:number)=>P+(x-bounds.x[0])/(bounds.x[1]-bounds.x[0])*(W-2*P);
+const Y=(y:number)=>H-P-(y-bounds.y[0])/(bounds.y[1]-bounds.y[0])*(H-2*P);
+const ticksX=Array.from({length:Math.floor(bounds.x[1])-Math.ceil(bounds.x[0])+1},(_,i)=>Math.ceil(bounds.x[0])+i).filter(n=>!n||Math.abs(n)%2===0||argand);
+const ticksY=Array.from({length:Math.floor(bounds.y[1])-Math.ceil(bounds.y[0])+1},(_,i)=>Math.ceil(bounds.y[0])+i).filter(n=>!n||Math.abs(n)%2===0||argand);
+let path='';let pen=false;let lastY=0;
+if(plot){for(let i=0;i<=900;i++){const x=plot.x[0]+i*(plot.x[1]-plot.x[0])/900;const y=plot.fn(x);if(!Number.isFinite(y)||y<plot.y[0]||y>plot.y[1]){pen=false;continue;}if(pen&&Math.abs(y-lastY)>(plot.y[1]-plot.y[0])/2)pen=false;path+=`${pen?'L':'M'}${X(x).toFixed(2)},${Y(y).toFixed(2)} `;lastY=y;pen=true;}}
+const roots=argand?Array.from({length:6},(_,k)=>({k,x:Math.sqrt(2)*Math.cos(Math.PI/18+k*Math.PI/3),y:Math.sqrt(2)*Math.sin(Math.PI/18+k*Math.PI/3)})):[];
+---
+<figure class="example-graph">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={argand?'Argand diagram: the six roots have modulus square root of two and arguments pi/18 + k pi/3':plot.label}>
+    {ticksX.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#e6e7da" stroke-width=".7"/>)}
+    {ticksY.map(y=><line x1={P} x2={W-P} y1={Y(y)} y2={Y(y)} stroke="#e6e7da" stroke-width=".7"/>)}
+    <line x1={P} x2={W-P} y1={Y(0)} y2={Y(0)} stroke="#9aa58b"/><line x1={X(0)} x2={X(0)} y1={P} y2={H-P} stroke="#9aa58b"/>
+    {ticksX.filter(n=>n!==0).map(x=><text x={X(x)} y={Y(0)+15} text-anchor="middle">{x}</text>)}
+    {ticksY.filter(n=>n!==0).map(y=><text x={X(0)-7} y={Y(y)+3} text-anchor="end">{y}</text>)}
+    <text x={W-P+6} y={Y(0)-7}>{argand?'Re':'x'}</text><text x={X(0)+7} y={P-7}>{argand?'Im':'y'}</text>
+    {plot?.poles?.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#b76e50" stroke-width="1" stroke-dasharray="5 5"/>)}
+    {plot?.oblique&&<line x1={X(-5)} x2={X(5)} y1={Y(-6)} y2={Y(4)} stroke="#b76e50" stroke-width="1" stroke-dasharray="5 5"/>}
+    {plot&&<path d={path} fill="none" stroke="#315a45" stroke-width="2.2"/>}
+    {argand&&<><ellipse cx={X(0)} cy={Y(0)} rx={X(Math.sqrt(2))-X(0)} ry={Y(0)-Y(Math.sqrt(2))} fill="none" stroke="#a1b294" stroke-dasharray="5 5"/>{roots.map(r=><><line x1={X(0)} y1={Y(0)} x2={X(r.x)} y2={Y(r.y)} stroke="#d4dec7"/><circle cx={X(r.x)} cy={Y(r.y)} r="4" fill="#a94c38"/><text x={X(r.x)+7} y={Y(r.y)-7}>k={r.k}</text></>)}</>}
+  </svg>
+  <figcaption>{argand?'Six roots · equal angular spacing π/3':plot.label}</figcaption>
+</figure>

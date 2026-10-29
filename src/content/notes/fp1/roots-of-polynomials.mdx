@@ -1,102 +1,15 @@
 ---
 title: Roots of polynomial equations
-description: Connect roots and coefficients, evaluate symmetric sums and transform a polynomial without solving it.
+description: "5 exam question types: short methods, essential formulas and worked examples from the supplied notes."
 module: fp1
 topicId: roots
 syllabus: "1.1"
-minutes: 12
+minutes: 8
 updated: "2026-10-29"
 prerequisites: [Expanding and factorising polynomials, Algebraic substitution]
 sources: [FP1 CH1 Roots of Polynomials Equations.pdf, "(FP1) 1. Roots of polynomial equations HW ANS.pdf"]
 ---
 
-## The idea
+import QuestionTypeGuide from "../../../components/QuestionTypeGuide.astro";
 
-A polynomial carries information about its roots in its coefficients. You can often answer a question about the roots without finding them individually. The useful step is to express what you want in terms of **symmetric sums**: expressions that stay the same when you swap the roots.
-
-For a quadratic $ax^2+bx+c=0$ with roots $\alpha,\beta$ and $a\ne0$,
-
-$$\alpha+\beta=-\frac ba,\qquad \alpha\beta=\frac ca.$$
-
-This follows by expanding $a(x-\alpha)(x-\beta)$ and comparing coefficients.
-
-## Roots and coefficients
-
-For a cubic $ax^3+bx^2+cx+d=0$, with roots $\alpha,\beta,\gamma$ counted with multiplicity,
-
-$$s_1=\alpha+\beta+\gamma=-\frac ba,$$
-$$s_2=\alpha\beta+\beta\gamma+\gamma\alpha=\frac ca,$$
-$$s_3=\alpha\beta\gamma=-\frac da.$$
-
-The signs alternate. For a quartic $ax^4+bx^3+cx^2+dx+e=0$ with roots $\alpha,\beta,\gamma,\delta$, the sums of single roots, pairwise products, triple products and all four roots are respectively
-
-$$s_1=-\frac ba,\qquad s_2=\frac ca,\qquad s_3=-\frac da,\qquad s_4=\frac ea.$$
-
-Repeated and complex roots still obey these identities. A nonzero leading coefficient is essential.
-
-## Example 1: a sum of squares
-
-Let the roots of $x^3-6x^2+11x-6=0$ be $\alpha,\beta,\gamma$. Find $\alpha^2+\beta^2+\gamma^2$.
-
-**Step 1. Read the sums.** Here $s_1=6$ and $s_2=11$.
-
-**Step 2. Expand a familiar square.**
-
-$$s_1^2=\alpha^2+\beta^2+\gamma^2+2s_2.$$
-
-**Step 3. Substitute.**
-
-$$\alpha^2+\beta^2+\gamma^2=6^2-2(11)=14.$$
-
-As a check, the roots happen to be $1,2,3$, and $1+4+9=14$. Finding those roots was not needed for the method.
-
-## Transforming the roots
-
-Suppose the original equation is $f(x)=0$ and the new roots should be $p\alpha+q$, $p\beta+q$ and $p\gamma+q$, where $p\ne0$. Set $y=px+q$, rearrange to $x=(y-q)/p$, and substitute into the **whole original equation**:
-
-$$f\!\left(\frac{y-q}{p}\right)=0.$$
-
-Clear denominators and simplify. The variable substitution must run in the correct direction.
-
-For reciprocal roots, set $y=1/x$ and substitute $x=1/y$. Check first that the original roots are nonzero; equivalently, the original constant term must be nonzero.
-
-## Example 2: scale and shift
-
-Find an equation with roots $2\alpha-1,2\beta-1,2\gamma-1$, where $\alpha,\beta,\gamma$ solve $x^3-6x^2+11x-6=0$.
-
-Put $y=2x-1$, so $x=(y+1)/2$. Substitution gives
-
-$$\left(\frac{y+1}{2}\right)^3-6\left(\frac{y+1}{2}\right)^2+11\left(\frac{y+1}{2}\right)-6=0.$$
-
-Multiply by $8$:
-
-$$ (y+1)^3-12(y+1)^2+44(y+1)-48=0.$$
-
-Collecting terms gives
-
-$$\boxed{y^3-9y^2+23y-15=0.}$$
-
-Check: the original roots are $1,2,3$, so the transformed roots are $1,3,5$. Their sum is $9$, matching the new $y^2$ coefficient.
-
-## Useful symmetric identities
-
-For a cubic,
-
-$$\alpha^2+\beta^2+\gamma^2=s_1^2-2s_2,$$
-$$\alpha^3+\beta^3+\gamma^3=s_1^3-3s_1s_2+3s_3.$$
-
-If $s_3\ne0$,
-
-$$\frac1\alpha+\frac1\beta+\frac1\gamma=\frac{s_2}{s_3}.$$
-
-To find a higher power sum, you can also substitute each root into the original equation and add the resulting equations.
-
-## Common mistakes
-
-- Losing the alternating signs when reading coefficients.
-- Forgetting to divide by the leading coefficient when the polynomial is not monic.
-- Substituting $x=2y-1$ when the intended transformation is $y=2x-1$.
-- Taking reciprocals without checking for a zero root.
-- Confusing the square of a sum with the sum of squares.
-
-Before practice, try explaining why the coefficient of $x^{n-1}$ tells you the sum of the roots. If you can see it in the expansion of the factors, the sign pattern becomes much easier to remember.
+<QuestionTypeGuide topicId="roots" />

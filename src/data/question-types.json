@@ -1,0 +1,1533 @@
+{
+  "roots": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Read sums and products of roots",
+      "method": "Use $s_1=\\sum\\alpha$, $s_2=\\sum\\alpha\\beta$ and $s_3=\\sum\\alpha\\beta\\gamma$ (products of different roots). Match coefficients and keep the alternating signs.",
+      "formula": "$$\\begin{aligned}ax^2+bx+c&:\\quad s_1=-b/a,\\ s_2=c/a\\\\ax^3+bx^2+cx+d&:\\quad s_1=-b/a,\\ s_2=c/a,\\ s_3=-d/a\\\\ax^4+bx^3+cx^2+dx+e&:\\quad s_1=-b/a,\\ s_2=c/a,\\ s_3=-d/a,\\ s_4=e/a\\end{aligned}$$",
+      "question": "The equation $2x^2+3x-2=0$ has roots $\\alpha,\\beta$. Find $\\alpha+\\beta$ and $\\alpha\\beta$.",
+      "steps": [
+        "$a=2$, $b=3$, $c=-2$. Substitute into the quadratic formulae."
+      ],
+      "answer": "$\\alpha+\\beta=-3/2,\\qquad\\alpha\\beta=-1$.",
+      "source": {
+        "file": "FP1 CH1 Roots of Polynomials Equations(1).pdf",
+        "pages": "2",
+        "label": "Worked example 1.3 (coefficient data)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Form an equation with reciprocal roots",
+      "method": "Put the new roots into the sum and product, then use the monic quadratic form. The original roots must be nonzero.",
+      "formula": "$$\\text{New sum}=\\frac{\\alpha+\\beta}{\\alpha\\beta},\\quad\\text{new product}=\\frac1{\\alpha\\beta};\\qquad y^2-(\\text{sum})y+\\text{product}=0.$$",
+      "question": "Using the roots of $2x^2+3x-2=0$, form an equation whose roots are $1/\\alpha$ and $1/\\beta$.",
+      "steps": [
+        "The original root sum is $-3/2$ and product is $-1$.",
+        "The new sum is $3/2$ and new product is $-1$. Form $y^2-(3/2)y-1=0$."
+      ],
+      "answer": "$2y^2-3y-2=0$.",
+      "source": {
+        "file": "FP1 CH1 Roots of Polynomials Equations(1).pdf",
+        "pages": "1–2",
+        "label": "Red label 考点 2: reciprocal-root calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find a sum of powers using identities",
+      "method": "Write $S_k=\\sum\\alpha^k$. Substitute the root sums $s_1,s_2,s_3$ into the matching identity.",
+      "formula": "$$S_2=s_1^2-2s_2;\\qquad S_3=\\begin{cases}s_1^3-3s_1s_2&\\text{two roots},\\\\s_1^3-3s_1s_2+3s_3&\\text{three roots}.\\end{cases}$$",
+      "question": "If $2x^2+3x-2=0$ has roots $\\alpha,\\beta$, find $\\alpha^2+\\beta^2$ and $\\alpha^3+\\beta^3$.",
+      "steps": [
+        "$s_1=-3/2$ and $s_2=-1$.",
+        "$S_2=(-3/2)^2-2(-1)=17/4$.",
+        "For two roots, $S_3=s_1^3-3s_1s_2=-27/8-9/2$."
+      ],
+      "answer": "$S_2=17/4,\\qquad S_3=-63/8$.",
+      "source": {
+        "file": "FP1 CH1 Roots of Polynomials Equations(1).pdf",
+        "pages": "2–3",
+        "label": "Worked examples 1.3 and 1.5",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Find higher or negative power sums",
+      "method": "Substitute each root into the equation, multiply by the required power, then add. For $S_0$, use the number of roots.",
+      "formula": "$$\\begin{aligned}\\text{Cubic: }&aS_{k+3}+bS_{k+2}+cS_{k+1}+dS_k=0,\\\\\\text{Quartic: }&aS_{k+4}+bS_{k+3}+cS_{k+2}+dS_{k+1}+eS_k=0.\\end{aligned}\\qquad S_0=\\text{degree}.$$",
+      "question": "The quartic $x^4+3x^2-x+5=0$ has four roots. Find $S_2$ and $S_4$.",
+      "steps": [
+        "$S_1=0$ and the pairwise-product sum is $3$, so $S_2=0^2-2(3)=-6$.",
+        "Add the four root equations: $S_4+3S_2-S_1+5S_0=0$.",
+        "$S_4+3(-6)+5(4)=0$."
+      ],
+      "answer": "$S_2=-6,\\qquad S_4=-2$.",
+      "source": {
+        "file": "FP1 CH1 Roots of Polynomials Equations(1).pdf",
+        "pages": "4",
+        "label": "Worked example 1.8",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Transform roots by substitution",
+      "method": "Write $y$ in terms of the old root $x$, rearrange for $x$, and substitute into the entire original polynomial.",
+      "formula": "$$y=g(x)\\ \\Longrightarrow\\ x=g^{-1}(y);\\qquad f\\bigl(g^{-1}(y)\\bigr)=0.$$ ",
+      "question": "$x^3+x^2-5=0$ has roots $\\alpha,\\beta,\\gamma$. Find an equation with roots $1/(\\alpha-2),1/(\\beta-2),1/(\\gamma-2)$.",
+      "steps": [
+        "Put $y=1/(x-2)$, so $x=2+1/y$.",
+        "Substitute: $(2+1/y)^3+(2+1/y)^2-5=0$.",
+        "Multiply by $y^3$ and collect terms."
+      ],
+      "answer": "$7y^3+16y^2+7y+1=0$.",
+      "source": {
+        "file": "FP1 CH1 Roots of Polynomials Equations(1).pdf",
+        "pages": "5",
+        "label": "Worked example 1.11",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "rational": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Sketch a reciprocal graph",
+      "method": "For $k/(ax+b)$, locate the vertical asymptote, horizontal asymptote and the branch signs.",
+      "formula": "$$y=\\frac{k}{ax+b}:\\quad x=-b/a,\\quad y=0\\quad(a k\\ne0).$$",
+      "question": "Sketch $y=1/(x-2)$. State the domain and range.",
+      "steps": [
+        "The vertical asymptote is $x=2$; the horizontal asymptote is $y=0$.",
+        "The graph is positive for $x>2$ and negative for $x<2$. The $y$-intercept is $-1/2$."
+      ],
+      "answer": "Domain $x\\ne2$; range $y\\ne0$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "1",
+        "label": "Red Case 1: shifted reciprocal",
+        "kind": "notes"
+      },
+      "diagram": "reciprocal"
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Sketch a linear-over-linear function",
+      "method": "Rewrite as a constant plus a reciprocal. The constant is the horizontal asymptote.",
+      "formula": "$$\\frac{cx+d}{ax+b}=\\frac ca+\\frac{ad-bc}{a(ax+b)}.$$ ",
+      "question": "Sketch the general form $y=(cx+d)/(ax+b)$ when $ad-bc\\ne0$.",
+      "steps": [
+        "The vertical asymptote is $x=-b/a$ and the horizontal asymptote is $y=c/a$.",
+        "Use $x=-d/c$ for the $x$-intercept if $c\\ne0$, and $y=d/b$ for the $y$-intercept if $b\\ne0$."
+      ],
+      "answer": "Domain $x\\ne-b/a$; range $y\\ne c/a$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "1",
+        "label": "Red Case 2",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Sketch a constant over a factored quadratic",
+      "method": "Find both denominator zeros, then differentiate for the stationary point between the asymptotes.",
+      "formula": "$$f(x)=\\frac{k}{(x-a)(x-b)},\\quad f'(x)=\\frac{-k(2x-a-b)}{(x-a)^2(x-b)^2}.$$ ",
+      "question": "Sketch $y=1/[(x-1)(x-2)]$ and find its range.",
+      "steps": [
+        "Vertical asymptotes: $x=1,2$; horizontal asymptote: $y=0$.",
+        "$y'=0$ at $x=3/2$, where $y=-4$.",
+        "Outside $(1,2)$ the graph is positive; inside it the maximum is $-4$."
+      ],
+      "answer": "Range $(-\\infty,-4]\\cup(0,\\infty)$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "1–2",
+        "label": "Red Case 3",
+        "kind": "notes"
+      },
+      "diagram": "two-poles"
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Sketch a linear numerator over two linear factors",
+      "method": "Find intercepts and asymptotes first. Use the quotient rule to locate stationary points.",
+      "formula": "$$\\left(\\frac uv\\right)'=\\frac{u' v-uv'}{v^2}.$$ ",
+      "question": "For $y=x/[(x-3)(x+1)]$, find the asymptotes and the stationary-point abscissae.",
+      "steps": [
+        "Asymptotes: $x=3$, $x=-1$ and $y=0$; the curve passes through $(0,0)$.",
+        "$y'=(-x^2-3)/(x^2-2x-3)^2$, which is always negative on its domain."
+      ],
+      "answer": "No real stationary points.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "2",
+        "label": "Red Case 4; derivative checked from the displayed function",
+        "kind": "notes"
+      },
+      "diagram": "linear-quadratic"
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Sketch a quadratic-over-quadratic function",
+      "method": "Use equal leading coefficients for the horizontal asymptote. Then find intercepts and check each branch.",
+      "formula": "$$\\frac{Ax^2+Bx+C}{Dx^2+Ex+F}\\to\\frac AD\\quad\\text{as }|x|\\to\\infty.$$ ",
+      "question": "Sketch $y=(x-1)(x-2)/[(2x-1)(x+1)]$, showing intercepts and asymptotes.",
+      "steps": [
+        "Vertical asymptotes are $x=1/2$ and $x=-1$; horizontal asymptote is $y=1/2$.",
+        "Intercepts are $(1,0)$, $(2,0)$ and $(0,-2)$.",
+        "The stationary abscissae solve $7x^2-10x+1=0$."
+      ],
+      "answer": "$x=(5\\pm3\\sqrt2)/7$ for the stationary points.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "2–3",
+        "label": "Printed sketch question below Red Case 5",
+        "kind": "textbook"
+      },
+      "diagram": "quadratic-quadratic"
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find an oblique asymptote",
+      "method": "Divide the polynomials. The linear part is the oblique asymptote; the remaining fraction tends to zero.",
+      "formula": "$$\\frac{ax^2+bx+c}{dx+e}=Ax+B+\\frac{C}{dx+e}.$$ ",
+      "question": "Find the asymptotes of $y=x^2/(x+1)$.",
+      "steps": [
+        "Division gives $y=x-1+1/(x+1)$.",
+        "The denominator gives the vertical asymptote."
+      ],
+      "answer": "$x=-1$ and $y=x-1$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "3",
+        "label": "Oblique-asymptote worked calculation",
+        "kind": "notes"
+      },
+      "diagram": "oblique"
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Find a range when there is no vertical asymptote",
+      "method": "Check the denominator discriminant, then use stationary values or a discriminant in $x$ to find the range.",
+      "formula": "$$y=\\frac{N(x)}{D(x)}\\ \\Longrightarrow\\ yD(x)-N(x)=0;\\quad\\Delta_x\\ge0.$$ ",
+      "question": "For $y=(x^2-x-2)/(x^2-x+5)$, find the asymptotes and range.",
+      "steps": [
+        "$x^2-x+5=(x-1/2)^2+19/4>0$, so no vertical asymptote.",
+        "$y=1-7/[(x-1/2)^2+19/4]$. Its minimum is $-9/19$ at $x=1/2$."
+      ],
+      "answer": "Horizontal asymptote $y=1$; range $-9/19\\le y<1$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "4",
+        "label": "Printed question below Red Case 7",
+        "kind": "textbook"
+      },
+      "diagram": "bounded"
+    },
+    {
+      "number": 8,
+      "id": "type-8",
+      "title": "Sketch absolute-value and reciprocal transformations",
+      "method": "Use the sketch of $f$ first. Reflect only the required part; for $1/f$, check zeros and asymptotes separately.",
+      "formula": "$$|f(x)|:\\text{ reflect negative }y;\\quad f(|x|):\\text{ reflect the right half};\\quad y^2=f(x):y=\\pm\\sqrt{f(x)}.$$ ",
+      "question": "The notes use $f(x)=x^2+x-2$ and $g(x)=(x^2+2x+2)/(x^2+1)$. Describe $1/f(x)$ and $1/g(x)$.",
+      "steps": [
+        "$1/f$ has vertical asymptotes $x=-2,1$, horizontal asymptote $y=0$, and $y$-intercept $-1/2$.",
+        "The numerator of $g$ is $(x+1)^2+1>0$, so $1/g$ has no vertical asymptotes; its horizontal asymptote is $y=1$."
+      ],
+      "answer": "Keep the domain restrictions of each original function.",
+      "source": {
+        "file": "FP1 CH2 Rational functions.pdf",
+        "pages": "4–5",
+        "label": "Printed reciprocal-graph questions",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "series": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Evaluate a polynomial sum",
+      "method": "Expand the summand, use the standard sums, and combine. For a different starting index, subtract the omitted terms.",
+      "formula": "$$\\sum r=\\frac{n(n+1)}2,\\quad\\sum r^2=\\frac{n(n+1)(2n+1)}6,\\quad\\sum r^3=\\frac{n^2(n+1)^2}{4}.$$ ",
+      "question": "Find $\\sum_{r=1}^n4r$. Hence find $\\sum_{r=1}^n4(r+1)$.",
+      "steps": [
+        "$\\sum4r=4\\cdot n(n+1)/2$.",
+        "$\\sum4(r+1)=\\sum4r+4n$."
+      ],
+      "answer": "$2n(n+1)$ and $2n(n+3)$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions &CH3  series.pdf",
+        "pages": "6–7",
+        "label": "Worked example 3.1",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Use the method of differences",
+      "method": "Write the first and last few terms after splitting into differences; cancel the middle terms.",
+      "formula": "$$\\frac4{r(r+1)(r+2)}=\\frac2r-\\frac4{r+1}+\\frac2{r+2}.$$ ",
+      "question": "Express $4/[r(r+1)(r+2)]$ in partial fractions, then find $\\sum_{r=1}^n4/[r(r+1)(r+2)]$.",
+      "steps": [
+        "Write the first few and last few split terms. All middle terms cancel.",
+        "The remaining terms are $1-2/(n+1)+2/(n+2)$."
+      ],
+      "answer": "$S_n=1-2/[(n+1)(n+2)]$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions &CH3  series.pdf",
+        "pages": "8",
+        "label": "Printed partial-fractions series question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find a finite sum, then its sum to infinity",
+      "method": "Use partial fractions or a geometric form. Take the limit of the finite result and state the convergence condition.",
+      "formula": "$$S_\\infty=\\lim_{n\\to\\infty}S_n;\\qquad e^{nx}\\to0\\text{ if }x<0.$$ ",
+      "question": "Let $u_r=e^{rx}(e^x-2+e^{-x})$, where $x\\ne0$. Find $S_n$ and the values of $x$ for which the infinite series converges.",
+      "steps": [
+        "$u_r=e^{(r+1)x}-2e^{rx}+e^{(r-1)x}$. Summing gives $S_n=(e^x-1)(e^{nx}-1)$.",
+        "For a finite limit with $x\\ne0$, require $x<0$, so $e^{nx}\\to0$."
+      ],
+      "answer": "$S_n=(e^x-1)(e^{nx}-1)$; for $x<0$, $S_\\infty=1-e^x$.",
+      "source": {
+        "file": "FP1 CH2 Rational functions &CH3  series.pdf",
+        "pages": "8",
+        "label": "Printed exponential-series question",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "matrices1": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Find an inverse matrix",
+      "method": "For 2×2, use the direct formula. For 3×3, find the determinant and cofactors, then transpose the cofactor matrix. Check the determinant is nonzero.",
+      "formula": "$$\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}^{-1}=\\frac1{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix};\\qquad A^{-1}=\\frac{\\operatorname{adj}A}{\\det A}.$$ ",
+      "question": "Find the inverse of the matrix $B=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$.",
+      "steps": [
+        "$\\det B=4-6=-2$.",
+        "Swap the diagonal entries, negate the other entries and divide by $-2$."
+      ],
+      "answer": "$B^{-1}=\\begin{pmatrix}-2&1\\\\3/2&-1/2\\end{pmatrix}$.",
+      "source": {
+        "file": "FP1 CH4 Matrix.pdf",
+        "pages": "1",
+        "label": "Initial worked matrix calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Find a 3×3 inverse by row reduction",
+      "method": "Write the augmented matrix [A | I]. Use elementary row operations to make the left half the identity; the right half is the inverse.",
+      "formula": "$$[A\\mid I]\\longrightarrow[I\\mid A^{-1}].$$",
+      "question": "Find the inverse of $A=\\begin{pmatrix}1&2&1\\\\0&-1&2\\\\2&3&1\\end{pmatrix}$.",
+      "steps": [
+        "Use $R_3\\leftarrow R_3-2R_1$, then $R_3\\leftarrow R_3-R_2$.",
+        "Divide the third row by $-3$. Clear the third column in rows 1 and 2, then clear the second column in row 1 and change the sign of row 2."
+      ],
+      "answer": "$$A^{-1}=\\frac13\\begin{pmatrix}-7&1&5\\\\4&-1&-2\\\\2&1&-1\\end{pmatrix}.$$",
+      "source": {
+        "file": "FP1 CH4 Matrix.pdf",
+        "pages": "2–3",
+        "label": "Printed 3×3 row-reduction example",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Identify a transformation from its matrix",
+      "method": "Apply the matrix to a general point or to the two basis vectors. Match the result with a reflection, rotation, stretch or shear.",
+      "formula": "$$R_\\theta=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix};\\quad M_x=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}.$$ ",
+      "question": "Identify $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ and find the image of $(2,7)$.",
+      "steps": [
+        "The matrix sends $(x,y)$ to $(y,x)$."
+      ],
+      "answer": "Reflection in $y=x$; $(2,7)$ maps to $(7,2)$.",
+      "source": {
+        "file": "FP1 CH4 Matrix.pdf",
+        "pages": "3",
+        "label": "Transformation table and initial image question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Combine transformations or reverse one",
+      "method": "For column vectors, multiply in the order opposite to the verbal application order. To reverse a nonsingular transformation, use its inverse.",
+      "formula": "$$T\\text{ then }S\\Rightarrow ST;\\qquad (AB)^{-1}=B^{-1}A^{-1}.$$ ",
+      "question": "First reflect in the $x$-axis, then in $y=x$. Find the combined transformation.",
+      "steps": [
+        "Use $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$."
+      ],
+      "answer": "Anticlockwise rotation by $90^\\circ$.",
+      "source": {
+        "file": "FP1 CH4 Matrix.pdf",
+        "pages": "3–4",
+        "label": "Composition method and transformation table",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find an invariant line",
+      "method": "Substitute a general point $(x,mx+c)$, transform it and require its image to lie on the same line. Compare coefficients.",
+      "formula": "$$A\\binom{x}{mx+c}=\\binom{X}{Y},\\qquad Y=mX+c\\text{ for every }x.$$ ",
+      "question": "For $A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$, find invariant lines of the form $y=mx+c$.",
+      "steps": [
+        "The image is $(2x,mx+c)$. Set $mx+c=m(2x)+c$.",
+        "This requires $m=0$; $c$ is unrestricted. Also check vertical lines separately."
+      ],
+      "answer": "Every horizontal line $y=c$ is invariant; the $y$-axis is also invariant.",
+      "source": {
+        "file": "FP1 CH4 Matrix.pdf",
+        "pages": "5",
+        "label": "Invariant-line method, illustrated using the stretch table",
+        "kind": "notes"
+      }
+    }
+  ],
+  "vectors": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Find a perpendicular vector, area or volume",
+      "method": "Use the cross product for a normal. Its length gives a parallelogram area; halve it for a triangle. Use a scalar triple product for volume.",
+      "formula": "$$\\mathbf n=\\mathbf a\\times\\mathbf b;\\quad A_\\triangle=\\tfrac12|\\mathbf a\\times\\mathbf b|;\\quad V_{\\rm tetra}=\\tfrac16|\\mathbf a\\cdot(\\mathbf b\\times\\mathbf c)|.$$ ",
+      "question": "Find a vector perpendicular to $-4\\mathbf i+2\\mathbf j+\\mathbf k$ and $3\\mathbf i-7\\mathbf k$.",
+      "steps": [
+        "Calculate $(-4,2,1)\\times(3,0,-7)$.",
+        "The components are $(2(-7),\\ 1(3)-(-4)(-7),\\ -2(3))$."
+      ],
+      "answer": "$-14\\mathbf i-25\\mathbf j-6\\mathbf k$.",
+      "source": {
+        "file": "FP1 CH6.pdf",
+        "pages": "1–2",
+        "label": "Worked example 6.1(a)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Find an equation of a plane",
+      "method": "Use a supplied normal, or take the cross product of two directions in the plane. Substitute one point for the constant.",
+      "formula": "$$\\mathbf n\\cdot\\mathbf r=\\mathbf n\\cdot\\mathbf a;\\qquad ax+by+cz=d.$$ ",
+      "question": "A plane contains $(2,3,-5)$ and is perpendicular to $(3,1,-1)$. Find its equation.",
+      "steps": [
+        "The normal is $(3,1,-1)$.",
+        "The constant is $3(2)+3-(-5)=14$."
+      ],
+      "answer": "$3x+y-z=14$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "3",
+        "label": "Printed plane-equation question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find the shortest distance from a point to a line",
+      "method": "Take a point $A$ on the line and its direction $\\mathbf d$. Use a cross product, or find a foot with $\\overrightarrow{PM}\\cdot\\mathbf d=0$.",
+      "formula": "$$D=\\frac{|(\\mathbf p-\\mathbf a)\\times\\mathbf d|}{|\\mathbf d|}.$$ ",
+      "question": "Find the distance from $P=(2,1,4)$ to $\\mathbf r=(4,4,5)+t(1,1,1)$.",
+      "steps": [
+        "$\\mathbf p-\\mathbf a=(-2,-3,-1)$ and $(\\mathbf p-\\mathbf a)\\times\\mathbf d=(-2,1,1)$.",
+        "$D=\\sqrt6/\\sqrt3$."
+      ],
+      "answer": "$D=\\sqrt2$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "4",
+        "label": "Worked example 6.5",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Find the shortest distance from a point to a plane",
+      "method": "Substitute the point into the plane’s left-hand side, subtract the constant and divide by the normal’s length.",
+      "formula": "$$D=\\frac{|ax_0+by_0+cz_0-d|}{\\sqrt{a^2+b^2+c^2}}.$$ ",
+      "question": "Find the distance from $(1,2,3)$ to $4x+y-z=12$.",
+      "steps": [
+        "$D=|4+2-3-12|/\\sqrt{16+1+1}=9/\\sqrt{18}$."
+      ],
+      "answer": "$D=3/\\sqrt2$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "5",
+        "label": "Worked example 6.15",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find the common perpendicular or distance between skew lines",
+      "method": "Let $P$ and $Q$ be general points on the two lines. Set $\\overrightarrow{PQ}$ perpendicular to both directions, then solve for both parameters.",
+      "formula": "$$\\overrightarrow{PQ}\\cdot\\mathbf d_1=0,\\quad\\overrightarrow{PQ}\\cdot\\mathbf d_2=0;\\qquad D=\\frac{|(\\mathbf a_2-\\mathbf a_1)\\cdot(\\mathbf d_1\\times\\mathbf d_2)|}{|\\mathbf d_1\\times\\mathbf d_2|}.$$ ",
+      "question": "$P$ lies on $\\mathbf r=(2,3,0)+s(-1,2,1)$ and $Q$ lies on $\\mathbf r=(3,1,0)+t(-1,1,0)$. Find $P,Q$ when $PQ$ is perpendicular to both lines.",
+      "steps": [
+        "$\\overrightarrow{PQ}=(1+s-t,-2+t-2s,-s)$.",
+        "The dot-product equations give $-5-6s+3t=0$ and $-3-3s+2t=0$, hence $s=-1/3,t=1$.",
+        "$P=(7/3,7/3,-1/3)$ and $Q=(2,2,0)$."
+      ],
+      "answer": "$|PQ|=1/\\sqrt3$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "5",
+        "label": "Worked example 6.8",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find line/plane and plane/plane angles",
+      "method": "For a line and plane, use sine with the plane normal. For two planes, use cosine with their normals. Use absolute values for an acute angle.",
+      "formula": "$$\\sin\\phi=\\frac{|\\mathbf d\\cdot\\mathbf n|}{|\\mathbf d||\\mathbf n|};\\qquad\\cos\\theta=\\frac{|\\mathbf n_1\\cdot\\mathbf n_2|}{|\\mathbf n_1||\\mathbf n_2|}.$$ ",
+      "question": "Using the plane equations $3x-y+2z=3$ and $x+3y-z=6$, find the acute angle between the planes.",
+      "steps": [
+        "Normals are $(3,-1,2)$ and $(1,3,-1)$. Their dot product is $-2$.",
+        "$\\cos\\theta=2/\\sqrt{14\\cdot11}$."
+      ],
+      "answer": "$\\theta=\\cos^{-1}(2/\\sqrt{154})\\approx80.7^\\circ$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "6–7",
+        "label": "Angle method illustrated with the planes from Worked example 6.12",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Find a line of intersection of two planes",
+      "method": "Choose one coordinate as a free parameter. Solve the two equations for the other coordinates, then collect the position and direction vectors.",
+      "formula": "$$y=t\\quad\\Longrightarrow\\quad\\mathbf r=\\mathbf a+t\\mathbf d.$$ ",
+      "question": "Find the line of intersection of $3x-y+2z=3$ and $x+3y-z=6$ by taking $y$ as a free variable.",
+      "steps": [
+        "Put $y=t$. Then $3x+2z=3+t$ and $x-z=6-3t$.",
+        "Solve to get $x=3-t$ and $z=-3+2t$."
+      ],
+      "answer": "$\\mathbf r=(3,0,-3)+t(-1,1,2)$.",
+      "source": {
+        "file": "FP1 CH6 Vectors(1).pdf",
+        "pages": "7",
+        "label": "Worked example 6.12",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "hyperbolic": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Sketch a transformed hyperbolic graph",
+      "method": "Start with the standard shape, then apply the stretch and translation. State any intercepts, turning points and asymptotes.",
+      "formula": "$$\\cosh x\\ge1;\\quad \\sinh x\\in\\mathbb R;\\quad -1<\\tanh x<1;\\qquad \\operatorname{cosech}x=1/\\sinh x.$$ ",
+      "question": "Sketch $y=|3\\cosh(x+1)-4|$.",
+      "steps": [
+        "Before the absolute value, the minimum is $-1$ at $x=-1$.",
+        "Zeros occur when $\\cosh(x+1)=4/3$, so $x=-1\\pm\\ln((4+\\sqrt7)/3)$.",
+        "Reflect the part below the $x$-axis upward; the value at $x=-1$ becomes $1$."
+      ],
+      "answer": "The final graph is nonnegative and symmetric about $x=-1$.",
+      "source": {
+        "file": "FP2 CH1 Hyperbolic Functions.pdf",
+        "pages": "3",
+        "label": "Worked example 19.1",
+        "kind": "textbook"
+      },
+      "diagram": "hyperbolic"
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Solve a hyperbolic equation",
+      "method": "Use exponential definitions if the equation is linear in sinh/cosh. For a quadratic in tanh, solve for tanh first and reject values outside $(-1,1)$.",
+      "formula": "$$\\sinh x=\\frac{e^x-e^{-x}}2,\\quad\\cosh x=\\frac{e^x+e^{-x}}2,\\quad\\tanh x=\\frac{e^{2x}-1}{e^{2x}+1}.$$ ",
+      "question": "Solve $4\\cosh x-3\\sinh x=4$.",
+      "steps": [
+        "Put $u=e^x>0$. The equation becomes $(u+7/u)/2=4$.",
+        "$u^2-8u+7=0$, giving $u=1$ or $7$."
+      ],
+      "answer": "$x=0$ or $x=\\ln7$.",
+      "source": {
+        "file": "FP2 CH1 Hyperbolic Functions.pdf",
+        "pages": "3",
+        "label": "Red 考点 2: exponential substitution",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Evaluate an inverse hyperbolic function",
+      "method": "Apply the correct logarithmic form and keep its domain restriction.",
+      "formula": "$$\\operatorname{arsinh}x=\\ln(x+\\sqrt{x^2+1});\\quad\\operatorname{arcosh}x=\\ln(x+\\sqrt{x^2-1})\\ (x\\ge1);\\quad\\operatorname{artanh}x=\\tfrac12\\ln\\frac{1+x}{1-x}\\ (|x|<1).$$ ",
+      "question": "Solve $\\tanh x=2/3$.",
+      "steps": [
+        "$x=\\operatorname{artanh}(2/3)=\\frac12\\ln[(1+2/3)/(1-2/3)]$."
+      ],
+      "answer": "$x=\\frac12\\ln5$.",
+      "source": {
+        "file": "FP2 CH1 Hyperbolic Functions.pdf",
+        "pages": "4",
+        "label": "Inverse-function worked calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Prove a hyperbolic identity",
+      "method": "Use the stated exponential definitions or rearrange a standard identity. Keep the proof to the required algebra.",
+      "formula": "$$\\cosh^2x-\\sinh^2x=1,\\qquad1-\\tanh^2x=\\operatorname{sech}^2x.$$ ",
+      "question": "Prove $1-\\tanh^2x=\\operatorname{sech}^2x$ from exponential definitions.",
+      "steps": [
+        "$1-\\tanh^2x=1-[(e^x-e^{-x})/(e^x+e^{-x})]^2$.",
+        "The numerator simplifies to $4$, so the result is $4/(e^x+e^{-x})^2$."
+      ],
+      "answer": "$4/(e^x+e^{-x})^2=\\operatorname{sech}^2x$.",
+      "source": {
+        "file": "FP2 CH1 Hyperbolic Functions.pdf",
+        "pages": "4–5",
+        "label": "Red 考点 4: identity proof",
+        "kind": "notes"
+      }
+    }
+  ],
+  "differentiation": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Find an implicit first or second derivative",
+      "method": "Differentiate with respect to $x$, treating $y$ as a function of $x$. Collect $y'$ terms. For $y''$, differentiate the first-derivative equation again.",
+      "formula": "$$\\frac d{dx}e^y=e^y y';\\qquad\\frac d{dx}(y y')=(y')^2+y y''.$$ ",
+      "question": "$y^3+yx^2=e^x$ passes through $(0,1)$. Find $y'$ and $y''$ at that point.",
+      "steps": [
+        "$3y^2y'+x^2y'+2xy=e^x$; at $(0,1)$, $y'=1/3$.",
+        "Differentiate again: $6y(y')^2+3y^2y''+x^2y''+4xy'+2y=e^x$.",
+        "At $(0,1)$: $2/3+3y''+2=1$."
+      ],
+      "answer": "$y'=1/3,\\qquad y''=-5/9$.",
+      "source": {
+        "file": "FP2 CH3 Differentiation 1.pdf",
+        "pages": "1–2",
+        "label": "Worked example 21.3",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Find parametric first and second derivatives",
+      "method": "Calculate $dy/dx$ from the ratio. Differentiate that result with respect to the parameter, then divide by $dx/dt$ again.",
+      "formula": "$$\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt},\\qquad\\frac{d^2y}{dx^2}=\\frac{\\frac d{dt}(dy/dx)}{dx/dt}.$$ ",
+      "question": "$x=1/(t+1)$ and $y=t^2$. Find the first and second derivatives of $y$ with respect to $x$.",
+      "steps": [
+        "$dx/dt=-(t+1)^{-2}$ and $dy/dt=2t$, so $dy/dx=-2t(t+1)^2$.",
+        "Differentiate: $d(dy/dx)/dt=-2(t+1)(3t+1)$. Divide by $dx/dt$."
+      ],
+      "answer": "$d^2y/dx^2=2(t+1)^3(3t+1)$, for $t\\ne-1$.",
+      "source": {
+        "file": "FP2 CH3 Differentiation 1.pdf",
+        "pages": "2",
+        "label": "Worked example 21.4",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find and classify a parametric stationary point",
+      "method": "Solve $dy/dt=0$ where $dx/dt\ne0$. Substitute the parameter into $(x,y)$ and use the second derivative to classify it.",
+      "formula": "$$dy/dx=0;\\qquad y''<0:\\text{ maximum},\\quad y''>0:\\text{ minimum}.$$ ",
+      "question": "For $x=t^4+t$, $y=t^3-3t^2$, find the stationary points and their nature.",
+      "steps": [
+        "$dy/dx=(3t^2-6t)/(4t^3+1)$, so $t=0$ or $2$.",
+        "The points are $(0,0)$ and $(18,-4)$.",
+        "The second derivatives are $-6$ and $2/363$, respectively."
+      ],
+      "answer": "Local maximum $(0,0)$; local minimum $(18,-4)$.",
+      "source": {
+        "file": "FP2 CH3 Differentiation 1.pdf",
+        "pages": "2–3",
+        "label": "Worked example 21.6",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Differentiate hyperbolic or inverse functions",
+      "method": "Use the standard derivative, then multiply by the inner derivative. For a product, apply the product rule as well.",
+      "formula": "$$\\frac d{dx}\\sinh u=u'\\cosh u,\\quad\\frac d{dx}\\cosh u=u'\\sinh u,\\quad\\frac d{dx}\\arcsin u=\\frac{u'}{\\sqrt{1-u^2}}.$$ ",
+      "question": "Differentiate $y=\\cosh(3x)\\sinh(4x)$.",
+      "steps": [
+        "Differentiate one factor at a time and leave the other unchanged."
+      ],
+      "answer": "$y'=3\\sinh(3x)\\sinh(4x)+4\\cosh(3x)\\cosh(4x)$.",
+      "source": {
+        "file": "FP2 CH3 Differentiation 1.pdf",
+        "pages": "3",
+        "label": "Worked example 21.7(d)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find a Maclaurin expansion to the required order",
+      "method": "Find derivatives at zero or substitute into a known series. Divide by the factorial and stop at the requested power.",
+      "formula": "$$f(x)=f(0)+xf'(0)+\\frac{x^2}{2!}f''(0)+\\frac{x^3}{3!}f^{(3)}(0)+\\cdots.$$ ",
+      "question": "Find the first three nonzero Maclaurin terms for $\\arcsin x$.",
+      "steps": [
+        "$f(0)=0$ and $f'(x)=(1-x^2)^{-1/2}=1+\\frac12x^2+\\frac38x^4+\\cdots$.",
+        "Integrate term by term and use $f(0)=0$."
+      ],
+      "answer": "$\\arcsin x=x+x^3/6+3x^5/40+O(x^7)$.",
+      "source": {
+        "file": "FP1 CH3 Part2.pdf",
+        "pages": "3",
+        "label": "Worked example 21.13",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "integration": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Integrate by trigonometric or hyperbolic substitution",
+      "method": "Choose a substitution that removes the square root. Change $dx$ and the limits before integrating.",
+      "formula": "$$\\sqrt{a^2-x^2}:x=a\\sin t;\\quad\\sqrt{x^2+a^2}:x=a\\sinh t;\\quad\\sqrt{x^2-a^2}:x=a\\cosh t\\ (x\\ge a).$$ ",
+      "question": "Find $\\int dx/\\sqrt{x^2+9}$.",
+      "steps": [
+        "Put $x=3\\sinh t$. Then $dx=3\\cosh t\\,dt$ and the denominator is $3\\cosh t$.",
+        "The integral is $t+C$."
+      ],
+      "answer": "$\\operatorname{arsinh}(x/3)+C=\\ln(x+\\sqrt{x^2+9})+C$.",
+      "source": {
+        "file": "FP2 CH4 Integration 1 更新.pdf",
+        "pages": "1",
+        "label": "Worked example 22.4",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Recognise an inverse-function integral",
+      "method": "Complete the square and match the standard form. Keep any scale factor from the substitution.",
+      "formula": "$$\\int\\frac{du}{a^2+u^2}=\\frac1a\\arctan(u/a)+C;\\quad\\int\\frac{du}{\\sqrt{a^2-u^2}}=\\arcsin(u/a)+C.$$ ",
+      "question": "Find $\\int dx/(x^2+4x+8)$.",
+      "steps": [
+        "$x^2+4x+8=(x+2)^2+4$. Put $u=x+2$."
+      ],
+      "answer": "$\\frac12\\arctan((x+2)/2)+C$.",
+      "source": {
+        "file": "FP2 CH4 Integration 1 更新.pdf",
+        "pages": "2",
+        "label": "Inverse-tangent form in the integration notes",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Use integration by parts",
+      "method": "Choose $u$ to become simpler after differentiation. For a definite integral, evaluate the boundary term.",
+      "formula": "$$\\int u\\,dv=uv-\\int v\\,du.$$ ",
+      "question": "Find $\\int xe^x\\,dx$.",
+      "steps": [
+        "Take $u=x$ and $dv=e^x dx$. Then $du=dx$, $v=e^x$.",
+        "$I=xe^x-\\int e^x dx$."
+      ],
+      "answer": "$e^x(x-1)+C$.",
+      "source": {
+        "file": "FP2 CH4 Integration 1 更新.pdf",
+        "pages": "3–4",
+        "label": "By-parts worked calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Derive and use a reduction formula",
+      "method": "Split off a factor for integration by parts, rewrite the remaining power and collect the repeated integral. State the valid values of $n$.",
+      "formula": "$$I_n=\\int_0^1x^n e^x\\,dx:\\qquad I_n=e-nI_{n-1}\\quad(n\\ge1),\\quad I_0=e-1.$$ ",
+      "question": "Using $I_n=\\int_0^1x^n e^x\\,dx$, find $I_2$.",
+      "steps": [
+        "Integration by parts gives $I_n=[x^ne^x]_0^1-nI_{n-1}=e-nI_{n-1}$.",
+        "$I_1=e-(e-1)=1$ and $I_2=e-2I_1$."
+      ],
+      "answer": "$I_2=e-2$.",
+      "source": {
+        "file": "FP2 CH4 Integration 1 更新.pdf",
+        "pages": "4",
+        "label": "Reduction-formula worked calculation for xⁿeˣ",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find the length of a Cartesian, parametric or polar curve",
+      "method": "Choose the formula matching the form of the curve, differentiate, simplify the square root and integrate over the stated interval.",
+      "formula": "$$L=\\int\\sqrt{1+(y')^2}\\,dx;\\quad L=\\int\\sqrt{x_t^2+y_t^2}\\,dt;\\quad L=\\int\\sqrt{r^2+r_\\theta^2}\\,d\\theta.$$ ",
+      "question": "Find the length of $y=\\cosh x$ from $x=0$ to $x=\\ln2$.",
+      "steps": [
+        "$y'=\\sinh x$, so $\\sqrt{1+(y')^2}=\\cosh x$.",
+        "$L=[\\sinh x]_0^{\\ln2}=(2-1/2)/2$."
+      ],
+      "answer": "$L=3/4$.",
+      "source": {
+        "file": "FP2 CH4 Integration 2.pdf",
+        "pages": "1",
+        "label": "Worked example 22.14",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find a surface area of revolution",
+      "method": "Use the distance from the axis as the radius. Multiply the arc-length element by $2\\pi$ times that radius.",
+      "formula": "$$S_x=2\\pi\\int |y|\\sqrt{1+(y')^2}\\,dx;\\qquad S_y=2\\pi\\int |x|\\sqrt{1+(y')^2}\\,dx.$$ ",
+      "question": "Find the surface area formed by rotating $y=x^2$ about the $y$-axis, from $x=2$ to $x=3$.",
+      "steps": [
+        "The radius is $x$ and $y'=2x$, so $S=2\\pi\\int_2^3x\\sqrt{1+4x^2}\\,dx$.",
+        "Use $u=1+4x^2$ to obtain $S=\\frac\\pi6[(1+4x^2)^{3/2}]_2^3$."
+      ],
+      "answer": "$S=\\frac\\pi6(37\\sqrt{37}-17\\sqrt{17})$.",
+      "source": {
+        "file": "FP2 CH4 Integration 2.pdf",
+        "pages": "2",
+        "label": "Worked example 22.17",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Bound a series with an integral or prove convergence",
+      "method": "Sketch a decreasing positive function and compare rectangles with its integral. State the correct upper or lower inequality before taking a limit.",
+      "formula": "$$\\int_1^{n+1}f(x)\\,dx\\le\\sum_{r=1}^n f(r)\\le f(1)+\\int_1^nf(x)\\,dx.$$ ",
+      "question": "Find an upper bound for $\\sum_{r=1}^n r^{-3/2}$ and show the infinite series converges.",
+      "steps": [
+        "$S_n\\le1+\\int_1^n x^{-3/2}dx=1+[-2x^{-1/2}]_1^n$.",
+        "$S_n\\le3-2/\\sqrt n<3$. The partial sums increase because every term is positive."
+      ],
+      "answer": "The partial sums increase and are bounded above by $3$, so the series converges.",
+      "source": {
+        "file": "FP2 CH4 Integration 2.pdf",
+        "pages": "3",
+        "label": "Worked example 22.20",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "complex": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Use de Moivre to find a multiple-angle formula",
+      "method": "Expand $(\\cos\theta+i\\sin\theta)^n$. Equate real and imaginary parts; divide them for a tangent identity.",
+      "formula": "$$\\cos n\\theta+i\\sin n\\theta=(\\cos\\theta+i\\sin\\theta)^n.$$ ",
+      "question": "Find $\\tan4\\theta$ in terms of $t=\\tan\\theta$.",
+      "steps": [
+        "The real part is $c^4-6c^2s^2+s^4$ and the imaginary part is $4c^3s-4cs^3$.",
+        "Divide imaginary by real, then divide numerator and denominator by $c^4$."
+      ],
+      "answer": "$\\tan4\\theta=(4t-4t^3)/(1-6t^2+t^4)$ where the expressions are defined.",
+      "source": {
+        "file": "FP2 CH5 Complex Number 1.pdf",
+        "pages": "2",
+        "label": "Worked example 23.4",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Solve a polynomial using a trigonometric substitution",
+      "method": "Rearrange to match the multiple-angle identity, set $x=\tan\theta$ or the requested function, then list all distinct roots.",
+      "formula": "$$\\tan4\\theta=1\\Rightarrow\\theta=\\pi/16+k\\pi/4\\quad(k=0,1,2,3).$$ ",
+      "question": "Solve $x^4+4x^3-6x^2-4x+1=0$.",
+      "steps": [
+        "Rearrange as $1-6x^2+x^4=4x-4x^3$, so the identity gives $\\tan4\\theta=1$.",
+        "Take $x=\\tan\\theta$ and use four arguments giving distinct tangent values."
+      ],
+      "answer": "$x=\\tan(\\pi/16+k\\pi/4)$ for $k=0,1,2,3$.",
+      "source": {
+        "file": "FP2 CH5 Complex Number 1.pdf",
+        "pages": "2",
+        "label": "Polynomial following Worked example 23.4",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Rewrite powers of sine/cosine and integrate",
+      "method": "Put $z=e^{i\theta}$, express sine/cosine using $z$ and $z^{-1}$, expand and group opposite powers.",
+      "formula": "$$\\cos\\theta=\\frac{z+z^{-1}}2,\\quad\\sin\\theta=\\frac{z-z^{-1}}{2i},\\quad z^m+z^{-m}=2\\cos m\\theta.$$ ",
+      "question": "Use complex numbers to find $\\int\\sin^5\\theta\\,d\\theta$.",
+      "steps": [
+        "Expansion gives $\\sin^5\\theta=(10\\sin\\theta-5\\sin3\\theta+\\sin5\\theta)/16$.",
+        "Integrate each sine term separately."
+      ],
+      "answer": "$-\\frac58\\cos\\theta+\\frac5{48}\\cos3\\theta-\\frac1{80}\\cos5\\theta+C$.",
+      "source": {
+        "file": "FP2 CH5 Complex Number 1.pdf",
+        "pages": "2–3",
+        "label": "Worked example 23.7",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Find all complex roots and plot them",
+      "method": "Write the right side in polar form. Divide every possible argument by $n$, list $n$ distinct roots and plot equally spaced points.",
+      "formula": "$$z^n=Re^{i\\Theta}\\Rightarrow z_k=R^{1/n}e^{i(\\Theta+2k\\pi)/n},\\quad k=0,\\ldots,n-1.$$ ",
+      "question": "Solve $z^6=4+4\\sqrt3\\,i$, giving answers in exponential form.",
+      "steps": [
+        "$4+4\\sqrt3\\,i=8e^{i\\pi/3}$.",
+        "Each modulus is $8^{1/6}=\\sqrt2$, and the arguments are $\\pi/18+k\\pi/3$."
+      ],
+      "answer": "$z_k=\\sqrt2e^{i(\\pi/18+k\\pi/3)}$, $k=0,1,\\ldots,5$; angular spacing $\\pi/3$.",
+      "source": {
+        "file": "FP2 CH5 Complex Number 1.pdf",
+        "pages": "3–4",
+        "label": "Worked example 23.13",
+        "kind": "textbook"
+      },
+      "diagram": "complex-roots"
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find a trigonometric sum using a complex geometric series",
+      "method": "Write one geometric series with ratio $re^{i\theta}$. Simplify, then take the real part for cosine or the imaginary part for sine.",
+      "formula": "$$\\sum_{k=0}^{n-1}z^k=\\frac{1-z^n}{1-z};\\qquad\\sum_{k=0}^{\\infty}z^k=\\frac1{1-z}\\ (|z|<1).$$ ",
+      "question": "Find $\\sum_{k=0}^{\\infty}2^{-k}\\cos(k\\theta)$.",
+      "steps": [
+        "Take the real part of $1/[1-\\tfrac12e^{i\\theta}]$.",
+        "Multiply numerator and denominator by $1-\\tfrac12e^{-i\\theta}$."
+      ],
+      "answer": "$\\dfrac{1-\\tfrac12\\cos\\theta}{\\tfrac54-\\cos\\theta}$.",
+      "source": {
+        "file": "FP2 CH5 Complex Number.pdf",
+        "pages": "5–6",
+        "label": "Red 考点 4: infinite geometric-series method",
+        "kind": "notes"
+      }
+    }
+  ],
+  "pdf-cdf": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Find a CDF from a PDF",
+      "method": "Integrate from the lower support limit. For each new interval, carry forward the probability already accumulated.",
+      "formula": "$$F(x)=\\int_{-\\infty}^xf(t)\\,dt;\\quad F(x)=0\\text{ below the support},\\ F(x)=1\\text{ above it}.$$ ",
+      "question": "$f(x)=x/12$ for $1\\le x\\le5$, and zero otherwise. Find $F(x)$.",
+      "steps": [
+        "For $1\\le x\\le5$, integrate $\\int_1^x t/12\\,dt=(x^2-1)/24$.",
+        "Add the two outside-support pieces."
+      ],
+      "answer": "$$F(x)=\\begin{cases}0&x<1,\\\\(x^2-1)/24&1\\le x\\le5,\\\\1&x>5.\\end{cases}$$",
+      "source": {
+        "file": "FS CH1 PDF CDF.pdf",
+        "pages": "1",
+        "label": "Worked example 8.3",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Find an interval probability or a percentile",
+      "method": "Use differences of CDF values for probabilities. For $P(X>a)=p$, solve $F(a)=1-p$ in the correct interval.",
+      "formula": "$$P(a<X<b)=F(b)-F(a);\\qquad F(m)=1/2\\text{ for a median}.$$ ",
+      "question": "$f(x)=2(x+1)/29$ for $1\\le x<4$ and $2/29$ for $4\\le x\\le8$. Find $P(2<X<5)$ and $a$ such that $P(X>a)=0.1$.",
+      "steps": [
+        "On the first interval, $F(x)=(x^2+2x-3)/29$. On the second, $F(x)=(2x+13)/29$.",
+        "$F(5)-F(2)=23/29-5/29=18/29$.",
+        "$F(a)=0.9$ gives $2a+13=26.1$."
+      ],
+      "answer": "$P(2<X<5)=18/29,\\qquad a=6.55$.",
+      "source": {
+        "file": "FS CH1 PDF CDF.pdf",
+        "pages": "1",
+        "label": "Worked example 8.4(b–c)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find an expectation or variance",
+      "method": "If given a CDF, differentiate it first. Integrate $g(x)f(x)$ for the required expectation; for variance, calculate both moments.",
+      "formula": "$$E[g(X)]=\\int g(x)f(x)dx;\\qquad\\operatorname{Var}(X)=E(X^2)-[E(X)]^2.$$ ",
+      "question": "$F(x)=x^2/60-1/15$ for $2\\le x\\le8$, with outside pieces $0$ and $1$. Find $E(\\sqrt X)$ and $\\operatorname{Var}(X)$.",
+      "steps": [
+        "$f(x)=x/30$ on $[2,8]$. Then $E(\\sqrt X)=[x^{5/2}/75]_2^8$.",
+        "$E(X)=[x^3/90]_2^8=28/5$ and $E(X^2)=[x^4/120]_2^8=34$."
+      ],
+      "answer": "$E(\\sqrt X)=124\\sqrt2/75;\\qquad\\operatorname{Var}(X)=66/25$.",
+      "source": {
+        "file": "FS CH1 PDF CDF.pdf",
+        "pages": "3",
+        "label": "Printed CDF question, parts (b–c)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Find the distribution of a transformed variable",
+      "method": "Write $G(y)=P(Y\\le y)$, rewrite the event in $X$, use $F_X$, then differentiate. Reverse the inequality for a decreasing transformation.",
+      "formula": "$$Y=g(X):\\quad G(y)=P(g(X)\\le y),\\qquad f_Y(y)=G'(y).$$ ",
+      "question": "$f_X(x)=8/(3x^3)$ for $1\\le x\\le2$. Find the density of $Y=1/X$.",
+      "steps": [
+        "The new support is $1/2\\le y\\le1$. The CDF of $X$ is $F_X(x)=4/3-4/(3x^2)$.",
+        "$G(y)=P(X\\ge1/y)=1-F_X(1/y)=(4y^2-1)/3$.",
+        "Differentiate on the new support."
+      ],
+      "answer": "$f_Y(y)=8y/3$ for $1/2<y<1$, and zero elsewhere.",
+      "source": {
+        "file": "FS CH1 PDF CDF.pdf",
+        "pages": "2",
+        "label": "Worked example 8.14",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "inference": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "One-sample t-test for a mean",
+      "method": "Use a t-test for an independent sample from a normal population with unknown variance. Calculate the unbiased sample variance, then choose the stated tail.",
+      "formula": "$$s^2=\\frac{\\sum x^2-(\\sum x)^2/n}{n-1},\\qquad t=\\frac{\\bar x-\\mu_0}{s/\\sqrt n},\\quad\\nu=n-1.$$ ",
+      "question": "The wingspans are $8.8,9.6,9.2,9.1,9.9,8.7$ cm. Test $H_0:\\mu=9.4$ against $H_1:\\mu<9.4$ at 10%, assuming normality.",
+      "steps": [
+        "$\\bar x=9.2167$, $s^2=0.213667$, so $t\\approx-0.972$.",
+        "$\\nu=5$ and the lower-tail critical value is $-1.476$.",
+        "The statistic is not in the rejection region."
+      ],
+      "answer": "Do not reject $H_0$; insufficient evidence that the mean wingspan is below $9.4$ cm.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "1–2",
+        "label": "Worked example 9.2",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Compare two independent means with a normal test",
+      "method": "For large independent samples, use the sum of the two estimated mean variances. Set the sign of the alternative before calculating.",
+      "formula": "$$z=\\frac{(\\bar x-\\bar y)-d_0}{\\sqrt{s_x^2/n_x+s_y^2/n_y}}.$$ ",
+      "question": "Children: $n=50,\\bar x=45.3,s=3.2$ seconds. Adults: $n=70,\\bar y=46.1,s=2.8$. Test whether children are faster at 5%.",
+      "steps": [
+        "$H_0:\\mu_x-\\mu_y=0$; $H_1:\\mu_x-\\mu_y<0$.",
+        "$z=(-0.8)/\\sqrt{3.2^2/50+2.8^2/70}\\approx-1.421$.",
+        "The lower-tail critical value is $-1.645$."
+      ],
+      "answer": "Insufficient evidence that children have a lower population mean completion time.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "2–3",
+        "label": "Worked example 9.4; correct one-tail critical value",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Compare two small independent samples: pooled t-test",
+      "method": "Assume normal populations with equal unknown variances. Pool the within-sample sums of squares, then use $n_x+n_y-2$ degrees of freedom.",
+      "formula": "$$s_p^2=\\frac{\\sum x^2-(\\sum x)^2/n_x+\\sum y^2-(\\sum y)^2/n_y}{n_x+n_y-2};\\quad t=\\frac{\\bar x-\\bar y-d_0}{s_p\\sqrt{1/n_x+1/n_y}}.$$ ",
+      "question": "With music: $n_x=10,\\sum x=960.1,\\sum x^2=92274.44$. Without: $n_y=8,\\sum y=748.2,\\sum y^2=70041.16$. Test whether music raises mean sales at 5%.",
+      "steps": [
+        "$\\bar x=96.01$, $\\bar y=93.525$ and $s_p^2\\approx10.0621$.",
+        "$t\\approx1.6515$, with $\\nu=16$.",
+        "The upper-tail 5% critical value is $1.746$."
+      ],
+      "answer": "Do not reject $H_0$; insufficient evidence that music increases mean sales.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "3–4",
+        "label": "Worked example 9.5",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Paired t-test for before-and-after data",
+      "method": "Form one difference per pair and perform a one-sample t-test on the differences. Assume a normal population of differences.",
+      "formula": "$$t=\\frac{\\bar d-d_0}{s_d/\\sqrt n},\\quad\\nu=n-1.$$ ",
+      "question": "The revision-test increases are $4,2,7,3,8,6,1,5,4,8$. Test at 5% whether revision raises the mean score.",
+      "steps": [
+        "$\\bar d=4.8$ and $s_d^2=(284-48^2/10)/9=5.9556$.",
+        "$t=4.8/\\sqrt{5.9556/10}\\approx6.22$, with $9$ degrees of freedom.",
+        "The upper-tail critical value is $1.833$."
+      ],
+      "answer": "Reject $H_0$; there is evidence that revision raises the population mean score.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "4",
+        "label": "Worked example 9.6",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find a confidence interval for one mean",
+      "method": "For a normal sample with unknown variance, use the t critical value for the confidence level and $n-1$ degrees of freedom.",
+      "formula": "$$\\bar x\\pm t_{\\nu,1-\\alpha/2}\\frac{s}{\\sqrt n}.$$ ",
+      "question": "Waiting times are $12,17,21,9,14,19$ minutes. Find a 90% confidence interval for the mean.",
+      "steps": [
+        "$n=6$, $\\bar x=92/6$ and $s^2=(1512-92^2/6)/5=20.2667$.",
+        "Use $t_{5,0.95}=2.015$. The margin is about $3.703$."
+      ],
+      "answer": "Approximately $(11.63,19.04)$ minutes.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "5",
+        "label": "Worked example 9.8; calculation kept unrounded until the end",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find a confidence interval for a difference of means",
+      "method": "Choose the difference direction and keep it throughout. Use a normal interval for large independent samples, or a pooled t interval under the small-sample equal-variance assumptions.",
+      "formula": "$$\\bar x-\\bar y\\pm z_{1-\\alpha/2}\\sqrt{s_x^2/n_x+s_y^2/n_y}.$$ ",
+      "question": "Women: $n_x=70,\\bar x=46.1,s_x=2.8$. Men: $n_y=60,\\bar y=45.3,s_y=3.2$. Find a 90% interval for $\\mu_x-\\mu_y$.",
+      "steps": [
+        "The difference is $0.8$ and the standard error is $\\sqrt{2.8^2/70+3.2^2/60}\\approx0.5317$.",
+        "Use $z_{0.95}=1.6449$."
+      ],
+      "answer": "Approximately $(-0.0745,1.6745)$ seconds.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "5",
+        "label": "Worked example 9.9",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Change the confidence level of an interval",
+      "method": "Recover the centre and standard error from the old interval. Keep the centre and use the new critical multiplier.",
+      "formula": "$$c=(a+b)/2,\\quad SE=(b-a)/(2z_{\\rm old});\\qquad c\\pm z_{\\rm new}SE.$$ ",
+      "question": "A 90% normal interval is $(-0.0745,1.6745)$. Find the corresponding 99% interval.",
+      "steps": [
+        "The centre is $0.8$ and the old half-width is $0.8745$.",
+        "$SE=0.8745/1.6449$ and the new half-width is $2.5758SE\\approx1.3694$."
+      ],
+      "answer": "Approximately $(-0.5694,2.1694)$.",
+      "source": {
+        "file": "FS CH2 Inferential Statistics.pdf",
+        "pages": "5–6",
+        "label": "Worked example 9.10",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "chi-squared": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Goodness of fit: discrete uniform model",
+      "method": "Give each of the fixed categories the same expected frequency. Pool if needed, then use the right-tail critical value.",
+      "formula": "$$X^2=\\sum\\frac{(O-E)^2}{E},\\qquad\\nu=k-1-m.$$ ",
+      "question": "A die is rolled $180$ times, with frequencies $29,31,34,39,23,24$. Test fairness at 5%.",
+      "steps": [
+        "$H_0$: each face has probability $1/6$. Every expected frequency is $30$.",
+        "$X^2=(1+1+16+81+49+36)/30=6.1333$.",
+        "$\\nu=6-1=5$, with 5% critical value $11.070$."
+      ],
+      "answer": "Do not reject fairness; the result is not significant.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "2",
+        "label": "Worked example 10.1",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Goodness of fit: binomial model",
+      "method": "Use binomial probabilities for the expected frequencies. If $p$ is estimated, use $\\hat p=\\sum xf/(nN)$ and lose one extra degree of freedom.",
+      "formula": "$$E_r=N\\binom nrp^r(1-p)^{n-r};\\quad \\nu=k-1\\text{ if }p\\text{ fixed},\\ k-2\\text{ if estimated}.$$ ",
+      "question": "Observed counts for $x=0,1,\\ldots,8$ are $12,28,28,17,7,4,2,2,0$. Test the specified $B(10,0.2)$ model at 5%.",
+      "steps": [
+        "$N=100$. Use categories $0,1,2,3,\\ge4$; observed counts become $12,28,28,17,15$.",
+        "Expected counts are approximately $10.737,26.844,30.199,20.133,12.087$.",
+        "$X^2\\approx1.548$, $\\nu=5-1=4$; critical value $9.488$."
+      ],
+      "answer": "Do not reject the specified binomial model.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "2–3",
+        "label": "Binomial question under Red Case 2",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Goodness of fit: Poisson model",
+      "method": "Use the stated mean, or estimate it with $\\hat\\lambda=\\sum xf/N$. Include the tail category and pool small expected counts.",
+      "formula": "$$E_r=Ne^{-\\lambda}\\lambda^r/r!;\\qquad \\nu=k-1-m.$$ ",
+      "question": "For counts $0,1,2,3,4,5,6,\\ge7$, the frequencies are $8,34,42,28,26,5,5,2$. Test $\\operatorname{Po}(2.5)$ at 5%.",
+      "steps": [
+        "$N=150$. Pool $6$ and $\\ge7$, giving a final observed count of $7$.",
+        "The seven expected counts are approximately $12.313,30.782,38.477,32.064,20.040,10.020,6.303$.",
+        "$X^2\\approx7.05$, $\\nu=7-1=6$, critical value $12.592$."
+      ],
+      "answer": "Do not reject the Poisson model. If the mean had been estimated, subtract another degree of freedom.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "4",
+        "label": "Worked example 10.3",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Goodness of fit: normal model",
+      "method": "Use class boundaries, include both tails, and calculate normal interval probabilities. Subtract one degree of freedom for each estimated parameter.",
+      "formula": "$$E_i=N\\left[\\Phi\\!\\left(\\frac{b_i-\\mu}{\\sigma}\\right)-\\Phi\\!\\left(\\frac{a_i-\\mu}{\\sigma}\\right)\\right].$$ ",
+      "question": "Baby weights, recorded to 1 decimal place, have classes $2.0$–$2.4$, $2.5$–$2.9$, …, $4.5$–$4.9$ and frequencies $8,14,54,43,22,9$. Test a normal model with variance $0.4$ at 10%.",
+      "steps": [
+        "Estimate $\\mu$ from midpoints: $\\bar x=3.48$. Use cut-points $2.45,2.95,3.45,3.95,4.45$ and include the outside tails.",
+        "Expected counts are approximately $7.755,22.397,42.010,43.532,24.922,9.385$.",
+        "$X^2\\approx6.942$; $\\nu=6-1-1=4$, with 10% critical value $7.779$."
+      ],
+      "answer": "Do not reject the model with variance $0.4$.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "5–6",
+        "label": "Worked example 10.4",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Goodness of fit: continuous uniform model",
+      "method": "Calculate each class probability from its width divided by the full interval width. Equal-width classes have equal expected counts.",
+      "formula": "$$P(a<X<b)=\\frac{b-a}{\\beta-\\alpha}\\quad\\text{for }U(\\alpha,\\beta).$$ ",
+      "question": "Bus waits over 120 days fall in six 10-minute classes from $0$ to $60$, with counts $14,25,27,25,15,14$. Test $U(0,60)$ at 10%.",
+      "steps": [
+        "Every expected frequency is $120/6=20$.",
+        "$X^2=9.8$ and $\\nu=5$. The 10% critical value is $9.236$."
+      ],
+      "answer": "Reject the uniform model at 10%.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "6–7",
+        "label": "Worked example 10.5",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Goodness of fit: a specified PDF",
+      "method": "Integrate the density over each class to find its expected frequency. Keep the model parameters fixed unless the question asks you to estimate them.",
+      "formula": "$$E_i=N\\int_{a_i}^{b_i}f(x)dx.$$ ",
+      "question": "$N=200$ and $f(x)=x(4-x)/9$ on $[0,3]$. Six half-unit classes have observed counts $5,23,40,41,46,45$. Find the missing expected frequencies for the first two classes, then test at 5%.",
+      "steps": [
+        "$E_i=200[2x^2/9-x^3/27]_{a_i}^{b_i}$. The first two are $10.1852$ and $26.8519$.",
+        "The complete expected vector is approximately $(10.1852,26.8519,37.9630,43.5185,43.5185,37.9630)$.",
+        "$X^2\\approx4.893$, $\\nu=5$; compare with $11.070$."
+      ],
+      "answer": "Do not reject the specified PDF model.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "7",
+        "label": "Printed PDF goodness-of-fit question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Test independence in a contingency table",
+      "method": "Calculate row and column totals, fill the expected table, then calculate the statistic. Use $(r-1)(c-1)$ degrees of freedom.",
+      "formula": "$$E_{ij}=\\frac{R_iC_j}{N};\\qquad\\nu=(r-1)(c-1).$$ ",
+      "question": "The observed 3×3 table has rows $(63,31,6)$, $(26,20,14)$ and $(11,19,10)$. Test independence at 5%.",
+      "steps": [
+        "Row totals are $100,60,40$; column totals are $100,70,30$; $N=200$.",
+        "Expected rows are $(50,35,15)$, $(30,21,9)$ and $(20,14,6)$.",
+        "$X^2\\approx21.098$, with $\\nu=4$; the 5% critical value is $9.488$."
+      ],
+      "answer": "Reject independence; there is evidence of an association.",
+      "source": {
+        "file": "FS CH3 Chi-Squared Tests.pdf",
+        "pages": "7–8",
+        "label": "Worked examples 10.6–10.7",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "non-parametric": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Single-sample sign test",
+      "method": "Count the observations above and below the hypothesised median. Under $H_0$, the positive count is binomial with $p=1/2$. Use one or two tails as stated.",
+      "formula": "$$S\\sim B(n,1/2);\\qquad p_{\\rm two-sided}=2P(S\\le s_{\\min}).$$ ",
+      "question": "A sample of 15 has 12 values above 135 and 3 below. Test the claim that the median is 135 at 5%, two-sided.",
+      "steps": [
+        "$H_0:m=135$; $H_1:m\\ne135$.",
+        "$p=2P(B(15,1/2)\\le3)=2(1+15+105+455)/2^{15}=0.03515625$."
+      ],
+      "answer": "Reject $H_0$; evidence that the population median differs from 135.",
+      "source": {
+        "file": "FS CH11 Non-Parametric tests.pdf",
+        "pages": "1–2",
+        "label": "Worked example 11.1, summarised by the sign counts",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Wilcoxon signed-rank test",
+      "method": "Assume independent continuous symmetric deviations. Rank absolute deviations, restore signs, sum the positive and negative ranks and use the correct table tail.",
+      "formula": "$$P+Q=n(n+1)/2;\\qquad T=\\min(P,Q).$$ ",
+      "question": "Mackerel weights are $1.6,1.1,2.1,2.4,2.2,2.9,2.6,2.3,2.7,1.9$ kg. Test whether the median exceeds $1.8$ at 5%.",
+      "steps": [
+        "Subtract $1.8$ and rank absolute differences. The negative ranks are $2$ and $7$.",
+        "$Q=9$, $P=46$, and $T=9$.",
+        "The one-tailed 5% critical value for $n=10$ is $10$; the positive ranks are the larger sum."
+      ],
+      "answer": "Reject $H_0$; evidence that the population median exceeds $1.8$ kg.",
+      "source": {
+        "file": "FS CH11 Non-Parametric tests.pdf",
+        "pages": "3",
+        "label": "Worked example 11.2",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Use a normal approximation for a rank sum",
+      "method": "For a sufficiently large sample with no ties or zero deviations, approximate one signed-rank sum by a normal distribution. Apply the continuity correction to the requested tail.",
+      "formula": "$$P\\approx N\\!\\left(\\frac{n(n+1)}4,\\frac{n(n+1)(2n+1)}{24}\\right).$$ ",
+      "question": "The 19 survival times are $37,54,73,89,94,110,112,123,129,132,148,151,173,189,201,204,213,276,281$. Test whether the median differs from 150 at 5%.",
+      "steps": [
+        "Rank the absolute differences from 150. The positive rank sum is $86$ and the negative sum is $104$.",
+        "Under $H_0$, the mean is $95$ and variance is $617.5$. With continuity correction, $z=(86.5-95)/\\sqrt{617.5}\\approx-0.342$."
+      ],
+      "answer": "The two-sided result is not significant at 5%; do not reject the median of 150.",
+      "source": {
+        "file": "FS CH11 Non-Parametric tests.pdf",
+        "pages": "3–4",
+        "label": "Worked example 11.3",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Paired-sample sign test",
+      "method": "Take one difference for each pair. Count signs of the differences and test a zero median difference with a binomial tail.",
+      "formula": "$$S\\sim B(n,1/2)\\quad\\text{under a zero median difference}. $$ ",
+      "question": "In the shoelace example, there are 9 nonzero pair differences: 2 have one sign and 7 have the other. Test for a difference at 5%, two-sided.",
+      "steps": [
+        "Use $s_{\\min}=2$ and $n=9$.",
+        "$p=2P(B(9,1/2)\\le2)=2(1+9+36)/512=0.1796875$."
+      ],
+      "answer": "Do not reject $H_0$; insufficient evidence of a systematic difference.",
+      "source": {
+        "file": "FS CH11 Non-Parametric tests.pdf",
+        "pages": "4",
+        "label": "Worked example 11.4, summarised by signs",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Wilcoxon matched-pairs signed-rank test",
+      "method": "Use the paired differences, with a continuous symmetric population of differences. Rank absolute differences and compare the smaller rank sum with the correct critical value.",
+      "formula": "$$d_i=x_i-y_i;\\quad T=\\min\\left(\\sum R_i^+,\\sum R_i^-\\right).$$ ",
+      "question": "The antihistamine example has 7 matched pairs and rank sums $12$ and $16$. Test at 5% whether Drug 2 gives a longer sleep time.",
+      "steps": [
+        "$T=12$ and $n=7$. The one-tailed 5% critical value is $3$.",
+        "The smaller rank sum is not sufficiently small for rejection."
+      ],
+      "answer": "Do not reject $H_0$; insufficient evidence that Drug 2 gives longer sleep.",
+      "source": {
+        "file": "FS CH11 Non-Parametric tests.pdf",
+        "pages": "5",
+        "label": "Worked example 11.5, summarised by rank sums",
+        "kind": "textbook"
+      }
+    }
+  ],
+  "pgf": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Write a PGF from a distribution",
+      "method": "Multiply each probability by $t$ raised to its value, then add. Check $G(1)=1$.",
+      "formula": "$$G_X(t)=\\sum_kP(X=k)t^k.$$ ",
+      "question": "Hassan has three independent coins with head probabilities $1/3,1/3,1/4$. Find the PGF for the number of heads.",
+      "steps": [
+        "Each coin contributes its Bernoulli factor: $(2/3+t/3)$, $(2/3+t/3)$ and $(3/4+t/4)$.",
+        "Multiply and collect powers."
+      ],
+      "answer": "$G_Y(t)=1/3+4t/9+7t^2/36+t^3/36$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "3–4",
+        "label": "Printed three-coin question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Use a standard-distribution PGF",
+      "method": "Identify the distribution and its support. Substitute its parameters into the matching PGF; the geometric form here counts trials from 1.",
+      "formula": "$$\\begin{aligned}U\\{1,\\ldots,n\\}:&\\quad\\frac{t(1-t^n)}{n(1-t)}\\ (t\\ne1),\\\\B(n,p):&\\quad(1-p+pt)^n,\\\\\\operatorname{Geo}(p):&\\quad\\frac{pt}{1-(1-p)t},\\\\\\operatorname{Po}(\\lambda):&\\quad e^{\\lambda(t-1)}.\\end{aligned}$$ ",
+      "question": "Write the PGF for the binomial example $X\\sim B(10,0.2)$.",
+      "steps": [
+        "Substitute $n=10$, $p=0.2$ and $1-p=0.8$."
+      ],
+      "answer": "$G_X(t)=(0.8+0.2t)^{10}$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "1–3",
+        "label": "Red distribution Cases 1–4; binomial worked calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find mean and variance by differentiating a PGF",
+      "method": "Differentiate first, substitute $t=1$, then apply the factorial-moment variance formula.",
+      "formula": "$$E(X)=G_X'(1);\\qquad\\operatorname{Var}(X)=G_X''(1)+G_X'(1)-[G_X'(1)]^2.$$ ",
+      "question": "The notes give $G_X(t)=1/2+t/3+t^2/6$. Find its mean and variance.",
+      "steps": [
+        "$G_X'(t)=1/3+t/3$, so $E(X)=2/3$.",
+        "$G_X''(1)=1/3$. Substitute into the variance formula."
+      ],
+      "answer": "$E(X)=2/3,\\qquad\\operatorname{Var}(X)=5/9$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "5",
+        "label": "Worked PGF used in the aX+b calculation",
+        "kind": "notes"
+      }
+    },
+    {
+      "number": 4,
+      "id": "type-4",
+      "title": "Find a PGF for a stopping-time game",
+      "method": "Write the first few probabilities, separate the odd/even attempts and sum the two geometric series.",
+      "formula": "$$\\sum_{k=0}^{\\infty}aq^k=\\frac a{1-q}\\quad(|q|<1).$$ ",
+      "question": "Jamil and Yao alternate independent attempts, with success probabilities $1/4$ and $1/5$. Jamil starts and the first success ends the game. Find the PGF of the total attempts $X$.",
+      "steps": [
+        "Failure by both has probability $(3/4)(4/5)=3/5$.",
+        "Odd attempts contribute $(t/4)/(1-3t^2/5)$; even attempts contribute $(3t^2/20)/(1-3t^2/5)$."
+      ],
+      "answer": "$G_X(t)=(5t+3t^2)/(20-12t^2)$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "3",
+        "label": "Worked exam-style question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find the PGF of a sum of independent variables",
+      "method": "Multiply the PGFs. For $n$ independent copies of the same variable, raise its PGF to power $n$.",
+      "formula": "$$G_{X+Y}(t)=G_X(t)G_Y(t);\\qquad G_{X_1+\\cdots+X_n}(t)=[G_X(t)]^n.$$ ",
+      "question": "Keira tosses two fair coins and counts heads $X$. Hassan independently tosses the three coins with head probabilities $1/3,1/3,1/4$ and counts $Y$. Find $G_{X+Y}(t)$.",
+      "steps": [
+        "$G_X(t)=(1+t)^2/4$ and $G_Y(t)=(12+16t+7t^2+t^3)/36$.",
+        "Multiply the polynomials."
+      ],
+      "answer": "$G_{X+Y}(t)=(12+40t+51t^2+31t^3+9t^4+t^5)/144$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "4",
+        "label": "Printed Keira and Hassan question",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find the PGF after a change aX+b",
+      "method": "Replace $t$ by $t^a$ in the original PGF, then multiply by $t^b$.",
+      "formula": "$$G_{aX+b}(t)=t^bG_X(t^a).$$ ",
+      "question": "Given $G_X(t)=1/2+t/3+t^2/6$, find the PGF of $2X+1$.",
+      "steps": [
+        "$G_{2X+1}(t)=t[1/2+t^2/3+t^4/6]$."
+      ],
+      "answer": "$t/2+t^3/3+t^5/6$.",
+      "source": {
+        "file": "FS CH5 PGF.pdf",
+        "pages": "4–5",
+        "label": "Change X → aX+b worked calculation",
+        "kind": "notes"
+      }
+    }
+  ]
+}
