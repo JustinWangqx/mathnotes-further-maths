@@ -1,0 +1,63 @@
+---
+title: Differentiation
+description: Handle parametric second derivatives, develop Maclaurin series and calculate arc lengths.
+module: fp2
+topicId: differentiation
+syllabus: "2.3"
+minutes: 13
+updated: "2026-10-29"
+prerequisites: [Product and chain rules, Implicit differentiation, Definite integration]
+sources: [FP2 CH3 Differentiation 1.pdf, "(FP2) 3. Differentiation 专题作业1 ASN.pdf", "(FP2) 3. Differentiation 作业2 ANS.pdf"]
+---
+
+## Keep track of the variable
+
+Further differentiation often means differentiating an expression that is itself defined indirectly. Write down which variable you are differentiating with respect to. This is especially helpful for parametric curves and repeated derivatives.
+
+## Parametric derivatives
+
+For a smooth curve $x=x(t)$, $y=y(t)$ with $dx/dt\ne0$,
+
+$$\frac{dy}{dx}=\frac{dy/dt}{dx/dt},\qquad \frac{d^2y}{dx^2}=\frac{\frac{d}{dt}(dy/dx)}{dx/dt}.$$
+
+The second derivative is not simply $(d^2y/dt^2)/(d^2x/dt^2)$. Differentiate the first derivative and apply the chain rule again.
+
+## Example 1: differentiate twice
+
+Let $x=t^2$ and $y=t^3$ for $t>0$. Then
+
+$$\frac{dy}{dx}=\frac{3t^2}{2t}=\frac32t.$$
+
+Differentiate this with respect to $t$ and divide by $dx/dt$:
+
+$$\frac{d^2y}{dx^2}=\frac{3/2}{2t}=\frac3{4t}.$$
+
+The restriction $t>0$ avoids the zero denominator at the origin.
+
+## Maclaurin series
+
+A Maclaurin expansion is a Taylor expansion about zero:
+
+$$f(x)=f(0)+xf'(0)+\frac{x^2}{2!}f''(0)+\frac{x^3}{3!}f'''(0)+\cdots.$$
+
+For a finite approximation, state the order retained. A formal infinite expansion needs an interval where the series represents the function. Use known expansions and substitution when possible, then check the resulting range.
+
+## Example 2: build an expansion
+
+For $f(x)=\ln(1+x)$, the first three derivatives at zero are $1,-1,2$. Since $f(0)=0$,
+
+$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+O(x^4)\quad(x\to0).$$
+
+The infinite alternating expansion represents $\ln(1+x)$ for $-1<x\le1$. The finite expression is an approximation near zero, not an exact equality for arbitrary $x$.
+
+## Arc length and surfaces
+
+For a parametrised curve on $a\le t\le b$,
+
+$$L=\int_a^b\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt.$$
+
+For a graph $y=f(x)$ on $a\le x\le b$, this becomes $L=\int_a^b\sqrt{1+(y')^2}\,dx$. A surface obtained by rotation about the $x$-axis has area $2\pi\int_a^b|y|\sqrt{1+(y')^2}\,dx$, under the usual smoothness and non-overlap conditions.
+
+## Common mistakes
+
+Do not omit the factorial in a Maclaurin coefficient, confuse the parameter interval with the $x$ interval, or integrate a signed radius for a surface area. Check where a derivative formula’s denominator vanishes before cancelling factors.

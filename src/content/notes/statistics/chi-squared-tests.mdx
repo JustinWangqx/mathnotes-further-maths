@@ -1,0 +1,55 @@
+---
+title: Chi-squared tests
+description: Compare observed and expected frequencies in goodness-of-fit and independence tests.
+module: statistics
+topicId: chi-squared
+syllabus: "4.3"
+minutes: 12
+updated: "2026-10-29"
+prerequisites: [Hypothesis testing, Discrete distributions, Contingency tables]
+sources: [FS CH3 Chi-Squared Tests.pdf]
+---
+
+## Compare counts with a model
+
+A chi-squared test measures how far observed frequencies depart from expected frequencies under a null hypothesis:
+
+$$X^2=\sum\frac{(O-E)^2}{E}.$$
+
+The data must be counts in mutually exclusive categories, with independent observations. Use the right-tail critical region: large discrepancies provide evidence against the null.
+
+## Goodness of fit
+
+For $k$ categories with fully specified probabilities, the usual degrees of freedom are $k-1$. Subtract one further degree of freedom for each independently estimated model parameter under the standard fitted-model setup.
+
+Expected frequencies should generally be at least $5$ for the approximation used here. Pool suitable categories when necessary, and calculate the degrees of freedom after pooling. Do not pool solely to reduce the observed statistic.
+
+## Example 1: two equally likely outcomes
+
+An experiment produces counts $40$ and $60$ in $100$ independent trials. Test the specified model of equal probabilities.
+
+Expected frequencies are $50,50$, giving
+
+$$X^2=\frac{(40-50)^2}{50}+\frac{(60-50)^2}{50}=4.$$
+
+There is $1$ degree of freedom. At 5%, the right-tail critical value is approximately $3.841$. Reject the equal-probability model because $4>3.841$.
+
+## Independence in a contingency table
+
+For row total $R_i$, column total $C_j$ and grand total $N$, the expected frequency under independence is
+
+$$E_{ij}=\frac{R_iC_j}{N}.$$
+
+For an $r\times c$ table, use $(r-1)(c-1)$ degrees of freedom, after any justified category combination. Rejecting independence indicates an association; it does not establish causation.
+
+## Example 2: a two-by-two table
+
+Suppose the observed rows are $(20,10)$ and $(10,20)$. Both row totals and both column totals are $30$, so every expected frequency is $15$.
+
+$$X^2=4\left(\frac{5^2}{15}\right)=\frac{20}{3}\approx6.667.$$
+
+With $1$ degree of freedom, this exceeds $3.841$. There is evidence of an association at the 5% level.
+
+## Common mistakes
+
+Use expected frequencies in the denominator, not observed counts. Expected counts must sum to the observed grand total. Do not use the number of raw observations as the degrees of freedom, and do not treat an association as proof of a causal relationship.

@@ -1,0 +1,66 @@
+---
+title: Probability generating functions
+description: Encode a discrete distribution in a polynomial or series, recover moments and combine independent sums.
+module: statistics
+topicId: pgf
+syllabus: "4.5"
+minutes: 12
+updated: "2026-10-29"
+prerequisites: [Discrete random variables, Differentiation, Geometric series]
+sources: [FS CH5 PGF.pdf]
+---
+
+## A distribution as a function
+
+For a nonnegative integer-valued random variable $X$, its probability generating function is
+
+$$G_X(t)=E(t^X)=\sum_{k=0}^{\infty}P(X=k)t^k.$$
+
+The coefficient of $t^k$ is $P(X=k)$. Check that the coefficients are nonnegative and $G_X(1)=1$. A finite-support distribution produces a polynomial.
+
+## Recover moments
+
+When the corresponding moments exist,
+
+$$E(X)=G_X'(1),\qquad E[X(X-1)]=G_X''(1),$$
+$$\operatorname{Var}(X)=G_X''(1)+G_X'(1)-[G_X'(1)]^2.$$
+
+The second derivative gives a factorial moment, not $E(X^2)$ directly. The extra first derivative supplies the missing $E(X)$.
+
+## Example 1: read and differentiate
+
+Let $G_X(t)=1/4+3t/4$. This represents $P(X=0)=1/4$ and $P(X=1)=3/4$.
+
+Since $G_X'(1)=3/4$ and $G_X''(1)=0$,
+
+$$E(X)=\frac34,\qquad \operatorname{Var}(X)=\frac34-\left(\frac34\right)^2=\frac3{16}.$$
+
+This agrees with a Bernoulli distribution of success probability $3/4$.
+
+## Independent sums
+
+If $X$ and $Y$ are independent and $Z=X+Y$,
+
+$$G_Z(t)=G_X(t)G_Y(t).$$
+
+Independence allows the expectation of $t^Xt^Y$ to factor. Without it, the product rule need not hold. For a sum of $n$ independent identically distributed variables, the PGF is $[G_X(t)]^n$.
+
+## Example 2: combine two trials
+
+Let $X\sim\operatorname{Bernoulli}(1/2)$ and $Y\sim\operatorname{Bernoulli}(1/4)$ independently. Then
+
+$$G_{X+Y}(t)=\left(\frac12+\frac12t\right)\left(\frac34+\frac14t\right)=\frac38+\frac12t+\frac18t^2.$$
+
+Thus $P(X+Y=2)=1/8$. The mean is $3/4$ and the variance is $1/4+3/16=7/16$, also obtained by differentiating the product.
+
+## Familiar forms
+
+For $X\sim\operatorname{Bin}(n,p)$, $G_X(t)=(1-p+pt)^n$. For a geometric variable counting trials until the first success, supported on $1,2,\ldots$,
+
+$$G_X(t)=\frac{pt}{1-(1-p)t},\qquad |(1-p)t|<1.$$
+
+A geometric variable counting failures instead starts at zero and has a different numerator. State the convention before using a memorised PGF.
+
+## Common mistakes
+
+Check support, normalisation and independence before manipulating the function. Do not confuse the coefficient of a power with the value of the function at that power, or identify $G''(1)$ as the variance.

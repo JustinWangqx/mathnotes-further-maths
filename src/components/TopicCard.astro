@@ -1,0 +1,14 @@
+---
+import { moduleFor, topicUrl, type Topic } from '../data/curriculum';
+import Icon from './Icon.astro';
+import {questions} from '../data/practice';
+interface Props { topic: Topic; number?: number }
+const {topic} = Astro.props;
+const module = moduleFor(topic.module);
+---
+<a href={topicUrl(topic)} class={`topic-card ${module.color}`}>
+  <div class="card-meta"><span class="tag">{module.short} <span>·</span> {topic.ref}</span>{topic.slug ? <span class="available-dot">Available</span> : <span class="muted">Planned</span>}</div>
+  <div class="topic-glyph"><Icon name={module.icon} size={30}/></div>
+  <h3>{topic.title}</h3><p>{topic.description}</p>
+  <div class="card-bottom"><span>{topic.minutes ? `${topic.minutes} min read · ${questions.filter(q=>q.topic===topic.id).length} questions` : topic.sourceAvailable ? 'Source notes collected' : 'Content planned'}</span><Icon name="arrow" size={19}/></div>
+</a>

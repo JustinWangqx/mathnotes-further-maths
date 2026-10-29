@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import TopicCard from '../components/TopicCard.astro';
+import Icon from '../components/Icon.astro';
+import {availableTopics,modules,url} from '../data/curriculum';
+---
+<Base title="Study notes" active="notes"><div class="page-heading"><span class="eyebrow">YOUR LIBRARY</span><h1>A clearer way through.</h1><p>Start with an idea. Follow the working. Make it your own.</p></div>
+<div class="filter-bar"><label>Module<select data-filter="module" aria-label="Module"><option value="all">All modules</option>{modules.slice(0,3).map(m=><option value={m.id}>{m.title}</option>)}</select></label><label class="filter-search">Find a topic<input type="search" placeholder="Try complex numbers or 复数" data-filter="query"/></label></div>
+<p class="result-line"><strong data-result-count>14</strong> topic guides <span>· Based on your current notes</span></p>
+<div class="topic-grid">{availableTopics.map(topic=><div data-filter-card data-module={topic.module} data-search={`${topic.title} ${topic.description} ${topic.aliases.join(' ')}`}><TopicCard topic={topic}/></div>)}</div>
+<div class="empty-state" data-empty hidden><Icon name="search" size={30}/><h2>No matching guides yet</h2><p>Try another search or explore the topics in the topic map.</p><a href={url('syllabus/')} class="text-link">View topic map <Icon name="arrow" size={16}/></a></div>
+<div class="notice"><Icon name="info"/><div><strong>Your current collection</strong><p>These guides cover selected parts of FP1, FP2 and Further Statistics. Each chapter lists its scope. The <a href={url('syllabus/')}>topic map</a> includes only the topics represented in the supplied notes.</p></div></div>
+</Base>

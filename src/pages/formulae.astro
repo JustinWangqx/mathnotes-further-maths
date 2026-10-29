@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import MathText from '../components/MathText.astro';
+import Icon from '../components/Icon.astro';
+import {formulae} from '../data/formulae';
+import {topics,moduleFor,modules,topicUrl} from '../data/curriculum';
+---
+<Base title="Formula & methods index" active="formulae"><div class="page-heading"><span class="eyebrow">KEEP THE CONNECTIONS CLOSE</span><h1>The formula.<br/><em>And when to use it.</em></h1><p>A quick reference for the published topics. Follow each formula back to its explanation.</p></div><div class="filter-bar"><label>Module<select data-filter="module" aria-label="Module"><option value="all">All modules</option>{modules.slice(0,3).map(m=><option value={m.id}>{m.title}</option>)}</select></label><label class="filter-search">Find a formula<input type="search" data-filter="query" placeholder="Try variance or roots"/></label></div><p class="result-line"><strong data-result-count>23</strong> formulae and methods</p><div class="formula-grid">{formulae.map(f=><article class="formula-card" data-filter-card data-module={f.module} data-search={`${f.title} ${f.condition} ${topics.find(t=>t.id===f.topic)!.aliases.join(' ')}`}><span class="eyebrow">{moduleFor(f.module).short}</span><h3>{f.title}</h3><div class="formula-expression"><MathText text={f.formula}/></div><p>{f.condition}</p><a href={topicUrl(topics.find(t=>t.id===f.topic)!)}>Understand the method <Icon name="arrow" size={15}/></a></article>)}</div><div class="empty-state" data-empty hidden><h2>No matching formulae</h2><p>Try a broader keyword or another module.</p></div></Base>

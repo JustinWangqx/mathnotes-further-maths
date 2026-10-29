@@ -1,0 +1,7 @@
+---
+import katex from 'katex';
+interface Props { text: string }
+const { text } = Astro.props;
+const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[^$\n]+\$)/g);
+---
+{parts.map(part => part.startsWith('$') ? <span class:list={['math', { 'display-math': part.startsWith('$$') }]} set:html={katex.renderToString(part.replace(/^\$\$?|\$\$?$/g,''), {throwOnError:true,displayMode:part.startsWith('$$'),output:'htmlAndMathml'})} /> : part)}

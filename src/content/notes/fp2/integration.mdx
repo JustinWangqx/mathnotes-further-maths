@@ -1,0 +1,61 @@
+---
+title: Integration
+description: Choose substitutions, derive reduction formulae and calculate areas and lengths in polar form.
+module: fp2
+topicId: integration
+syllabus: "2.4"
+minutes: 14
+updated: "2026-10-29"
+prerequisites: [Integration by parts, Trigonometric identities, Basic polar notation]
+sources: [FP2 CH4 Integration 1 更新.pdf, FP2 CH4 Integration 2.pdf, FP2 CH4 积分.pdf, "(FP2) 4. Integration 专题作业1 ANS.pdf", "(FP2) 4. Integration 专题作业2 ANS.pdf"]
+---
+
+## Choose the method from the structure
+
+An integrand containing a square root may simplify under a trigonometric or hyperbolic substitution. Products can suggest integration by parts. Powers indexed by $n$ often suggest a recurrence linking one integral to another.
+
+Write the substitution, differential and limits explicitly. For an indefinite integral, return to the original variable and include the integration constant.
+
+## Substitution patterns
+
+- $\sqrt{a^2-x^2}$ often suggests $x=a\sin\theta$.
+- $\sqrt{a^2+x^2}$ often suggests $x=a\sinh u$ or $x=a\tan\theta$.
+- $\sqrt{x^2-a^2}$ can suggest $x=a\cosh u$ on $x\ge a>0$.
+
+The interval matters: $\sqrt{v^2}=|v|$, not automatically $v$.
+
+## Example 1: derive a reduction formula
+
+Let $I_n=\int_0^{\pi/2}\sin^n x\,dx$. For integers $n\ge2$, integrate $\sin^{n-1}x\sin x$ by parts:
+
+$$I_n=(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,dx.$$
+
+The boundary term is zero. Using $\cos^2x=1-\sin^2x$ gives
+
+$$I_n=(n-1)(I_{n-2}-I_n),\qquad \boxed{I_n=\frac{n-1}{n}I_{n-2}.}$$
+
+The base values are $I_0=\pi/2$ and $I_1=1$. Hence $I_4=(3/4)(1/2)(\pi/2)=3\pi/16$.
+
+## Polar integration
+
+For a polar curve $r=r(\theta)$ with an interval tracing the region once, the area swept out is
+
+$$A=\frac12\int_\alpha^\beta r^2\,d\theta.$$
+
+The arc length is
+
+$$L=\int_\alpha^\beta\sqrt{r^2+\left(\frac{dr}{d\theta}\right)^2}\,d\theta.$$
+
+These methods appear in the supplied integration material. Check how the curve is traced before choosing limits or multiplying a sector by symmetry.
+
+## Example 2: the area of a polar loop
+
+For $r=1+\cos\theta$, find the area enclosed as $0\le\theta\le2\pi$. This interval traces the cardioid once.
+
+$$A=\frac12\int_0^{2\pi}(1+2\cos\theta+\cos^2\theta)\,d\theta.$$
+
+The three integrals inside the bracket are $2\pi$, $0$ and $\pi$, so $A=3\pi/2$.
+
+## Common mistakes
+
+Do not lose the boundary term in integration by parts without evaluating it, apply a recurrence outside its allowed values of $n$, or use $r$ instead of $r^2$ in a polar area. A final positive area or length is a useful check, but it does not replace correct limits.

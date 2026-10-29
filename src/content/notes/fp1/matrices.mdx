@@ -1,0 +1,61 @@
+---
+title: Matrices
+description: Work with matrix multiplication, determinants, inverses and transformations of the plane.
+module: fp1
+topicId: matrices1
+syllabus: "1.4"
+minutes: 12
+updated: "2026-10-29"
+prerequisites: [Simultaneous linear equations, Coordinate geometry]
+sources: [FP1 CH4 Matrix.pdf]
+---
+
+## A matrix is an organised operation
+
+Matrices can encode simultaneous equations or transformations. With column vectors, a transformation sends $\mathbf x$ to $A\mathbf x$. Always check the dimensions before multiplying.
+
+Matrix multiplication is generally not commutative: $AB$ and $BA$ can differ, or one may not even be defined. In a product $AB\mathbf x$, the transformation $B$ acts first.
+
+## Determinant and inverse
+
+For a two-by-two matrix,
+
+$$A=\begin{pmatrix}a&b\\c&d\end{pmatrix},\qquad \det A=ad-bc.$$
+
+If $ad-bc\ne0$,
+
+$$A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.$$
+
+An inverse reverses the transformation. A zero determinant means the square matrix is singular and has no inverse. For a three-by-three determinant, expand along a row or column using the alternating cofactor signs, and verify arithmetic carefully.
+
+## Example 1: solve a system
+
+Solve $2x+y=5$ and $x+y=3$. In matrix form,
+
+$$\begin{pmatrix}2&1\\1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}5\\3\end{pmatrix}.$$
+
+The determinant is $1$, so the inverse is $\begin{pmatrix}1&-1\\-1&2\end{pmatrix}$. Multiplying gives
+
+$$\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}.$$
+
+Check by substituting into both original equations.
+
+## Transformation matrices
+
+The columns of a two-dimensional transformation matrix are the images of $(1,0)$ and $(0,1)$. An anticlockwise rotation through $\theta$ has matrix
+
+$$R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.$$
+
+A reflection in the $x$-axis has matrix $\operatorname{diag}(1,-1)$. The absolute determinant gives the area scale factor; a negative determinant reverses orientation.
+
+## Example 2: compose two operations
+
+First reflect in the $x$-axis, then rotate anticlockwise by $\pi/2$. The combined matrix is
+
+$$\begin{pmatrix}0&-1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}=\begin{pmatrix}0&1\\1&0\end{pmatrix}.$$
+
+This swaps the coordinates, so it is reflection in $y=x$. Applying the operations in the reverse order would produce a different matrix.
+
+## Common mistakes
+
+Keep multiplication order visible, distinguish the determinant from the matrix itself, and check that the determinant is nonzero before using an inverse.

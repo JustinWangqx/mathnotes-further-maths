@@ -1,0 +1,439 @@
+[
+  {
+    "id": "rational-1",
+    "topic": "rational",
+    "module": "fp1",
+    "title": "Two asymptotes",
+    "difficulty": "foundation",
+    "prompt": "Find the vertical and horizontal asymptotes of $y=(2x+3)/(x-1)$.",
+    "hint": "Divide the numerator by $x-1$.",
+    "steps": [
+      "$y=2+5/(x-1)$. The denominator cannot vanish.",
+      "As $|x|$ grows, the fractional part tends to zero."
+    ],
+    "answer": "$x=1$ and $y=2$."
+  },
+  {
+    "id": "rational-2",
+    "topic": "rational",
+    "module": "fp1",
+    "title": "A hole or an asymptote?",
+    "difficulty": "standard",
+    "prompt": "Describe the graph of $y=(x^2-1)/(x-1)$.",
+    "hint": "Factor the numerator, but keep the original domain restriction.",
+    "steps": [
+      "For $x\\ne1$, the expression is $x+1$.",
+      "The cancelled factor leaves a missing point rather than a vertical asymptote."
+    ],
+    "answer": "The line $y=x+1$, with a hole at $(1,2)$."
+  },
+  {
+    "id": "rational-3",
+    "topic": "rational",
+    "module": "fp1",
+    "title": "Use a discriminant",
+    "difficulty": "stretch",
+    "prompt": "Find the range of $y=(x^2+1)/(x-1)$.",
+    "hint": "Rearrange to a quadratic in $x$.",
+    "steps": [
+      "$x^2-yx+y+1=0$ requires $y^2-4y-4\\ge0$.",
+      "The boundary values are $2\\pm2\\sqrt2$. Substitution of $x=1$ into the quadratic gives $2$, so no quadratic root violates the domain."
+    ],
+    "answer": "$y\\le2-2\\sqrt2$ or $y\\ge2+2\\sqrt2$."
+  },
+  {
+    "id": "series-1",
+    "topic": "series",
+    "module": "fp1",
+    "title": "A linear summand",
+    "difficulty": "foundation",
+    "prompt": "Find $\\sum_{r=1}^n(2r+1)$.",
+    "hint": "Use linearity and the standard sum of $r$.",
+    "steps": [
+      "$2\\sum r+\\sum1=n(n+1)+n$."
+    ],
+    "answer": "$n(n+2)$."
+  },
+  {
+    "id": "series-2",
+    "topic": "series",
+    "module": "fp1",
+    "title": "A wider cancellation",
+    "difficulty": "standard",
+    "prompt": "Find $\\sum_{r=1}^n1/[r(r+2)]$ and its limit as $n\\to\\infty$.",
+    "hint": "Use $1/[r(r+2)]=\\frac12(1/r-1/(r+2))$.",
+    "steps": [
+      "Only the first two and last two fractions remain.",
+      "$S_n=\\frac12(1+\\frac12-\\frac1{n+1}-\\frac1{n+2})$."
+    ],
+    "answer": "$S_n=\\frac34-\\frac1{2(n+1)}-\\frac1{2(n+2)}$; limit $3/4$."
+  },
+  {
+    "id": "series-3",
+    "topic": "series",
+    "module": "fp1",
+    "title": "Combine standard sums",
+    "difficulty": "standard",
+    "prompt": "Find $\\sum_{r=1}^n(r^2-r)$.",
+    "hint": "Subtract the standard sum of $r$ from the sum of $r^2$.",
+    "steps": [
+      "$n(n+1)(2n+1)/6-n(n+1)/2$.",
+      "Factor out $n(n+1)/6$ and simplify."
+    ],
+    "answer": "$n(n+1)(n-1)/3$."
+  },
+  {
+    "id": "matrices1-1",
+    "topic": "matrices1",
+    "module": "fp1",
+    "title": "Invert a small matrix",
+    "difficulty": "foundation",
+    "prompt": "Find the inverse of $A=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$.",
+    "hint": "Calculate $ad-bc$, then swap diagonal entries and negate off-diagonal entries.",
+    "steps": [
+      "$\\det A=2-1=1$."
+    ],
+    "answer": "$A^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$."
+  },
+  {
+    "id": "matrices1-2",
+    "topic": "matrices1",
+    "module": "fp1",
+    "title": "Rotate a point",
+    "difficulty": "standard",
+    "prompt": "Rotate $(2,1)$ anticlockwise by $\\pi/2$ about the origin.",
+    "hint": "Use the matrix $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$.",
+    "steps": [
+      "Multiplication sends $(x,y)$ to $(-y,x)$."
+    ],
+    "answer": "$(-1,2)$."
+  },
+  {
+    "id": "matrices1-3",
+    "topic": "matrices1",
+    "module": "fp1",
+    "title": "When is it singular?",
+    "difficulty": "standard",
+    "prompt": "For which $k$ is $\\begin{pmatrix}k&2\\\\3&1\\end{pmatrix}$ singular?",
+    "hint": "A square matrix is singular when its determinant is zero.",
+    "steps": [
+      "The determinant is $k-6$. Set this equal to zero."
+    ],
+    "answer": "$k=6$."
+  },
+  {
+    "id": "vectors-1",
+    "topic": "vectors",
+    "module": "fp1",
+    "title": "Perpendicular directions",
+    "difficulty": "foundation",
+    "prompt": "Find the angle between $\\mathbf a=(1,2,2)$ and $\\mathbf b=(2,-1,0)$.",
+    "hint": "Calculate the scalar product.",
+    "steps": [
+      "$\\mathbf a\\cdot\\mathbf b=2-2+0=0$. Both vectors are nonzero."
+    ],
+    "answer": "$90^\\circ$."
+  },
+  {
+    "id": "vectors-2",
+    "topic": "vectors",
+    "module": "fp1",
+    "title": "A plane through three points",
+    "difficulty": "standard",
+    "prompt": "Find the plane through $(1,0,0)$, $(0,1,0)$ and $(0,0,1)$.",
+    "hint": "Take the cross product of two differences between the points.",
+    "steps": [
+      "Two directions are $(-1,1,0)$ and $(-1,0,1)$. Their cross product is $(1,1,1)$.",
+      "Use the first point to find the constant."
+    ],
+    "answer": "$x+y+z=1$."
+  },
+  {
+    "id": "vectors-3",
+    "topic": "vectors",
+    "module": "fp1",
+    "title": "Distance to a plane",
+    "difficulty": "standard",
+    "prompt": "Find the distance from $(3,0,0)$ to the plane $x=1$.",
+    "hint": "The plane has normal $(1,0,0)$.",
+    "steps": [
+      "$D=|3-1|/1$."
+    ],
+    "answer": "$2$."
+  },
+  {
+    "id": "hyperbolic-1",
+    "topic": "hyperbolic",
+    "module": "fp2",
+    "title": "Use exponential definitions",
+    "difficulty": "foundation",
+    "prompt": "Find $\\sinh(\\ln2)$ and $\\cosh(\\ln2)$.",
+    "hint": "$e^{\\ln2}=2$ and $e^{-\\ln2}=1/2$.",
+    "steps": [
+      "Take half the difference and half the sum, respectively."
+    ],
+    "answer": "$\\sinh(\\ln2)=3/4$, $\\cosh(\\ln2)=5/4$."
+  },
+  {
+    "id": "hyperbolic-2",
+    "topic": "hyperbolic",
+    "module": "fp2",
+    "title": "Remember the chain rule",
+    "difficulty": "foundation",
+    "prompt": "Differentiate $\\cosh(3x)$ with respect to $x$.",
+    "hint": "The derivative of $\\cosh u$ with respect to $u$ is $\\sinh u$.",
+    "steps": [
+      "Multiply by the inner derivative $3$."
+    ],
+    "answer": "$3\\sinh(3x)$."
+  },
+  {
+    "id": "hyperbolic-3",
+    "topic": "hyperbolic",
+    "module": "fp2",
+    "title": "Solve for the argument",
+    "difficulty": "standard",
+    "prompt": "Solve $\\tanh x=3/5$ for real $x$.",
+    "hint": "Rewrite $\\tanh x=(e^{2x}-1)/(e^{2x}+1)$.",
+    "steps": [
+      "$5(e^{2x}-1)=3(e^{2x}+1)$, so $e^{2x}=4$."
+    ],
+    "answer": "$x=\\ln2$."
+  },
+  {
+    "id": "differentiation-1",
+    "topic": "differentiation",
+    "module": "fp2",
+    "title": "A parametric second derivative",
+    "difficulty": "standard",
+    "prompt": "For $x=t^2$, $y=t^3$, find $d^2y/dx^2$ at $t=2$.",
+    "hint": "Differentiate $dy/dx$ with respect to $t$, then divide by $dx/dt$.",
+    "steps": [
+      "$dy/dx=3t/2$, so $d^2y/dx^2=3/(4t)$."
+    ],
+    "answer": "$3/8$."
+  },
+  {
+    "id": "differentiation-2",
+    "topic": "differentiation",
+    "module": "fp2",
+    "title": "A Maclaurin expansion",
+    "difficulty": "standard",
+    "prompt": "Expand $e^{2x}$ through the term in $x^3$.",
+    "hint": "Substitute $2x$ into the standard exponential expansion.",
+    "steps": [
+      "$e^{2x}=1+2x+(2x)^2/2!+(2x)^3/3!+O(x^4)$."
+    ],
+    "answer": "$1+2x+2x^2+\\frac43x^3+O(x^4)$."
+  },
+  {
+    "id": "differentiation-3",
+    "topic": "differentiation",
+    "module": "fp2",
+    "title": "The length of a straight graph",
+    "difficulty": "foundation",
+    "prompt": "Find the arc length of $y=3x$ for $0\\le x\\le2$.",
+    "hint": "Use $L=\\int\\sqrt{1+(y')^2}\\,dx$.",
+    "steps": [
+      "$y'=3$, so $L=\\int_0^2\\sqrt{10}\\,dx$."
+    ],
+    "answer": "$2\\sqrt{10}$."
+  },
+  {
+    "id": "integration-1",
+    "topic": "integration",
+    "module": "fp2",
+    "title": "A hyperbolic antiderivative",
+    "difficulty": "foundation",
+    "prompt": "Find $\\int_0^1(1+x^2)^{-1/2}\\,dx$.",
+    "hint": "Use $x=\\sinh u$.",
+    "steps": [
+      "$dx=\\cosh u\\,du$ and $\\sqrt{1+x^2}=\\cosh u$.",
+      "The transformed integral has value $\\operatorname{arsinh}1$."
+    ],
+    "answer": "$\\ln(1+\\sqrt2)$."
+  },
+  {
+    "id": "integration-2",
+    "topic": "integration",
+    "module": "fp2",
+    "title": "Use a reduction formula",
+    "difficulty": "standard",
+    "prompt": "Given $I_n=\\frac{n-1}{n}I_{n-2}$ for $I_n=\\int_0^{\\pi/2}\\sin^n x\\,dx$, find $I_4$.",
+    "hint": "The even-index base value is $I_0=\\pi/2$.",
+    "steps": [
+      "$I_4=(3/4)I_2=(3/4)(1/2)I_0$."
+    ],
+    "answer": "$3\\pi/16$."
+  },
+  {
+    "id": "integration-3",
+    "topic": "integration",
+    "module": "fp2",
+    "title": "A polar area",
+    "difficulty": "standard",
+    "prompt": "Find the area enclosed by $r=1+\\cos\\theta$ for $0\\le\\theta\\le2\\pi$.",
+    "hint": "Use $A=\\frac12\\int r^2\\,d\\theta$.",
+    "steps": [
+      "Expand $(1+\\cos\\theta)^2$. Over a full period, the integrals of $1$, $2\\cos\\theta$ and $\\cos^2\\theta$ are $2\\pi$, $0$ and $\\pi$."
+    ],
+    "answer": "$3\\pi/2$."
+  },
+  {
+    "id": "inference-1",
+    "topic": "inference",
+    "module": "statistics",
+    "title": "A known-variance interval",
+    "difficulty": "foundation",
+    "prompt": "A normal population has known standard deviation $3$. A sample of $100$ has mean $12$. Find a 95% confidence interval for the mean.",
+    "hint": "Use $\\overline x\\pm1.96\\sigma/\\sqrt n$.",
+    "steps": [
+      "The standard error is $3/10=0.3$, so the margin is $0.588$."
+    ],
+    "answer": "$(11.412,12.588)$."
+  },
+  {
+    "id": "inference-2",
+    "topic": "inference",
+    "module": "statistics",
+    "title": "A one-sample t statistic",
+    "difficulty": "standard",
+    "prompt": "A normal-population sample has $n=9$, $\\overline x=5.8$, $s=1.2$. Calculate the t statistic for $H_0:\\mu=5$ and its degrees of freedom.",
+    "hint": "$s$ is the unbiased sample standard deviation.",
+    "steps": [
+      "$t=(5.8-5)/(1.2/3)=2$. Degrees of freedom are $n-1$."
+    ],
+    "answer": "$t=2$, with $8$ degrees of freedom."
+  },
+  {
+    "id": "inference-3",
+    "topic": "inference",
+    "module": "statistics",
+    "title": "Differences in paired data",
+    "difficulty": "standard",
+    "prompt": "Before values are $(5,7,8)$ and the corresponding after values are $(4,5,7)$. Find the mean reduction, using before minus after.",
+    "hint": "Form one difference for each matched pair.",
+    "steps": [
+      "The differences are $(1,2,1)$. Their mean is $(1+2+1)/3$."
+    ],
+    "answer": "$4/3$. This is an estimate; no significance conclusion follows from the mean alone."
+  },
+  {
+    "id": "chi-squared-1",
+    "topic": "chi-squared",
+    "module": "statistics",
+    "title": "Compare two counts",
+    "difficulty": "foundation",
+    "prompt": "Observed counts are $(40,60)$ and expected counts under the null are $(50,50)$. Find the chi-squared statistic.",
+    "hint": "Use $\\sum(O-E)^2/E$.",
+    "steps": [
+      "$X^2=100/50+100/50$."
+    ],
+    "answer": "$4$."
+  },
+  {
+    "id": "chi-squared-2",
+    "topic": "chi-squared",
+    "module": "statistics",
+    "title": "Find an expected frequency",
+    "difficulty": "standard",
+    "prompt": "In a contingency table, a cell has row total $30$, column total $40$ and grand total $100$. Find its expected count under independence.",
+    "hint": "Multiply its row and column totals, then divide by the grand total.",
+    "steps": [
+      "$E=30\\times40/100$."
+    ],
+    "answer": "$12$."
+  },
+  {
+    "id": "chi-squared-3",
+    "topic": "chi-squared",
+    "module": "statistics",
+    "title": "Count degrees of freedom",
+    "difficulty": "standard",
+    "prompt": "A goodness-of-fit test has six categories after pooling and one estimated model parameter. Find its degrees of freedom.",
+    "hint": "Subtract the normalisation constraint and the number of fitted parameters.",
+    "steps": [
+      "$6-1-1=4$."
+    ],
+    "answer": "$4$."
+  },
+  {
+    "id": "non-parametric-1",
+    "topic": "non-parametric",
+    "module": "statistics",
+    "title": "An exact sign probability",
+    "difficulty": "standard",
+    "prompt": "Under a zero-median null, ten independent continuous nonzero differences have nine positive signs. Find the one-sided probability of at least nine positives.",
+    "hint": "$S\\sim\\operatorname{Bin}(10,1/2)$.",
+    "steps": [
+      "$P(S\\ge9)=[\\binom{10}{9}+\\binom{10}{10}]/2^{10}$."
+    ],
+    "answer": "$11/1024\\approx0.0107$."
+  },
+  {
+    "id": "non-parametric-2",
+    "topic": "non-parametric",
+    "module": "statistics",
+    "title": "Signed ranks",
+    "difficulty": "foundation",
+    "prompt": "The nonzero differences are $(1,2,3,-4)$. Find the positive and negative signed-rank sums.",
+    "hint": "Rank the absolute values, then restore the signs.",
+    "steps": [
+      "The absolute ranks are $1,2,3,4$. Positive ranks sum to $6$ and negative ranks sum to $4$."
+    ],
+    "answer": "$W_+=6$, $W_-=4$."
+  },
+  {
+    "id": "non-parametric-3",
+    "topic": "non-parametric",
+    "module": "statistics",
+    "title": "A rank-sum expectation",
+    "difficulty": "standard",
+    "prompt": "Two independent continuous samples have sizes $3$ and $4$. Under identical distributions, find the expected rank sum for the first sample.",
+    "hint": "Use $E(R)=n_1(n_1+n_2+1)/2$.",
+    "steps": [
+      "The combined ranks run from $1$ to $7$ with mean $4$. Three ranks have expected sum $12$."
+    ],
+    "answer": "$12$."
+  },
+  {
+    "id": "pgf-1",
+    "topic": "pgf",
+    "module": "statistics",
+    "title": "Read a coefficient",
+    "difficulty": "foundation",
+    "prompt": "If $G_X(t)=3/8+t/2+t^2/8$, find $P(X=2)$.",
+    "hint": "The coefficient of $t^k$ is $P(X=k)$.",
+    "steps": [
+      "The coefficient of $t^2$ is $1/8$."
+    ],
+    "answer": "$1/8$."
+  },
+  {
+    "id": "pgf-2",
+    "topic": "pgf",
+    "module": "statistics",
+    "title": "Differentiate for the mean",
+    "difficulty": "standard",
+    "prompt": "For $G_X(t)=3/8+t/2+t^2/8$, find $E(X)$.",
+    "hint": "Evaluate the first derivative at $t=1$.",
+    "steps": [
+      "$G_X'(t)=1/2+t/4$, so $G_X'(1)=3/4$."
+    ],
+    "answer": "$3/4$."
+  },
+  {
+    "id": "pgf-3",
+    "topic": "pgf",
+    "module": "statistics",
+    "title": "Recover the variance",
+    "difficulty": "standard",
+    "prompt": "For $G_X(t)=3/8+t/2+t^2/8$, find $\\operatorname{Var}(X)$.",
+    "hint": "Use $G_X''(1)+G_X'(1)-[G_X'(1)]^2$.",
+    "steps": [
+      "$G_X''(1)=1/4$ and $G_X'(1)=3/4$.",
+      "$\\operatorname{Var}(X)=1/4+3/4-9/16$."
+    ],
+    "answer": "$7/16$."
+  }
+]

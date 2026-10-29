@@ -1,0 +1,14 @@
+---
+import type {Question} from '../data/practice';
+import {topics,moduleFor} from '../data/curriculum';
+import MathText from './MathText.astro';
+interface Props {question:Question;number?:number}
+const {question:q,number}=Astro.props;
+const topic=topics.find(t=>t.id===q.topic)!;
+---
+<article class="practice-card" id={q.id} data-filter-card data-module={q.module} data-topic={q.topic} data-difficulty={q.difficulty} data-search={`${q.title} ${q.prompt} ${topic.title} ${topic.aliases.join(' ')}`}>
+  <div class="card-meta"><span class="tag">{moduleFor(q.module).short} <span>·</span> {topic.title}</span><span class={`difficulty ${q.difficulty}`}>{q.difficulty}</span></div>
+  <h3><span class="question-number">{String(number||1).padStart(2,'0')}</span>{q.title}</h3><p class="question-prompt"><MathText text={q.prompt}/></p>
+  <details class="hint"><summary>Need a hint?</summary><p><MathText text={q.hint}/></p></details>
+  <details class="solution"><summary>Show solution <span aria-hidden="true">+</span></summary><div class="solution-body">{q.steps.map(step=><p><MathText text={step}/></p>)}<p class="answer"><strong>Answer </strong><MathText text={q.answer}/></p></div></details>
+</article>

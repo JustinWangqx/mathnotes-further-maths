@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import {topics,url} from '../data/curriculum';
+const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,href:t.slug?url(`9231/${t.module}/${t.slug}/`):url(`syllabus/#${t.id}`),available:!!t.slug}));
+---
+<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search explanations, methods and practice. English and Chinese topic names both work.</p></div>
+<div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and topics</label><input id="site-search" type="search" placeholder="Try polynomial roots, 复数, PDF…" autocomplete="off" autofocus aria-controls="search-results"/></div>
+<div class="search-suggestions"><span>A few starting points</span>{['polynomial roots','复数','概率密度','积分'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div><p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic or a phrase to begin.</p><div id="search-results"></div><noscript><p class="search-fallback">Search needs JavaScript. You can still browse every guide in the <a href={url('notes/')}>notes library</a> and the <a href={url('syllabus/')}>topic map</a>.</p></noscript>
+<script id="topic-aliases" type="application/json" set:html={JSON.stringify(aliases)}/>
+<script>
+  const input=document.querySelector<HTMLInputElement>('#site-search')!;
+  const status=document.querySelector<HTMLElement>('#search-status')!;
+  const output=document.querySelector<HTMLElement>('#search-results')!;
+  const aliasData: {title:string;aliases:string[];href:string;available:boolean}[]=JSON.parse(document.querySelector('#topic-aliases')!.textContent!);
+  let pagefindPromise:Promise<any>|undefined;
+  let sequence=0;
+  const normalise=(s:string)=>s.toLowerCase().normalize('NFKC').replace(/\s+/g,' ').trim();
+  function addResult(title:string,href:string,excerpt:string,html=false){
+    const result=document.createElement('article');result.className='search-result';
+    const heading=document.createElement('h2');const link=document.createElement('a');link.href=href;link.textContent=title;heading.append(link);
+    const p=document.createElement('p');if(html){const parsed=new DOMParser().parseFromString(excerpt,'text/html');p.textContent=parsed.body.textContent;}else p.textContent=excerpt;
+    result.append(heading,p);output.append(result);
+  }
+  async function search(){
+    const query=input.value.trim();const current=++sequence;output.replaceChildren();
+    if(!query){status.textContent='Enter a topic or a phrase to begin.';history.replaceState(null,'',location.pathname);return;}
+    history.replaceState(null,'',`${location.pathname}?q=${encodeURIComponent(query)}`);
+    status.textContent='Searching the notebook…';
+    const matches=aliasData.filter(t=>[t.title,...t.aliases].some(a=>normalise(a).includes(normalise(query))||normalise(query).includes(normalise(a))));
+    matches.forEach(t=>addResult(t.title,t.href,t.available?'Study guide · Notes, examples and practice':'Planned topic · View its place in the syllabus'));
+    const seen=new Set(matches.map(t=>new URL(t.href,location.origin).pathname));
+    try{
+      if(!pagefindPromise){const indexUrl=`${document.body.dataset.base}pagefind/pagefind.js`;pagefindPromise=import(/* @vite-ignore */ indexUrl);}
+      const pagefind=await pagefindPromise;
+      const searchTerm=matches.find(t=>t.available)?.title||query;
+      const result=await pagefind.search(searchTerm);
+      const data=await Promise.all(result.results.slice(0,12).map((r:any)=>r.data()));
+      if(current!==sequence)return;
+      for(const r of data){const path=new URL(r.url,location.origin).pathname;if(seen.has(path))continue;seen.add(path);addResult(r.meta.title||'MathNotes',r.url,r.excerpt,true);}
+      const count=output.children.length;status.textContent=count?`${count} result${count===1?'':'s'} for “${query}”`:`No results for “${query}”. Try a broader topic or a Chinese alias.`;
+    }catch{
+      if(current!==sequence)return;
+      status.textContent=matches.length?`${matches.length} matching topic${matches.length===1?'':'s'}. Full-text search is temporarily unavailable.`:'Full-text search is temporarily unavailable. Try a topic name or browse the syllabus.';
+      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}syllabus/`,'Every available guide and planned chapter, in syllabus order.');
+    }
+  }
+  let timer:ReturnType<typeof setTimeout>;
+  input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(search,180);});
+  document.querySelectorAll<HTMLButtonElement>('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.searchTerm!;input.focus();search();}));
+  const initial=new URLSearchParams(location.search).get('q');if(initial){input.value=initial;search();}
+</script>
+</Base>

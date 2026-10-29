@@ -1,0 +1,57 @@
+---
+title: Statistical inference
+description: Choose normal or t-based inference, construct confidence intervals and state conclusions in context.
+module: statistics
+topicId: inference
+syllabus: "4.2"
+minutes: 14
+updated: "2026-10-29"
+prerequisites: [Normal distributions, Sampling, Hypothesis testing]
+sources: [FS CH2 Inferential Statistics.pdf]
+---
+
+## From a sample to a population
+
+An estimate describes a population quantity using sample data. A confidence interval records the uncertainty in that estimate. A hypothesis test asks how compatible the data are with a specified null model.
+
+Choose the method from the sampling model, sample size and what is known about the variance. Independent observations and a suitably random sampling process are core assumptions.
+
+## Normal and t methods
+
+For a normal population with known variance $\sigma^2$, the sample mean has standard error $\sigma/\sqrt n$ and
+
+$$Z=\frac{\overline X-\mu_0}{\sigma/\sqrt n}$$
+
+is standard normal under the null. Large-sample normal approximations can be used under appropriate conditions, with an estimated standard error when necessary.
+
+For a normal population with unknown variance, use the unbiased sample variance
+
+$$s^2=\frac{\sum(x_i-\overline x)^2}{n-1},\qquad T=\frac{\overline X-\mu_0}{s/\sqrt n}\sim t_{n-1}.$$
+
+The degrees of freedom matter. A small sample alone does not justify a t model if the normal-population assumption is unsuitable.
+
+## Example 1: a confidence interval
+
+A random sample of $100$ observations has mean $12$. The population is normal with known standard deviation $3$. A 95% confidence interval for the population mean is
+
+$$12\pm1.96\frac3{10}=12\pm0.588,$$
+
+or $(11.412,12.588)$. This procedure covers the fixed population mean in 95% of repeated samples; it is not a claim that 95% of observations lie in this interval.
+
+## Example 2: a one-sided t-test
+
+A sample of size $9$ from a normal population has mean $5.8$ and unbiased standard deviation $1.2$. Test $H_0:\mu=5$ against $H_1:\mu>5$ at 5%.
+
+$$t=\frac{5.8-5}{1.2/\sqrt9}=2.$$
+
+With $8$ degrees of freedom, the one-sided 5% critical value is approximately $1.860$. Since $2>1.860$, reject $H_0$: there is evidence that the population mean exceeds $5$.
+
+## Paired and independent samples
+
+For paired data, form one difference per pair and analyse the sample of differences. A paired t-test assumes a normal population of differences. Define their direction before stating the alternative.
+
+For two independent large samples, an approximate standard error of $\overline X-\overline Y$ is $\sqrt{s_X^2/n_X+s_Y^2/n_Y}$. A pooled small-sample t method needs normal populations and the additional equal-variance assumption; do not pool automatically.
+
+## Common mistakes
+
+State the hypotheses before examining a test statistic, choose the correct tail, and conclude about the population in context. Failure to reject a null hypothesis does not prove it true. These notes introduce the main methods rather than exhaust every two-sample case.

@@ -1,0 +1,62 @@
+---
+title: Rational functions and graphs
+description: Find asymptotes, investigate the range and build graph transformations from a reliable sketch.
+module: fp1
+topicId: rational
+syllabus: "1.2"
+minutes: 11
+updated: "2026-10-29"
+prerequisites: [Polynomial division, Differentiation, Quadratic discriminants]
+sources: [FP1 CH2 Rational functions.pdf, FP1 CH2 Rational functions &CH3  series.pdf, "(FP1) 2. Rational functions and graphs 专题作业 ANS.pdf"]
+---
+
+## Start with the structure
+
+A rational function is a quotient of polynomials. Before differentiating, factor the denominator and divide the numerator if appropriate. The rewritten expression often reveals the asymptotes immediately.
+
+Keep the original domain restrictions even if a factor cancels. A cancelled denominator factor can produce a hole in a graph rather than a vertical asymptote.
+
+## A sketching method
+
+1. State the domain and identify vertical asymptotes at uncancelled denominator zeros.
+2. Use division to find a horizontal or oblique asymptote.
+3. Find axis intersections where they exist.
+4. Differentiate for stationary points and their values.
+5. Check the sign and limiting behaviour on each interval.
+
+For a range question, treat the equation as one in $x$. A real solution may require a nonnegative discriminant, but it must also lie in the original domain.
+
+## Example 1: divide before sketching
+
+Consider $f(x)=(x^2+1)/(x-1)$. Division gives
+
+$$f(x)=x+1+\frac2{x-1},\qquad x\ne1.$$
+
+The asymptotes are $x=1$ and $y=x+1$. There is no real $x$-intercept, and the $y$-intercept is $-1$.
+
+Differentiating gives $f'(x)=1-2/(x-1)^2$. The stationary points occur at $x=1\pm\sqrt2$, with values $2\pm2\sqrt2$ respectively.
+
+Alternatively, rearrange $y(x-1)=x^2+1$ to $x^2-yx+y+1=0$. Real roots require
+
+$$y^2-4y-4\ge0.$$
+
+Neither solution can be $x=1$, so the range is $y\le2-2\sqrt2$ or $y\ge2+2\sqrt2$.
+
+## Transform the graph carefully
+
+- $y=|f(x)|$: reflect the part below the $x$-axis upwards.
+- $y=f(|x|)$: keep the right-hand half and reflect it in the $y$-axis.
+- $y=1/f(x)$: zeros of $f$ become excluded points and usually vertical asymptotes; use the original domain and check the limits.
+- $y^2=f(x)$: retain only where $f(x)\ge0$, then draw $y=\pm\sqrt{f(x)}$.
+
+These operations affect the domain and range as well as the shape.
+
+## Example 2: a square relation
+
+Sketch $y^2=x^2-1$. Real $y$ requires $|x|\ge1$. The graph has intercepts $(1,0)$ and $(-1,0)$ and is symmetric in both axes.
+
+Its branches are $y=\pm\sqrt{x^2-1}$. At large $|x|$ the asymptotes are $y=x$ and $y=-x$. There is no graph between $x=-1$ and $x=1$.
+
+## Common mistakes
+
+Do not assume every denominator zero gives an asymptote, or that a discriminant calculation alone settles the range. Keep excluded values visible throughout the algebra. When sketching transformed curves, label the new intercepts and domain restrictions explicitly.

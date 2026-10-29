@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import TopicCard from '../../../components/TopicCard.astro';
+import {modules,topics,topicUrl,url} from '../../../data/curriculum';
+export function getStaticPaths(){return modules.map(module=>({params:{module:module.id},props:{module}}));}
+const {module}=Astro.props;
+const collection=topics.filter(t=>t.module===module.id);
+const ready=collection.filter(t=>t.slug);
+---
+<Base title={module.title} active="notes"><a class="back-link" href={url('notes/')}>← Study notes</a><div class="page-heading"><span class="eyebrow">CIE 9231 <span> / </span> {module.paper}</span><h1>{module.title}</h1><p>{module.description}</p></div>
+{ready.length>0&&<section><div class="section-heading"><h2>Start learning</h2><span class="muted">{ready.length} available guides</span></div><div class="topic-grid">{ready.map(topic=><TopicCard topic={topic}/>)}</div></section>}
+<section class="section"><div class="section-heading"><h2>The topic pathway</h2><span class="muted">{collection.length} topics in your notes</span></div><div class="topic-list">{collection.map(topic=><a class="topic-row" href={topicUrl(topic)}><span class="topic-ref">{topic.ref}</span><div><h3>{topic.title}</h3><p>{topic.description}</p></div><span class:list={['status',{published:!!topic.slug}]}>{topic.slug?'Available':'Planned'}</span><Icon name="chevron" size={18}/></a>)}</div></section>
+</Base>

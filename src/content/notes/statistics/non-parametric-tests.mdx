@@ -1,0 +1,61 @@
+---
+title: Non-parametric tests
+description: Choose between sign, signed-rank and rank-sum procedures, with their assumptions made explicit.
+module: statistics
+topicId: non-parametric
+syllabus: "4.4"
+minutes: 14
+updated: "2026-10-29"
+prerequisites: [Binomial distributions, Hypothesis tests, Ranking data]
+sources: [FS CH11 Non-Parametric tests.pdf]
+---
+
+## Choose the test from the data
+
+Non-parametric does not mean assumption-free. A sign test uses the direction of a deviation. A signed-rank test also uses the rank of its magnitude. A rank-sum test compares two independent samples.
+
+For paired observations, analyse their differences. For independent samples, keep the groups separate. Confusing these designs changes the test itself.
+
+## The sign test
+
+For independent continuous observations, test a population median $m_0$ by counting the observations above it. Under the null, each sign has probability $1/2$, so the positive count $S$ follows $\operatorname{Bin}(n,1/2)$.
+
+In a paired sign test, apply this to independent pair differences and test a zero median difference. Zero deviations need explicit handling; the examples here have none.
+
+## Example 1: an exact sign-test tail
+
+Ten independent nonzero differences contain nine positives. To test for a positive population median difference,
+
+$$P(S\ge9)=\frac{\binom{10}{9}+\binom{10}{10}}{2^{10}}=\frac{11}{1024}\approx0.0107.$$
+
+This is below $0.05$, so reject the zero-median null in favour of a positive median difference. For a two-sided test, the tail handling must match the alternative.
+
+## Wilcoxon signed-rank test
+
+Assume independent observations from a continuous symmetric distribution of deviations (or paired differences). Rank the absolute deviations, attach their original signs, and find positive and negative rank sums $W_+$ and $W_-$.
+
+Follow the definition of the test statistic and the tail convention in the table you use. The examples here avoid tied absolute deviations and zeros. A useful check is
+
+$$W_++W_-=\frac{n(n+1)}2.$$
+
+## Example 2: calculate the rank sums
+
+The differences are $1,2,3,-4$. The absolute ranks are $1,2,3,4$, so
+
+$$W_+=1+2+3=6,\qquad W_-=4.$$
+
+Their sum is $10=4(5)/2$. A two-sided statistic often uses the smaller rank sum, here $4$; a decision still needs the matching critical-value convention.
+
+## Wilcoxon rank-sum test
+
+For two independent samples from continuous populations, combine and rank the observations, then sum the ranks of one sample. Under the null of identical distributions, the group labels do not influence the ranks. For an interpretation specifically about a location or median difference, use the appropriate common-shape shift-model assumptions.
+
+For sample sizes $n_1,n_2$ and no ties, the first group’s rank sum $R$ has
+
+$$E(R)=\frac{n_1(n_1+n_2+1)}2,\qquad \operatorname{Var}(R)=\frac{n_1n_2(n_1+n_2+1)}{12}.$$
+
+Use exact tables for small samples. A normal approximation needs appropriate sample sizes and, when required, a continuity correction.
+
+## Common mistakes
+
+Do not rank signed values in a signed-rank test: rank their absolute sizes first. Do not use a paired procedure for unrelated groups, or choose a one-sided tail after looking at the observed result.
