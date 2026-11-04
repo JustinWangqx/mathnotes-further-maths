@@ -23,8 +23,8 @@ test('cases, matrices and author-supplied aligned working preserve their interna
  }
 });
 
-test('all note and practice formulas render after vertical formatting',()=>{
- for(const file of ['question-types.json','extra-practice.json']){
+test('all note formulas render after vertical formatting',()=>{
+ for(const file of ['question-types.json']){
   const source=JSON.parse(readFileSync('src/data/'+file,'utf8'));
   const walk=value=>{
    if(typeof value==='string')for(const m of value.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g)){

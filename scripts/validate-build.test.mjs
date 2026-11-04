@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync,existsSync,statSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {resolve,join,extname} from 'node:path';
 const root=resolve('dist');
 const base=process.env.BASE_PATH||'/';
@@ -38,16 +39,51 @@ test('every internal link, fragment, script and stylesheet resolves under the de
  }
  assert.ok(checked>500);
 });
-test('48 practice questions are present, unique and supplied with solutions',()=>{
- const html=readFileSync(join(root,'practice/index.html'),'utf8');
- const cards=[...html.matchAll(/<article[^>]*class="practice-card"[^>]*id="([^"]+)"/g)];
- assert.equal(cards.length,48);assert.equal(new Set(cards.map(c=>c[1])).size,48);
- assert.equal((html.match(/class="solution"/g)||[]).length,48);
- assert.equal((html.match(/class="hint"/g)||[]).length,48);
- assert.ok(!html.includes('katex-error'));
+test('every published question and answer PDF matches the intact source manifest',()=>{
+ const collections=JSON.parse(readFileSync('src/data/paper-collections.json','utf8'));
+ assert.equal(collections.length,12);
+ assert.equal(collections.reduce((n,p)=>n+p.questionCount,0),101);
+ assert.equal(collections.filter(p=>p.answers).length,10);
+ const expected=[];
+ for(const paper of collections){
+  const reader=readFileSync(join(root,'papers',paper.id,'index.html'),'utf8');
+  assert.equal((reader.match(/data-source-page=/g)||[]).length,paper.questions.pages);
+  assert.equal(paper.previews.length,paper.questions.pages);
+  for(const preview of paper.previews)assert.ok(existsSync(join(root,preview.file)));
+  assert.ok(reader.includes(paper.questions.file+'#page=1'));
+  assert.ok(reader.includes(paper.questions.source));
+  for(const asset of [paper.questions,paper.answers].filter(Boolean)){
+   const bytes=readFileSync(join(root,asset.file));
+   assert.equal(bytes.subarray(0,5).toString(),'%PDF-');
+   assert.equal(bytes.length,asset.bytes);
+   assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256,asset.source);
+   expected.push(join(root,asset.file));
+  }
+ }
+ assert.deepEqual(files.filter(p=>p.endsWith('.pdf')).sort(),expected.sort());
 });
-test('math is typeset accessibly and source PDFs or local paths are never deployed',()=>{
- assert.ok(files.every(f=>!f.endsWith('.pdf')));
+test('one ordered topic map and one paper library replace the redundant sections',()=>{
+ const map=readFileSync(join(root,'notes/index.html'),'utf8');
+ assert.equal((map.match(/class="topic-row"/g)||[]).length,14);
+ assert.equal((map.match(/<section[^>]*data-filter-section/g)||[]).length,3);
+ let previous=-1;
+ for(const id of ['roots','rational','series','matrices1','vectors','hyperbolic','differentiation','integration','complex','pdf-cdf','inference','chi-squared','non-parametric','pgf']){
+  const at=map.indexOf(`id="${id}"`);assert.ok(at>previous,id);previous=at;
+ }
+ assert.ok(!existsSync(join(root,'formulae/index.html')));
+ for(const route of ['practice','past-papers','syllabus']){
+  const alias=readFileSync(join(root,route,'index.html'),'utf8');assert.ok(alias.includes('http-equiv="refresh"'),route);
+ }
+ for(const page of pages){
+  const html=readFileSync(page,'utf8');
+  assert.ok(!html.includes('One question type at a time.'),page);
+  assert.ok(!html.includes('class="practice-card"'),page);
+  assert.ok(!html.includes('48 original practice questions'),page);
+  assert.ok(!html.includes('Formula index'),page);
+ }
+ assert.ok(map.includes('417318-list-of-formulae-and-statistical-tables.pdf'));
+});
+test('math is typeset accessibly and private local paths are never deployed',()=>{
  for(const page of pages){
   const html=readFileSync(page,'utf8');assert.ok(!html.includes('/Users/'),page);assert.ok(!html.includes('katex-error'),page);
   if(page.includes('/9231/')&&html.includes('class="lesson"')){assert.ok(html.includes('<math'),page);assert.ok(html.includes('application/x-tex'),page);}

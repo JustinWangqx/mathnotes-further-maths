@@ -29,6 +29,7 @@ function filterCards() {
     const visible=Object.entries(state).every(([key,value])=>!value || value==='all' || (key==='query' ? (card.dataset.search||'').toLowerCase().includes(value) : card.dataset[key]===value));
     card.hidden=!visible; if(visible)count++;
   });
+  document.querySelectorAll<HTMLElement>('[data-filter-section]').forEach(section=>{section.hidden=![...section.querySelectorAll<HTMLElement>('[data-filter-card]')].some(card=>!card.hidden);});
   const countEl=document.querySelector('[data-result-count]'); if(countEl)countEl.textContent=String(count);
   const empty=document.querySelector<HTMLElement>('[data-empty]'); if(empty)empty.hidden=count!==0;
 }

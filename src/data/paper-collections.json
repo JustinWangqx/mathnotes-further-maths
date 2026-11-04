@@ -1,0 +1,872 @@
+[
+  {
+    "id": "fp1-roots-topic",
+    "topic": "roots",
+    "module": "fp1",
+    "title": "Roots of polynomials · Topic questions",
+    "questionCount": 5,
+    "questions": {
+      "file": "papers/fp1-roots-topic-questions.pdf",
+      "source": "(FP1) 1. Roots of polynomial equations.pdf",
+      "pages": 5,
+      "bytes": 138670,
+      "sha256": "04ef3b2c9d8cb24108890f426d5f697f2460dda2948356aa14cf2becc2b775f2"
+    },
+    "answers": {
+      "file": "papers/fp1-roots-topic-answers.pdf",
+      "source": "(FP1) 1. Roots of polynomial equations ANS.pdf",
+      "pages": 14,
+      "bytes": 661447,
+      "sha256": "b49929085dd9f2c48ae95772e72f0c82a4c80dfa6168ad63858d52d1ae6a1ad6"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp1-roots-topic/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-roots-topic/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-roots-topic/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-roots-topic/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-roots-topic/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      }
+    ]
+  },
+  {
+    "id": "fp1-roots-additional",
+    "topic": "roots",
+    "module": "fp1",
+    "title": "Roots of polynomials · Additional questions",
+    "questionCount": 10,
+    "questions": {
+      "file": "papers/fp1-roots-additional-questions.pdf",
+      "source": "(FP1) 1. Roots of polynomial equations(1).pdf",
+      "pages": 10,
+      "bytes": 266285,
+      "sha256": "d9178bd9993278793c8c1384824d03f431fe0cf90dc7340152ec5508175883bc"
+    },
+    "answers": null,
+    "previews": [
+      {
+        "file": "papers/previews/fp1-roots-additional/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      },
+      {
+        "file": "papers/previews/fp1-roots-additional/page-10.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 10
+      }
+    ]
+  },
+  {
+    "id": "fp1-roots-homework",
+    "topic": "roots",
+    "module": "fp1",
+    "title": "Roots of polynomials · Homework",
+    "questionCount": 10,
+    "questions": {
+      "file": "papers/fp1-roots-homework-questions.pdf",
+      "source": "(FP1) 1. Roots of polynomial equations HW.pdf",
+      "pages": 10,
+      "bytes": 248466,
+      "sha256": "9de26cd9ac134263063d4ce8587a13dc17f1e0278fe49fb1509658f1eb157d47"
+    },
+    "answers": {
+      "file": "papers/fp1-roots-homework-answers.pdf",
+      "source": "(FP1) 1. Roots of polynomial equations HW ANS.pdf",
+      "pages": 33,
+      "bytes": 1420523,
+      "sha256": "a2839221fa92b030ac418dcf8c2a1eecb67afe8bfd77b1de6f1657e1c28e23f4"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp1-roots-homework/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      },
+      {
+        "file": "papers/previews/fp1-roots-homework/page-10.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 10
+      }
+    ]
+  },
+  {
+    "id": "fp1-rational",
+    "topic": "rational",
+    "module": "fp1",
+    "title": "Rational functions and graphs",
+    "questionCount": 7,
+    "questions": {
+      "file": "papers/fp1-rational-questions.pdf",
+      "source": "(FP1) 2. Rational functions and graphs 专题作业.pdf",
+      "pages": 7,
+      "bytes": 219144,
+      "sha256": "1ebbacfa5b0d86de73956beed9ebe8db23128d7ade7cbb3ebab5e17652daeb40"
+    },
+    "answers": {
+      "file": "papers/fp1-rational-answers.pdf",
+      "source": "(FP1) 2. Rational functions and graphs 专题作业 ANS.pdf",
+      "pages": 25,
+      "bytes": 1259521,
+      "sha256": "616d43f980cb9979fff262ee22be4b2f1c073ce90334c3fe307235e4199a86cd"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp1-rational/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp1-rational/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      }
+    ]
+  },
+  {
+    "id": "fp1-series",
+    "topic": "series",
+    "module": "fp1",
+    "title": "Summation of series",
+    "questionCount": 9,
+    "questions": {
+      "file": "papers/fp1-series-questions.pdf",
+      "source": "(FP1) 3. Summation of series.pdf",
+      "pages": 9,
+      "bytes": 378718,
+      "sha256": "9e8e1ac3b7a096f9ba0d7a9a2fbe04dfe2cf1429c72a947bae0f02a313563550"
+    },
+    "answers": null,
+    "previews": [
+      {
+        "file": "papers/previews/fp1-series/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-series/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-series/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-series/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-series/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp1-series/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp1-series/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp1-series/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp1-series/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      }
+    ]
+  },
+  {
+    "id": "fp1-vectors",
+    "topic": "vectors",
+    "module": "fp1",
+    "title": "Vectors",
+    "questionCount": 7,
+    "questions": {
+      "file": "papers/fp1-vectors-questions.pdf",
+      "source": "(FP1) 6. Vectors 专题作业.pdf",
+      "pages": 7,
+      "bytes": 220224,
+      "sha256": "7a9b6158247d5bde3fb3fbd794a1097690ff6eda9672fa6d775979bcc853eccc"
+    },
+    "answers": {
+      "file": "papers/fp1-vectors-answers.pdf",
+      "source": "(FP1) 6. Vectors 专题作业 ANS.pdf",
+      "pages": 31,
+      "bytes": 1573388,
+      "sha256": "aceb43709436123d4043e9b36fdf327178e520a4e2a2b25b96a51a52837f5f96"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp1-vectors/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp1-vectors/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      }
+    ]
+  },
+  {
+    "id": "fp2-differentiation-1",
+    "topic": "differentiation",
+    "module": "fp2",
+    "title": "Differentiation · Collection 1",
+    "questionCount": 10,
+    "questions": {
+      "file": "papers/fp2-differentiation-1-questions.pdf",
+      "source": "(FP2) 3. Differentiation 专题作业1.pdf",
+      "pages": 10,
+      "bytes": 259442,
+      "sha256": "80670c718099404bcd63bcbe4125973f485a74579bbdca293241d9ac649bf249"
+    },
+    "answers": {
+      "file": "papers/fp2-differentiation-1-answers.pdf",
+      "source": "(FP2) 3. Differentiation 专题作业1 ASN.pdf",
+      "pages": 27,
+      "bytes": 1389546,
+      "sha256": "7674897aeb0a29b18eb62486bf218e34ec2af6b5c47ca54f93d8dd0fe1313068"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-1/page-10.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 10
+      }
+    ]
+  },
+  {
+    "id": "fp2-differentiation-2",
+    "topic": "differentiation",
+    "module": "fp2",
+    "title": "Differentiation · Collection 2",
+    "questionCount": 7,
+    "questions": {
+      "file": "papers/fp2-differentiation-2-questions.pdf",
+      "source": "(FP2) 3. Differentiation 作业2.pdf",
+      "pages": 7,
+      "bytes": 181861,
+      "sha256": "b7629fe40ded2b34aac3561359533e9391ec8b085f0171049fbb45e49bec634a"
+    },
+    "answers": {
+      "file": "papers/fp2-differentiation-2-answers.pdf",
+      "source": "(FP2) 3. Differentiation 作业2 ANS.pdf",
+      "pages": 18,
+      "bytes": 1193506,
+      "sha256": "d9d156f1f57b46627b514844bc0de64ba1324ef3586a410870b770a6d8a8e94d"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-differentiation-2/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      }
+    ]
+  },
+  {
+    "id": "fp2-integration-1",
+    "topic": "integration",
+    "module": "fp2",
+    "title": "Integration · Collection 1",
+    "questionCount": 8,
+    "questions": {
+      "file": "papers/fp2-integration-1-questions.pdf",
+      "source": "(FP2) 4. Integration 专题作业1.pdf",
+      "pages": 8,
+      "bytes": 256188,
+      "sha256": "170e105c0586c459409c32c5bc09f696db43fc887d235d0943c76de8ac5cf859"
+    },
+    "answers": {
+      "file": "papers/fp2-integration-1-answers.pdf",
+      "source": "(FP2) 4. Integration 专题作业1 ANS.pdf",
+      "pages": 20,
+      "bytes": 1483068,
+      "sha256": "3c04444fab5cb599caf30019a949aa5ef0d7129922726e185975fcc8ec428abe"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-integration-1/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp2-integration-1/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      }
+    ]
+  },
+  {
+    "id": "fp2-integration-2",
+    "topic": "integration",
+    "module": "fp2",
+    "title": "Integration · Collection 2",
+    "questionCount": 9,
+    "questions": {
+      "file": "papers/fp2-integration-2-questions.pdf",
+      "source": "(FP2) 4. Integration 专题作业2.pdf",
+      "pages": 9,
+      "bytes": 351501,
+      "sha256": "83b778a194e3615a6b7c70721eb2c00ba4950ff3a3670b570fb2b2c087428749"
+    },
+    "answers": {
+      "file": "papers/fp2-integration-2-answers.pdf",
+      "source": "(FP2) 4. Integration 专题作业2 ANS.pdf",
+      "pages": 26,
+      "bytes": 2048020,
+      "sha256": "c863de18737ec2c2dca64fec7f7d6cff5beb24ac4254df462978651c92030f1e"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-integration-2/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp2-integration-2/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      }
+    ]
+  },
+  {
+    "id": "fp2-complex-topic",
+    "topic": "complex",
+    "module": "fp2",
+    "title": "Complex numbers · Topic questions",
+    "questionCount": 7,
+    "questions": {
+      "file": "papers/fp2-complex-topic-questions.pdf",
+      "source": "(FP2) 5. Complex numbers.pdf",
+      "pages": 7,
+      "bytes": 165462,
+      "sha256": "b706e7ce570e01e6d4c45766626a8b8108ffbdfb6431e3f18949862db705f36e"
+    },
+    "answers": {
+      "file": "papers/fp2-complex-topic-answers.pdf",
+      "source": "(FP2) 5. Complex numbers ANS.pdf",
+      "pages": 17,
+      "bytes": 984625,
+      "sha256": "2e7c5daab0a761005bf5e601b0b1913372998b29b3bebf984c8162462242fcbe"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-complex-topic/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-complex-topic/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      }
+    ]
+  },
+  {
+    "id": "fp2-complex-homework",
+    "topic": "complex",
+    "module": "fp2",
+    "title": "Complex numbers · Homework",
+    "questionCount": 12,
+    "questions": {
+      "file": "papers/fp2-complex-homework-questions.pdf",
+      "source": "(FP2) 5. Complex numbers 作业.pdf",
+      "pages": 12,
+      "bytes": 370571,
+      "sha256": "b453090c6b058a5939b0f818f8f12c478786f76449fe580dcba889cc0a196b77"
+    },
+    "answers": {
+      "file": "papers/fp2-complex-homework-answers.pdf",
+      "source": "(FP2) 5. Complex numbers 作业 ANS.pdf",
+      "pages": 31,
+      "bytes": 2069505,
+      "sha256": "8804c12410c8daefccb7077f586fecc64d5d260849e74c3900943cfee3e3b632"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fp2-complex-homework/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-09.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 9
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-10.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 10
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-11.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 11
+      },
+      {
+        "file": "papers/previews/fp2-complex-homework/page-12.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 12
+      }
+    ]
+  }
+]

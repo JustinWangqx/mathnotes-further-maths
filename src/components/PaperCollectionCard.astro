@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+import {moduleFor,url,topics} from '../data/curriculum';
+import {collectionUrl,type PaperCollection} from '../data/paper-collections';
+interface Props {paper:PaperCollection;filterable?:boolean}
+const {paper,filterable=false}=Astro.props;
+const topic=topics.find(t=>t.id===paper.topic)!;
+---
+<article class="paper-card source-paper" data-filter-card={filterable||undefined} data-module={paper.module} data-topic={paper.topic} data-search={`${paper.title} ${paper.questions.source} ${topic.aliases.join(' ')}`}>
+  <div class="card-meta"><span class="tag">{moduleFor(paper.module).short} <span>·</span> {topic.title}</span><span>{paper.questions.pages} pages</span></div>
+  <h3><a href={collectionUrl(paper)}>{paper.title}</a></h3>
+  <p>{paper.questionCount} complete questions · Original order, subparts and diagrams.</p>
+  <div class="paper-links"><a class="button primary" href={collectionUrl(paper)}>Read collection <Icon name="arrow" size={14}/></a><a class="button secondary" href={url(paper.questions.file)} target="_blank" rel="noopener">Question PDF <Icon name="external" size={13}/></a>{paper.answers&&<a class="button secondary" href={url(paper.answers.file)} target="_blank" rel="noopener">Answers PDF <Icon name="external" size={13}/></a>}</div>
+  <p class="paper-source">Source: {paper.questions.source}</p>
+</article>

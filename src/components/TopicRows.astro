@@ -1,0 +1,11 @@
+---
+import {type Topic,topicUrl,url} from '../data/curriculum';
+import {questionTypes} from '../data/question-types';
+import {papersForTopic} from '../data/paper-collections';
+import Icon from './Icon.astro';
+interface Props {topics:Topic[]}
+---
+<div class="topic-list">{Astro.props.topics.map(topic=>{
+  const collections=papersForTopic(topic.id);
+  return <div class="topic-row" id={topic.id} data-filter-card data-module={topic.module} data-search={`${topic.title} ${topic.description} ${topic.aliases.join(' ')}`}><span class="topic-ref">{topic.ref}</span><div><h3><a href={topicUrl(topic)}>{topic.title}</a></h3><p>{questionTypes[topic.id].length} question types{collections.length>0&&` · ${collections.length} paper collection${collections.length===1?'':'s'}`}</p></div>{collections.length>0&&<a class="topic-paper-link" href={`${url('papers/')}?topic=${topic.id}`}>Papers <Icon name="papers" size={14}/></a>}<a class="icon-button" aria-label={`Read ${topic.title}`} href={topicUrl(topic)}><Icon name="arrow" size={18}/></a></div>;
+})}</div>

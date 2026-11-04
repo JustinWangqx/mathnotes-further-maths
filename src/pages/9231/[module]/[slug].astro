@@ -1,16 +1,16 @@
 ---
 import {getCollection,render} from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import PracticeCard from '../../../components/PracticeCard.astro';
-import {moduleFor,topics,url,repoUrl,papersUrl} from '../../../data/curriculum';
-import {questions} from '../../../data/practice';
+import PaperCollectionCard from '../../../components/PaperCollectionCard.astro';
+import {moduleFor,topics,url,repoUrl} from '../../../data/curriculum';
+import {papersForTopic} from '../../../data/paper-collections';
 import {questionTypes} from '../../../data/question-types';
 export async function getStaticPaths(){const notes=await getCollection('notes');return notes.map(note=>({params:{module:note.data.module,slug:note.id.split('/').pop()},props:{note}}));}
 const {note}=Astro.props;
 const {Content}=await render(note);
 const module=moduleFor(note.data.module);
 const topic=topics.find(t=>t.id===note.data.topicId)!;
-const practice=questions.filter(q=>q.topic===topic.id);
+const papers=papersForTopic(topic.id);
 const types=questionTypes[topic.id];
 const issueUrl=`${repoUrl}/issues/new?title=${encodeURIComponent(`Correction: ${note.data.title}`)}&body=${encodeURIComponent('Page: '+note.data.title+'\n\nSection / question:\n\nWhat should change:\n\nReason or working:\n')}`;
 ---
@@ -18,8 +18,8 @@ const issueUrl=`${repoUrl}/issues/new?title=${encodeURIComponent(`Correction: ${
 <a class="back-link" href={url(`9231/${module.id}/`)}>← {module.title}</a>
 <div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><p>{note.data.description}</p><div class="lesson-meta"><span class="type-count">{types.length} question types</span><span>Updated 29 Oct 2026</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
 <div class="exam-route" aria-label="Note format"><span>QUESTION TYPE</span><span aria-hidden="true">→</span><span>METHOD & FORMULA</span><span aria-hidden="true">→</span><span>WORKED EXAMPLE</span></div><div class="prose exam-guide"><Content/></div>
-<section id="practice" class="topic-practice"><span class="eyebrow">YOUR TURN</span><h2>Put it into practice.</h2><p class="muted">Original questions for this topic. Try each one before opening the solution.</p>{practice.map((q,i)=><PracticeCard question={q} number={i+1}/>)}</section>
+{papers.length>0&&<section id="papers" class="topic-practice"><span class="eyebrow">PAST-PAPER COLLECTIONS</span><h2>Try the complete questions.</h2><p class="muted">Original question PDFs from your supplied folder. Every subpart and diagram stays with its question.</p>{papers.map(paper=><PaperCollectionCard paper={paper}/>)}</section>}
 <div class="completion-box"><div><strong>Question types revised.</strong><p>Your study status is saved on this device.</p></div><button class="button primary" data-complete={topic.id} aria-pressed="false">Mark topic as studied</button></div>
-<div class="source-note"><strong>Source notes</strong><p>Question types follow the annotated study collection. Textbook examples are identified by their example number and note page; formula-only illustrations are labelled separately. This page covers the listed question types. Independent teacher review has not yet been recorded.</p><details><summary>Source collection references</summary><ul>{note.data.sources.map(source=><li>{source}</li>)}</ul><p>The source PDFs are kept outside the public build. The separate practice questions are original exercises.</p></details><div class="source-links"><a href={papersUrl}>Official exam resources ↗</a><a href={issueUrl}>Suggest a correction ↗</a></div></div>
-</article><aside class="toc" aria-label="Question types" data-pagefind-ignore><p class="nav-label">QUESTION TYPES</p><nav>{types.map(type=><a href={`#${type.id}`}><span class="toc-type-number">{String(type.number).padStart(2,'0')}</span>{type.title}</a>)}<a href="#practice">Practice questions</a></nav><div class="toc-tip"><span class="small-serif">Exam routine</span><p>Identify the type. Write the formula. Substitute carefully.</p></div></aside></div>
+<div class="source-note"><strong>Source notes</strong><p>Question types follow the annotated study collection. Textbook examples are identified by their example number and note page; formula-only illustrations are labelled separately. This page covers the listed question types. Independent teacher review has not yet been recorded.</p><details><summary>Source collection references</summary><ul>{note.data.sources.map(source=><li>{source}</li>)}</ul><p>The lesson-note PDFs stay outside the public build. Question collections and supplied answers are available as intact original PDFs in the Question papers library.</p></details><div class="source-links"><a href={`${url('papers/')}?topic=${topic.id}`}>Question collections ↗</a><a href={issueUrl}>Suggest a correction ↗</a></div></div>
+</article><aside class="toc" aria-label="Question types" data-pagefind-ignore><p class="nav-label">QUESTION TYPES</p><nav>{types.map(type=><a href={`#${type.id}`}><span class="toc-type-number">{String(type.number).padStart(2,'0')}</span>{type.title}</a>)}{papers.length>0&&<a href="#papers">Question collections</a>}</nav><div class="toc-tip"><span class="small-serif">Exam routine</span><p>Identify the type. Write the formula. Substitute carefully.</p></div></aside></div>
 </Base>

@@ -2,11 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import {topics,url} from '../data/curriculum';
-const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,href:t.slug?url(`9231/${t.module}/${t.slug}/`):url(`syllabus/#${t.id}`),available:!!t.slug}));
+const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,href:t.slug?url(`9231/${t.module}/${t.slug}/`):url(`notes/#${t.id}`),available:!!t.slug}));
 ---
-<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search question types, methods and practice. English and Chinese topic names both work.</p></div>
+<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search question types, methods and paper collections. English and Chinese topic names both work.</p></div>
 <div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and topics</label><input id="site-search" type="search" placeholder="Try polynomial roots, 复数, PDF…" autocomplete="off" autofocus aria-controls="search-results"/></div>
-<div class="search-suggestions"><span>A few starting points</span>{['polynomial roots','复数','概率密度','积分'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div><p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic or a phrase to begin.</p><div id="search-results"></div><noscript><p class="search-fallback">Search needs JavaScript. You can still browse every guide in the <a href={url('notes/')}>notes library</a> and the <a href={url('syllabus/')}>topic map</a>.</p></noscript>
+<div class="search-suggestions"><span>A few starting points</span>{['polynomial roots','复数','概率密度','积分'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div><p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic or a phrase to begin.</p><div id="search-results"></div><noscript><p class="search-fallback">Search needs JavaScript. You can still browse every guide in the <a href={url('notes/')}>topic map</a>.</p></noscript>
 <script id="topic-aliases" type="application/json" set:html={JSON.stringify(aliases)}/>
 <script>
   const input=document.querySelector<HTMLInputElement>('#site-search')!;
@@ -28,7 +28,7 @@ const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,hr
     history.replaceState(null,'',`${location.pathname}?q=${encodeURIComponent(query)}`);
     status.textContent='Searching the notebook…';
     const matches=aliasData.filter(t=>[t.title,...t.aliases].some(a=>normalise(a).includes(normalise(query))||normalise(query).includes(normalise(a))));
-    matches.forEach(t=>addResult(t.title,t.href,t.available?'Study guide · Notes, examples and practice':'Planned topic · View its place in the syllabus'));
+    matches.forEach(t=>addResult(t.title,t.href,t.available?'Study guide · Question types and worked examples':'Planned topic · View its place in the syllabus'));
     const seen=new Set(matches.map(t=>new URL(t.href,location.origin).pathname));
     try{
       if(!pagefindPromise){const indexUrl=`${document.body.dataset.base}pagefind/pagefind.js`;pagefindPromise=import(/* @vite-ignore */ indexUrl);}
@@ -41,8 +41,8 @@ const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,hr
       const count=output.children.length;status.textContent=count?`${count} result${count===1?'':'s'} for “${query}”`:`No results for “${query}”. Try a broader topic or a Chinese alias.`;
     }catch{
       if(current!==sequence)return;
-      status.textContent=matches.length?`${matches.length} matching topic${matches.length===1?'':'s'}. Full-text search is temporarily unavailable.`:'Full-text search is temporarily unavailable. Try a topic name or browse the syllabus.';
-      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}syllabus/`,'Every topic in the current notes, grouped by module.');
+      status.textContent=matches.length?`${matches.length} matching topic${matches.length===1?'':'s'}. Full-text search is temporarily unavailable.`:'Full-text search is temporarily unavailable. Try a topic name or browse the topic map.';
+      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}notes/`,'Every topic in the current notes, grouped by module.');
     }
   }
   let timer:ReturnType<typeof setTimeout>;

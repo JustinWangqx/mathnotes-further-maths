@@ -24,7 +24,8 @@ export const topics: Topic[] = [
 export const availableTopics = topics.filter(t => t.slug);
 export const moduleFor = (id: string) => modules.find(m => m.id === id)!;
 export const url = (path = '') => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-export const topicUrl = (topic: Topic) => topic.slug ? url(`9231/${topic.module}/${topic.slug}/`) : url(`syllabus/#${topic.id}`);
+export const topicUrl = (topic: Topic) => topic.slug ? url(`9231/${topic.module}/${topic.slug}/`) : url(`notes/#${topic.id}`);
 export const syllabusUrl = 'https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf';
-export const papersUrl = 'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-further-9231/past-papers/';
 export const repoUrl = 'https://github.com/JustinWangqx/mathnotes-further-maths';
+
+export const formulaSheetUrl = 'https://www.cambridgeinternational.org/Images/417318-list-of-formulae-and-statistical-tables.pdf';

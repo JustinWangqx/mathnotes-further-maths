@@ -6,6 +6,7 @@ dist/
 .env.*
 !.env.example
 *.pdf
+!public/papers/*.pdf
 *.zip
 test-results/
 playwright-report/
