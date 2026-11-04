@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+import {url} from '../data/curriculum';
+---
+<a class="visit-counter" href={url('visits/')} title="View site statistics">
+  <Icon name="chart" size={16}/><span>Total page views <strong data-total-views aria-live="polite">…</strong></span>
+</a>

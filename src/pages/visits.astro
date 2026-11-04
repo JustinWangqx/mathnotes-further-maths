@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import {trackedSite} from '../utils/visits.mjs';
+const historyUrl = `https://hitscounter.dev/history?url=${encodeURIComponent(trackedSite)}`;
+---
+<Base title="Site statistics" active="visits" description="Total page views for the MathNotes Further Mathematics website.">
+  <div class="page-heading"><span class="eyebrow">THE NOTEBOOK IN NUMBERS</span><h1>A little maths.<br/><em>A growing readership.</em></h1><p>Page views across the whole MathNotes website, counted from 4 November 2026.</p></div>
+  <section class="visit-metrics" aria-label="Website page views" data-pagefind-ignore>
+    <article class="visit-metric visit-metric-total"><span class="eyebrow">TOTAL PAGE VIEWS</span><strong data-total-views aria-live="polite">…</strong><p>Across all notes, practice and resource pages.</p></article>
+    <article class="visit-metric"><span class="eyebrow">TODAY · UTC+8</span><strong data-today-views aria-live="polite">…</strong><p>Page views since midnight.</p></article>
+  </section>
+  <p class="visit-status" data-visit-status role="status" data-pagefind-ignore>Loading the latest visit counts…</p>
+  <noscript><p class="visit-status">Enable JavaScript to load the visit counter.</p></noscript>
+  <div class="about-content"><h2>What is counted?</h2><p>Each page load adds one view to the shared website total. Reading another page or refreshing adds another view, so one reader can contribute several views. Local previews and the 404 page are excluded.</p><p>Counting began on 4 November 2026. Visits before this update were not recorded. Counts may be lower when a browser blocks the counter request.</p><p>The counter is provided by <a href="https://hitscounter.dev/">Hits Counter</a>. The site sends the same fixed website address for every page, without search terms, page query parameters or an account identifier.</p><a class="button secondary" href={historyUrl} target="_blank" rel="noopener noreferrer">View daily history <Icon name="external" size={15}/></a></div>
+</Base>

@@ -61,3 +61,11 @@ The syllabus reference is CIE 9231 for 2026–2027. The guides are an initial ed
 The browser UI is designed for mobile and desktop, keyboard use and reduced-motion preferences. The HTML notes and native solution controls remain readable without JavaScript; filters and search require JavaScript.
 
 Math working uses stacked fractions and display equations. Consecutive equalities are laid out vertically by `src/utils/math-layout.mjs`; use explicit `aligned` blocks for worked calculations and preserve matrices/cases as authored. Split long expressions at meaningful mathematical boundaries for narrow screens.
+
+## Visit statistics
+
+The footer and `/visits/` show a public site-wide page-view total and today's total (UTC+8), provided by [Hits Counter](https://hitscounter.dev/). Counting starts on 4 November 2026. This counts page loads, including repeat views; it does not identify individual readers or reconstruct earlier traffic.
+
+`src/utils/visits.mjs` sends one request per live page load, always using the fixed canonical site URL as the counter key. Production hostname and path checks exclude local previews. No query strings, search terms, cookies or account identifiers are sent. The 404 page does not request the counter. Failed requests show an unavailable state and are never retried automatically to avoid duplicate increments. The provider stores the shared total externally; it is not browser-local storage. No Google Analytics account or secret is required.
+
+The public counter can be affected by blocked requests or automated traffic. It is a readership indicator rather than a count of unique people. Keep `trackedSite` stable when changing page layouts so the accumulated total is retained.
