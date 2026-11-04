@@ -64,7 +64,7 @@ Math working uses stacked fractions and display equations. Consecutive equalitie
 
 ## Visit statistics
 
-The footer and `/visits/` show a public site-wide page-view total and today's total (UTC+8), provided by [Hits Counter](https://hitscounter.dev/). Counting starts on 4 November 2026. This counts page loads, including repeat views; it does not identify individual readers or reconstruct earlier traffic.
+The footer shows a compact public site-wide page-view total, provided by [Hits Counter](https://hitscounter.dev/). Counting starts on 4 November 2026. This counts page loads, including repeat views; it does not identify individual readers or reconstruct earlier traffic.
 
 `src/utils/visits.mjs` sends one request per live page load, always using the fixed canonical site URL as the counter key. Production hostname and path checks exclude local previews. No query strings, search terms, cookies or account identifiers are sent. The 404 page does not request the counter. Failed requests show an unavailable state and are never retried automatically to avoid duplicate increments. The provider stores the shared total externally; it is not browser-local storage. No Google Analytics account or secret is required.
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,existsSync} from 'node:fs';
 import {trackedSite,isTrackedPage,parseVisitCounts,recordPageView} from '../src/utils/visits.mjs';
 
 test('only the live MathNotes project can increment its visit total',async()=>{
@@ -43,15 +43,17 @@ test('counter failures do not cause duplicate increments or invent a zero total'
  assert.deepEqual(parseVisitCounts({total_hits:0,today_hits:0}),{total:0,today:0});
 });
 
-test('the deployed footer and statistics page expose the same accessible count',()=>{
+test('the total appears only as a compact footer count, with no statistics page',()=>{
  const home=readFileSync('dist/index.html','utf8');
- const page=readFileSync('dist/visits/index.html','utf8');
  const missing=readFileSync('dist/404.html','utf8');
- assert.ok(home.includes('data-total-views'));
- assert.ok(page.includes('TOTAL PAGE VIEWS')&&page.includes('data-today-views'));
- assert.ok(page.includes('aria-live="polite"'));
+ assert.ok(home.includes('Total views:'));
+ assert.ok(/<span class="visit-counter"[^>]*>/.test(home));
+ assert.ok(home.includes('aria-live="polite"'));
+ assert.ok(!home.includes('Site statistics'));
+ assert.ok(!home.includes('/visits/'));
+ assert.ok(!existsSync('dist/visits/index.html'));
  assert.ok(!/<strong[^>]*data-total-views/.test(missing));
- for(const html of [home,page])assert.ok(!html.includes('justin.wangqx@gmail.com'));
+ assert.ok(!home.includes('justin.wangqx@gmail.com'));
  const about=readFileSync('dist/about/index.html','utf8');
  assert.ok(!about.includes('has no analytics'));
  assert.ok(about.includes('hitscounter.dev'));

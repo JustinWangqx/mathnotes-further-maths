@@ -9,7 +9,7 @@ import VisitCounter from '../components/VisitCounter.astro';
 import { modules, url, repoUrl } from '../data/curriculum';
 interface Props { title?: string; description?: string; active?: string; noindex?: boolean }
 const {title='A little clarity. A lot of possibility.',description='CIE A Level Further Mathematics by exam question type: short methods, formulas, worked examples and practice. English explanations with Chinese search aliases.',active='home',noindex=false}=Astro.props;
-const nav=[['home','Overview','', 'home'],['notes','Study notes','notes/','book'],['practice','Practice','practice/','pen'],['papers','Past papers','past-papers/','papers'],['formulae','Formula index','formulae/','formula'],['syllabus','Topic map','syllabus/','map'],['visits','Site statistics','visits/','chart']];
+const nav=[['home','Overview','', 'home'],['notes','Study notes','notes/','book'],['practice','Practice','practice/','pen'],['papers','Past papers','past-papers/','papers'],['formulae','Formula index','formulae/','formula'],['syllabus','Topic map','syllabus/','map']];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
