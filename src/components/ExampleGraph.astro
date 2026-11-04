@@ -24,16 +24,16 @@ const roots=argand?Array.from({length:6},(_,k)=>({k,x:Math.sqrt(2)*Math.cos(Math
 ---
 <figure class="example-graph">
   <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={argand?'Argand diagram: the six roots have modulus square root of two and arguments pi/18 + k pi/3':plot.label}>
-    {ticksX.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#e6e7da" stroke-width=".7"/>)}
-    {ticksY.map(y=><line x1={P} x2={W-P} y1={Y(y)} y2={Y(y)} stroke="#e6e7da" stroke-width=".7"/>)}
-    <line x1={P} x2={W-P} y1={Y(0)} y2={Y(0)} stroke="#9aa58b"/><line x1={X(0)} x2={X(0)} y1={P} y2={H-P} stroke="#9aa58b"/>
+    {ticksX.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#ede0d4" stroke-width=".7"/>)}
+    {ticksY.map(y=><line x1={P} x2={W-P} y1={Y(y)} y2={Y(y)} stroke="#ede0d4" stroke-width=".7"/>)}
+    <line x1={P} x2={W-P} y1={Y(0)} y2={Y(0)} stroke="#ab9585"/><line x1={X(0)} x2={X(0)} y1={P} y2={H-P} stroke="#ab9585"/>
     {ticksX.filter(n=>n!==0).map(x=><text x={X(x)} y={Y(0)+15} text-anchor="middle">{x}</text>)}
     {ticksY.filter(n=>n!==0).map(y=><text x={X(0)-7} y={Y(y)+3} text-anchor="end">{y}</text>)}
     <text x={W-P+6} y={Y(0)-7}>{argand?'Re':'x'}</text><text x={X(0)+7} y={P-7}>{argand?'Im':'y'}</text>
-    {plot?.poles?.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#b76e50" stroke-width="1" stroke-dasharray="5 5"/>)}
-    {plot?.oblique&&<line x1={X(-5)} x2={X(5)} y1={Y(-6)} y2={Y(4)} stroke="#b76e50" stroke-width="1" stroke-dasharray="5 5"/>}
-    {plot&&<path d={path} fill="none" stroke="#315a45" stroke-width="2.2"/>}
-    {argand&&<><ellipse cx={X(0)} cy={Y(0)} rx={X(Math.sqrt(2))-X(0)} ry={Y(0)-Y(Math.sqrt(2))} fill="none" stroke="#a1b294" stroke-dasharray="5 5"/>{roots.map(r=><><line x1={X(0)} y1={Y(0)} x2={X(r.x)} y2={Y(r.y)} stroke="#d4dec7"/><circle cx={X(r.x)} cy={Y(r.y)} r="4" fill="#a94c38"/><text x={X(r.x)+7} y={Y(r.y)-7}>k={r.k}</text></>)}</>}
+    {plot?.poles?.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#b57b52" stroke-width="1" stroke-dasharray="5 5"/>)}
+    {plot?.oblique&&<line x1={X(-5)} x2={X(5)} y1={Y(-6)} y2={Y(4)} stroke="#b57b52" stroke-width="1" stroke-dasharray="5 5"/>}
+    {plot&&<path d={path} fill="none" stroke="#5a4131" stroke-width="2.2"/>}
+    {argand&&<><ellipse cx={X(0)} cy={Y(0)} rx={X(Math.sqrt(2))-X(0)} ry={Y(0)-Y(Math.sqrt(2))} fill="none" stroke="#b4a092" stroke-dasharray="5 5"/>{roots.map(r=><><line x1={X(0)} y1={Y(0)} x2={X(r.x)} y2={Y(r.y)} stroke="#e0d2c5"/><circle cx={X(r.x)} cy={Y(r.y)} r="4" fill="#9d6944"/><text x={X(r.x)+7} y={Y(r.y)-7}>k={r.k}</text></>)}</>}
   </svg>
   <figcaption>{argand?'Six roots · equal angular spacing π/3':plot.label}</figcaption>
 </figure>

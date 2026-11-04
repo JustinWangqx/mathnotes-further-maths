@@ -59,3 +59,5 @@ The syllabus reference is CIE 9231 for 2026–2027. The guides are an initial ed
 `npm run check` checks Astro and TypeScript. `npm test` checks all generated routes and anchors, deployment-base handling, 48 unique question/solution pairs, maths rendering, search aliases, absence of private assets, and numerical identities behind the worked examples.
 
 The browser UI is designed for mobile and desktop, keyboard use and reduced-motion preferences. The HTML notes and native solution controls remain readable without JavaScript; filters and search require JavaScript.
+
+Math working uses stacked fractions and display equations. Consecutive equalities are laid out vertically by `src/utils/math-layout.mjs`; use explicit `aligned` blocks for worked calculations and preserve matrices/cases as authored. Split long expressions at meaningful mathematical boundaries for narrow screens.

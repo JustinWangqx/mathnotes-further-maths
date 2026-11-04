@@ -13,8 +13,8 @@ const types=questionTypes[Astro.props.topicId];
     <div class="type-example">
       <div class="example-caption"><span class="type-label">WORKED EXAMPLE</span><span>{type.source.kind==='textbook' ? 'From textbook / worksheet questions in your notes' : 'Illustration from your annotated methods'}</span></div>
       <p class="type-question"><MathText text={type.question}/></p>
-      <ol class="type-working">{type.steps.map(step=><li><MathText text={step}/></li>)}</ol>
-      <div class="type-answer"><span class="type-label">ANSWER</span><div><MathText text={type.answer}/></div></div>
+      <ol class="type-working">{type.steps.map(step=><li><MathText text={step} layout="working"/></li>)}</ol>
+      <div class="type-answer"><span class="type-label">ANSWER</span><div><MathText text={type.answer} layout="working"/></div></div>
       {type.diagram&&<ExampleGraph name={type.diagram}/>}
       <details class="example-source"><summary>{type.source.label} · notes p. {type.source.pages}</summary><p>{type.source.file}</p><p>Question wording is shortened for revision. Worked calculations are typeset and checked; source examples are identified above.</p></details>
     </div>

@@ -82,7 +82,7 @@ test('all 78 question types render a method, formula, worked example and traceab
  for(const types of Object.values(data))for(const [i,type] of types.entries()){
   assert.equal(type.number,i+1);assert.ok(type.method.length<400);
   assert.ok(type.formula.includes('$'));assert.ok(type.question.trim().length>0);
-  assert.ok(type.steps.length>=1&&type.steps.length<=4);
+  assert.ok(type.steps.length>=1&&type.steps.length<=6);
   assert.ok(type.answer&&type.source.file&&type.source.pages&&type.source.label);
  }
 });

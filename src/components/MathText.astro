@@ -1,7 +1,14 @@
 ---
 import katex from 'katex';
-interface Props { text: string }
-const { text } = Astro.props;
+import {layoutMath,isWorkingMath} from '../utils/math-layout.mjs';
+interface Props { text: string; layout?: 'inline' | 'working' | 'display' }
+const { text,layout='inline' } = Astro.props;
 const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[^$\n]+\$)/g);
+const rendered=parts.map(part=>{
+  if(!part.startsWith('$'))return {text:part};
+  const tex=part.replace(/^\$\$?|\$\$?$/g,'');
+  const display=part.startsWith('$$')||layout==='display'||(layout==='working'&&isWorkingMath(tex));
+  return {display,html:katex.renderToString(display?layoutMath(tex):tex,{throwOnError:true,displayMode:display,output:'htmlAndMathml'})};
+});
 ---
-{parts.map(part => part.startsWith('$') ? <span class:list={['math', { 'display-math': part.startsWith('$$') }]} set:html={katex.renderToString(part.replace(/^\$\$?|\$\$?$/g,''), {throwOnError:true,displayMode:part.startsWith('$$'),output:'htmlAndMathml'})} /> : part)}
+{rendered.map(part => part.html ? <span class:list={['math', { 'display-math': part.display }]} set:html={part.html}/> : part.text)}
