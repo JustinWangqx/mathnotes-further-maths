@@ -1,7 +1,7 @@
 {
   "name": "mathnotes-further-maths",
   "version": "1.0.0",
-  "description": "CIE 9231 Further Mathematics notes, worked examples and topic practice",
+  "description": "Cambridge CIE A Level Mathematics and Further Mathematics revision notes and original past-paper question collections",
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 127.0.0.1",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
@@ -9,8 +9,17 @@
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1",
     "test": "node --test scripts/*.test.mjs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "CIE",
+    "CAIE",
+    "Cambridge International",
+    "A Level Mathematics",
+    "Further Mathematics",
+    "9231",
+    "revision notes",
+    "past paper questions"
+  ],
+  "author": "Justin Wang",
   "type": "module",
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.5",

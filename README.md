@@ -1,6 +1,6 @@
-# MathNotes — CIE Further Mathematics
+# MathNotes — CIE A Level Mathematics & Further Mathematics
 
-A static study website for the 14 topics represented in the supplied notes: 5 FP1, 4 FP2 and 5 Further Statistics topics.
+A public Cambridge International (CIE/CAIE) A Level maths revision website. The current collection focuses on Further Mathematics 9231: 14 topics represented in the supplied notes, comprising 5 FP1, 4 FP2 and 5 Further Statistics topics. The shared MF19 reference also supports Mathematics 9709.
 
 - One Topic Map groups the notes by module and orders them by syllabus topic.
 - 14 guides contain 78 numbered question types, short methods, essential formulas and worked examples.
@@ -26,7 +26,7 @@ BASE_PATH=/mathnotes-further-maths/ SITE_URL=https://justinwangqx.github.io npm 
 BASE_PATH=/mathnotes-further-maths/ npm test
 ```
 
-The workflow checks and deploys `dist/` on pushes to `main`. Repository Settings → Pages → Source must be GitHub Actions. Pagefind full-text search is generated during the production build. Internal URLs honour the deployment base.
+The workflow checks and deploys `dist/` on pushes to `main`. Repository Settings → Pages → Source must be GitHub Actions. The production build generates the browser search catalogue and a Pagefind index. Internal URLs honour the deployment base.
 
 ## Content and provenance
 
@@ -47,6 +47,12 @@ The reference syllabus is CIE 9231 for 2026–2027. Guide availability does not 
 ## Validation
 
 Checks cover routes and anchors, base-path handling, all 14 guides and 78 question types, source PDF checksums, the unified navigation, removed sections, math rendering, search aliases, visit counting and numerical checks on worked examples. The PDF checks protect the original documents from accidental truncation or substitution.
+
+## Search and discovery
+
+Every indexable page has a unique subject-specific title and description, canonical URL, social preview and structured page/breadcrumb metadata. The sitemap lists 34 useful pages and all 22 original question/answer PDFs; search, errors and legacy redirects are excluded. See `docs/search-discovery.md` for indexing details.
+
+On-site search recognises CIE/CAIE/Cambridge, A Level/A-level/Alevel, Mathematics/Maths, English/Chinese topic names, module names and note/paper intent. It matches the current notes and text extracted from the original question PDFs, returning whole collections. `src/data/paper-search.json` also contains original paper references printed in the supplied answer PDFs where available. Refresh that file after changing a source collection with `python3 scripts/index-paper-text.py` (optional authoring dependency: `pypdf`); normal builds need no Python.
 
 ## Footer view count
 

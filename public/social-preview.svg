@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#fff8ef"/><rect x="0" y="0" width="14" height="630" fill="#ce6022"/>
+<g stroke="#efd7c4" stroke-width="1"><path d="M900 60V550M960 60V550M1020 60V550M1080 60V550M1140 60V550M840 130H1170M840 190H1170M840 250H1170M840 310H1170M840 370H1170M840 430H1170M840 490H1170"/></g>
+<path d="M845 430H1165M900 525V80" stroke="#a88062" stroke-width="2"/>
+<path d="M850 470C900 470 910 190 970 190S1030 500 1090 360S1135 220 1165 240" fill="none" stroke="#ce6022" stroke-width="5"/>
+<circle cx="970" cy="190" r="7" fill="#ce6022"/>
+<text x="70" y="94" font-family="sans-serif" font-size="34" font-weight="700" fill="#59351e">MathNotes<tspan fill="#ce6022"> ·</tspan></text>
+<text x="70" y="163" font-family="sans-serif" font-size="18" letter-spacing="3" fill="#9e5c31">CAMBRIDGE INTERNATIONAL · CIE / CAIE</text>
+<g font-family="serif" font-size="67" fill="#59351e"><text x="66" y="264">A Level Mathematics</text><text x="66" y="345">&amp; Further Mathematics</text></g>
+<text x="70" y="415" font-family="sans-serif" font-size="24" fill="#85634d">Notes · Worked examples · Past-paper questions</text>
+<rect x="70" y="477" width="600" height="58" rx="29" fill="#f5e2d0"/>
+<text x="97" y="514" font-family="sans-serif" font-size="21" fill="#9d461b">Current collection: Further Mathematics 9231</text>
+<text x="70" y="591" font-family="sans-serif" font-size="18" fill="#896c58">Free revision resources · Pure Mathematics &amp; Statistics</text>
+</svg>

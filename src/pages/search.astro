@@ -1,53 +1,57 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {topics,url} from '../data/curriculum';
-const aliases=topics.map(t=>({title:t.title,aliases:t.aliases,module:t.module,href:t.slug?url(`9231/${t.module}/${t.slug}/`):url(`notes/#${t.id}`),available:!!t.slug}));
+import {modules,topics,url} from '../data/curriculum';
 ---
-<Base title="Search the notebook" active="notes" noindex><div class="page-heading"><span class="eyebrow">FOLLOW YOUR CURIOSITY</span><h1>What are you working on?</h1><p>Search question types, methods and paper collections. English and Chinese topic names both work.</p></div>
-<div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and topics</label><input id="site-search" type="search" placeholder="Try polynomial roots, 复数, PDF…" autocomplete="off" autofocus aria-controls="search-results"/></div>
-<div class="search-suggestions"><span>A few starting points</span>{['polynomial roots','复数','概率密度','积分'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div><p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic or a phrase to begin.</p><div id="search-results"></div><noscript><p class="search-fallback">Search needs JavaScript. You can still browse every guide in the <a href={url('notes/')}>topic map</a>.</p></noscript>
-<script id="topic-aliases" type="application/json" set:html={JSON.stringify(aliases)}/>
+<Base title="Search notes & question papers" active="notes" noindex>
+<div class="page-heading"><span class="eyebrow">CIE / CAIE · CAMBRIDGE INTERNATIONAL</span><h1>Find the notes.<br/><em>Find the questions.</em></h1><p>Search A Level Further Mathematics (9231) notes, methods and original question collections. English and Chinese topic names both work.</p></div>
+<div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and question papers</label><input id="site-search" type="search" placeholder="Try integration papers, 复数, MF19…" autocomplete="off" autofocus aria-controls="search-results"/></div>
+<div class="filter-bar search-filters"><label>Show<select id="search-kind"><option value="all">All resources</option><option value="notes">Notes</option><option value="papers">Question papers</option><option value="resources">Reference resources</option></select></label><label>Module<select id="search-module"><option value="all">All modules</option>{modules.map(m=><option value={m.id}>{m.title}</option>)}</select></label></div>
+<div class="search-suggestions"><span>Try a search</span>{['CIE A Level maths notes','integration papers','复数','MF19'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div>
+<p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic, method or phrase from a question.</p><div id="search-results" aria-busy="false"></div>
+<noscript><p class="search-fallback">Search needs JavaScript. Browse the <a href={url('notes/')}>topic map</a> or <a href={url('papers/')}>question papers</a>.</p></noscript>
+<details class="search-aliases"><summary>English and Chinese topic names</summary><p>{topics.map(t=>`${t.title}: ${t.aliases.filter(a=>/[^\x00-\x7F]/.test(a)).join(', ')}`).join(' · ')}</p></details>
 <script>
-  const input=document.querySelector<HTMLInputElement>('#site-search')!;
-  const status=document.querySelector<HTMLElement>('#search-status')!;
-  const output=document.querySelector<HTMLElement>('#search-results')!;
-  const aliasData: {title:string;aliases:string[];href:string;available:boolean}[]=JSON.parse(document.querySelector('#topic-aliases')!.textContent!);
-  let pagefindPromise:Promise<any>|undefined;
-  let sequence=0;
-  const normalise=(s:string)=>s.toLowerCase().normalize('NFKC').replace(/\s+/g,' ').trim();
-  function addResult(title:string,href:string,excerpt:string,html=false){
+  import {searchCatalog} from '../utils/search.mjs';
+  const input=document.querySelector<HTMLInputElement>('#site-search')!,kind=document.querySelector<HTMLSelectElement>('#search-kind')!,module=document.querySelector<HTMLSelectElement>('#search-module')!;
+  const status=document.querySelector<HTMLElement>('#search-status')!,output=document.querySelector<HTMLElement>('#search-results')!;
+  const base=document.body.dataset.base!;
+  type Entry={title:string;href:string;description:string;kind:string;module:string};
+  let catalogPromise:Promise<any>|undefined,sequence=0;
+  const labels:Record<string,string>={notes:'Notes',papers:'Question collection',resources:'Reference resource'};
+  const moduleLabels:Record<string,string>={fp1:'Further Pure 1',fp2:'Further Pure 2',statistics:'Further Statistics'};
+  function addResult(record:Entry){
     const result=document.createElement('article');result.className='search-result';
-    const heading=document.createElement('h2');const link=document.createElement('a');link.href=href;link.textContent=title;heading.append(link);
-    const p=document.createElement('p');if(html){const parsed=new DOMParser().parseFromString(excerpt,'text/html');p.textContent=parsed.body.textContent;}else p.textContent=excerpt;
-    result.append(heading,p);output.append(result);
+    const label=document.createElement('span');label.className='search-result-kind';label.textContent=[labels[record.kind],moduleLabels[record.module]].filter(Boolean).join(' · ');
+    const heading=document.createElement('h2'),link=document.createElement('a');link.href=record.href;link.textContent=record.title;heading.append(link);
+    const p=document.createElement('p');p.textContent=record.description;result.append(label,heading,p);output.append(result);
   }
   async function search(){
-    const query=input.value.trim();const current=++sequence;output.replaceChildren();
-    if(!query){status.textContent='Enter a topic or a phrase to begin.';history.replaceState(null,'',location.pathname);return;}
-    history.replaceState(null,'',`${location.pathname}?q=${encodeURIComponent(query)}`);
-    status.textContent='Searching the notebook…';
-    const matches=aliasData.filter(t=>[t.title,...t.aliases].some(a=>normalise(a).includes(normalise(query))||normalise(query).includes(normalise(a))));
-    matches.forEach(t=>addResult(t.title,t.href,t.available?'Study guide · Question types and worked examples':'Planned topic · View its place in the syllabus'));
-    const seen=new Set(matches.map(t=>new URL(t.href,location.origin).pathname));
+    const query=input.value.trim(),current=++sequence;output.replaceChildren();
+    const params=new URLSearchParams();if(query)params.set('q',query);if(kind.value!=='all')params.set('type',kind.value);if(module.value!=='all')params.set('module',module.value);
+    history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}`);
+    if(!query&&kind.value==='all'&&module.value==='all'){output.setAttribute('aria-busy','false');status.textContent='Enter a topic, method or phrase from a question.';return;}
+    status.textContent='Searching notes and complete question collections…';output.setAttribute('aria-busy','true');
     try{
-      if(!pagefindPromise){const indexUrl=`${document.body.dataset.base}pagefind/pagefind.js`;pagefindPromise=import(/* @vite-ignore */ indexUrl);}
-      const pagefind=await pagefindPromise;
-      const searchTerm=matches.find(t=>t.available)?.title||query;
-      const result=await pagefind.search(searchTerm);
-      const data=await Promise.all(result.results.slice(0,12).map((r:any)=>r.data()));
-      if(current!==sequence)return;
-      for(const r of data){const path=new URL(r.url,location.origin).pathname;if(seen.has(path))continue;seen.add(path);addResult(r.meta.title||'MathNotes',r.url,r.excerpt,true);}
-      const count=output.children.length;status.textContent=count?`${count} result${count===1?'':'s'} for “${query}”`:`No results for “${query}”. Try a broader topic or a Chinese alias.`;
+      catalogPromise??=fetch(`${base}search-index.json`).then(r=>{if(!r.ok)throw new Error('Search index unavailable');return r.json();});
+      const catalog=await catalogPromise;if(current!==sequence)return;
+      const {plan,results}=searchCatalog(catalog,query,{kind:kind.value,module:module.value});results.forEach(addResult);
+      const scope=[plan.kind!=='all'?labels[plan.kind]:null,moduleLabels[plan.module]].filter(Boolean).join(' · ');
+      status.textContent=results.length?`${results.length} result${results.length===1?'':'s'}${query?` for “${query}”`:''}${scope?' · '+scope:''}`:`No matching resources${query?` for “${query}”`:''}. Try a broader term or another filter.`;
     }catch{
-      if(current!==sequence)return;
-      status.textContent=matches.length?`${matches.length} matching topic${matches.length===1?'':'s'}. Full-text search is temporarily unavailable.`:'Full-text search is temporarily unavailable. Try a topic name or browse the topic map.';
-      if(!matches.length)addResult('Browse the topic map',`${document.body.dataset.base}notes/`,'Every topic in the current notes, grouped by module.');
-    }
+      catalogPromise=undefined;if(current!==sequence)return;
+      status.textContent='Search could not load. Please try again or browse the topic map and question papers.';
+      addResult({title:'Topic map',href:`${base}notes/`,description:'Browse every available note by module.',kind:'notes',module:''});
+      addResult({title:'Question papers',href:`${base}papers/`,description:'Browse all complete source collections.',kind:'papers',module:''});
+    }finally{if(current===sequence)output.setAttribute('aria-busy','false');}
   }
   let timer:ReturnType<typeof setTimeout>;
   input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(search,180);});
-  document.querySelectorAll<HTMLButtonElement>('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.searchTerm!;input.focus();search();}));
-  const initial=new URLSearchParams(location.search).get('q');if(initial){input.value=initial;search();}
+  [kind,module].forEach(select=>select.addEventListener('change',search));
+  document.querySelectorAll<HTMLButtonElement>('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.searchTerm!;kind.value='all';module.value='all';input.focus();search();}));
+  const initial=new URLSearchParams(location.search);input.value=initial.get('q')||'';
+  if(['notes','papers','resources'].includes(initial.get('type')||''))kind.value=initial.get('type')!;
+  if(['fp1','fp2','statistics'].includes(initial.get('module')||''))module.value=initial.get('module')!;
+  if(input.value||kind.value!=='all'||module.value!=='all')search();
 </script>
 </Base>
