@@ -1,0 +1,498 @@
+{
+  "roots": {
+    "type-1": {
+      "when": "Coefficients are given and you need sums or products of roots.",
+      "why": "Expanding the factorised polynomial gives the coefficient–root relations.",
+      "mistake": "Missing the alternating signs or the leading coefficient.",
+      "hint": "Write down the degree and leading coefficient before matching terms."
+    },
+    "type-2": {
+      "when": "The new roots are reciprocals of the original roots.",
+      "why": "Reciprocal sums and products can be expressed using the original root sums.",
+      "mistake": "Using reciprocals when an original root is zero.",
+      "hint": "Put the reciprocal sum over a common denominator."
+    },
+    "type-3": {
+      "when": "A low power sum is required without solving for the roots.",
+      "why": "Expanding a square or cube connects power sums with products of different roots.",
+      "mistake": "Confusing a sum of squares with the square of a sum.",
+      "hint": "Start with the identity for the square or cube of a sum."
+    },
+    "type-4": {
+      "when": "The question asks for higher powers or negative powers of the roots.",
+      "why": "Every root satisfies the original polynomial, so adding the substituted equations gives a recurrence.",
+      "mistake": "Taking the zeroth power sum to be one instead of the number of roots.",
+      "hint": "Substitute one root into the original equation, then multiply by a useful power."
+    },
+    "type-5": {
+      "when": "Each new root is a specified expression in an old root.",
+      "why": "The substitution makes the transformed roots satisfy the new polynomial.",
+      "mistake": "Substituting into only some terms or failing to clear denominators.",
+      "hint": "Express the old variable in terms of the new one first."
+    }
+  },
+  "rational": {
+    "type-1": {
+      "when": "A reciprocal of a linear expression needs sketching.",
+      "why": "The denominator zero and limiting value locate the asymptotes.",
+      "mistake": "Drawing the curve through its vertical asymptote.",
+      "hint": "Find the denominator zero and check the sign on each side."
+    },
+    "type-2": {
+      "when": "Numerator and denominator are both linear.",
+      "why": "Division separates a constant from a shifted reciprocal.",
+      "mistake": "Using the ratio of constant terms for the horizontal asymptote.",
+      "hint": "Rewrite the numerator as a multiple of the denominator plus a remainder."
+    },
+    "type-3": {
+      "when": "A constant is divided by a quadratic with two real factors.",
+      "why": "Denominator zeros split the branches; a derivative locates stationary points.",
+      "mistake": "Assuming the middle branch has the same sign as the outer branches.",
+      "hint": "Mark both denominator zeros before finding branch signs."
+    },
+    "type-4": {
+      "when": "A linear numerator is divided by two linear factors.",
+      "why": "Intercepts, asymptotes and stationary points determine the branch shapes.",
+      "mistake": "Treating a numerator zero as an asymptote.",
+      "hint": "Find numerator and denominator zeros separately."
+    },
+    "type-5": {
+      "when": "A quadratic is divided by a quadratic.",
+      "why": "Leading terms give the limit at infinity; zeros and derivatives give the remaining features.",
+      "mistake": "Assuming the horizontal asymptote can never be crossed.",
+      "hint": "Compare the leading coefficients, then find the intercepts."
+    },
+    "type-6": {
+      "when": "The numerator degree is one more than the denominator degree.",
+      "why": "Polynomial division leaves a linear term and a remainder that tends to zero.",
+      "mistake": "Keeping the remainder as part of the asymptote equation.",
+      "hint": "Perform the polynomial division before sketching."
+    },
+    "type-7": {
+      "when": "A rational function has no real denominator zeros and its range is required.",
+      "why": "A value is in the range only if the equation has a real solution for the input.",
+      "mistake": "Including a limiting value without checking whether it is attained.",
+      "hint": "Set the function equal to a general value and rearrange in the input variable."
+    },
+    "type-8": {
+      "when": "A sketch is transformed using absolute values or a reciprocal.",
+      "why": "Absolute values reflect the relevant part; taking a reciprocal exchanges zeros and poles where defined.",
+      "mistake": "Reflecting the wrong part of the original graph.",
+      "hint": "Identify whether the absolute value is applied to the input or the output."
+    }
+  },
+  "series": {
+    "type-1": {
+      "when": "A sum contains powers of the index.",
+      "why": "Summation is linear, so standard sums can be combined term by term.",
+      "mistake": "Ignoring a starting index other than one.",
+      "hint": "Expand the summand and list the standard sums you need."
+    },
+    "type-2": {
+      "when": "Successive terms can be written as differences.",
+      "why": "Adjacent terms cancel, leaving only boundary terms.",
+      "mistake": "Dropping the final uncancelled terms.",
+      "hint": "Write out the first few and last few differences."
+    },
+    "type-3": {
+      "when": "A finite sum is followed by a sum to infinity.",
+      "why": "The infinite sum is the limit of the finite expression when that limit exists.",
+      "mistake": "Taking a limit without stating the convergence condition.",
+      "hint": "Find a finite expression before letting the upper limit increase."
+    }
+  },
+  "matrices1": {
+    "type-1": {
+      "when": "An inverse matrix is requested and the determinant is nonzero.",
+      "why": "The adjugate formula produces a matrix whose product with the original is the identity.",
+      "mistake": "Forgetting to transpose the cofactor matrix.",
+      "hint": "Calculate the determinant before starting the cofactors."
+    },
+    "type-2": {
+      "when": "An inverse is to be found using row operations.",
+      "why": "Applying the same row operations to the identity records the inverse transformation.",
+      "mistake": "Performing a row operation on only half of the augmented matrix.",
+      "hint": "Write the matrix and identity side by side."
+    },
+    "type-3": {
+      "when": "A matrix represents a geometric transformation.",
+      "why": "The images of basis vectors determine the linear transformation.",
+      "mistake": "Reading columns as images of rows when using column vectors.",
+      "hint": "Apply the matrix to the two standard basis vectors."
+    },
+    "type-4": {
+      "when": "Two transformations are combined or one is reversed.",
+      "why": "Matrix multiplication composes maps, and an inverse reverses a nonsingular map.",
+      "mistake": "Multiplying transformation matrices in the wrong order.",
+      "hint": "Write which transformation happens first before multiplying."
+    },
+    "type-5": {
+      "when": "Points on a line must be mapped onto that same line.",
+      "why": "Requiring every image point to satisfy the line equation gives coefficient conditions.",
+      "mistake": "Assuming invariant means every point stays fixed.",
+      "hint": "Transform a general point on the line, not just one chosen point."
+    }
+  },
+  "vectors": {
+    "type-1": {
+      "when": "A perpendicular vector, triangle area or parallelepiped volume is required.",
+      "why": "Cross and scalar triple products measure the relevant perpendicular component.",
+      "mistake": "Forgetting to halve a parallelogram area for a triangle.",
+      "hint": "Choose the two directions that lie in the required plane."
+    },
+    "type-2": {
+      "when": "A plane is specified by a normal or by two independent directions.",
+      "why": "The displacement between two points in a plane is perpendicular to its normal.",
+      "mistake": "Using a direction in the plane as its normal.",
+      "hint": "Find a normal, then substitute a known point."
+    },
+    "type-3": {
+      "when": "A shortest distance from a point to a line is required.",
+      "why": "The cross product isolates the component perpendicular to the line.",
+      "mistake": "Forgetting to divide by the direction vector magnitude.",
+      "hint": "Choose a point on the line and form the displacement from it."
+    },
+    "type-4": {
+      "when": "A point and a Cartesian plane equation are given.",
+      "why": "Dividing by the normal magnitude converts the plane expression to perpendicular distance.",
+      "mistake": "Omitting the absolute value in a distance.",
+      "hint": "Put the plane in a consistent normal form before substituting."
+    },
+    "type-5": {
+      "when": "Two non-parallel lines do not intersect.",
+      "why": "The shortest joining segment is perpendicular to both line directions.",
+      "mistake": "Assuming the two line parameters have the same value.",
+      "hint": "Use a separate parameter for a general point on each line."
+    },
+    "type-6": {
+      "when": "An acute line–plane or plane–plane angle is requested.",
+      "why": "A plane normal is perpendicular to the plane, linking its angle with a line to the complement.",
+      "mistake": "Using cosine directly for the line–plane angle.",
+      "hint": "Decide whether the angle is between directions or between normals."
+    },
+    "type-7": {
+      "when": "Two non-parallel planes meet in a line.",
+      "why": "Solving both plane equations leaves one free parameter.",
+      "mistake": "Choosing a point that satisfies only one of the planes.",
+      "hint": "Leave one coordinate free and solve for the other two."
+    }
+  },
+  "hyperbolic": {
+    "type-1": {
+      "when": "A transformed hyperbolic graph is to be sketched.",
+      "why": "The standard graph carries the stated stretches, reflections and shifts.",
+      "mistake": "Reversing the sign of a horizontal translation.",
+      "hint": "Sketch the untransformed function first."
+    },
+    "type-2": {
+      "when": "An equation contains sinh, cosh or tanh.",
+      "why": "Exponential definitions or standard identities turn it into an algebraic equation.",
+      "mistake": "Accepting a tanh value outside its real range.",
+      "hint": "Choose an exponential variable or isolate the hyperbolic function."
+    },
+    "type-3": {
+      "when": "An inverse hyperbolic value must be written in logarithmic form.",
+      "why": "The logarithmic form solves the corresponding exponential equation.",
+      "mistake": "Using the logarithmic formula outside its domain.",
+      "hint": "Identify the inverse function and its domain before substitution."
+    },
+    "type-4": {
+      "when": "A hyperbolic identity needs proving.",
+      "why": "Both sides reduce using the exponential definitions and standard identities.",
+      "mistake": "Using circular identities with the wrong hyperbolic sign.",
+      "hint": "Start from one side and replace the hyperbolic terms by exponentials."
+    }
+  },
+  "differentiation": {
+    "type-1": {
+      "when": "The relation between input and output is implicit.",
+      "why": "The chain rule accounts for every occurrence of the dependent variable.",
+      "mistake": "Missing a derivative factor when differentiating a term containing the dependent variable.",
+      "hint": "Differentiate both sides with respect to the independent variable."
+    },
+    "type-2": {
+      "when": "A curve is given parametrically and a first or second derivative is required.",
+      "why": "Rates with respect to the parameter combine by the chain rule.",
+      "mistake": "Treating the ratio of second parameter derivatives as the second derivative.",
+      "hint": "Find the first derivative as a ratio before differentiating again."
+    },
+    "type-3": {
+      "when": "A stationary point of a parametric curve must be located and classified.",
+      "why": "The first derivative vanishes at a regular stationary point and the second derivative tests its local shape.",
+      "mistake": "Accepting a parameter value without checking the denominator of the first derivative.",
+      "hint": "Solve for a zero first derivative and check the curve is regular there."
+    },
+    "type-4": {
+      "when": "A derivative contains hyperbolic or inverse functions.",
+      "why": "The standard derivative is combined with the chain or product rule.",
+      "mistake": "Dropping the inner derivative.",
+      "hint": "Identify the outer function and the inner expression separately."
+    },
+    "type-5": {
+      "when": "A Maclaurin polynomial is needed to a stated order.",
+      "why": "Derivatives at zero determine the polynomial coefficients.",
+      "mistake": "Omitting factorials or calculating more orders than requested.",
+      "hint": "List the required derivatives at zero or start from a known series."
+    }
+  },
+  "integration": {
+    "type-1": {
+      "when": "A square root matches a trigonometric or hyperbolic identity.",
+      "why": "The substitution converts the root into an expression that simplifies with the differential.",
+      "mistake": "Changing the variable without changing the differential or limits.",
+      "hint": "Match the sign inside the square root to a standard identity."
+    },
+    "type-2": {
+      "when": "The integrand resembles an inverse-function derivative.",
+      "why": "Completing the square puts the denominator into a standard integral form.",
+      "mistake": "Losing a scale factor after completing the square.",
+      "hint": "Complete the square before choosing the standard integral."
+    },
+    "type-3": {
+      "when": "The integrand is a product and one factor simplifies on differentiation.",
+      "why": "The product rule rearranges into the integration-by-parts formula.",
+      "mistake": "Omitting the boundary term in a definite integral.",
+      "hint": "Choose the factor that becomes simpler as the differentiated factor."
+    },
+    "type-4": {
+      "when": "An integral is indexed by a power and a recurrence is requested.",
+      "why": "Integration by parts relates the indexed integral to a lower power.",
+      "mistake": "Leaving the repeated integral on both sides without collecting it.",
+      "hint": "Split off a factor suitable for integration by parts."
+    },
+    "type-5": {
+      "when": "The length of a curve is requested in Cartesian, parametric or polar form.",
+      "why": "The arc-length element combines the horizontal and vertical rates along the curve.",
+      "mistake": "Using a formula for a different coordinate form.",
+      "hint": "Identify the coordinate form before choosing the length formula."
+    },
+    "type-6": {
+      "when": "A curve rotates around a specified axis.",
+      "why": "A short arc generates a thin band with circumference determined by its distance from the axis.",
+      "mistake": "Using the wrong coordinate as the radius.",
+      "hint": "Mark the rotation axis and the perpendicular distance to it."
+    },
+    "type-7": {
+      "when": "A positive decreasing series is compared with an integral.",
+      "why": "Rectangles lie above or below the curve and bound the sum.",
+      "mistake": "Reversing the inequality or shifting the limits incorrectly.",
+      "hint": "Sketch the first rectangle and the corresponding interval."
+    }
+  },
+  "complex": {
+    "type-1": {
+      "when": "A multiple-angle identity is requested.",
+      "why": "De Moivre’s theorem and binomial expansion express the same complex power.",
+      "mistake": "Mixing up real and imaginary coefficients.",
+      "hint": "Expand the complex power and group its real and imaginary parts."
+    },
+    "type-2": {
+      "when": "A polynomial matches a multiple-angle relation after substitution.",
+      "why": "The identity turns algebraic roots into angles with known trigonometric values.",
+      "mistake": "Listing repeated roots or missing the required angle interval.",
+      "hint": "Match the coefficients to the appropriate trigonometric identity."
+    },
+    "type-3": {
+      "when": "A power of sine or cosine needs rewriting before integration.",
+      "why": "Opposite powers of the complex exponential combine into multiple-angle terms.",
+      "mistake": "Dropping a factor when converting exponentials back to trigonometric terms.",
+      "hint": "Write sine or cosine in terms of a complex exponential and its reciprocal."
+    },
+    "type-4": {
+      "when": "All complex roots of a power equation are required.",
+      "why": "Adding complete turns before dividing the argument gives all distinct roots.",
+      "mistake": "Dividing only the principal argument and finding just one root.",
+      "hint": "Include the integer multiple of a full turn before dividing the argument."
+    },
+    "type-5": {
+      "when": "A finite sine or cosine sum has a geometric pattern.",
+      "why": "Real and imaginary parts of one complex geometric sum give the two trigonometric sums.",
+      "mistake": "Taking the real or imaginary part before simplifying the complex fraction.",
+      "hint": "Write one complex series with the required ratio."
+    }
+  },
+  "pdf-cdf": {
+    "type-1": {
+      "when": "A probability density is given and the cumulative distribution is required.",
+      "why": "Integrating density from the support boundary accumulates probability.",
+      "mistake": "Restarting the cumulative probability at zero on each interval.",
+      "hint": "Find the support and carry the accumulated probability into each new interval."
+    },
+    "type-2": {
+      "when": "A probability between bounds or a percentile is required.",
+      "why": "A CDF measures probability to the left of a value.",
+      "mistake": "Using the tail probability itself as the CDF target.",
+      "hint": "Translate the probability statement into a CDF equation first."
+    },
+    "type-3": {
+      "when": "An expectation, transformed expectation or variance is required.",
+      "why": "Weighting each value by its density gives a moment; variance then uses the first two moments.",
+      "mistake": "Using a CDF as though it were the density.",
+      "hint": "If the question gives a CDF, differentiate it before calculating moments."
+    },
+    "type-4": {
+      "when": "A new random variable is defined as a function of the original one.",
+      "why": "Expressing its cumulative event in the original variable gives the new distribution.",
+      "mistake": "Failing to reverse the inequality for a decreasing transformation.",
+      "hint": "Determine the transformed support and whether the transformation increases or decreases."
+    }
+  },
+  "inference": {
+    "type-1": {
+      "when": "One normal-population mean is tested with unknown variance.",
+      "why": "Estimating the variance gives the t statistic with one fewer degree of freedom than the sample size.",
+      "mistake": "Using the population-variance divisor for the unbiased sample variance.",
+      "hint": "State the hypotheses and calculate the unbiased sample variance."
+    },
+    "type-2": {
+      "when": "Two large independent samples are used to compare means.",
+      "why": "The variance of a difference of independent means is the sum of their variances.",
+      "mistake": "Subtracting the estimated variances instead of adding them.",
+      "hint": "Fix the direction of the difference before writing the alternative hypothesis."
+    },
+    "type-3": {
+      "when": "Two small independent normal samples have equal unknown variances.",
+      "why": "Pooling combines their within-sample information into one variance estimate.",
+      "mistake": "Using the pooled test without the equal-variance assumption.",
+      "hint": "State the assumptions and calculate the pooled variance."
+    },
+    "type-4": {
+      "when": "Before-and-after observations form matched pairs.",
+      "why": "Taking differences removes the pairing and leaves a one-sample test on those differences.",
+      "mistake": "Treating paired observations as independent samples.",
+      "hint": "Choose a consistent direction for every paired difference."
+    },
+    "type-5": {
+      "when": "A confidence interval for one normal mean has unknown variance.",
+      "why": "The t multiplier accounts for estimating the population variance.",
+      "mistake": "Using a one-tail probability as the two-sided confidence multiplier.",
+      "hint": "Find the confidence level and the correct degrees of freedom."
+    },
+    "type-6": {
+      "when": "An interval estimates the difference between two population means.",
+      "why": "The same difference direction and its standard error determine both interval endpoints.",
+      "mistake": "Changing the order of subtraction halfway through the calculation.",
+      "hint": "State the difference direction and decide which standard error is justified."
+    },
+    "type-7": {
+      "when": "An existing interval is changed to a new confidence level.",
+      "why": "The centre and standard error stay fixed while the critical multiplier changes.",
+      "mistake": "Changing the centre along with the confidence level.",
+      "hint": "Recover the midpoint and half-width of the original interval."
+    }
+  },
+  "chi-squared": {
+    "type-1": {
+      "when": "Observed category counts are compared with a discrete uniform model.",
+      "why": "Equal model probabilities give equal expected frequencies.",
+      "mistake": "Pooling categories after calculating separate contributions instead of pooling counts first.",
+      "hint": "Calculate the expected count in every category."
+    },
+    "type-2": {
+      "when": "Counts are compared with a binomial distribution.",
+      "why": "Model probabilities multiplied by the sample size give expected frequencies.",
+      "mistake": "Forgetting the extra lost degree of freedom when the success probability is estimated.",
+      "hint": "Decide whether the success probability is given or estimated."
+    },
+    "type-3": {
+      "when": "Counts are compared with a Poisson distribution.",
+      "why": "Poisson probabilities determine the expected counts, including the tail.",
+      "mistake": "Omitting the final tail category.",
+      "hint": "Find the model mean and include all probability beyond the last listed value."
+    },
+    "type-4": {
+      "when": "Grouped continuous data are compared with a normal distribution.",
+      "why": "Normal interval probabilities give expected frequencies for each class.",
+      "mistake": "Using class midpoints in place of class-boundary probabilities.",
+      "hint": "Write the class boundaries and account for both tails."
+    },
+    "type-5": {
+      "when": "Grouped counts are compared with a continuous uniform model.",
+      "why": "A class probability is its width divided by the full support width.",
+      "mistake": "Giving unequal-width classes equal expected frequencies.",
+      "hint": "Calculate every class width within the model support."
+    },
+    "type-6": {
+      "when": "A specified density is tested against grouped data.",
+      "why": "Integrating the density over a class gives its model probability.",
+      "mistake": "Estimating a parameter that the question already specifies.",
+      "hint": "Integrate over each class before multiplying by the sample size."
+    },
+    "type-7": {
+      "when": "A contingency table is used to test association.",
+      "why": "Independence makes each expected count the product of its marginal proportions and the total.",
+      "mistake": "Using the number of cells for the degrees of freedom.",
+      "hint": "Calculate the row totals, column totals and grand total first."
+    }
+  },
+  "non-parametric": {
+    "type-1": {
+      "when": "A population median is tested without a normal model.",
+      "why": "Under the null median, a non-tied observation is equally likely to lie above or below it.",
+      "mistake": "Including observations equal to the hypothesised median in the effective sample size.",
+      "hint": "Count positive and negative deviations, setting aside zero deviations."
+    },
+    "type-2": {
+      "when": "A median/location test can assume continuous symmetric deviations.",
+      "why": "Signed ranks use both the direction and relative size of deviations.",
+      "mistake": "Ranking signed values instead of their absolute values.",
+      "hint": "Find absolute deviations, rank them, then restore the signs."
+    },
+    "type-3": {
+      "when": "A sufficiently large signed-rank sum is approximated by a normal distribution.",
+      "why": "Under the stated no-tie conditions the rank sum has a known mean and variance.",
+      "mistake": "Applying the continuity correction in the wrong direction.",
+      "hint": "Write the discrete tail event before applying a continuity correction."
+    },
+    "type-4": {
+      "when": "A paired comparison needs a sign test.",
+      "why": "One difference per pair tests the median change using its sign.",
+      "mistake": "Counting the signs of original observations rather than paired differences.",
+      "hint": "Form the differences in one consistent direction."
+    },
+    "type-5": {
+      "when": "Matched-pair differences are continuous and symmetric.",
+      "why": "Signed ranks test the location of the paired differences using their magnitudes and signs.",
+      "mistake": "Using an independent-samples rank test for matched pairs.",
+      "hint": "Form paired differences before ranking their absolute values."
+    }
+  },
+  "pgf": {
+    "type-1": {
+      "when": "A nonnegative integer-valued distribution is given in a table.",
+      "why": "The power records the value and the coefficient records its probability.",
+      "mistake": "Using the probability as the exponent.",
+      "hint": "Write one term for each possible value and check the coefficients add to one."
+    },
+    "type-2": {
+      "when": "A standard discrete distribution is identified.",
+      "why": "Its probability terms sum to the corresponding closed-form PGF.",
+      "mistake": "Using a geometric PGF with the wrong starting value.",
+      "hint": "Check the support as well as the distribution name."
+    },
+    "type-3": {
+      "when": "Mean and variance are required from a PGF.",
+      "why": "The derivatives at one give the first moment and the second factorial moment.",
+      "mistake": "Treating the second derivative as the ordinary second moment.",
+      "hint": "Differentiate before substituting the value one."
+    },
+    "type-4": {
+      "when": "A game stops on a random numbered attempt.",
+      "why": "The stopping probabilities often form separate geometric series for odd and even attempts.",
+      "mistake": "Missing a possible stopping outcome or double-counting an attempt.",
+      "hint": "Write the first few stopping probabilities before summing."
+    },
+    "type-5": {
+      "when": "A sum contains independent integer-valued random variables.",
+      "why": "Independence lets the product of the individual powers separate inside the expectation.",
+      "mistake": "Multiplying PGFs without checking independence.",
+      "hint": "Check independence, then write one PGF for each summand."
+    },
+    "type-6": {
+      "when": "A random variable is changed by a fixed scale and shift.",
+      "why": "The exponent separates into a shifted power and a substituted original PGF.",
+      "mistake": "Replacing the PGF argument by a linear expression instead of a power.",
+      "hint": "Write the new variable in the exponent before taking the expectation."
+    }
+  }
+}

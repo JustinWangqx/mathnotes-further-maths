@@ -2,14 +2,17 @@ import {topics,modules,topicUrl,url,formulaSheetUrl} from './curriculum';
 import {paperCollections,collectionUrl} from './paper-collections';
 import questionTypes from './question-types.json';
 import paperText from './paper-search.json';
-const types=questionTypes as Record<string,{title:string;method:string;question:string;steps:string[]}[]>;
+import insightData from './type-insights.json';
+const insights=insightData as Record<string,Record<string,{when:string;why:string;mistake:string;hint:string}>>;
+const types=questionTypes as Record<string,{id:string;title:string;method:string;question:string;steps:string[]}[]>;
 const texts=paperText as Record<string,string>;
 export const searchCatalog={
   topics:topics.map(t=>({id:t.id,title:t.title,aliases:t.aliases})),
   records:[
     ...topics.map(t=>({id:`notes-${t.id}`,kind:'notes',module:t.module,topic:t.id,title:t.title,href:topicUrl(t),
       description:`${modules.find(m=>m.id===t.module)!.title} · ${types[t.id].length} question types, methods, formulas and worked examples.`,
-      text:[t.description,...types[t.id].flatMap(q=>[q.title,q.method,q.question,...q.steps])].join(' ')})),
+      text:[t.description,...types[t.id].flatMap(q=>[q.title,q.method,q.question,...q.steps])].join(' '),
+      sections:types[t.id].map((q,i)=>({id:q.id,title:`Type ${String(i+1).padStart(2,'0')}: ${q.title}`,href:`${topicUrl(t)}#${q.id}`,description:`${t.title} · ${insights[t.id][q.id].when} ${insights[t.id][q.id].hint}`,text:[q.title,q.method,q.question,...q.steps,...Object.values(insights[t.id][q.id])].join(' ')}))})),
     ...paperCollections.map(p=>({id:p.id,kind:'papers',module:p.module,topic:p.topic,title:p.title,href:collectionUrl(p),answers:!!p.answers,
       description:`${p.questionCount} complete past-paper questions · ${p.questions.pages} original pages${p.answers?' · Answers included':''}. Open the whole collection.`,
       text:[p.questions.source,p.answers?.source||'',texts[p.id]].join(' ')})),

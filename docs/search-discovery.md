@@ -15,7 +15,7 @@ GitHub project sites live below a path. A `robots.txt` inside `/mathnotes-furthe
 
 ## On-site search
 
-The browser downloads `search-index.json` on first use. Its 28 destinations are the 14 current note guides, 12 intact question collections and two reference resources. Search runs locally; typed terms are not sent to a search provider or the footer counter.
+The browser downloads `search-index.json` on first use. Its 28 main entries are the 14 current note guides, 12 intact question collections and two reference resources. The note entries also index all 78 question types; specific method matches link directly to their section anchors with plain-text editorial descriptions. Search runs locally; typed terms are not sent to a search provider or the footer counter.
 
 Examples:
 

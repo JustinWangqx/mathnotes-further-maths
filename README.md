@@ -59,3 +59,11 @@ On-site search recognises CIE/CAIE/Cambridge, A Level/A-level/Alevel, Mathematic
 The footer shows the public site-wide page-view total supplied by Hits Counter, counted from 4 November 2026. Repeat page loads count as additional views. Earlier traffic was not recorded.
 
 `src/utils/visits.mjs` makes one request per live page load with the fixed canonical site URL as the counter key. Local previews and the 404 page are excluded. Query strings, search terms, cookies and account identifiers are not sent. Requests are not automatically retried to avoid duplicate increments. Keep `trackedSite` stable to retain the accumulated total. The provider can be unavailable or blocked; the footer then shows `—` rather than a fabricated count.
+
+## Study controls and rollback
+
+All 78 question types offer a try-first source example, an independent hint reveal and a collapsed worked solution. Brief exam cues stay optional. Confidence is recorded per type in browser storage; numbered topic-map links show each state. Below 981px, a sticky compact contents menu replaces the desktop contents column. Printing expands worked solutions temporarily.
+
+Specific method searches return direct `#type-N` links with editorial plain-text descriptions. Paper results continue to open intact source collections.
+
+The exact pre-refinement release is preserved as `before-study-refinement-2026-11-05` (`c849ed6`). To publish it again, run the existing Actions workflow from main with that tag as its **revision** input. See [rollback instructions](docs/rollback.md) for both website-only recovery and source restoration without deleting history. A normal push still publishes main.

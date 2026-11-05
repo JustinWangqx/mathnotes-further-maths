@@ -29,9 +29,16 @@ export function searchCatalog(catalog,query,filters={}){
     if(plan.module!=='all'&&record.module!==plan.module)return [];
     if(plan.needsAnswers&&record.kind==='papers'&&!record.answers)return [];
     if(plan.topics.length&&!plan.topics.includes(record.topic))return [];
-    const title=normalise(record.title),body=normalise(`${record.title} ${record.description} ${record.text}`);
+    const title=normalise(record.title),body=normalise(`${record.title} ${record.description} ${record.text} ${(record.sections||[]).map(section=>section.text).join(' ')}`);
     if(!plan.terms.every(term=>body.includes(term)))return [];
     const score=(plan.topics.includes(record.topic)?50:0)+(record.kind==='notes'?3:0)+plan.terms.reduce((n,term)=>n+(title.includes(term)?20:2),0);
+    if(record.kind==='notes'&&plan.terms.length&&record.sections){
+      const matches=record.sections.filter(section=>{
+        const text=normalise(`${section.title} ${section.text}`);
+        return plan.terms.every(term=>text.includes(term));
+      });
+      if(matches.length)return matches.map(section=>({...record,...section,id:`${record.id}-${section.id}`,section:true,score:score+10+plan.terms.reduce((n,term)=>n+(normalise(section.title).includes(term)?30:0),0)}));
+    }
     return [{...record,score}];
   }).sort((a,b)=>b.score-a.score);
   return {plan,results};

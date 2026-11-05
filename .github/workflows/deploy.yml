@@ -4,6 +4,12 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      revision:
+        description: 'Commit or tag to publish. Use before-study-refinement-2026-11-05 to restore the previous design.'
+        required: true
+        default: main
+        type: string
 
 permissions:
   contents: read
@@ -21,6 +27,14 @@ jobs:
       SITE_URL: https://justinwangqx.github.io
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.revision || github.sha }}
+          fetch-depth: 0
+      - name: Record the version being published
+        run: |
+          git rev-parse HEAD > deployment-revision.txt
+          echo 'Published source commit:' >> "$GITHUB_STEP_SUMMARY"
+          cat deployment-revision.txt >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/setup-node@v4
         with:
           node-version: 24

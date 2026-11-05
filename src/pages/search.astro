@@ -16,13 +16,13 @@ import {modules,topics,url} from '../data/curriculum';
   const input=document.querySelector<HTMLInputElement>('#site-search')!,kind=document.querySelector<HTMLSelectElement>('#search-kind')!,module=document.querySelector<HTMLSelectElement>('#search-module')!;
   const status=document.querySelector<HTMLElement>('#search-status')!,output=document.querySelector<HTMLElement>('#search-results')!;
   const base=document.body.dataset.base!;
-  type Entry={title:string;href:string;description:string;kind:string;module:string};
+  type Entry={title:string;href:string;description:string;kind:string;module:string;section?:boolean};
   let catalogPromise:Promise<any>|undefined,sequence=0;
   const labels:Record<string,string>={notes:'Notes',papers:'Question collection',resources:'Reference resource'};
   const moduleLabels:Record<string,string>={fp1:'Further Pure 1',fp2:'Further Pure 2',statistics:'Further Statistics'};
   function addResult(record:Entry){
     const result=document.createElement('article');result.className='search-result';
-    const label=document.createElement('span');label.className='search-result-kind';label.textContent=[labels[record.kind],moduleLabels[record.module]].filter(Boolean).join(' · ');
+    const label=document.createElement('span');label.className='search-result-kind';label.textContent=[record.section?'Question type':labels[record.kind],moduleLabels[record.module]].filter(Boolean).join(' · ');
     const heading=document.createElement('h2'),link=document.createElement('a');link.href=record.href;link.textContent=record.title;heading.append(link);
     const p=document.createElement('p');p.textContent=record.description;result.append(label,heading,p);output.append(result);
   }

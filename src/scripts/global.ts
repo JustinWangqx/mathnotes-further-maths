@@ -38,10 +38,11 @@ const params=new URLSearchParams(window.location.search);
 filters.forEach(f=>{const initial=params.get(f.dataset.filter||'');if(initial && [...(f instanceof HTMLSelectElement ? f.options : [])].some(o=>o.value===initial))f.value=initial;});
 if(filters.length)filterCards();
 
-const completionButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-complete]')];
-completionButtons.forEach(button=>{
-  const key=`mathnotes-complete-${button.dataset.complete}`;
-  function paint(done:boolean){button.setAttribute('aria-pressed',String(done));button.textContent=done?'✓ Topic marked as studied':'Mark topic as studied';}
-  try {paint(localStorage.getItem(key)==='true');} catch {paint(false);}
-  button.addEventListener('click',()=>{const done=button.getAttribute('aria-pressed')!=='true';paint(done);try{localStorage.setItem(key,String(done));}catch{/* Device storage is optional. */}});
-});
+// Compact mobile contents closes after an anchor is selected.
+document.querySelectorAll<HTMLDetailsElement>('.lesson-jump').forEach(menu=>menu.addEventListener('click',event=>{
+  if((event.target as HTMLElement).closest('a'))menu.open=false;
+}));
+// Print complete working, then restore the learner's reveal choices.
+let printDetails:{element:HTMLDetailsElement;open:boolean}[]=[];
+window.addEventListener('beforeprint',()=>{printDetails=[...document.querySelectorAll<HTMLDetailsElement>('.type-solution,.type-cues')].map(element=>({element,open:element.open}));printDetails.forEach(({element})=>element.open=true);});
+window.addEventListener('afterprint',()=>{printDetails.forEach(({element,open})=>element.open=open);printDetails=[];});
