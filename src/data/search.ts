@@ -3,7 +3,7 @@ import {paperCollections,collectionUrl} from './paper-collections';
 import questionTypes from './question-types.json';
 import paperText from './paper-search.json';
 import insightData from './type-insights.json';
-const insights=insightData as Record<string,Record<string,{when:string;why:string;mistake:string;hint:string}>>;
+const insights=insightData as Record<string,Record<string,{when:string;hint:string;why?:string;mistake?:string}>>;
 const types=questionTypes as Record<string,{id:string;title:string;method:string;question:string;steps:string[]}[]>;
 const texts=paperText as Record<string,string>;
 export const searchCatalog={

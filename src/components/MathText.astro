@@ -4,11 +4,20 @@ import {layoutMath,isWorkingMath} from '../utils/math-layout.mjs';
 interface Props { text: string; layout?: 'inline' | 'working' | 'display' }
 const { text,layout='inline' } = Astro.props;
 const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[^$\n]+\$)/g);
-const rendered=parts.map(part=>{
-  if(!part.startsWith('$'))return {text:part};
-  const tex=part.replace(/^\$\$?|\$\$?$/g,'');
+const rendered: {text?: string; display?: boolean; html?: string}[] = [];
+for (const [index, part] of parts.entries()) {
+  if (!part.startsWith('$')) {
+    rendered.push({text: part});
+    continue;
+  }
+  let tex=part.replace(/^\$\$?|\$\$?$/g,'');
   const display=part.startsWith('$$')||layout==='display'||(layout==='working'&&isWorkingMath(tex));
-  return {display,html:katex.renderToString(display?layoutMath(tex):tex,{throwOnError:true,displayMode:display,output:'htmlAndMathml'})};
-});
+  const punctuation = parts[index + 1]?.match(/^[.,;:]/)?.[0];
+  if (display && punctuation) {
+    tex += punctuation;
+    parts[index + 1] = parts[index + 1].slice(1);
+  }
+  rendered.push({display,html:katex.renderToString(display?layoutMath(tex):tex,{throwOnError:true,displayMode:display,output:'htmlAndMathml'})});
+}
 ---
 {rendered.map(part => part.html ? <span class:list={['math', { 'display-math': part.display }]} set:html={part.html}/> : part.text)}

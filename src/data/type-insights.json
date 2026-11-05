@@ -494,5 +494,55 @@
       "mistake": "Replacing the PGF argument by a linear expression instead of a power.",
       "hint": "Write the new variable in the exponent before taking the expectation."
     }
+  },
+  "equilibrium": {
+    "type-1": {
+      "when": "Calculate a moment or balance moments.",
+      "hint": "Multiply each force by its perpendicular distance from the pivot. Choose one turning direction as positive. In equilibrium, clockwise and anticlockwise moments balance."
+    },
+    "type-2": {
+      "when": "Find the centre of mass of particles or a framework.",
+      "hint": "Choose an origin. Form a separate mass-times-distance equation for each coordinate, then divide by the total mass."
+    },
+    "type-3": {
+      "when": "Find the centre of mass of a lamina by integration.",
+      "hint": "Use a thin vertical strip. Its mass is proportional to its area and its centre is halfway up the strip."
+    },
+    "type-4": {
+      "when": "Find the centre of mass of a circular sector.",
+      "hint": "Use the total sector angle 2α in radians. The centre lies on the angle bisector. Use the area formula for a lamina and the arc formula for a wire."
+    },
+    "type-5": {
+      "when": "Find the centre of mass after removing an area.",
+      "hint": "For a uniform lamina, use areas as masses. Give every removed part a negative area and subtract its moments as well."
+    },
+    "type-6": {
+      "when": "Find the centre of mass of a composite wire.",
+      "hint": "Use mass per unit length times length for each piece. A semicircular arc has its centre of mass on the symmetry axis, a distance 2r/π from the circle centre."
+    },
+    "type-7": {
+      "when": "Find the centre of mass of a composite solid.",
+      "hint": "Use density times volume. For a removed solid, subtract its mass and its moment. Measure all distances from the same reference plane."
+    },
+    "type-8": {
+      "when": "Find the angle when a body is freely suspended.",
+      "hint": "Find the combined centre of mass first. When suspended from A, the line AG is vertical. Use the right triangle joining A, G and the symmetry axis."
+    },
+    "type-9": {
+      "when": "Find the angle at which a body topples.",
+      "hint": "At the toppling limit, the vertical line through the centre of mass passes through the downhill edge. Use the right triangle from that edge to the centre of mass."
+    },
+    "type-10": {
+      "when": "Solve a ladder problem with limiting friction.",
+      "hint": "Draw all forces. A smooth wall gives only a normal reaction. Resolve horizontally and vertically, then take moments about the foot. Use limiting friction at limiting equilibrium."
+    },
+    "type-11": {
+      "when": "Solve equilibrium of a rod supported by a string.",
+      "hint": "Draw the tension along the string and the normal reaction perpendicular to the wall. Take moments about the contact point to find the tension, then resolve forces to find friction and the normal reaction."
+    },
+    "type-12": {
+      "when": "Decide whether a body slides or topples.",
+      "hint": "Find the friction limit and the toppling limit separately. At toppling, the normal reaction acts through the edge. Compare the applied force with both limits."
+    }
   }
 }

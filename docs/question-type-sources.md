@@ -138,3 +138,18 @@ Every listed type has a short method, formula and worked example. Red labels in 
 - Type 4: Find a PGF for a stopping-time game — FS CH5 PGF.pdf, p. 3; Worked exam-style question.
 - Type 5: Find the PGF of a sum of independent variables — FS CH5 PGF.pdf, p. 4; Printed Keira and Hassan question.
 - Type 6: Find the PGF after a change aX+b — FS CH5 PGF.pdf, p. 4–5; Change X → aX+b worked calculation.
+
+## Equilibrium of a rigid body
+
+- Type 1: Calculate a moment or balance moments — FM CH2 Equilibrium of a rigid body.pdf, p. 1; Worked example 14.1(a).
+- Type 2: Find the centre of mass of particles or a framework — FM CH2 Equilibrium of a rigid body.pdf, p. 2; Worked example 14.5(a).
+- Type 3: Find the centre of mass of a lamina by integration — FM CH2 Equilibrium of a rigid body.pdf, p. 2; Skills example 1.
+- Type 4: Find the centre of mass of a circular sector — FM CH2 Equilibrium of a rigid body.pdf, p. 3; Worked example 14.7(a).
+- Type 5: Find the centre of mass after removing an area — FM CH2 Equilibrium of a rigid body.pdf, p. 3; Worked example 14.9.
+- Type 6: Find the centre of mass of a composite wire — FM CH2 Equilibrium of a rigid body.pdf, p. 3–4; Worked example 14.10.
+- Type 7: Find the centre of mass of a composite solid — FM CH2 Equilibrium of a rigid body.pdf, p. 4; Worked example 14.11.
+- Type 8: Find the angle when a body is freely suspended — FM CH2 Equilibrium of a rigid body.pdf, p. 5; Worked example 14.20.
+- Type 9: Find the angle at which a body topples — FM CH2 Equilibrium of a rigid body.pdf, p. 5; Annotated toppling diagram.
+- Type 10: Solve a ladder problem with limiting friction — FM CH2 Equilibrium of a rigid body.pdf, p. 6; Worked example 14.15.
+- Type 11: Solve equilibrium of a rod supported by a string — FM CH2 Equilibrium of a rigid body.pdf, p. 6; Worked example 14.16.
+- Type 12: Decide whether a body slides or topples — FM CH2 Equilibrium of a rigid body.pdf, p. 6–7; Worked example 14.21.

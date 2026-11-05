@@ -9,13 +9,14 @@ const walk=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()
 const files=walk(root);
 const pages=files.filter(p=>p.endsWith('.html'));
 
-test('all 14 current-note guides are built, with no unrelated topic pages',()=>{
+test('all 15 current-note guides are built, with no unrelated topic pages',()=>{
  const lessons=pages.filter(p=>/\/9231\/[^/]+\/[^/]+\/index\.html$/.test(p));
- assert.equal(lessons.length,14);
+ assert.equal(lessons.length,15);
  assert.equal(lessons.filter(p=>p.includes('/fp1/')).length,5);
  assert.equal(lessons.filter(p=>p.includes('/fp2/')).length,4);
  assert.equal(lessons.filter(p=>p.includes('/statistics/')).length,5);
- for(const page of pages){const html=readFileSync(page,'utf8');assert.ok(!html.includes('/mechanics/'),page);assert.ok(!html.includes('data-id="polar"'),page);}
+ assert.equal(lessons.filter(p=>p.includes('/mechanics/')).length,1);
+ for(const page of pages)assert.ok(!readFileSync(page,'utf8').includes('data-id="polar"'),page);
 });
 test('every internal link, fragment, script and stylesheet resolves under the deployment base',()=>{
  let checked=0;
@@ -41,9 +42,9 @@ test('every internal link, fragment, script and stylesheet resolves under the de
 });
 test('every published question and answer PDF matches the intact source manifest',()=>{
  const collections=JSON.parse(readFileSync('src/data/paper-collections.json','utf8'));
- assert.equal(collections.length,12);
- assert.equal(collections.reduce((n,p)=>n+p.questionCount,0),101);
- assert.equal(collections.filter(p=>p.answers).length,10);
+ assert.equal(collections.length,15);
+ assert.equal(collections.reduce((n,p)=>n+p.questionCount,0),121);
+ assert.equal(collections.filter(p=>p.answers).length,13);
  const expected=[];
  for(const paper of collections){
   const reader=readFileSync(join(root,'papers',paper.id,'index.html'),'utf8');
@@ -64,10 +65,10 @@ test('every published question and answer PDF matches the intact source manifest
 });
 test('one ordered topic map and one paper library replace the redundant sections',()=>{
  const map=readFileSync(join(root,'notes/index.html'),'utf8');
- assert.equal((map.match(/class="topic-row"/g)||[]).length,14);
- assert.equal((map.match(/<section[^>]*data-filter-section/g)||[]).length,3);
+ assert.equal((map.match(/class="topic-row"/g)||[]).length,15);
+ assert.equal((map.match(/<section[^>]*data-filter-section/g)||[]).length,4);
  let previous=-1;
- for(const id of ['roots','rational','series','matrices1','vectors','hyperbolic','differentiation','integration','complex','pdf-cdf','inference','chi-squared','non-parametric','pgf']){
+ for(const id of ['roots','rational','series','matrices1','vectors','hyperbolic','differentiation','integration','complex','equilibrium','pdf-cdf','inference','chi-squared','non-parametric','pgf']){
   const at=map.indexOf(`id="${id}"`);assert.ok(at>previous,id);previous=at;
  }
  assert.ok(!existsSync(join(root,'formulae/index.html')));
@@ -97,10 +98,10 @@ test('search bundle and English/Chinese aliases are included',()=>{
  assert.ok(!css.includes('fonts.googleapis.com'));assert.ok(css.includes('.woff2'));
 });
 
-test('all 78 question types render a method, formula and visible worked example with source data',()=>{
+test('all 90 question types render a method, formula and visible worked example with source data',()=>{
  const data=JSON.parse(readFileSync('src/data/question-types.json','utf8'));
- assert.equal(Object.keys(data).length,14);
- assert.equal(Object.values(data).reduce((n,types)=>n+types.length,0),78);
+ assert.equal(Object.keys(data).length,15);
+ assert.equal(Object.values(data).reduce((n,types)=>n+types.length,0),90);
  let rendered=0;
  for(const page of pages.filter(p=>/\/9231\/[^/]+\/[^/]+\/index\.html$/.test(p))){
   const html=readFileSync(page,'utf8');
@@ -114,7 +115,7 @@ test('all 78 question types render a method, formula and visible worked example 
   for(let i=1;i<=count;i++)assert.ok(html.includes(`id="type-${i}"`),page);
   rendered+=count;
  }
- assert.equal(rendered,78);
+ assert.equal(rendered,90);
  for(const types of Object.values(data))for(const [i,type] of types.entries()){
   assert.equal(type.number,i+1);assert.ok(type.method.length<400);
   assert.ok(type.formula.includes('$'));assert.ok(type.question.trim().length>0);

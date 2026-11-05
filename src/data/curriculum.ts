@@ -1,6 +1,7 @@
 export const modules = [
   { id: 'fp1', short: 'FP1', title: 'Further Pure 1', paper: 'Paper 1', description: 'Find the patterns behind polynomials, curves, matrices and vectors.', color: 'sage', icon: 'function' },
   { id: 'fp2', short: 'FP2', title: 'Further Pure 2', paper: 'Paper 2', description: 'Take calculus further and explore the language of complex numbers.', color: 'peach', icon: 'integral' },
+  { id: 'mechanics', short: 'FM', title: 'Further Mechanics', paper: 'Paper 3', description: 'Use moments, centres of mass and force diagrams to solve rigid-body equilibrium problems.', color: 'sand', icon: 'orbit' },
   { id: 'statistics', short: 'FS', title: 'Further Statistics', paper: 'Paper 4', description: 'Connect probability, distributions and the evidence behind a test.', color: 'lavender', icon: 'chart' },
 ] as const;
 export type ModuleId = typeof modules[number]['id'];
@@ -15,6 +16,7 @@ export const topics: Topic[] = [
   { id:'differentiation', module:'fp2', title:'Differentiation', ref:'2.3', aliases:['微分','求导','Maclaurin','derivatives'], description:'Develop derivatives, series and arc-length methods.', minutes:13, slug:'differentiation', sourceAvailable:true },
   { id:'integration', module:'fp2', title:'Integration', ref:'2.4', aliases:['积分','定积分','reduction formula'], description:'Choose substitutions and derive reduction formulae.', minutes:14, slug:'integration', sourceAvailable:true },
   { id:'complex', module:'fp2', title:'Complex numbers', ref:'2.5', aliases:['复数','复平面','complex','de Moivre','roots of unity','Argand'], description:'Move between Cartesian and polar forms, powers and roots.', minutes:14, slug:'complex-numbers', sourceAvailable:true },
+  { id:'equilibrium', module:'mechanics', title:'Equilibrium of a rigid body', ref:'3.2', aliases:['刚体平衡','重心','质心','力矩','摩擦','倾倒','equilibrium','rigid body','centre of mass','center of mass'], description:'Find centres of mass and solve problems involving moments, friction, suspension and toppling.', minutes:18, slug:'equilibrium-of-a-rigid-body', sourceAvailable:true },
   { id:'pdf-cdf', module:'statistics', title:'Probability density & distribution', ref:'4.1', aliases:['概率密度','分布函数','连续随机变量','PDF','CDF','continuous random variables'], description:'Read probability as area, build a CDF and find moments.', minutes:13, slug:'pdf-and-cdf', sourceAvailable:true },
   { id:'inference', module:'statistics', title:'Statistical inference', ref:'4.2', aliases:['统计推断','置信区间','t test','normal distribution'], description:'Use normal and t-distributions for inference.', minutes:14, slug:'statistical-inference', sourceAvailable:true },
   { id:'chi-squared', module:'statistics', title:'Chi-squared tests', ref:'4.3', aliases:['卡方检验','χ²','chi square'], description:'Test goodness of fit and independence.', minutes:12, slug:'chi-squared-tests', sourceAvailable:true },

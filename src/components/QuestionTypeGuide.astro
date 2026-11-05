@@ -1,5 +1,6 @@
 ---
 import MathText from './MathText.astro';
+import MechanicsDiagram from './MechanicsDiagram.astro';
 import ExampleGraph from './ExampleGraph.astro';
 import {questionTypes} from '../data/question-types';
 interface Props {topicId: string}
@@ -18,7 +19,7 @@ const types=questionTypes[topicId];
         <span class="type-label">SOLUTION</span>
         <ol class="type-working">{type.steps.map(step=><li><MathText text={step} layout="working"/></li>)}</ol>
         <div class="type-answer"><span class="type-label">ANSWER</span><div><MathText text={type.answer} layout="working"/></div></div>
-        {type.diagram&&<ExampleGraph name={type.diagram}/>}
+        {type.diagram&&(topicId==='equilibrium'?<MechanicsDiagram name={type.diagram}/>:<ExampleGraph name={type.diagram}/>)}
         {topicId==='rational'&&type.id==='type-8'&&<><ExampleGraph name="reciprocal-f"/><ExampleGraph name="reciprocal-g"/></>}
         {topicId==='pdf-cdf'&&type.id==='type-1'&&<><ExampleGraph name="density"/><ExampleGraph name="cdf"/></>}
         {topicId==='integration'&&type.id==='type-5'&&<ExampleGraph name="arc-length"/>}

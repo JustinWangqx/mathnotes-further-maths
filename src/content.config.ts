@@ -5,7 +5,7 @@ import { glob } from 'astro/loaders';
 const notes = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/notes' }),
   schema: z.object({
-    title: z.string(), description: z.string(), module: z.enum(['fp1', 'fp2', 'statistics']),
+    title: z.string(), description: z.string(), module: z.enum(['fp1', 'fp2', 'mechanics', 'statistics']),
     topicId: z.string(), syllabus: z.string(), minutes: z.number(),
     prerequisites: z.array(z.string()), sources: z.array(z.string()),
     updated: z.string(),

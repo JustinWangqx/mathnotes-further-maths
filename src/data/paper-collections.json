@@ -868,5 +868,194 @@
         "page": 12
       }
     ]
+  },
+  {
+    "id": "fm-equilibrium-topic",
+    "topic": "equilibrium",
+    "module": "mechanics",
+    "title": "Equilibrium of a rigid body · Topic questions",
+    "questionCount": 8,
+    "questions": {
+      "file": "papers/fm-equilibrium-topic-questions.pdf",
+      "source": "(FM) 2. Equilibrium of a rigid body11.pdf",
+      "pages": 8,
+      "bytes": 507128,
+      "sha256": "511a9b044df6a9a382a1d44d737d2d84048ec09ff579071d76b378ceca2ba197"
+    },
+    "answers": {
+      "file": "papers/fm-equilibrium-topic-answers.pdf",
+      "source": "(FM) 2. Equilibrium of a rigid body11 ANS.pdf",
+      "pages": 27,
+      "bytes": 1497568,
+      "sha256": "820b1af0728092f2467cc5313b47045e82fc4f076d9589aa3668fa60bcdb909b"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-07.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 7
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-topic/page-08.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 8
+      }
+    ]
+  },
+  {
+    "id": "fm-equilibrium-homework",
+    "topic": "equilibrium",
+    "module": "mechanics",
+    "title": "Equilibrium of a rigid body · Homework",
+    "questionCount": 6,
+    "questions": {
+      "file": "papers/fm-equilibrium-homework-questions.pdf",
+      "source": "(FM) 2. Equilibrium of a rigid body HW.pdf",
+      "pages": 6,
+      "bytes": 354248,
+      "sha256": "0080ecce406d0d98f257d18b17576713fccce571c8e77c378622ae798d1ee1c2"
+    },
+    "answers": {
+      "file": "papers/fm-equilibrium-homework-answers.pdf",
+      "source": "(FM) 2. Equilibrium of a rigid body HW ANS.pdf",
+      "pages": 20,
+      "bytes": 1149657,
+      "sha256": "a6e64c9ffd8c15551387746fc797679ce0d0e4036ade1c97274cebd4cfc787e0"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fm-equilibrium-homework/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      }
+    ]
+  },
+  {
+    "id": "fs-continuous-homework",
+    "topic": "pdf-cdf",
+    "module": "statistics",
+    "title": "Continuous random variables · Homework",
+    "questionCount": 6,
+    "questions": {
+      "file": "papers/fs-continuous-homework-questions.pdf",
+      "source": "(FS) 1. Continuous random variables HW.pdf",
+      "pages": 6,
+      "bytes": 230227,
+      "sha256": "12a1f1c3d1020b67c9cba0c124de89436d94bf8165c2c85caceb7bedd77f5ad0"
+    },
+    "answers": {
+      "file": "papers/fs-continuous-homework-answers.pdf",
+      "source": "(FS) 1. Continuous random variables HW ANS.pdf",
+      "pages": 14,
+      "bytes": 1240563,
+      "sha256": "dfa6c5c20d4364632ecb35fd301be439e08224e8ba82437a72dd7e0736540ee2"
+    },
+    "previews": [
+      {
+        "file": "papers/previews/fs-continuous-homework/page-01.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 1
+      },
+      {
+        "file": "papers/previews/fs-continuous-homework/page-02.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 2
+      },
+      {
+        "file": "papers/previews/fs-continuous-homework/page-03.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 3
+      },
+      {
+        "file": "papers/previews/fs-continuous-homework/page-04.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 4
+      },
+      {
+        "file": "papers/previews/fs-continuous-homework/page-05.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 5
+      },
+      {
+        "file": "papers/previews/fs-continuous-homework/page-06.webp",
+        "width": 1273,
+        "height": 1800,
+        "page": 6
+      }
+    ]
   }
 ]

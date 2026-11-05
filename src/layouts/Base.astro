@@ -6,7 +6,7 @@ import '@fontsource-variable/lora/wght-italic.css';
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import VisitCounter from '../components/VisitCounter.astro';
-import { modules, url, repoUrl, formulaSheetUrl } from '../data/curriculum';
+import { modules, topics, url, repoUrl, formulaSheetUrl } from '../data/curriculum';
 interface Props {
   title?: string; seoTitle?: string; description?: string; active?: string; noindex?: boolean;
   breadcrumbs?: {name:string;href:string}[];
@@ -52,7 +52,7 @@ const structuredData = {
   <div class="header-actions"><a class="search-trigger" href={url('search/')} aria-label="Search notes and question papers"><Icon name="search" size={17}/><span>Search anything</span><kbd>/</kbd></a><button class="mobile-toggle icon-button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><Icon name="menu"/></button></div>
 </header>
 <aside class="sidebar" id="sidebar" data-pagefind-ignore>
-  <nav aria-label="Main navigation"><p class="nav-label">YOUR STUDY DESK</p>{nav.map(([key,label,href,icon])=><a class:list={['nav-item',{active:active===key}]} aria-current={active===key?'page':undefined} href={url(href)}><Icon name={icon} size={19}/><span>{label}</span>{key==='notes'&&<span class="nav-count">14</span>}</a>)}</nav>
+  <nav aria-label="Main navigation"><p class="nav-label">YOUR STUDY DESK</p>{nav.map(([key,label,href,icon])=><a class:list={['nav-item',{active:active===key}]} aria-current={active===key?'page':undefined} href={url(href)}><Icon name={icon} size={19}/><span>{label}</span>{key==='notes'&&<span class="nav-count">{topics.length}</span>}</a>)}</nav>
   <nav class="module-nav" aria-label="Modules"><p class="nav-label">EXPLORE THE COURSE</p>{modules.map(m=><a class="module-link" href={url(`9231/${m.id}/`)}><span class={`module-dot ${m.color}`}></span>{m.title}</a>)}</nav>
   <div class="sidebar-bottom"><a class="utility-link" href={formulaSheetUrl} target="_blank" rel="noopener"><Icon name="formula" size={17}/> MF19 formula sheet <Icon name="external" size={12}/></a><a class="utility-link" href={url('resources/')}><Icon name="link" size={17}/> Resources</a><a class="utility-link" href={url('about/')}><Icon name="info" size={17}/> About & corrections</a><span class="sidebar-edition">2026–2027 syllabus edition</span></div>
 </aside>

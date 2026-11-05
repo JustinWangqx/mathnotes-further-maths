@@ -13,11 +13,15 @@ const indexable=htmlPages.filter(p=>p.html.includes('<html')&&!p.html.includes('
 
 test('board, course and spelling variants return the current notes without inventing a 9709 course',()=>{
  for(const query of ['CIE A Level Mathematics notes','CAIE A-level maths notes','Cambridge International Alevel Further Mathematics 9231 notes']){
-  const results=search(query);assert.equal(results.length,14,query);assert.ok(results.every(r=>r.kind==='notes'));
+  const results=search(query);assert.equal(results.length,15,query);assert.ok(results.every(r=>r.kind==='notes'));
  }
  assert.deepEqual(search('9709').map(r=>r.id),['mf19']);
  assert.equal(search('9709 notes').length,0);
- assert.equal(search('mechanics notes').length,0);
+ assert.deepEqual(search('mechanics notes').map(r=>r.id),['notes-equilibrium']);
+ assert.deepEqual(search('刚体平衡笔记').map(r=>r.id),['notes-equilibrium']);
+ assert.equal(search('paper 3 questions').length,2);
+ assert.ok(search('toppling').some(r=>r.href.endsWith('/equilibrium-of-a-rigid-body/#type-9')));
+ assert.equal(search('连续随机变量试卷').length,1);
 });
 test('English and Chinese paper intent preserves complete collections; note intent stays separate',()=>{
  for(const query of ['integration papers','积分真题','积分试卷'])assert.deepEqual(search(query).map(r=>r.id),['fp2-integration-1','fp2-integration-2']);
@@ -38,14 +42,14 @@ test('formula sheet, syllabus, available answers and original printed paper refe
  assert.deepEqual(search('formula sheet').map(r=>r.id),['mf19']);
  assert.deepEqual(search('MF19').map(r=>r.id),['mf19']);
  assert.deepEqual(search('syllabus').map(r=>r.id),['syllabus']);
- assert.equal(search('answers').length,10);
+ assert.equal(search('answers').length,13);
  assert.ok(search('2025 winter').length>0);
  assert.ok(search('2025 winter').every(r=>r.kind==='papers'));
- assert.equal(catalog.records.length,28);
+ assert.equal(catalog.records.length,32);
  assert.ok(!JSON.stringify(catalog).includes('/Users/'));
 });
 test('indexable pages have unique subject-specific metadata, canonical URLs and social previews',()=>{
- assert.equal(indexable.length,34);
+ assert.equal(indexable.length,39);
  const titles=new Set(),descriptions=new Set();
  for(const {path,html} of indexable){
   const title=html.match(/<title>(.*?)<\/title>/s)?.[1];
@@ -79,8 +83,8 @@ test('structured educational metadata and breadcrumbs match the visible page hie
 test('sitemap lists useful pages and all intact PDFs, excluding search, errors and redirects',()=>{
  const xml=readFileSync('dist/sitemap-0.xml','utf8');
  const urls=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
- assert.equal(new Set(urls).size,56);
- assert.equal(urls.filter(u=>u.endsWith('.pdf')).length,22);
+ assert.equal(new Set(urls).size,67);
+ assert.equal(urls.filter(u=>u.endsWith('.pdf')).length,28);
  assert.ok(urls.every(u=>u.startsWith(origin+base)));
  assert.ok(urls.every(u=>!/(?:\/(?:search|practice|past-papers|syllabus)\/?$|\/404|\.json$)/.test(u)));
  const papers=JSON.parse(readFileSync('src/data/paper-collections.json','utf8'));

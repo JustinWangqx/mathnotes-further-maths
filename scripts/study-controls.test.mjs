@@ -15,7 +15,7 @@ test('specific method searches link to the matching type with clean readable des
  const reduction=searchCatalog(catalog,'integration reduction').results;
  assert.ok(reduction.some(r=>r.href.endsWith('/integration/#type-4')));
 });
-test('all 78 indexed method anchors lead to a directly readable example and solution',()=>{
+test('all 90 indexed method anchors lead to a directly readable example and solution',()=>{
  let count=0;
  for(const entry of catalog.records.filter(r=>r.kind==='notes')){
   const html=htmlFor(entry.href);
@@ -29,7 +29,7 @@ test('all 78 indexed method anchors lead to a directly readable example and solu
   assert.equal((html.match(/class="worked-solution"/g)||[]).length,entry.sections.length);
   assert.doesNotMatch(html, /type-hint|type-solution|type-cues|example-source|data-type-progress|data-topic-progress/);
  }
- assert.equal(count,78);
+ assert.equal(count,90);
 });
 test('paper readers retain direct links to related note methods', () => {
   const collections = JSON.parse(readFileSync('src/data/paper-collections.json', 'utf8'));

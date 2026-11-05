@@ -27,3 +27,16 @@ test('source statistical answers use full-precision calculations and correct sig
  let chi=0;for(let i=0;i<3;i++)for(let j=0;j<3;j++){const E=R[i]*C[j]/200;chi+=(O[i][j]-E)**2/E;}
  near(chi,21.098253968253967);
 });
+
+test('new rigid-body examples use mass-weighted moments and the correct failure limits',()=>{
+ near((4*5+7*5)/15.5,110/31);
+ near((7*3+2.5*3)/15.5,57/31);
+ near(-(16*(-6)+4*10+25*(-3))/180,131/180);
+ near(-(16*7+4*3+25*(-6))/180,13/90);
+ near((27*9/4-3/4)/26-1,17/13);
+ near((6*3/4-3/8)/7,33/56);
+ near((2*.5+5*.25)*Math.tan(Math.PI/6)/7,3*Math.sqrt(3)/28);
+ // Moment balance about the base edge sets the toppling limit.
+ near((2/3)/2,1/3);
+ assert.ok(1/4>1/5&&1/4<1/3);
+});

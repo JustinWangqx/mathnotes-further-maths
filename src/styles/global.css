@@ -162,3 +162,15 @@ footer, .visit-counter { font-size: 12px; }
 @media (max-width: 760px) {
   .example-graph text { font-size: 21px; }
 }
+
+.mechanics-diagram svg { max-height: 330px; }
+.body-line { fill: none; stroke: var(--ink); stroke-width: 3; }
+.body-shape { fill: #fff0df; stroke: var(--ink); stroke-width: 2; }
+.force-line { fill: none; stroke: var(--primary); stroke-width: 2.5; }
+.mass-dot { fill: var(--ink); }
+.hole { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+
+.module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 980px) {
+  .module-grid { grid-template-columns: 1fr; }
+}

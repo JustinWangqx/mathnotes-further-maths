@@ -1,5 +1,7 @@
 # Roll back / 回滚到上一个版本
 
+The readable release before adding the new Mechanics and Statistics material is saved as **`before-new-material-2026-11-05`** at commit **`eed916f6b6b85962b416863b323324beeaf37d1c`**. Use that tag in **revision** to restore that version.
+
 The version before the readability update is saved as **`before-readability-update-2026-11-05`** at commit **`9ca502b871a153b651b34ec5c5f43c16f2f662f8`**. Enter this tag in the existing workflow's **revision** input to publish it. A separate source archive was saved locally in the task's outputs folder.
 
 The exact version before the study-efficiency changes is preserved at:
@@ -41,6 +43,6 @@ This restores the earlier source tree, including the earlier workflow. All inter
 
 The tagged source includes the original question/answer PDFs, notes, styles and build configuration. The built-site archive can be unpacked onto compatible static hosting without rebuilding. These are two recovery routes if rebuilding a historical dependency becomes difficult.
 
-Local confidence progress lives in each visitor's browser, separately from the website source. Re-publishing an older website does not intentionally delete it. The earlier site may not display the new per-type confidence values; the values are available again when a compatible newer version is published. The external total-view counter also remains separate from the source snapshot.
+Historical confidence values, if any, live in the visitor's browser separately from the source. The readable release has removed the confidence controls. The external total-view counter also remains separate from the source snapshot.
 
 Keep the repository history/tags and an independent copy of the archives. Rollback publication still depends on hosting availability and account access; an outage can delay publication even when the saved version is intact.

@@ -1533,5 +1533,263 @@
         "kind": "notes"
       }
     }
+  ],
+  "equilibrium": [
+    {
+      "number": 1,
+      "id": "type-1",
+      "title": "Calculate a moment or balance moments",
+      "method": "Multiply each force by its perpendicular distance from the pivot. Choose one turning direction as positive. In equilibrium, clockwise and anticlockwise moments balance.",
+      "formula": "$$M=Fd_\\perp,\\qquad \\sum M_O=0.$$",
+      "question": "A 7 N force produces a clockwise moment with perpendicular distance 3 m. A 5.5 N force produces an anticlockwise moment with perpendicular distance 2 m. Find the resultant moment.",
+      "steps": [
+        "Take clockwise as positive: $M=7(3)-5.5(2)=10\\text{ N m}$."
+      ],
+      "answer": "$10\\text{ N m}$ clockwise.",
+      "diagram": "moments",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "1",
+        "label": "Worked example 14.1(a)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 2,
+      "id": "type-2",
+      "title": "Find the centre of mass of particles or a framework",
+      "method": "Choose an origin. Form a separate mass-times-distance equation for each coordinate, then divide by the total mass.",
+      "formula": "$$\\bar{x}=\\frac{\\sum m_i x_i}{\\sum m_i},\\qquad \\bar{y}=\\frac{\\sum m_i y_i}{\\sum m_i}.$$",
+      "question": "A light rectangular frame has corners $A(0,0)$, $B(5,0)$, $C(5,3)$ and $D(0,3)$, in metres. Masses 2 kg, 4 kg, 7 kg and 2.5 kg are attached at A, B, C and D respectively. Find its centre of mass.",
+      "steps": [
+        "Total mass: $M=2+4+7+2.5=15.5\\text{ kg}$.",
+        "$15.5\\bar{x}=2(0)+4(5)+7(5)+2.5(0)=55$.",
+        "$15.5\\bar{y}=2(0)+4(0)+7(3)+2.5(3)=28.5$."
+      ],
+      "answer": "$G\\left(\\frac{110}{31},\\frac{57}{31}\\right)\\text{ m}$.",
+      "diagram": "framework",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "2",
+        "label": "Worked example 14.5(a)",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 3,
+      "id": "type-3",
+      "title": "Find the centre of mass of a lamina by integration",
+      "method": "Use a thin vertical strip. Its mass is proportional to its area and its centre is halfway up the strip.",
+      "formula": "$$\\bar{x}=\\frac{\\int_a^b xf(x)\\,dx}{\\int_a^b f(x)\\,dx},\\qquad \\bar{y}=\\frac{\\frac12\\int_a^b[f(x)]^2\\,dx}{\\int_a^b f(x)\\,dx}.$$",
+      "question": "Find the centre of mass of a uniform triangular lamina with vertices $O(0,0)$, $Q(d,0)$ and $P(d,h)$.",
+      "steps": [
+        "The upper edge is $y=\\frac{h}{d}x$ and the area is $A=\\frac12dh$.",
+        "$\\bar{x}=\\frac{\\int_0^d x(hx/d)\\,dx}{dh/2}=\\frac{2d}{3}$.",
+        "$\\bar{y}=\\frac{\\frac12\\int_0^d(hx/d)^2\\,dx}{dh/2}=\\frac{h}{3}$."
+      ],
+      "answer": "$G\\left(\\frac{2d}{3},\\frac{h}{3}\\right)$.",
+      "diagram": "triangle",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "2",
+        "label": "Skills example 1",
+        "kind": "textbook"
+      }
+    },
+    {
+      "title": "Find the centre of mass of a circular sector",
+      "method": "Use the total sector angle 2α in radians. The centre lies on the angle bisector. Use the area formula for a lamina and the arc formula for a wire.",
+      "formula": "$$OG_{\\rm sector}=\\frac{2r\\sin\\alpha}{3\\alpha},\\qquad OG_{\\rm arc}=\\frac{r\\sin\\alpha}{\\alpha}.$$",
+      "question": "Find the distance of the centre of mass of a uniform quarter-disc of radius $r$ from the circle centre O.",
+      "steps": [
+        "The total angle is $2\\alpha=\\pi/2$, so $\\alpha=\\pi/4$.",
+        "$OG=\\frac{2r\\sin(\\pi/4)}{3\\pi/4}=\\frac{4\\sqrt2\\,r}{3\\pi}$.",
+        "The centre lies on the bisector, with coordinates $\\left(\\frac{4r}{3\\pi},\\frac{4r}{3\\pi}\\right)$ if the straight edges are the coordinate axes."
+      ],
+      "answer": "$OG=\\frac{4\\sqrt2\\,r}{3\\pi}$.",
+      "diagram": "sector",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "3",
+        "label": "Worked example 14.7(a)",
+        "kind": "textbook"
+      },
+      "number": 4,
+      "id": "type-4"
+    },
+    {
+      "number": 5,
+      "id": "type-5",
+      "title": "Find the centre of mass after removing an area",
+      "method": "For a uniform lamina, use areas as masses. Give every removed part a negative area and subtract its moments as well.",
+      "formula": "$$\\bar{x}=\\frac{A_0x_0-\\sum A_i x_i}{A_0-\\sum A_i},\\qquad \\bar{y}=\\frac{A_0y_0-\\sum A_i y_i}{A_0-\\sum A_i}.$$",
+      "question": "A uniform circular lamina has radius 15 cm and centre O. Circular holes of radii 4 cm, 2 cm and 5 cm have centres $(-6,7)$, $(10,3)$ and $(-3,-6)$ respectively. Find the centre of mass of the remaining lamina.",
+      "steps": [
+        "Cancel the common factor $\\pi$: remaining area factor $225-16-4-25=180$.",
+        "$180\\bar{x}=225(0)-16(-6)-4(10)-25(-3)=131$.",
+        "$180\\bar{y}=225(0)-16(7)-4(3)-25(-6)=26$."
+      ],
+      "answer": "$G\\left(\\frac{131}{180},\\frac{13}{90}\\right)\\text{ cm}$.",
+      "diagram": "holes",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "3",
+        "label": "Worked example 14.9",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 6,
+      "id": "type-6",
+      "title": "Find the centre of mass of a composite wire",
+      "method": "Use mass per unit length times length for each piece. A semicircular arc has its centre of mass on the symmetry axis, a distance 2r/π from the circle centre.",
+      "formula": "$$m_i=\\lambda_i L_i,\\qquad \\bar{x}=\\frac{\\sum m_i x_i}{\\sum m_i},\\qquad OG_{\\rm arc}=\\frac{2r}{\\pi}.$$",
+      "question": "A letter P consists of a straight wire from $(0,0)$ to $(0,4a)$ and a right-hand semicircular wire of radius $a$, centred at $(0,3a)$. The curved wire has three times the linear density of the straight wire. Find the centre of mass.",
+      "steps": [
+        "Let the straight-wire density be $\\lambda$. The masses are $4a\\lambda$ and $3\\pi a\\lambda$.",
+        "The piece centres are $(0,2a)$ and $(2a/\\pi,3a)$.",
+        "$\\bar{x}=\\frac{3\\pi a\\lambda(2a/\\pi)}{(4+3\\pi)a\\lambda}=\\frac{6a}{4+3\\pi}$.",
+        "$\\bar{y}=\\frac{4a\\lambda(2a)+3\\pi a\\lambda(3a)}{(4+3\\pi)a\\lambda}=\\frac{(8+9\\pi)a}{4+3\\pi}$."
+      ],
+      "answer": "$G\\left(\\frac{6a}{4+3\\pi},\\frac{(8+9\\pi)a}{4+3\\pi}\\right)$.",
+      "diagram": "wire",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "3–4",
+        "label": "Worked example 14.10",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 7,
+      "id": "type-7",
+      "title": "Find the centre of mass of a composite solid",
+      "method": "Use density times volume. For a removed solid, subtract its mass and its moment. Measure all distances from the same reference plane.",
+      "formula": "$$m=\\rho V,\\qquad \\bar{x}=\\frac{\\sum m_i x_i}{\\sum m_i},\\qquad x_{\\rm cone}=\\frac{3h}{4}\\text{ from the vertex}.$$",
+      "question": "A uniform cone has height $3a$ and base radius $a$. Remove a similar cone of height $a$ from its vertex, leaving a frustum. Find the centre of mass measured from the smaller plane face.",
+      "steps": [
+        "The small cone has radius $a/3$. The original and removed masses are in the ratio $27:1$.",
+        "From the original vertex, their centres are at $9a/4$ and $3a/4$.",
+        "$\\bar{x}=\\frac{27(9a/4)-3a/4}{27-1}=\\frac{30a}{13}$.",
+        "The smaller face is a distance $a$ from the original vertex, so the required distance is $\\frac{30a}{13}-a=\\frac{17a}{13}$."
+      ],
+      "answer": "$\\frac{17a}{13}$ from the smaller plane face.",
+      "diagram": "frustum",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "4",
+        "label": "Worked example 14.11",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 8,
+      "id": "type-8",
+      "title": "Find the angle when a body is freely suspended",
+      "method": "Find the combined centre of mass first. When suspended from A, the line AG is vertical. Use the right triangle joining A, G and the symmetry axis.",
+      "formula": "$$\\bar{x}=\\frac{\\sum m_i x_i}{\\sum m_i},\\qquad \\tan\\theta=\\frac{OG}{OA}.$$",
+      "question": "A solid cone of radius $r$ and height $3r$ is joined at its base to a solid hemisphere of radius $r$. The cone is four times as dense as the hemisphere. AB is a diameter of the common plane face. Find the centre of mass relative to AB, then the angle AB makes with the vertical when suspended from A.",
+      "steps": [
+        "Take the common face as $x=0$, positive towards the cone. The cone and hemisphere masses are in the ratio $6:1$.",
+        "Their centres are at $3r/4$ and $-3r/8$. Hence $\\bar{x}=\\frac{6(3r/4)-3r/8}{7}=\\frac{33r}{56}$.",
+        "The suspension point is a distance $r$ from the axis, so $\\tan\\theta=\\frac{33r/56}{r}=\\frac{33}{56}$."
+      ],
+      "answer": "The centre is $\\frac{33r}{56}$ towards the cone from AB; $\\theta=\\tan^{-1}(33/56)\\approx30.5^\\circ$.",
+      "diagram": "suspension",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "5",
+        "label": "Worked example 14.20",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 9,
+      "id": "type-9",
+      "title": "Find the angle at which a body topples",
+      "method": "At the toppling limit, the vertical line through the centre of mass passes through the downhill edge. Use the right triangle from that edge to the centre of mass.",
+      "formula": "$$\\tan\\theta_{\\rm crit}=\\frac{b}{h},$$ where $b$ is the uphill distance of the centre from the downhill edge and $h$ is its perpendicular height above the base.",
+      "question": "A uniform rectangular block has base width $a$ along a rough slope and height $2a$ perpendicular to the slope. The slope is raised slowly, with enough friction to prevent sliding. Find the angle at which the block is about to topple.",
+      "steps": [
+        "The centre of mass is at the middle of the block, so $b=a/2$ and $h=a$.",
+        "At the limit, $\\tan\\theta=\\frac{a/2}{a}=\\frac12$."
+      ],
+      "answer": "$\\theta=\\tan^{-1}(1/2)\\approx26.6^\\circ$.",
+      "diagram": "toppling",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "5",
+        "label": "Annotated toppling diagram",
+        "kind": "textbook"
+      }
+    },
+    {
+      "number": 10,
+      "id": "type-10",
+      "title": "Solve a ladder problem with limiting friction",
+      "method": "Draw all forces. A smooth wall gives only a normal reaction. Resolve horizontally and vertically, then take moments about the foot. Use F = μR at limiting equilibrium.",
+      "formula": "$$\\sum F_x=0,\\qquad \\sum F_y=0,\\qquad \\sum M_O=0,\\qquad F\\le\\mu R.$$",
+      "question": "A uniform ladder of length $a$ and mass $2m$ rests against a smooth vertical wall on a rough horizontal floor. It makes $30^\\circ$ with the wall. A painter of mass $5m$ stands one-quarter of the way up from the foot. Find the minimum coefficient of friction.",
+      "steps": [
+        "Let the wall reaction be $S$, the floor friction $F$ and the floor normal reaction $R$. Resolving gives $F=S$ and $R=7mg$.",
+        "Take moments about the foot: $Sa\\cos30^\\circ=2mg\\frac{a}{2}\\sin30^\\circ+5mg\\frac{a}{4}\\sin30^\\circ$.",
+        "$S=\\frac{3\\sqrt3}{4}mg$. At the minimum coefficient, $\\mu R=F=S$.",
+        "$\\mu_{\\min}=\\frac{3\\sqrt3\\,mg/4}{7mg}=\\frac{3\\sqrt3}{28}$."
+      ],
+      "answer": "$\\mu_{\\min}=\\frac{3\\sqrt3}{28}$.",
+      "diagram": "ladder",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "6",
+        "label": "Worked example 14.15",
+        "kind": "textbook"
+      }
+    },
+    {
+      "title": "Solve equilibrium of a rod supported by a string",
+      "method": "Draw the tension along the string and the normal reaction perpendicular to the wall. Take moments about the contact point to find the tension, then resolve forces to find friction and the normal reaction.",
+      "formula": "$$\\sum M_A=0,\\qquad \\sum F_x=0,\\qquad \\sum F_y=0,\\qquad F\\le\\mu R.$$",
+      "question": "A uniform rod AB of length $2a$ and mass $m$ slopes upwards from A, which is in contact with a rough vertical wall. B is joined to C on the wall above A by a light inextensible string of length $2a$. The angle ABC is $60^\\circ$. Find the minimum coefficient of friction preventing A from slipping down.",
+      "steps": [
+        "Triangle ABC is equilateral, so the rod makes $30^\\circ$ with the horizontal.",
+        "About A: $2aT\\sin60^\\circ=mga\\cos30^\\circ$, giving $T=mg/2$.",
+        "Horizontally: $R=T\\cos30^\\circ=\\sqrt3\\,mg/4$.",
+        "Vertically: $F+T\\sin30^\\circ=mg$, so $F=3mg/4$.",
+        "For equilibrium, $\\mu\\ge F/R=\\sqrt3$."
+      ],
+      "answer": "$\\mu\\ge\\sqrt3$.",
+      "diagram": "string",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "6",
+        "label": "Worked example 14.16",
+        "kind": "textbook"
+      },
+      "number": 11,
+      "id": "type-11"
+    },
+    {
+      "number": 12,
+      "id": "type-12",
+      "title": "Decide whether a body slides or topples",
+      "method": "Find the friction limit and the toppling limit separately. At toppling, the normal reaction acts through the edge. Compare the applied force with both limits.",
+      "formula": "$$F_{\\rm slide}=\\mu R,\\qquad X_{\\rm topple}h=Wb.$$",
+      "question": "A uniform right-triangular prism of mass $m$ has cross-section vertices $(0,0)$, $(a,0)$ and $(0,2a)$. It rests on its horizontal base, with a horizontal force $X$ to the right at the top vertex. Classify (a) $X=mg/5$, $\\mu=3/4$; (b) $X=mg/4$, $\\mu=1/5$; (c) $X=mg/3$, $\\mu=1/2$.",
+      "steps": [
+        "The centre of mass is at $(a/3,2a/3)$. Resolving vertically gives $R=mg$, so the sliding limit is $X=\\mu mg$.",
+        "Take moments about the right-hand base edge at toppling: $X(2a)=mg(2a/3)$, giving $X_{\\rm topple}=mg/3$.",
+        "(a) $mg/5$ is below both $3mg/4$ and $mg/3$: equilibrium.",
+        "(b) $mg/4>mg/5$ but $mg/4<mg/3$: it slides.",
+        "(c) $X=mg/3<mg/2$: it reaches the toppling limit before sliding."
+      ],
+      "answer": "(a) Equilibrium; (b) sliding; (c) on the point of toppling.",
+      "diagram": "prism",
+      "source": {
+        "file": "FM CH2 Equilibrium of a rigid body.pdf",
+        "pages": "6–7",
+        "label": "Worked example 14.21",
+        "kind": "textbook"
+      }
+    }
   ]
 }

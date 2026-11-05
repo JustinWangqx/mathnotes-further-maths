@@ -19,7 +19,7 @@ import {modules,topics,url} from '../data/curriculum';
   type Entry={title:string;href:string;description:string;kind:string;module:string;section?:boolean};
   let catalogPromise:Promise<any>|undefined,sequence=0;
   const labels:Record<string,string>={notes:'Notes',papers:'Question collection',resources:'Reference resource'};
-  const moduleLabels:Record<string,string>={fp1:'Further Pure 1',fp2:'Further Pure 2',statistics:'Further Statistics'};
+  const moduleLabels:Record<string,string>={fp1:'Further Pure 1',fp2:'Further Pure 2',mechanics:'Further Mechanics',statistics:'Further Statistics'};
   function addResult(record:Entry){
     const result=document.createElement('article');result.className='search-result';
     const label=document.createElement('span');label.className='search-result-kind';label.textContent=[record.section?'Question type':labels[record.kind],moduleLabels[record.module]].filter(Boolean).join(' · ');
@@ -51,7 +51,7 @@ import {modules,topics,url} from '../data/curriculum';
   document.querySelectorAll<HTMLButtonElement>('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.searchTerm!;kind.value='all';module.value='all';input.focus();search();}));
   const initial=new URLSearchParams(location.search);input.value=initial.get('q')||'';
   if(['notes','papers','resources'].includes(initial.get('type')||''))kind.value=initial.get('type')!;
-  if(['fp1','fp2','statistics'].includes(initial.get('module')||''))module.value=initial.get('module')!;
+  if(['fp1','fp2','mechanics','statistics'].includes(initial.get('module')||''))module.value=initial.get('module')!;
   if(input.value||kind.value!=='all'||module.value!=='all')search();
 </script>
 </Base>
