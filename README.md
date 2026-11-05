@@ -62,7 +62,7 @@ The footer shows the public site-wide page-view total supplied by Hits Counter, 
 
 ## Reading and rollback
 
-Each question type presents a short method, essential formulas and an example with its working visible. Relevant examples include function graphs, probability plots or an Argand diagram. Practice is available through the Question papers library. Below 981px, a compact contents menu replaces the desktop contents column.
+Each question type presents a short method, essential formulas and an example with its working visible. Relevant examples include function graphs, probability plots or an Argand diagram. Mechanics methods include concept diagrams, and every Mechanics question is paired with its setup diagram before the worked solution. Wide layouts show the question and diagram side by side, while narrow layouts place the diagram directly below the question. Practice is available through the Question papers library. Below 981px, a compact contents menu replaces the desktop contents column.
 
 Specific method searches return direct `#type-N` links with editorial plain-text descriptions. Paper results continue to open intact source collections.
 

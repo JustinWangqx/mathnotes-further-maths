@@ -4,13 +4,13 @@ const {name} = Astro.props;
 const captions: Record<string, string> = {
   moments: 'Clockwise and anticlockwise moments about O.',
   framework: 'Point masses at the corners of a light frame.',
-  sector: 'The centre of mass lies on the quarter-disc bisector.',
+  sector: 'Uniform quarter-disc of radius r.',
   string: 'The string tension, weight and two wall contact forces.',
-  triangle: 'A vertical strip of the uniform triangular lamina.',
+  triangle: 'Uniform triangular lamina with vertices O, Q and P.',
   holes: 'Centres of the three removed circular areas.',
   wire: 'Straight wire and denser semicircular wire.',
   frustum: 'The smaller cone is removed from the original cone.',
-  suspension: 'A, O and G determine the suspension angle.',
+  suspension: 'Cone and hemisphere joined at their common face AB.',
   toppling: 'At the limit, the line of action of the weight passes through C.',
   ladder: 'Normal reactions, friction and the two weights.',
   prism: 'Take moments about the right-hand base edge O.',
@@ -33,7 +33,6 @@ const arrow = `url(#${arrowId})`;
       <path d="M110 245H360V95H110Z" class="body-line"/>
       {[{x:110,y:245,label:'A · 2 kg',dx:-65,dy:28},{x:360,y:245,label:'B · 4 kg',dx:-18,dy:28},{x:360,y:95,label:'C · 7 kg',dx:-18,dy:-16},{x:110,y:95,label:'D · 2.5 kg',dx:-65,dy:-16}].map(p=><><circle cx={p.x} cy={p.y} r="5" class="mass-dot"/><text x={p.x+p.dx} y={p.y+p.dy}>{p.label}</text></>)}
       <text x="220" y="295">5 m</text><text x="374" y="183">3 m</text>
-      <circle cx="287" cy="153" r="6" fill="var(--primary)"/><text x="299" y="150">G</text>
     </>}
     {name === 'triangle' && <>
       <path d="M80 250H385V70Z" class="body-shape"/>
@@ -41,13 +40,11 @@ const arrow = `url(#${arrowId})`;
       <path d="M80 250H410M80 250V45" class="graph-axis"/>
       <text x="55" y="275">O</text><text x="375" y="275">Q(d, 0)</text><text x="330" y="52">P(d, h)</text>
       <text x="287" y="176">y = hx/d</text><text x="249" y="275">dx</text>
-      <circle cx="283" cy="190" r="5" fill="var(--primary)"/><text x="294" y="211">G</text>
     </>}
     {name === 'sector' && <>
       <path d="M125 255H355A230 230 0 0 0 125 25Z" class="body-shape"/>
       <path d="M125 255L288 92" class="graph-asymptote"/>
-      <circle cx="223" cy="157" r="5" fill="var(--primary)"/>
-      <text x="97" y="279">O</text><text x="232" y="151">G</text>
+      <text x="97" y="279">O</text>
       <text x="225" y="279">r</text><text x="94" y="144">r</text>
       <text x="155" y="217">45°</text>
     </>}
@@ -85,17 +82,14 @@ const arrow = `url(#${arrowId})`;
       <path d="M90 160H430" class="graph-asymptote"/>
       <text x="68" y="180">V</text><text x="153" y="94">a</text><text x="280" y="38">base radius a</text>
       <path d="M90 294H405" class="graph-axis"/><text x="230" y="284">3a</text>
-      <circle cx="332" cy="160" r="5" fill="var(--primary)"/><text x="342" y="147">G</text>
       <text x="175" y="225">smaller face</text>
     </>}
     {name === 'suspension' && <>
       <path d="M145 55A105 105 0 0 0 145 265L460 160Z" class="body-shape"/>
       <path d="M145 55V265M145 160H460" class="graph-asymptote"/>
-      <path d="M145 55L207 160" class="force-line"/>
-      <circle cx="207" cy="160" r="5" fill="var(--primary)"/>
-      <text x="128" y="42">A</text><text x="125" y="287">B</text><text x="122" y="179">O</text><text x="215" y="182">G</text>
-      <text x="105" y="116">r</text><text x="162" y="99">θ</text>
-      <text x="225" y="220">OG = 33r/56</text><text x="245" y="270">AG becomes vertical</text>
+      <text x="128" y="42">A</text><text x="125" y="287">B</text><text x="122" y="179">O</text>
+      <text x="105" y="116">r</text>
+      <text x="255" y="195">3r</text><text x="63" y="218">density ρ</text><text x="270" y="245">density 4ρ</text>
     </>}
     {name === 'toppling' && <>
       <path d="M90 258L370 145" class="body-line"/>

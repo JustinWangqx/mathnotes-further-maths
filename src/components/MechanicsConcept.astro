@@ -1,0 +1,135 @@
+---
+interface Props { name: string }
+const {name} = Astro.props;
+const captions: Record<string, string> = {
+  moments: 'Use the perpendicular distance to the force’s line of action.',
+  framework: 'Measure every mass position from the same origin.',
+  triangle: 'A vertical strip has area y dx and its centre is at height y/2.',
+  sector: 'The lamina and its boundary arc have different centres of mass.',
+  holes: 'Subtract the removed area and its moment. G shifts away from that area.',
+  wire: 'Each wire contributes its linear density multiplied by its length.',
+  frustum: 'Use each solid’s density and volume to find its mass.',
+  suspension: 'The suspension point and centre of mass lie on one vertical.',
+  toppling: 'The weight passes through the downhill edge at the toppling limit.',
+  ladder: 'A smooth contact gives a normal reaction. A rough contact can also give friction.',
+  string: 'Tension pulls along the string towards its support.',
+  prism: 'Compare the friction limit with the toppling limit.',
+};
+const arrowId = `concept-arrow-${name}`;
+const arrow = `url(#${arrowId})`;
+const massLabels = name === 'wire' ? ['λ₁L₁', 'λ₂L₂'] : name === 'frustum' ? ['ρ₁V₁', 'ρ₂V₂'] : ['m₁', 'm₂'];
+---
+<figure class="example-graph mechanics-concept">
+  <svg viewBox="0 0 480 320" role="img" aria-label={captions[name]}>
+    <defs><marker id={arrowId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="var(--primary)"/></marker></defs>
+    {name === 'moments' && <>
+      <path d="M100 250L350 95" class="body-line"/>
+      <path d="M310 45H420" class="graph-asymptote"/>
+      <path d="M350 95V220" class="graph-asymptote"/>
+      <path d="M350 95V45" class="force-line" marker-end={arrow}/>
+      <path d="M100 250H350" class="force-line"/>
+      <path d="M335 250V235H350" class="graph-axis"/>
+      <circle cx="100" cy="250" r="5" class="mass-dot"/>
+      <text x="73" y="278">O</text><text x="363" y="68">F</text>
+      <text x="177" y="278">d⊥</text><text x="377" y="215" transform="rotate(-90 377 215)">line of action</text>
+      <path d="M350 220V260" class="graph-asymptote"/>
+    </>}
+    {['framework', 'wire', 'frustum'].includes(name) && <>
+      <path d="M70 130H410" class="body-line"/>
+      <circle cx="145" cy="130" r="11" class="mass-dot"/>
+      <circle cx="350" cy="130" r="17" class="mass-dot"/>
+      <text x="125" y="99">{massLabels[0]}</text><text x="325" y="90">{massLabels[1]}</text>
+      <path d="M70 245H430M70 245V115" class="graph-axis"/>
+      <path d="M145 145V245M350 150V245M280 160V245" class="graph-asymptote"/>
+      <path d="M280 220V135" class="force-line" marker-end={arrow}/>
+      <text x="45" y="268">O</text><text x="135" y="273">x₁</text><text x="339" y="273">x₂</text>
+      <text x="269" y="273">x̄</text><text x="293" y="168">G</text>
+    </>}
+    {name === 'triangle' && <>
+      <path d="M70 240C170 230 275 160 400 65V240Z" class="body-shape"/>
+      <path d="M255 240V166L270 157V240Z" fill="#efb877" stroke="var(--primary)"/>
+      <path d="M70 240H420M70 240V40" class="graph-axis"/>
+      <circle cx="263" cy="201" r="5" class="mass-dot"/>
+      <path d="M285 240V162" class="graph-asymptote"/>
+      <text x="295" y="204">y/2</text><text x="239" y="272">dx</text>
+      <text x="315" y="65">y = f(x)</text><text x="426" y="263">x</text>
+      <text x="49" y="35">y</text>
+    </>}
+    {name === 'sector' && <>
+      <path d="M115 260H345A230 230 0 0 0 115 30Z" class="body-shape"/>
+      <path d="M345 260A230 230 0 0 0 115 30" fill="none" stroke="var(--primary)" stroke-width="4"/>
+      <path d="M115 260L278 97" class="graph-asymptote"/>
+      <circle cx="213" cy="162" r="5" class="mass-dot"/>
+      <circle cx="261" cy="114" r="5" fill="var(--primary)"/>
+      <text x="92" y="283">O</text><text x="218" y="184">G · lamina</text>
+      <text x="273" y="107">G · arc</text><text x="206" y="285">r</text>
+      <text x="148" y="239">α</text><text x="124" y="204">α</text>
+    </>}
+    {name === 'holes' && <>
+      <path d="M70 90H410V240H70Z" class="graph-asymptote"/>
+      <path d="M70 90H300V240H70Z" class="body-shape"/>
+      <path d="M300 90H410V240H300Z" class="hole"/>
+      <path d="M240 165H185" class="force-line" marker-end={arrow}/>
+      <circle cx="240" cy="165" r="4" class="mass-dot"/>
+      <circle cx="185" cy="165" r="5" fill="var(--primary)"/>
+      <text x="175" y="196">G</text><text x="227" y="144">G₀</text>
+      <text x="175" y="65">original area A₀</text><text x="330" y="174">−A₁</text>
+    </>}
+    {name === 'suspension' && <>
+      <path d="M240 45L120 270H360Z" class="body-shape"/>
+      <path d="M240 25V290" class="graph-asymptote"/>
+      <circle cx="240" cy="45" r="5" class="mass-dot"/>
+      <circle cx="240" cy="195" r="5" class="mass-dot"/>
+      <path d="M240 195V280" class="force-line" marker-end={arrow}/>
+      <text x="253" y="51">A</text><text x="253" y="188">G</text><text x="255" y="251">W</text>
+      <text x="294" y="116">vertical</text>
+    </>}
+    {name === 'toppling' && <>
+      <path d="M75 278L390 120" class="body-line"/>
+      <path d="M140 245L77.4 119.8L140 88.5L202.6 213.7Z" class="body-shape"/>
+      <path d="M140 245L171.3 229.4L140 166.8Z" class="graph-asymptote"/>
+      <circle cx="140" cy="166.8" r="5" class="mass-dot"/>
+      <path d="M140 166.8V245" class="force-line" marker-end={arrow}/>
+      <path d="M75 278H300" class="graph-axis"/>
+      <text x="149" y="161">G</text><text x="126" y="267">C</text>
+      <text x="166" y="256">b</text><text x="179" y="201">h</text>
+      <text x="148" y="215">W</text><text x="255" y="253">θ</text>
+    </>}
+    {name === 'ladder' && <>
+      <text x="61" y="45">Smooth wall</text><text x="272" y="45">Rough floor</text>
+      <path d="M115 70V265" class="body-line"/>
+      <circle cx="135" cy="165" r="20" class="body-shape"/>
+      <path d="M135 165H220" class="force-line" marker-end={arrow}/>
+      <text x="183" y="150">R</text>
+      <path d="M260 255H440" class="body-line"/>
+      <path d="M300 255V175H380V255Z" class="body-shape"/>
+      <path d="M340 255V140" class="force-line" marker-end={arrow}/>
+      <path d="M340 255H270" class="force-line" marker-end={arrow}/>
+      <text x="350" y="160">R</text><text x="282" y="282">F</text>
+    </>}
+    {name === 'string' && <>
+      <path d="M100 45V280" class="body-line"/>
+      <path d="M100 260L350 230" class="body-line"/>
+      <path d="M100 80L350 230" class="graph-asymptote"/>
+      <path d="M350 230L250 170" class="force-line" marker-end={arrow}/>
+      <circle cx="100" cy="80" r="5" class="mass-dot"/>
+      <text x="54" y="64">support</text><text x="270" y="168">T</text>
+      <text x="187" y="302">rod</text><text x="156" y="113">string</text>
+    </>}
+    {name === 'prism' && <>
+      <text x="85" y="48">Sliding</text><text x="299" y="48">Toppling</text>
+      <path d="M60 250H215M267 250H440" class="body-line"/>
+      <path d="M90 250V130H190V250Z" class="body-shape"/>
+      <path d="M140 250H65" class="force-line" marker-end={arrow}/>
+      <path d="M140 250V185" class="force-line" marker-end={arrow}/>
+      <text x="151" y="200">R</text><text x="82" y="281">F = μR</text>
+      <path d="M350 250L285 137L350 99L415 212Z" class="body-shape"/>
+      <path d="M350 175V250" class="force-line" marker-end={arrow}/>
+      <circle cx="350" cy="175" r="5" class="mass-dot"/>
+      <circle cx="350" cy="250" r="5" fill="var(--primary)"/>
+      <text x="363" y="177">G</text><text x="363" y="223">W</text>
+      <text x="325" y="281">edge</text>
+    </>}
+  </svg>
+  <figcaption>{captions[name]}</figcaption>
+</figure>

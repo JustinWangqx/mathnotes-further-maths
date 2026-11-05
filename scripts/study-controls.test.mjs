@@ -40,3 +40,18 @@ test('paper readers retain direct links to related note methods', () => {
     }
   }
 });
+
+test('every mechanics question has its diagram before the solution and a concept beside its method', () => {
+ const entry = catalog.records.find(record => record.topic === 'equilibrium');
+ const sections = htmlFor(entry.href).split('<section class="exam-type"').slice(1);
+ assert.equal(sections.length, 12);
+ for (const section of sections) {
+  const concept = section.indexOf('class="example-graph mechanics-concept"');
+  const question = section.indexOf('class="example-question mechanics-question"');
+  const diagram = section.indexOf('class="example-graph mechanics-diagram"');
+  const solution = section.indexOf('class="worked-solution"');
+  assert.ok(concept > 0 && concept < question);
+  assert.ok(question < diagram && diagram < solution);
+  assert.equal((section.match(/class="example-graph mechanics-diagram"/g) || []).length, 1);
+ }
+});

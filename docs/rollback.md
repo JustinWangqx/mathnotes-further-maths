@@ -1,5 +1,7 @@
 # Roll back / 回滚到上一个版本
 
+The version before pairing Mechanics diagrams with questions is saved as **`before-mechanics-diagrams-2026-11-05`** at commit **`db0182b426e8e0fc36f1ff3f530c9a0684e1dc2b`**. Enter that tag in **revision** to restore it.
+
 The readable release before adding the new Mechanics and Statistics material is saved as **`before-new-material-2026-11-05`** at commit **`eed916f6b6b85962b416863b323324beeaf37d1c`**. Use that tag in **revision** to restore that version.
 
 The version before the readability update is saved as **`before-readability-update-2026-11-05`** at commit **`9ca502b871a153b651b34ec5c5f43c16f2f662f8`**. Enter this tag in the existing workflow's **revision** input to publish it. A separate source archive was saved locally in the task's outputs folder.

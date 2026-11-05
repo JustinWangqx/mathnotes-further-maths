@@ -1,25 +1,34 @@
 ---
 import MathText from './MathText.astro';
 import MechanicsDiagram from './MechanicsDiagram.astro';
+import MechanicsConcept from './MechanicsConcept.astro';
 import ExampleGraph from './ExampleGraph.astro';
 import {questionTypes} from '../data/question-types';
+import {topics} from '../data/curriculum';
 interface Props {topicId: string}
 const {topicId}=Astro.props;
 const types=questionTypes[topicId];
+const mechanics = topics.some(topic => topic.id === topicId && topic.module === 'mechanics');
 ---
 <div class="question-types">
   {types.map(type=><section class="exam-type" id={type.id} data-question-type>
     <header class="type-heading"><span class="type-number">TYPE {String(type.number).padStart(2,'0')}</span><h2 tabindex="-1">{type.title}</h2></header>
-    <div class="type-method"><span class="type-label">METHOD</span><p><MathText text={type.method}/></p></div>
+    <div class:list={['type-intro', {'mechanics-intro': mechanics}]}>
+      <div class="type-method"><span class="type-label">METHOD</span><p><MathText text={type.method}/></p></div>
+      {mechanics && type.diagram && <MechanicsConcept name={type.diagram}/>}
+    </div>
     <div class="type-formula" aria-label={`Formula for type ${type.number}`}><MathText text={type.formula}/></div>
     <div class="type-example">
       <div class="example-caption"><span class="type-label">EXAMPLE</span></div>
-      <p class="type-question"><MathText text={type.question}/></p>
+      <div class:list={['example-question', {'mechanics-question': mechanics}]}>
+        <p class="type-question"><MathText text={type.question}/></p>
+        {mechanics && type.diagram && <MechanicsDiagram name={type.diagram}/>}
+      </div>
       <div class="worked-solution">
         <span class="type-label">SOLUTION</span>
         <ol class="type-working">{type.steps.map(step=><li><MathText text={step} layout="working"/></li>)}</ol>
         <div class="type-answer"><span class="type-label">ANSWER</span><div><MathText text={type.answer} layout="working"/></div></div>
-        {type.diagram&&(topicId==='equilibrium'?<MechanicsDiagram name={type.diagram}/>:<ExampleGraph name={type.diagram}/>)}
+        {!mechanics && type.diagram && <ExampleGraph name={type.diagram}/>}
         {topicId==='rational'&&type.id==='type-8'&&<><ExampleGraph name="reciprocal-f"/><ExampleGraph name="reciprocal-g"/></>}
         {topicId==='pdf-cdf'&&type.id==='type-1'&&<><ExampleGraph name="density"/><ExampleGraph name="cdf"/></>}
         {topicId==='integration'&&type.id==='type-5'&&<ExampleGraph name="arc-length"/>}
