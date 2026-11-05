@@ -8,7 +8,7 @@ const captions: Record<string, string> = {
   sector: 'The lamina and its boundary arc have different centres of mass.',
   holes: 'Subtract the removed area and its moment. G shifts away from that area.',
   wire: 'Each wire contributes its linear density multiplied by its length.',
-  frustum: 'Use each solid’s density and volume to find its mass.',
+  frustum: 'A uniform solid cone has its centre of mass 3h/4 from the vertex.',
   suspension: 'The suspension point and centre of mass lie on one vertical.',
   toppling: 'The weight passes through the downhill edge at the toppling limit.',
   ladder: 'A smooth contact gives a normal reaction. A rough contact can also give friction.',
@@ -17,7 +17,7 @@ const captions: Record<string, string> = {
 };
 const arrowId = `concept-arrow-${name}`;
 const arrow = `url(#${arrowId})`;
-const massLabels = name === 'wire' ? ['λ₁L₁', 'λ₂L₂'] : name === 'frustum' ? ['ρ₁V₁', 'ρ₂V₂'] : ['m₁', 'm₂'];
+const massLabels = name === 'wire' ? ['λ₁L₁', 'λ₂L₂'] : ['m₁', 'm₂'];
 ---
 <figure class="example-graph mechanics-concept">
   <svg viewBox="0 0 480 320" role="img" aria-label={captions[name]}>
@@ -34,7 +34,7 @@ const massLabels = name === 'wire' ? ['λ₁L₁', 'λ₂L₂'] : name === 'frus
       <text x="177" y="278">d⊥</text><text x="377" y="215" transform="rotate(-90 377 215)">line of action</text>
       <path d="M350 220V260" class="graph-asymptote"/>
     </>}
-    {['framework', 'wire', 'frustum'].includes(name) && <>
+    {['framework', 'wire'].includes(name) && <>
       <path d="M70 130H410" class="body-line"/>
       <circle cx="145" cy="130" r="11" class="mass-dot"/>
       <circle cx="350" cy="130" r="17" class="mass-dot"/>
@@ -74,6 +74,17 @@ const massLabels = name === 'wire' ? ['λ₁L₁', 'λ₂L₂'] : name === 'frus
       <circle cx="185" cy="165" r="5" fill="var(--primary)"/>
       <text x="175" y="196">G</text><text x="227" y="144">G₀</text>
       <text x="175" y="65">original area A₀</text><text x="330" y="174">−A₁</text>
+    </>}
+    {name === 'frustum' && <>
+      <path d="M75 160L405 60V260Z" class="body-shape"/>
+      <path d="M75 160H430" class="graph-asymptote"/>
+      <path d="M75 295H405M75 286V304M405 286V304" class="graph-axis"/>
+      <path d="M75 200H322.5" class="force-line"/>
+      <circle cx="322.5" cy="160" r="5" fill="var(--primary)"/>
+      <path d="M322.5 168V208" class="graph-asymptote"/>
+      <text x="47" y="155">V</text><text x="334" y="147">G</text>
+      <text x="210" y="228">3h/4</text><text x="230" y="281">h</text>
+      <text x="420" y="114">r</text>
     </>}
     {name === 'suspension' && <>
       <path d="M240 45L120 270H360Z" class="body-shape"/>
