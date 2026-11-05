@@ -7,7 +7,7 @@ A public Cambridge International (CIE/CAIE) A Level maths revision website. The 
 - One Question papers library contains 12 original collections with 101 complete questions, plus 10 separately supplied answer files.
 - Every question page also has a full-page lossless preview for browsers without a PDF viewer. The source question and answer PDFs are copied intact, preserving page order, numbering, subparts, diagrams and supplied commentary. Byte-identical duplicate files are included once.
 - The official Cambridge MF19 formula sheet is linked in the sidebar, resources and paper reader. There is no separate formula index.
-- English/Chinese alias search, print layouts, device-local study status and a compact footer view counter are retained.
+- English/Chinese alias search, print layouts, a compact footer view counter are retained.
 
 ## Run and check
 
@@ -60,10 +60,12 @@ The footer shows the public site-wide page-view total supplied by Hits Counter, 
 
 `src/utils/visits.mjs` makes one request per live page load with the fixed canonical site URL as the counter key. Local previews and the 404 page are excluded. Query strings, search terms, cookies and account identifiers are not sent. Requests are not automatically retried to avoid duplicate increments. Keep `trackedSite` stable to retain the accumulated total. The provider can be unavailable or blocked; the footer then shows `—` rather than a fabricated count.
 
-## Study controls and rollback
+## Reading and rollback
 
-All 78 question types offer a try-first source example, an independent hint reveal and a collapsed worked solution. Brief exam cues stay optional. Confidence is recorded per type in browser storage; numbered topic-map links show each state. Below 981px, a sticky compact contents menu replaces the desktop contents column. Printing expands worked solutions temporarily.
+Each question type presents a short method, essential formulas and an example with its working visible. Relevant examples include function graphs, probability plots or an Argand diagram. Practice is available through the Question papers library. Below 981px, a compact contents menu replaces the desktop contents column.
 
 Specific method searches return direct `#type-N` links with editorial plain-text descriptions. Paper results continue to open intact source collections.
 
 The exact pre-refinement release is preserved as `before-study-refinement-2026-11-05` (`c849ed6`). To publish it again, run the existing Actions workflow from main with that tag as its **revision** input. See [rollback instructions](docs/rollback.md) for both website-only recovery and source restoration without deleting history. A normal push still publishes main.
+
+The release before the readability update is also preserved as `before-readability-update-2026-11-05` (`9ca502b`).

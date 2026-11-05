@@ -1,5 +1,7 @@
 # Roll back / 回滚到上一个版本
 
+The version before the readability update is saved as **`before-readability-update-2026-11-05`** at commit **`9ca502b871a153b651b34ec5c5f43c16f2f662f8`**. Enter this tag in the existing workflow's **revision** input to publish it. A separate source archive was saved locally in the task's outputs folder.
+
 The exact version before the study-efficiency changes is preserved at:
 
 - Git tag: **`before-study-refinement-2026-11-05`**

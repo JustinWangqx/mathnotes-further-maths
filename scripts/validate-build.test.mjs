@@ -97,7 +97,7 @@ test('search bundle and English/Chinese aliases are included',()=>{
  assert.ok(!css.includes('fonts.googleapis.com'));assert.ok(css.includes('.woff2'));
 });
 
-test('all 78 question types render a method, formula, worked example and traceable source',()=>{
+test('all 78 question types render a method, formula and visible worked example with source data',()=>{
  const data=JSON.parse(readFileSync('src/data/question-types.json','utf8'));
  assert.equal(Object.keys(data).length,14);
  assert.equal(Object.values(data).reduce((n,types)=>n+types.length,0),78);
@@ -109,7 +109,7 @@ test('all 78 question types render a method, formula, worked example and traceab
   assert.equal((html.match(/class="type-method"/g)||[]).length,count,page);
   assert.equal((html.match(/class="type-formula"/g)||[]).length,count,page);
   assert.equal((html.match(/class="type-example"/g)||[]).length,count,page);
-  assert.equal((html.match(/class="example-source"/g)||[]).length,count,page);
+  assert.equal((html.match(/class="worked-solution"/g)||[]).length,count,page);
   assert.ok(!html.includes('id="the-idea"'),page);
   for(let i=1;i<=count;i++)assert.ok(html.includes(`id="type-${i}"`),page);
   rendered+=count;

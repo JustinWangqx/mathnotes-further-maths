@@ -2,46 +2,27 @@
 import MathText from './MathText.astro';
 import ExampleGraph from './ExampleGraph.astro';
 import {questionTypes} from '../data/question-types';
-import insights from '../data/type-insights.json';
-import {practiceMatches} from '../data/practice-matches';
-import {papersForTopic,collectionUrl} from '../data/paper-collections';
 interface Props {topicId: string}
 const {topicId}=Astro.props;
 const types=questionTypes[topicId];
-const cues=(insights as Record<string,Record<string,{when:string;why:string;mistake:string;hint:string}>>)[topicId];
-const practiceLinks = papersForTopic(topicId).flatMap(paper =>
-  Object.entries(practiceMatches[paper.id] ?? {}).map(([page, methodIds]) => ({
-    methodIds,
-    href: collectionUrl(paper),
-    label: paper.title,
-    page,
-  }))
-);
 ---
 <div class="question-types">
   {types.map(type=><section class="exam-type" id={type.id} data-question-type>
     <header class="type-heading"><span class="type-number">TYPE {String(type.number).padStart(2,'0')}</span><h2 tabindex="-1">{type.title}</h2></header>
     <div class="type-method"><span class="type-label">METHOD</span><p><MathText text={type.method}/></p></div>
     <div class="type-formula" aria-label={`Formula for type ${type.number}`}><MathText text={type.formula}/></div>
-    <details class="type-cues"><summary>When to use this · Why it works · Common mistake</summary><dl><dt>When to use this</dt><dd>{cues[type.id].when}</dd><dt>Why it works</dt><dd>{cues[type.id].why}</dd><dt>Common mistake</dt><dd>{cues[type.id].mistake}</dd></dl></details>
     <div class="type-example">
-      <div class="example-caption"><span class="type-label">TRY THIS YOURSELF</span><span>{type.source.kind==='textbook' ? 'Textbook / worksheet example' : 'Illustrative example'}</span></div>
+      <div class="example-caption"><span class="type-label">EXAMPLE</span></div>
       <p class="type-question"><MathText text={type.question}/></p>
-      <details class="type-hint"><summary>Reveal hint</summary><p>{cues[type.id].hint}</p></details>
-      <details class="type-solution"><summary>Show worked solution</summary><div class="worked-solution">
-        <span class="type-label">WORKED EXAMPLE</span>
+      <div class="worked-solution">
+        <span class="type-label">SOLUTION</span>
         <ol class="type-working">{type.steps.map(step=><li><MathText text={step} layout="working"/></li>)}</ol>
         <div class="type-answer"><span class="type-label">ANSWER</span><div><MathText text={type.answer} layout="working"/></div></div>
         {type.diagram&&<ExampleGraph name={type.diagram}/>}
-      </div></details>
-      {practiceLinks.some(link => link.methodIds.includes(type.id)) && <div class="type-practice-links">
-        <span>Practise this method in a past paper</span>
-        {practiceLinks.filter(link => link.methodIds.includes(type.id)).map(link =>
-          <a href={`${link.href}?method=${topicId}:${type.id}#page-${link.page}`}>{link.label} · Question {link.page} ↗</a>
-        )}
-      </div>}
-      <details class="example-source"><summary>Source reference · {type.source.label} · notes p. {type.source.pages}</summary><p>{type.source.file}</p><p>Question wording is shortened for revision. Original question collections retain every part and diagram.</p></details>
+        {topicId==='rational'&&type.id==='type-8'&&<><ExampleGraph name="reciprocal-f"/><ExampleGraph name="reciprocal-g"/></>}
+        {topicId==='pdf-cdf'&&type.id==='type-1'&&<><ExampleGraph name="density"/><ExampleGraph name="cdf"/></>}
+        {topicId==='integration'&&type.id==='type-5'&&<ExampleGraph name="arc-length"/>}
+      </div>
     </div>
-    <label class="type-progress-control">Your confidence for Type {String(type.number).padStart(2,'0')}<select aria-label={`Your confidence for Type ${String(type.number).padStart(2,'0')}`} data-type-progress={`${topicId}:${type.id}`}><option value="unseen">Not yet assessed</option><option value="practice">Needs practice</option><option value="confident">Confident</option></select></label>
   </section>)}
 </div>

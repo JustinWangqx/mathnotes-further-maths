@@ -42,7 +42,3 @@ if(filters.length)filterCards();
 document.querySelectorAll<HTMLDetailsElement>('.lesson-jump').forEach(menu=>menu.addEventListener('click',event=>{
   if((event.target as HTMLElement).closest('a'))menu.open=false;
 }));
-// Print complete working, then restore the learner's reveal choices.
-let printDetails:{element:HTMLDetailsElement;open:boolean}[]=[];
-window.addEventListener('beforeprint',()=>{printDetails=[...document.querySelectorAll<HTMLDetailsElement>('.type-solution,.type-cues')].map(element=>({element,open:element.open}));printDetails.forEach(({element})=>element.open=true);});
-window.addEventListener('afterprint',()=>{printDetails.forEach(({element,open})=>element.open=open);printDetails=[];});

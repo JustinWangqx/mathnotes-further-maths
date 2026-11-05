@@ -246,7 +246,7 @@
       "title": "Sketch absolute-value and reciprocal transformations",
       "method": "Use the sketch of $f$ first. Reflect only the required part; for $\\frac{1}{f}$, check zeros and asymptotes separately.",
       "formula": "$$|f(x)|:\\text{ reflect negative }y;\\quad f(|x|):\\text{ reflect the right half};\\quad y^2=f(x):y=\\pm\\sqrt{f(x)}.$$ ",
-      "question": "The notes use $f(x)=x^2+x-2$ and $g(x)=\\frac{x^2+2x+2}{x^2+1}$. Describe $\\frac{1}{f(x)}$ and $\\frac{1}{g(x)}$.",
+      "question": "Let $f(x)=x^2+x-2$ and $g(x)=\\frac{x^2+2x+2}{x^2+1}$. Describe $\\frac{1}{f(x)}$ and $\\frac{1}{g(x)}$.",
       "steps": [
         "$\\frac{1}{f}$ has vertical asymptotes $x=-2,1$, horizontal asymptote $y=0$, and $y$-intercept $-\\frac{1}{2}$.",
         "The numerator of $g$ is $(x+1)^2+1>0$, so $\\frac{1}{g}$ has no vertical asymptotes; its horizontal asymptote is $y=1$."

@@ -1,39 +1,150 @@
 ---
-interface Props {name: string}
-const {name}=Astro.props;
-const plots: Record<string,{label:string;fn:(x:number)=>number;x:[number,number];y:[number,number];poles?:number[];oblique?:boolean}>={
-  reciprocal:{label:'Sketch: y = 1/(x − 2)',fn:x=>1/(x-2),x:[-3,7],y:[-4,4],poles:[2]},
-  'two-poles':{label:'Sketch: y = 1/[(x − 1)(x − 2)]',fn:x=>1/((x-1)*(x-2)),x:[-1,4],y:[-8,6],poles:[1,2]},
-  'linear-quadratic':{label:'Sketch: y = x/[(x − 3)(x + 1)]',fn:x=>x/((x-3)*(x+1)),x:[-5,7],y:[-4,4],poles:[-1,3]},
-  'quadratic-quadratic':{label:'Sketch: y = (x − 1)(x − 2)/[(2x − 1)(x + 1)]',fn:x=>(x-1)*(x-2)/((2*x-1)*(x+1)),x:[-4,5],y:[-4,4],poles:[-1,.5]},
-  oblique:{label:'Sketch: y = x²/(x + 1)',fn:x=>x*x/(x+1),x:[-5,5],y:[-8,8],poles:[-1],oblique:true},
-  bounded:{label:'Sketch: y = (x² − x − 2)/(x² − x + 5)',fn:x=>(x*x-x-2)/(x*x-x+5),x:[-6,7],y:[-1,2]},
-  hyperbolic:{label:'Sketch: y = |3 cosh(x + 1) − 4|',fn:x=>Math.abs(3*Math.cosh(x+1)-4),x:[-4,2],y:[-.5,9]},
+interface Props { name: string }
+interface Plot {
+  label: string;
+  fn: (x: number) => number;
+  x: [number, number];
+  y: [number, number];
+  poles?: number[];
+  horizontal?: number[];
+  breaks?: number[];
+  oblique?: boolean;
+  reference?: { label: string; fn: (x: number) => number };
+  highlight?: [number, number];
+}
+const {name} = Astro.props;
+const plots: Record<string, Plot> = {
+  reciprocal: {
+    label: 'y = 1/(x − 2)',
+    fn: x => 1 / (x - 2), x: [-3, 7], y: [-4, 4], poles: [2],
+  },
+  'two-poles': {
+    label: 'y = 1/[(x − 1)(x − 2)]',
+    fn: x => 1 / ((x - 1) * (x - 2)), x: [-1, 4], y: [-8, 6], poles: [1, 2],
+  },
+  'linear-quadratic': {
+    label: 'y = x/[(x − 3)(x + 1)]',
+    fn: x => x / ((x - 3) * (x + 1)), x: [-5, 7], y: [-4, 4], poles: [-1, 3],
+  },
+  'quadratic-quadratic': {
+    label: 'y = (x − 1)(x − 2)/[(2x − 1)(x + 1)]',
+    fn: x => (x - 1) * (x - 2) / ((2 * x - 1) * (x + 1)),
+    x: [-4, 5], y: [-4, 4], poles: [-1, 0.5], horizontal: [0.5],
+  },
+  oblique: {
+    label: 'y = x²/(x + 1)',
+    fn: x => x * x / (x + 1), x: [-5, 5], y: [-8, 8], poles: [-1], oblique: true,
+  },
+  bounded: {
+    label: 'y = (x² − x − 2)/(x² − x + 5)',
+    fn: x => (x * x - x - 2) / (x * x - x + 5),
+    x: [-6, 7], y: [-1, 2], horizontal: [1],
+  },
+  hyperbolic: {
+    label: 'y = |3 cosh(x + 1) − 4|',
+    fn: x => Math.abs(3 * Math.cosh(x + 1) - 4), x: [-4, 2], y: [-0.5, 9],
+  },
+  'reciprocal-f': {
+    label: '1/f(x) = 1/(x² + x − 2)',
+    fn: x => 1 / (x * x + x - 2), x: [-4, 3], y: [-4, 4], poles: [-2, 1],
+    reference: {label: 'f(x) = x² + x − 2', fn: x => x * x + x - 2},
+  },
+  'reciprocal-g': {
+    label: '1/g(x) = (x² + 1)/(x² + 2x + 2)',
+    fn: x => (x * x + 1) / (x * x + 2 * x + 2), x: [-6, 5], y: [-0.4, 3],
+    horizontal: [1],
+    reference: {label: 'g(x) = (x² + 2x + 2)/(x² + 1)', fn: x => (x * x + 2 * x + 2) / (x * x + 1)},
+  },
+  density: {
+    label: 'PDF f(x) = x/12 on [1, 5]; zero elsewhere',
+    fn: x => x < 1 || x > 5 ? 0 : x / 12,
+    x: [-0.5, 6], y: [-0.08, 0.5], breaks: [1, 5],
+  },
+  cdf: {
+    label: 'CDF F(x) = (x² − 1)/24 on [1, 5]',
+    fn: x => x < 1 ? 0 : x > 5 ? 1 : (x * x - 1) / 24,
+    x: [-0.5, 6], y: [-0.15, 1.2],
+  },
+  'arc-length': {
+    label: 'y = cosh x; orange arc from x = 0 to x = ln 2',
+    fn: x => Math.cosh(x), x: [-0.5, 1.5], y: [-0.25, 2.5], highlight: [0, Math.log(2)],
+  },
 };
-const plot=plots[name];
-const argand=name==='complex-roots';
-const bounds=argand?{x:[-2,2],y:[-2,2]}:plot;
-const W=argand?360:500,H=argand?360:280,P=32;
-const X=(x:number)=>P+(x-bounds.x[0])/(bounds.x[1]-bounds.x[0])*(W-2*P);
-const Y=(y:number)=>H-P-(y-bounds.y[0])/(bounds.y[1]-bounds.y[0])*(H-2*P);
-const ticksX=Array.from({length:Math.floor(bounds.x[1])-Math.ceil(bounds.x[0])+1},(_,i)=>Math.ceil(bounds.x[0])+i).filter(n=>!n||Math.abs(n)%2===0||argand);
-const ticksY=Array.from({length:Math.floor(bounds.y[1])-Math.ceil(bounds.y[0])+1},(_,i)=>Math.ceil(bounds.y[0])+i).filter(n=>!n||Math.abs(n)%2===0||argand);
-let path='';let pen=false;let lastY=0;
-if(plot){for(let i=0;i<=900;i++){const x=plot.x[0]+i*(plot.x[1]-plot.x[0])/900;const y=plot.fn(x);if(!Number.isFinite(y)||y<plot.y[0]||y>plot.y[1]){pen=false;continue;}if(pen&&Math.abs(y-lastY)>(plot.y[1]-plot.y[0])/2)pen=false;path+=`${pen?'L':'M'}${X(x).toFixed(2)},${Y(y).toFixed(2)} `;lastY=y;pen=true;}}
-const roots=argand?Array.from({length:6},(_,k)=>({k,x:Math.sqrt(2)*Math.cos(Math.PI/18+k*Math.PI/3),y:Math.sqrt(2)*Math.sin(Math.PI/18+k*Math.PI/3)})):[];
+const plot = plots[name];
+const argand = name === 'complex-roots';
+const bounds = argand ? {x: [-2, 2], y: [-2, 2]} : plot;
+const width = argand ? 380 : 480;
+const height = argand ? 380 : 310;
+const padding = 40;
+const X = (x: number) => padding + (x - bounds.x[0]) / (bounds.x[1] - bounds.x[0]) * (width - 2 * padding);
+const Y = (y: number) => height - padding - (y - bounds.y[0]) / (bounds.y[1] - bounds.y[0]) * (height - 2 * padding);
+const xStep = (bounds.x[1] - bounds.x[0]) > 8 ? 2 : (bounds.x[1] - bounds.x[0]) < 3 ? 0.5 : 1;
+const yStep = (bounds.y[1] - bounds.y[0]) > 8 ? 2 : (bounds.y[1] - bounds.y[0]) < 1 ? 0.1 : (bounds.y[1] - bounds.y[0]) < 3 ? 0.5 : 1;
+const ticksX = Array.from({length: Math.floor(bounds.x[1] / xStep) - Math.ceil(bounds.x[0] / xStep) + 1},
+  (_, i) => Number(((Math.ceil(bounds.x[0] / xStep) + i) * xStep).toFixed(2)));
+const ticksY = Array.from({length: Math.floor(bounds.y[1] / yStep) - Math.ceil(bounds.y[0] / yStep) + 1},
+  (_, i) => Number(((Math.ceil(bounds.y[0] / yStep) + i) * yStep).toFixed(2)));
+
+function curvePath(fn: (x: number) => number, range: number[], breaks: number[] = []) {
+  let path = '';
+  let pen = false;
+  let previousX = range[0];
+  let previousY = 0;
+  for (let i = 0; i <= 1200; i++) {
+    const x = range[0] + i * (range[1] - range[0]) / 1200;
+    const y = fn(x);
+    if (!Number.isFinite(y) || y < bounds.y[0] || y > bounds.y[1]) {
+      pen = false;
+      previousX = x;
+      continue;
+    }
+    if (breaks.some(point => previousX < point && x >= point)
+      || Math.abs(y - previousY) > (bounds.y[1] - bounds.y[0]) / 2) pen = false;
+    path += `${pen ? 'L' : 'M'}${X(x).toFixed(2)},${Y(y).toFixed(2)} `;
+    previousX = x;
+    previousY = y;
+    pen = true;
+  }
+  return path;
+}
+const roots = argand ? Array.from({length: 6}, (_, k) => ({
+  k, x: Math.sqrt(2) * Math.cos(Math.PI / 18 + k * Math.PI / 3),
+  y: Math.sqrt(2) * Math.sin(Math.PI / 18 + k * Math.PI / 3),
+})) : [];
 ---
 <figure class="example-graph">
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={argand?'Argand diagram: the six roots have modulus square root of two and arguments pi/18 + k pi/3':plot.label}>
-    {ticksX.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#ede0d4" stroke-width=".7"/>)}
-    {ticksY.map(y=><line x1={P} x2={W-P} y1={Y(y)} y2={Y(y)} stroke="#ede0d4" stroke-width=".7"/>)}
-    <line x1={P} x2={W-P} y1={Y(0)} y2={Y(0)} stroke="#ab9585"/><line x1={X(0)} x2={X(0)} y1={P} y2={H-P} stroke="#ab9585"/>
-    {ticksX.filter(n=>n!==0).map(x=><text x={X(x)} y={Y(0)+15} text-anchor="middle">{x}</text>)}
-    {ticksY.filter(n=>n!==0).map(y=><text x={X(0)-7} y={Y(y)+3} text-anchor="end">{y}</text>)}
-    <text x={W-P+6} y={Y(0)-7}>{argand?'Re':'x'}</text><text x={X(0)+7} y={P-7}>{argand?'Im':'y'}</text>
-    {plot?.poles?.map(x=><line x1={X(x)} x2={X(x)} y1={P} y2={H-P} stroke="#b57b52" stroke-width="1" stroke-dasharray="5 5"/>)}
-    {plot?.oblique&&<line x1={X(-5)} x2={X(5)} y1={Y(-6)} y2={Y(4)} stroke="#b57b52" stroke-width="1" stroke-dasharray="5 5"/>}
-    {plot&&<path d={path} fill="none" stroke="#5a4131" stroke-width="2.2"/>}
-    {argand&&<><ellipse cx={X(0)} cy={Y(0)} rx={X(Math.sqrt(2))-X(0)} ry={Y(0)-Y(Math.sqrt(2))} fill="none" stroke="#b4a092" stroke-dasharray="5 5"/>{roots.map(r=><><line x1={X(0)} y1={Y(0)} x2={X(r.x)} y2={Y(r.y)} stroke="#e0d2c5"/><circle cx={X(r.x)} cy={Y(r.y)} r="4" fill="#9d6944"/><text x={X(r.x)+7} y={Y(r.y)-7}>k={r.k}</text></>)}</>}
+  <svg viewBox={`0 0 ${width} ${height}`} role="img"
+    aria-label={argand ? 'Argand diagram: six roots of modulus square root of two and arguments pi/18 + k pi/3' : plot.label}>
+    {ticksX.map(x => <line x1={X(x)} x2={X(x)} y1={padding} y2={height-padding} class="graph-grid"/>)}
+    {ticksY.map(y => <line x1={padding} x2={width-padding} y1={Y(y)} y2={Y(y)} class="graph-grid"/>)}
+    <line x1={padding} x2={width-padding} y1={Y(0)} y2={Y(0)} class="graph-axis"/>
+    <line x1={X(0)} x2={X(0)} y1={padding} y2={height-padding} class="graph-axis"/>
+    {ticksX.filter(n => n !== 0).map(x => <text x={X(x)} y={Y(0)+22} text-anchor="middle">{x}</text>)}
+    {ticksY.filter(n => n !== 0).map(y => <text x={X(0)-8} y={Y(y)+5} text-anchor="end">{y}</text>)}
+    <text x={X(0)-7} y={Y(0)+21} text-anchor="end">0</text>
+    <text x={width-padding+9} y={Y(0)-8}>{argand ? 'Re' : 'x'}</text>
+    <text x={X(0)+8} y={padding-12}>{argand ? 'Im' : name === 'cdf' ? 'F(x)' : name === 'density' ? 'f(x)' : 'y'}</text>
+    {plot?.poles?.map(x => <line x1={X(x)} x2={X(x)} y1={padding} y2={height-padding} class="graph-asymptote"/>)}
+    {plot?.horizontal?.map(y => <line x1={padding} x2={width-padding} y1={Y(y)} y2={Y(y)} class="graph-asymptote"/>)}
+    {plot?.oblique && <line x1={X(-5)} x2={X(5)} y1={Y(-6)} y2={Y(4)} class="graph-asymptote"/>}
+    {plot?.reference && <path d={curvePath(plot.reference.fn, plot.x)} class="graph-reference"/>}
+    {plot && <path d={curvePath(plot.fn, plot.x, [...(plot.poles || []), ...(plot.breaks || [])])} class="graph-curve"/>}
+    {plot?.highlight && <>
+      {plot.highlight.map(x => <line x1={X(x)} x2={X(x)} y1={Y(0)} y2={Y(plot.fn(x))} class="graph-asymptote"/>)}
+      <path d={curvePath(plot.fn, plot.highlight)} class="graph-highlight"/>
+    </>}
+    {argand && <>
+      <ellipse cx={X(0)} cy={Y(0)} rx={X(Math.sqrt(2))-X(0)} ry={Y(0)-Y(Math.sqrt(2))} class="graph-asymptote"/>
+      {roots.map(root => <>
+        <line x1={X(0)} y1={Y(0)} x2={X(root.x)} y2={Y(root.y)} class="graph-grid"/>
+        <circle cx={X(root.x)} cy={Y(root.y)} r="4" fill="var(--primary)"/>
+        <text x={X(root.x)+8} y={Y(root.y)-9}>k={root.k}</text>
+      </>)}
+    </>}
   </svg>
-  <figcaption>{argand?'Six roots · equal angular spacing π/3':plot.label}</figcaption>
+  <figcaption>
+    {argand ? 'Six roots · equal angular spacing π/3' : plot.label}
+    {plot?.reference && <span class="graph-legend"><span class="reference-key"></span>{plot.reference.label}<span class="curve-key"></span>Reciprocal</span>}
+    {(plot?.poles?.length || plot?.horizontal?.length || plot?.oblique) && <span class="graph-legend">Dashed orange lines show asymptotes.</span>}
+  </figcaption>
 </figure>

@@ -42,5 +42,6 @@ export function layoutMath(tex) {
 }
 
 export function isWorkingMath(tex) {
+  if (tex.length <= 16 && !tex.includes('\\')) return false;
   return /[=<>]|\\(?:approx|sim|int|sum|Longrightarrow|Rightarrow)/.test(tex);
 }

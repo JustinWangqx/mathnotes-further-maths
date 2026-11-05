@@ -2,10 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import katex from 'katex';
 import {readFileSync} from 'node:fs';
-import {layoutMath} from '../src/utils/math-layout.mjs';
+import {layoutMath,isWorkingMath} from '../src/utils/math-layout.mjs';
 
 test('successive equalities and approximations occupy separate calculation rows',()=>{
+ assert.equal(isWorkingMath('x=2'),false);
+ assert.equal(isWorkingMath('x<2'),false);
  const tex=String.raw`E(X)=\int_2^8\frac{x^2}{30}\,dx=\frac{28}{5}\approx5.6`;
+ assert.equal(isWorkingMath(tex),true);
  const formatted=layoutMath(tex);
  assert.ok(formatted.includes(String.raw`\\[0.5em] &=`));
  assert.ok(formatted.includes(String.raw`\\[0.5em] &\approx`));
