@@ -121,7 +121,7 @@ const roots = argand ? Array.from({length: 6}, (_, k) => ({
     <line x1={X(0)} x2={X(0)} y1={padding} y2={height-padding} class="graph-axis"/>
     {ticksX.filter(n => n !== 0).map(x => <text x={X(x)} y={Y(0)+22} text-anchor="middle">{x}</text>)}
     {ticksY.filter(n => n !== 0).map(y => <text x={X(0)-8} y={Y(y)+5} text-anchor="end">{y}</text>)}
-    <text x={X(0)-7} y={Y(0)+21} text-anchor="end">0</text>
+    <text x={X(0)-7} y={Y(0)-8} text-anchor="end">0</text>
     <text x={width-padding+9} y={Y(0)-8}>{argand ? 'Re' : 'x'}</text>
     <text x={X(0)+8} y={padding-12}>{argand ? 'Im' : name === 'cdf' ? 'F(x)' : name === 'density' ? 'f(x)' : 'y'}</text>
     {plot?.poles?.map(x => <line x1={X(x)} x2={X(x)} y1={padding} y2={height-padding} class="graph-asymptote"/>)}
