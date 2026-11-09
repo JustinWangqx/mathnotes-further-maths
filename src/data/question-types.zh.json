@@ -1,0 +1,965 @@
+{
+  "roots": [
+    {
+      "title": "由系数求根的和与积",
+      "method": "用 $s_1=\\sum\\alpha$、$s_2=\\sum\\alpha\\beta$ 和 $s_3=\\sum\\alpha\\beta\\gamma$ 表示根的基本对称和。对照各项系数，注意符号交替。",
+      "question": "方程 $2x^2+3x-2=0$ 的根为 $\\alpha,\\beta$。求 $\\alpha+\\beta$ 和 $\\alpha\\beta$。",
+      "steps": [
+        "$a=2$、$b=3$、$c=-2$。代入相应的二次式。"
+      ],
+      "answer": "$\\alpha+\\beta=-\\frac{3}{2},\\qquad\\alpha\\beta=-1$。"
+    },
+    {
+      "title": "求以 reciprocal roots 为根的方程",
+      "method": "先求新根的和与积，再代入首项系数为 1 的二次方程。原根必须非零。",
+      "question": "由 $2x^2+3x-2=0$ 的根构造一个以 $\\frac{1}{\\alpha}$ 和 $\\frac{1}{\\beta}$ 为根的方程。",
+      "steps": [
+        "原根的和为 $-\\frac{3}{2}$，积为 $-1$。",
+        "新根的和为 $\\frac{3}{2}$，积为 $-1$。写出 $y^2-(\\frac{3}{2})y-1=0$。"
+      ],
+      "answer": "$2y^2-3y-2=0$。"
+    },
+    {
+      "title": "用恒等式求 power sums",
+      "method": "记 $S_k=\\sum\\alpha^k$。把根的基本对称和 $s_1,s_2,s_3$ 代入相应恒等式。",
+      "question": "若 $2x^2+3x-2=0$ 的根为 $\\alpha,\\beta$，求 $\\alpha^2+\\beta^2$ 和 $\\alpha^3+\\beta^3$。",
+      "steps": [
+        "先得 $s_1=-\\frac{3}{2}$ 和 $s_2=-1$。",
+        "因此 $S_2=(-\\frac{3}{2})^2-2(-1)=\\frac{17}{4}$。",
+        "两个根的三次方和满足 $S_3=s_1^3-3s_1s_2=-\\frac{27}{8}-\\frac{9}{2}$。"
+      ],
+      "answer": "$S_2=\\frac{17}{4},\\qquad S_3=-\\frac{63}{8}$。"
+    },
+    {
+      "title": "求高次或负次 power sums",
+      "method": "把每个根代入原方程，乘以所需幂次后相加。$S_0$ 等于根的个数。",
+      "question": "四次方程 $x^4+3x^2-x+5=0$ 有四个根。求 $S_2$ 和 $S_4$。",
+      "steps": [
+        "$S_1=0$，两两乘积之和为 $3$，所以 $S_2=0^2-2(3)=-6$。",
+        "把四个根各自满足的等式相加，得到 $S_4+3S_2-S_1+5S_0=0$。",
+        "继续化简得 $S_4+3(-6)+5(4)=0$。"
+      ],
+      "answer": "$S_2=-6,\\qquad S_4=-2$。"
+    },
+    {
+      "title": "用 substitution 变换根",
+      "method": "用原根表示新根 $y$，原根记为 $x$。解出 $x$ 后代入整个原方程。",
+      "question": "$x^3+x^2-5=0$ 的根为 $\\alpha,\\beta,\\gamma$。求以 $\\frac{1}{\\alpha-2},\\frac{1}{\\beta-2},\\frac{1}{\\gamma-2}$ 为根的方程。",
+      "steps": [
+        "设 $y=\\frac{1}{x-2}$，于是 $x=2+\\frac{1}{y}$。",
+        "代入得 $(2+\\frac{1}{y})^3+(2+\\frac{1}{y})^2-5=0$。",
+        "同乘 $y^3$ 后合并同类项。"
+      ],
+      "answer": "$7y^3+16y^2+7y+1=0$。"
+    }
+  ],
+  "rational": [
+    {
+      "title": "画 reciprocal function 的图像",
+      "method": "对 $\\frac{k}{ax+b}$，先找 vertical asymptote、horizontal asymptote，再判断每一支的正负。",
+      "question": "画出 $y=\\frac{1}{x-2}$ 的图像，并写出 domain 和 range。",
+      "steps": [
+        "vertical asymptote 为 $x=2$，horizontal asymptote 为 $y=0$。",
+        "$x>2$ 时函数为正，$x<2$ 时为负。与 $y$ 轴的交点为 $-\\frac{1}{2}$。"
+      ],
+      "answer": "domain 为 $x\\ne2$，range 为 $y\\ne0$。"
+    },
+    {
+      "title": "画一次式除以一次式的图像",
+      "method": "写成常数加 reciprocal term。常数给出 horizontal asymptote。",
+      "question": "画出一般式 $y=\\frac{cx+d}{ax+b}$ 在 $ad-bc\\ne0$ 条件下的图像。",
+      "steps": [
+        "vertical asymptote 为 $x=-\\frac{b}{a}$，horizontal asymptote 为 $y=\\frac{c}{a}$。",
+        "用 $x=-\\frac{d}{c}$ 求与 $x$ 轴的交点（若 $c\\ne0$），用 $y=\\frac{d}{b}$ 求与 $y$ 轴的交点（若 $b\\ne0$）。"
+      ],
+      "answer": "domain 为 $x\\ne-\\frac{b}{a}$，range 为 $y\\ne \\frac{c}{a}$。"
+    },
+    {
+      "title": "画常数除以可分解二次式的图像",
+      "method": "先求分母的两个零点，再求导找两条 asymptotes 之间的 stationary point。",
+      "question": "画出 $y=\\frac{1}{(x-1)(x-2)}$ 并求 range。",
+      "steps": [
+        "vertical asymptotes 为 $x=1,2$，horizontal asymptote 为 $y=0$。",
+        "由 $y'=0$ 得到位置 $x=\\frac{3}{2}$，此时 $y=-4$。",
+        "在 $(1,2)$ 外侧函数为正，内侧的最大值是 $-4$。"
+      ],
+      "answer": "range 为 $(-\\infty,-4]\\cup(0,\\infty)$。"
+    },
+    {
+      "title": "画一次式除以两个一次因式的图像",
+      "method": "先找 intercepts 和 asymptotes，再用 quotient rule 找 stationary points。",
+      "question": "对 $y=\\frac{x}{(x-3)(x+1)}$，求 asymptotes 和 stationary points 的横坐标。",
+      "steps": [
+        "asymptotes 是 $x=3$、$x=-1$ 和 $y=0$，图像经过 $(0,0)$。",
+        "$y'=\\frac{-x^2-3}{(x^2-2x-3)^2}$ 在 domain 内恒为负。"
+      ],
+      "answer": "没有实数 stationary points。"
+    },
+    {
+      "title": "画二次式除以二次式的图像",
+      "method": "由相同次数的首项系数求 horizontal asymptote，再求 intercepts 并逐支检查图像。",
+      "question": "画出 $y=\\frac{(x-1)(x-2)}{(2x-1)(x+1)}$，标出 intercepts 和 asymptotes。",
+      "steps": [
+        "vertical asymptotes 为 $x=\\frac{1}{2}$ 和 $x=-1$，horizontal asymptote 为 $y=\\frac{1}{2}$。",
+        "intercepts 为 $(1,0)$、$(2,0)$ 和 $(0,-2)$。",
+        "stationary points 的横坐标满足 $7x^2-10x+1=0$。"
+      ],
+      "answer": "stationary points 的横坐标为 $x=\\frac{5\\pm3\\sqrt{2}}{7}$。"
+    },
+    {
+      "title": "求 oblique asymptote",
+      "method": "做多项式除法。一次商给出 oblique asymptote，余下的分式趋于零。",
+      "question": "求 $y=\\frac{x^2}{x+1}$ 的 asymptotes。",
+      "steps": [
+        "相除得到 $y=x-1+\\frac{1}{x+1}$。",
+        "由分母的零点得到 vertical asymptote。"
+      ],
+      "answer": "$x=-1$ 和 $y=x-1$。"
+    },
+    {
+      "title": "没有 vertical asymptote 时求 range",
+      "method": "先检查分母的 discriminant，再用 stationary values 或关于 $x$ 的 discriminant 求 range。",
+      "question": "求 $y=\\frac{x^2-x-2}{x^2-x+5}$ 的 asymptotes 和 range。",
+      "steps": [
+        "$x^2-x+5=(x-\\frac{1}{2})^2+\\frac{19}{4}>0$，所以没有 vertical asymptote。",
+        "$y=1-\\frac{7}{(x-\\frac{1}{2})^2+\\frac{19}{4}}$，最小值 $-\\frac{9}{19}$ 在 $x=\\frac{1}{2}$ 处取得。"
+      ],
+      "answer": "horizontal asymptote 为 $y=1$，range 为 $-\\frac{9}{19}\\le y<1$。"
+    },
+    {
+      "title": "画 absolute value 与 reciprocal 变换",
+      "method": "先画 $f$ 的图像，只翻折需要变换的部分。对于 $\\frac{1}{f}$，分别检查零点和 asymptotes。",
+      "question": "设 $f(x)=x^2+x-2$ 和 $g(x)=\\frac{x^2+2x+2}{x^2+1}$。描述 $\\frac{1}{f(x)}$ 和 $\\frac{1}{g(x)}$ 的图像。",
+      "steps": [
+        "$\\frac{1}{f}$ 的 vertical asymptotes 为 $x=-2,1$，horizontal asymptote 为 $y=0$，与 $y$ 轴的交点为 $-\\frac{1}{2}$。",
+        "$g$ 的分子是 $(x+1)^2+1>0$，所以 $\\frac{1}{g}$ 没有 vertical asymptote，horizontal asymptote 为 $y=1$。"
+      ],
+      "answer": "保留每个原函数的 domain 限制。"
+    }
+  ],
+  "series": [
+    {
+      "title": "求多项式的有限和",
+      "method": "展开通项，代入标准求和公式后合并。若起始下标改变，减去略去的项。",
+      "question": "求 $\\sum_{r=1}^n4r$，进而求 $\\sum_{r=1}^n4(r+1)$。",
+      "steps": [
+        "$\\sum4r=4\\cdot \\frac{n(n+1)}{2}$。",
+        "$\\sum4(r+1)=\\sum4r+4n$。"
+      ],
+      "answer": "$2n(n+1)$ 和 $2n(n+3)$。"
+    },
+    {
+      "title": "用 method of differences 求和",
+      "method": "拆成两项之差，写出首尾几项，找出中间相消的项。",
+      "question": "把 $\\frac{4}{r(r+1)(r+2)}$ 写成 partial fractions，再求 $\\sum_{r=1}^n\\frac{4}{r(r+1)(r+2)}$。",
+      "steps": [
+        "写出拆分后的首尾几项。中间各项相消。",
+        "剩下的项为 $1-\\frac{2}{n+1}+\\frac{2}{n+2}$。"
+      ],
+      "answer": "$S_n=1-\\frac{2}{(n+1)(n+2)}$。"
+    },
+    {
+      "title": "由有限和求 sum to infinity",
+      "method": "用 partial fractions 或 geometric series 求有限和，再取极限并写出收敛条件。",
+      "question": "设 $u_r=e^{rx}(e^x-2+e^{-x})$，其中 $x\\ne0$。求 $S_n$ 以及无穷级数收敛时 $x$ 的取值。",
+      "steps": [
+        "$u_r=e^{(r+1)x}-2e^{rx}+e^{(r-1)x}$。求和得到 $S_n=(e^x-1)(e^{nx}-1)$。",
+        "在 $x\\ne0$ 的条件下，要使极限有限，需 $x<0$，所以 $e^{nx}\\to0$。"
+      ],
+      "answer": "$S_n=(e^x-1)(e^{nx}-1)$。当 $x<0$ 时，$S_\\infty=1-e^x$。"
+    }
+  ],
+  "matrices1": [
+    {
+      "title": "求 inverse matrix",
+      "method": "2×2 可直接套公式。3×3 先求 determinant 和 cofactors，再对 cofactor matrix 取 transpose。determinant 必须非零。",
+      "question": "求矩阵 $B=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ 的 inverse。",
+      "steps": [
+        "$\\det B=4-6=-2$。",
+        "交换主对角线元素，其余两项取相反数，再除以 $-2$。"
+      ],
+      "answer": "$B^{-1}=\\begin{pmatrix}-2&1\\\\\\frac{3}{2}&-\\frac{1}{2}\\end{pmatrix}$。"
+    },
+    {
+      "title": "用 row reduction 求 3×3 inverse",
+      "method": "写出 augmented matrix [A ∣ I]。通过 elementary row operations 把左边化成 identity matrix，右边就是 inverse。",
+      "question": "求 $A=\\begin{pmatrix}1&2&1\\\\0&-1&2\\\\2&3&1\\end{pmatrix}$ 的 inverse。",
+      "steps": [
+        "先用 $R_3\\leftarrow R_3-2R_1$，再用 $R_3\\leftarrow R_3-R_2$。",
+        "第三行除以 $-3$。消去第一、二行第三列，再消去第一行第二列，最后把第二行取相反数。"
+      ],
+      "answer": "$$A^{-1}=\\frac{1}{3}\\begin{pmatrix}-7&1&5\\\\4&-1&-2\\\\2&1&-1\\end{pmatrix}.$$"
+    },
+    {
+      "title": "由矩阵识别 transformation",
+      "method": "将矩阵作用于一般点或两个 basis vectors，判断是 reflection、rotation、stretch 还是 shear。",
+      "question": "识别 $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ 表示的 transformation，并求 $(2,7)$ 的像。",
+      "steps": [
+        "该矩阵把 $(x,y)$ 映为 $(y,x)$。"
+      ],
+      "answer": "关于 $y=x$ 的 reflection，把 $(2,7)$ 映为 $(7,2)$。"
+    },
+    {
+      "title": "合成 transformation 或求其逆",
+      "method": "使用 column vectors 时，先做的 transformation 放在矩阵乘积右边。若矩阵 nonsingular，可用 inverse 撤销变换。",
+      "question": "先关于 $x$ 轴作 reflection，再关于 $y=x$ 作 reflection。求合成的 transformation。",
+      "steps": [
+        "使用 $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$。"
+      ],
+      "answer": "逆时针 rotation，角度为 $90^\\circ$。"
+    },
+    {
+      "title": "求 invariant line",
+      "method": "把一般点 $(x,mx+c)$ 代入变换，要求其像仍在同一条线上，然后比较系数。",
+      "question": "对于 $A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$，求形如 $y=mx+c$ 的 invariant lines。",
+      "steps": [
+        "像是 $(2x,mx+c)$。令 $mx+c=m(2x)+c$。",
+        "由此得到 $m=0$，$c$ 不受限制。还要单独检查竖直直线。"
+      ],
+      "answer": "所有水平直线 $y=c$ 都是 invariant lines，$y$ 轴也是。"
+    }
+  ],
+  "vectors": [
+    {
+      "title": "求垂直向量、面积或体积",
+      "method": "用 cross product 求 normal。其长度是平行四边形的面积，减半得三角形面积。用 scalar triple product 求体积。",
+      "question": "求一个同时垂直于 $-4\\mathbf{i}+2\\mathbf{j}+\\mathbf{k}$ 和 $3\\mathbf{i}-7\\mathbf{k}$ 的向量。",
+      "steps": [
+        "计算 $(-4,2,1)\\times(3,0,-7)$。",
+        "各分量为 $(2(-7),\\ 1(3)-(-4)(-7),\\ -2(3))$。"
+      ],
+      "answer": "$-14\\mathbf{i}-25\\mathbf{j}-6\\mathbf{k}$。"
+    },
+    {
+      "title": "求平面方程",
+      "method": "用已知 normal，或对平面内两个方向做 cross product。代入平面上一点确定常数。",
+      "question": "一个平面过 $(2,3,-5)$ 且垂直于 $(3,1,-1)$。求其方程。",
+      "steps": [
+        "normal 为 $(3,1,-1)$。",
+        "常数为 $3(2)+3-(-5)=14$。"
+      ],
+      "answer": "$3x+y-z=14$。"
+    },
+    {
+      "title": "求点到直线的最短距离",
+      "method": "取线上一点 $A$ 和方向 $\\mathbf{d}$。可用 cross product，也可由 $\\overrightarrow{PM}\\cdot\\mathbf{d}=0$ 求垂足。",
+      "question": "求 $P=(2,1,4)$ 到 $\\mathbf{r}=(4,4,5)+t(1,1,1)$ 的距离。",
+      "steps": [
+        "先取 $\\mathbf{p}-\\mathbf{a}=(-2,-3,-1)$ 和 $(\\mathbf{p}-\\mathbf{a})\\times\\mathbf{d}=(-2,1,1)$。",
+        "算得 $D=\\frac{\\sqrt{6}}{\\sqrt{3}}$。"
+      ],
+      "answer": "$D=\\sqrt{2}$。"
+    },
+    {
+      "title": "求点到平面的最短距离",
+      "method": "把点代入平面方程左侧，减去右侧常数，取绝对值后除以 normal 的长度。",
+      "question": "求 $(1,2,3)$ 到 $4x+y-z=12$ 的距离。",
+      "steps": [
+        "代入得 $D=\\frac{|4+2-3-12|}{\\sqrt{16+1+1}}=\\frac{9}{\\sqrt{18}}$。"
+      ],
+      "answer": "$D=\\frac{3}{\\sqrt{2}}$。"
+    },
+    {
+      "title": "求 skew lines 的公垂线或距离",
+      "method": "令 $P$ 和 $Q$ 分别为两线上的一般点。令 $\\overrightarrow{PQ}$ 与两条线的方向垂直，再求两个参数。",
+      "question": "$P$ 在 $\\mathbf{r}=(2,3,0)+s(-1,2,1)$ 上，$Q$ 在 $\\mathbf{r}=(3,1,0)+t(-1,1,0)$ 上。求 $P,Q$，使 $PQ$ 与两条直线都垂直。",
+      "steps": [
+        "$\\overrightarrow{PQ}=(1+s-t,-2+t-2s,-s)$。",
+        "由 dot product 方程得到 $-5-6s+3t=0$ 和 $-3-3s+2t=0$，所以 $s=-\\frac{1}{3},t=1$。",
+        "代回得 $P=(\\frac{7}{3},\\frac{7}{3},-\\frac{1}{3})$ 和 $Q=(2,2,0)$。"
+      ],
+      "answer": "$|PQ|=\\frac{1}{\\sqrt{3}}$。"
+    },
+    {
+      "title": "求直线与平面或两平面的夹角",
+      "method": "直线与平面的夹角用方向与 normal 的 sine 公式。两平面的夹角用两个 normals 的 cosine 公式。求锐角时取绝对值。",
+      "question": "已知平面方程 $3x-y+2z=3$ 和 $x+3y-z=6$，求两平面的锐夹角。",
+      "steps": [
+        "normals 为 $(3,-1,2)$ 和 $(1,3,-1)$。dot product 为 $-2$。",
+        "$\\cos\\theta=\\frac{2}{\\sqrt{14\\cdot11}}$。"
+      ],
+      "answer": "$\\theta=\\cos^{-1}(\\frac{2}{\\sqrt{154}})\\approx80.7^\\circ$。"
+    },
+    {
+      "title": "求两平面的交线",
+      "method": "选一个坐标作自由参数，联立方程求另外两个坐标，再整理出位置和方向。",
+      "question": "取 $3x-y+2z=3$ 和 $x+3y-z=6$ 的交线，以 $y$ 为自由变量写出其方程。",
+      "steps": [
+        "令 $y=t$。则 $3x+2z=3+t$ 和 $x-z=6-3t$。",
+        "解得 $x=3-t$ 和 $z=-3+2t$。"
+      ],
+      "answer": "$\\mathbf{r}=(3,0,-3)+t(-1,1,2)$。"
+    }
+  ],
+  "hyperbolic": [
+    {
+      "title": "画变换后的 hyperbolic function",
+      "method": "从基本图像出发，依次考虑 stretch 和 translation。标出 intercepts、turning points 和 asymptotes。",
+      "question": "画出 $y=|3\\cosh(x+1)-4|$ 的图像。",
+      "steps": [
+        "取 absolute value 之前，最小值 $-1$ 在 $x=-1$ 处取得。",
+        "零点满足 $\\cosh(x+1)=\\frac{4}{3}$，所以 $x=-1\\pm\\ln(\\frac{4+\\sqrt{7}}{3})$。",
+        "将 $x$ 轴下方的部分向上翻折，$x=-1$ 处的值变为 $1$。"
+      ],
+      "answer": "最终图像非负，且关于 $x=-1$ 对称。"
+    },
+    {
+      "title": "解 hyperbolic equation",
+      "method": "关于 sinh 或 cosh 的一次式可用指数定义。关于 tanh 的二次式先解出 tanh，再排除 $(-1,1)$ 之外的值。",
+      "question": "解 $4\\cosh x-3\\sinh x=4$。",
+      "steps": [
+        "设 $u=e^x>0$，原方程变为 $\\frac{u+\\frac{7}{u}}{2}=4$。",
+        "由 $u^2-8u+7=0$ 解得 $u=1$ 或 $7$。"
+      ],
+      "answer": "$x=0$ 或 $x=\\ln7$。"
+    },
+    {
+      "title": "求 inverse hyperbolic function 的值",
+      "method": "使用相应的 logarithmic form，并核对 domain。",
+      "question": "解 $\\tanh x=\\frac{2}{3}$。",
+      "steps": [
+        "$x=\\operatorname{artanh}(\\frac{2}{3})=\\frac{1}{2}\\ln[\\frac{1+\\frac{2}{3}}{1-\\frac{2}{3}}]$。"
+      ],
+      "answer": "$x=\\frac{1}{2}\\ln5$。"
+    },
+    {
+      "title": "证明 hyperbolic identity",
+      "method": "从指数定义出发，或变形一个标准恒等式。",
+      "question": "用指数定义证明 $1-\\tanh^2x=\\operatorname{sech}^2x$。",
+      "steps": [
+        "$1-\\tanh^2x=1-[\\frac{e^x-e^{-x}}{e^x+e^{-x}}]^2$。",
+        "分子化简为 $4$，所以结果为 $\\frac{4}{(e^x+e^{-x})^2}$。"
+      ],
+      "answer": "$\\frac{4}{(e^x+e^{-x})^2}=\\operatorname{sech}^2x$。"
+    }
+  ],
+  "differentiation": [
+    {
+      "title": "用 implicit differentiation 求一阶或二阶导数",
+      "method": "对 $x$ 求导，把 $y$ 看作 $x$ 的函数，合并含 $y'$ 的项。若要求 $y''$，对一阶导数的等式再求导。",
+      "question": "曲线 $y^3+yx^2=e^x$ 过 $(0,1)$。求该点的 $y'$ 和 $y''$。",
+      "steps": [
+        "$3y^2y'+x^2y'+2xy=e^x$。在 $(0,1)$ 处，$y'=\\frac{1}{3}$。",
+        "再次求导得 $6y(y')^2+3y^2y''+x^2y''+4xy'+2y=e^x$。",
+        "在 $(0,1)$ 处代入得 $\\frac{2}{3}+3y''+2=1$。"
+      ],
+      "answer": "$y'=\\frac{1}{3},\\qquad y''=-\\frac{5}{9}$。"
+    },
+    {
+      "title": "求参数方程的一阶和二阶导数",
+      "method": "先用比值求 $\\frac{dy}{dx}$。再对参数求导，并再次除以 $\\frac{dx}{dt}$。",
+      "question": "已知 $x=\\frac{1}{t+1}$ 和 $y=t^2$。求 $y$ 关于 $x$ 的一阶和二阶导数。",
+      "steps": [
+        "$\\frac{dx}{dt}=-(t+1)^{-2}$ 且 $\\frac{dy}{dt}=2t$，所以 $\\frac{dy}{dx}=-2t(t+1)^2$。",
+        "求导得 $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=-2(t+1)(3t+1)$，再除以 $\\frac{dx}{dt}$。"
+      ],
+      "answer": "$\\frac{d^2y}{dx^2}=2(t+1)^3(3t+1)$，适用于 $t\\ne-1$。"
+    },
+    {
+      "title": "求参数曲线的 stationary points 并判断类型",
+      "method": "在 $\\frac{dy}{dt}=0$ 且 $dx/dt\\ne0$ 的条件下求参数值。代入 $(x,y)$ 得到坐标，再用二阶导数判断类型。",
+      "question": "已知 $x=t^4+t$、$y=t^3-3t^2$，求 stationary points 并判断类型。",
+      "steps": [
+        "$\\frac{dy}{dx}=\\frac{3t^2-6t}{4t^3+1}$，所以 $t=0$ 或 $2$。",
+        "对应的点为 $(0,0)$ 和 $(18,-4)$。",
+        "二阶导数分别是 $-6$ 和 $\\frac{2}{363}$。"
+      ],
+      "answer": "local maximum 在 $(0,0)$，local minimum 在 $(18,-4)$。"
+    },
+    {
+      "title": "对 hyperbolic function 或 inverse function 求导",
+      "method": "用标准导数公式，再乘内层函数的导数。乘积还需用 product rule。",
+      "question": "对 $y=\\cosh(3x)\\sinh(4x)$ 求导。",
+      "steps": [
+        "每次对一个因子求导，保留另一个因子。"
+      ],
+      "answer": "$$\\begin{aligned}y\\prime&=3\\sinh(3x)\\sinh(4x)\\\\[0.6em]&\\quad+4\\cosh(3x)\\cosh(4x).\\end{aligned}$$"
+    },
+    {
+      "title": "求指定阶数的 Maclaurin expansion",
+      "method": "求各阶导数在零点的值，或代入已知级数。用导数法时除以相应的 factorial，保留到指定次数。",
+      "question": "求 $\\arcsin x$ 的 Maclaurin expansion 的前三个非零项。",
+      "steps": [
+        "$f(0)=0$ 和 $f'(x)=(1-x^2)^{-\\frac{1}{2}}=1+\\frac{1}{2}x^2+\\frac{3}{8}x^4+\\cdots$。",
+        "逐项积分，并使用 $f(0)=0$。"
+      ],
+      "answer": "$\\arcsin x=x+\\frac{x^3}{6}+\\frac{3x^5}{40}+O(x^7)$。"
+    }
+  ],
+  "integration": [
+    {
+      "title": "用 trigonometric 或 hyperbolic substitution 积分",
+      "method": "选择能消去根号的 substitution。积分前记得改写 $dx$ 和上下限。",
+      "question": "求 $\\int \\frac{dx}{\\sqrt{x^2+9}}$。",
+      "steps": [
+        "设 $x=3\\sinh t$，则 $dx=3\\cosh t\\,dt$，分母为 $3\\cosh t$。",
+        "积分变为 $t+C$。"
+      ],
+      "answer": "$\\operatorname{arsinh}(\\frac{x}{3})+C=\\ln(x+\\sqrt{x^2+9})+C$。"
+    },
+    {
+      "title": "识别 inverse function 对应的积分",
+      "method": "配方后与标准形式对照，保留 substitution 产生的系数。",
+      "question": "求 $\\int \\frac{dx}{x^2+4x+8}$。",
+      "steps": [
+        "$x^2+4x+8=(x+2)^2+4$。令 $u=x+2$。"
+      ],
+      "answer": "$\\frac{1}{2}\\arctan(\\frac{x+2}{2})+C$。"
+    },
+    {
+      "title": "使用 integration by parts",
+      "method": "选一个求导后更简单的 $u$。做 definite integral 时计算边界项。",
+      "question": "求 $\\int xe^x\\,dx$。",
+      "steps": [
+        "取 $u=x$ 和 $dv=e^x dx$，则 $du=dx$、$v=e^x$。",
+        "$I=xe^x-\\int e^x dx$。"
+      ],
+      "answer": "$e^x(x-1)+C$。"
+    },
+    {
+      "title": "推导并使用 reduction formula",
+      "method": "拆出因子做 integration by parts，改写剩余幂次，合并重复出现的积分，并写出 $n$ 的适用范围。",
+      "question": "已知 $I_n=\\int_0^1x^n e^x\\,dx$，求 $I_2$。",
+      "steps": [
+        "由 integration by parts 得 $I_n=[x^ne^x]_0^1-nI_{n-1}=e-nI_{n-1}$。",
+        "$I_1=e-(e-1)=1$ 和 $I_2=e-2I_1$。"
+      ],
+      "answer": "$I_2=e-2$。"
+    },
+    {
+      "title": "求 Cartesian、parametric 或 polar 曲线的 arc length",
+      "method": "按曲线形式选公式。求导后化简根号，再在给定区间积分。",
+      "question": "求 $y=\\cosh x$ 从 $x=0$ 到 $x=\\ln2$ 的 arc length。",
+      "steps": [
+        "$y'=\\sinh x$，所以 $\\sqrt{1+(y')^2}=\\cosh x$。",
+        "$L=[\\sinh x]_0^{\\ln2}=\\frac{2-\\frac{1}{2}}{2}$。"
+      ],
+      "answer": "$L=\\frac{3}{4}$。"
+    },
+    {
+      "title": "求 surface area of revolution",
+      "method": "以到旋转轴的距离为半径。用 $2\\pi$ 乘半径，再乘弧长微元。",
+      "question": "将 $y=x^2$ 绕 $y$ 轴从 $x=2$ 到 $x=3$ 旋转，求 surface area。",
+      "steps": [
+        "半径为 $x$，且 $y'=2x$，所以 $S=2\\pi\\int_2^3x\\sqrt{1+4x^2}\\,dx$。",
+        "用 $u=1+4x^2$ 得到 $S=\\frac{\\pi}{6}[(1+4x^2)^{\\frac{3}{2}}]_2^3$。"
+      ],
+      "answer": "$S=\\frac{\\pi}{6}(37\\sqrt{37}-17\\sqrt{17})$。"
+    },
+    {
+      "title": "用积分估计级数并判断 convergence",
+      "method": "对正的递减函数画图，比较矩形面积和曲线下面积。取极限前先写清是上界还是下界。",
+      "question": "求 $\\sum_{r=1}^n r^{-\\frac{3}{2}}$ 的一个上界，并证明无穷级数收敛。",
+      "steps": [
+        "$S_n\\le1+\\int_1^n x^{-\\frac{3}{2}}dx=1+[-2x^{-\\frac{1}{2}}]_1^n$。",
+        "$S_n\\le3-\\frac{2}{\\sqrt{n}}<3$。每项为正，所以 partial sums 递增。"
+      ],
+      "answer": "partial sums 递增且有上界 $3$，因此级数收敛。"
+    }
+  ],
+  "complex": [
+    {
+      "title": "用 de Moivre’s theorem 推出 multiple-angle formula",
+      "method": "展开 $(\\cos\theta+i\\sin\theta)^n$，对照 real part 和 imaginary part。两者相除可得 tangent 恒等式。",
+      "question": "求 $\\tan4\\theta$，答案用 $t=\\tan\\theta$ 表示。",
+      "steps": [
+        "real part 为 $c^4-6c^2s^2+s^4$，imaginary part 为 $4c^3s-4cs^3$。",
+        "用 imaginary part 除以 real part，再将分子分母同除以 $c^4$。"
+      ],
+      "answer": "在式子有定义时，$\\tan4\\theta=\\frac{4t-4t^3}{1-6t^2+t^4}$。"
+    },
+    {
+      "title": "用 trigonometric substitution 解多项式",
+      "method": "把方程改写成与 multiple-angle identity 一致的形式，再设 $x=\tan\theta$ 或题目要求的函数，列出所有不同的根。",
+      "question": "解 $x^4+4x^3-6x^2-4x+1=0$。",
+      "steps": [
+        "改写为 $1-6x^2+x^4=4x-4x^3$，由恒等式得 $\\tan4\\theta=1$。",
+        "取 $x=\\tan\\theta$，选择四个能给出不同 tangent 值的角。"
+      ],
+      "answer": "$x=\\tan(\\frac{\\pi}{16}+k\\frac{\\pi}{4})$，其中 $k=0,1,2,3$。"
+    },
+    {
+      "title": "改写 sine 或 cosine 的幂并积分",
+      "method": "令 $z=e^{i\\theta}$，用 $z$ 和 $z^{-1}$ 表示 sine 或 cosine。展开后把互为相反数的幂次配对。",
+      "question": "用 complex numbers 求 $\\int\\sin^5\\theta\\,d\\theta$。",
+      "steps": [
+        "展开得到 $\\sin^5\\theta=\\frac{10\\sin\\theta-5\\sin3\\theta+\\sin5\\theta}{16}$。",
+        "逐项积分各 sine 项。"
+      ],
+      "answer": "$-\\frac{5}{8}\\cos\\theta+\\frac{5}{48}\\cos3\\theta-\\frac{1}{80}\\cos5\\theta+C$。"
+    },
+    {
+      "title": "求全部 complex roots 并在 Argand diagram 上作图",
+      "method": "把右边写成 polar form。每个可能的 argument 都除以 $n$，列出 $n$ 个不同的根，并画出等间隔的点。",
+      "question": "解 $z^6=4+4\\sqrt{3}\\,i$，答案用 exponential form 表示。",
+      "steps": [
+        "$4+4\\sqrt{3}\\,i=8e^{i\\frac{\\pi}{3}}$。",
+        "每个根的 modulus 为 $8^{\\frac{1}{6}}=\\sqrt{2}$，arguments 为 $\\frac{\\pi}{18}+k\\frac{\\pi}{3}$。"
+      ],
+      "answer": "$z_k=\\sqrt{2}e^{i(\\frac{\\pi}{18}+k\\frac{\\pi}{3})}$，$k=0,1,\\ldots,5$，相邻点的夹角为 $\\frac{\\pi}{3}$。"
+    },
+    {
+      "title": "用 complex geometric series 求三角级数的和",
+      "method": "写出公比为 $re^{i\\theta}$ 的 geometric series。化简后，cosine 取 real part，sine 取 imaginary part。",
+      "question": "求 $\\sum_{k=0}^{\\infty}2^{-k}\\cos(k\\theta)$。",
+      "steps": [
+        "取 $\\frac{1}{1-\\tfrac{1}{2}e^{i\\theta}}$ 的 real part。",
+        "分子和分母同乘 $1-\\tfrac{1}{2}e^{-i\\theta}$。"
+      ],
+      "answer": "$\\dfrac{1-\\tfrac{1}{2}\\cos\\theta}{\\tfrac{5}{4}-\\cos\\theta}$。"
+    }
+  ],
+  "pdf-cdf": [
+    {
+      "title": "由 PDF 求 CDF",
+      "method": "从 support 的左端点开始积分。进入下一段时，要加上前一段已累积的概率。",
+      "question": "$f(x)=\\frac{x}{12}$，适用于 $1\\le x\\le5$，其他位置为零。求 $F(x)$。",
+      "steps": [
+        "当 $1\\le x\\le5$ 时，$$\\begin{aligned}F(x)&=\\int_1^x\\frac{t}{12}\\,dt\\\\[0.6em]&=\\left[\\frac{t^2}{24}\\right]_1^x\\\\[0.6em]&=\\frac{x^2-1}{24}.\\end{aligned}$$",
+        "补上 support 左右两侧的式子。"
+      ],
+      "answer": "$$F(x)=\\begin{cases}0&x<1,\\\\\\frac{x^2-1}{24}&1\\le x\\le5,\\\\1&x>5.\\end{cases}$$"
+    },
+    {
+      "title": "求区间概率或 percentile",
+      "method": "区间概率等于两端的 CDF 之差。对于 $P(X>a)=p$，在正确的分段内解 $F(a)=1-p$。",
+      "question": "$f(x)=\\frac{2(x+1)}{29}$ 适用于 $1\\le x<4$，$\\frac{2}{29}$ 适用于 $4\\le x\\le8$。求 $P(2<X<5)$，并求 $a$ 使得 $P(X>a)=0.1$。",
+      "steps": [
+        "第一段为 $F(x)=\\frac{x^2+2x-3}{29}$，第二段为 $F(x)=\\frac{2x+13}{29}$。",
+        "$F(5)-F(2)=\\frac{23}{29}-\\frac{5}{29}=\\frac{18}{29}$。",
+        "由 $F(a)=0.9$ 解得 $2a+13=26.1$。"
+      ],
+      "answer": "$P(2<X<5)=\\frac{18}{29},\\qquad a=6.55$。"
+    },
+    {
+      "title": "求 expectation 或 variance",
+      "method": "若给出 CDF，先求导。对 $g(x)f(x)$ 积分可求相应的 expectation。求 variance 时先算一阶和二阶 moment。",
+      "question": "给出 CDF 为 $$F(x)=\\begin{cases}0,&x<2,\\\\[0.4em]\\dfrac{x^2}{60}-\\dfrac{1}{15},&2\\le x\\le8,\\\\[0.4em]1,&x>8.\\end{cases}$$ 求 $E(\\sqrt{X})$ 和 $\\operatorname{Var}(X)$。",
+      "steps": [
+        "在 support 内对 CDF 求导得 $$f(x)=F'(x)=\\frac{2x}{60}=\\frac{x}{30},\\qquad 2<x<8.$$",
+        "求指定的 expectation 得 $$\\begin{aligned}E(\\sqrt{X})&=\\int_2^8\\sqrt{x}\\,\\frac{x}{30}\\,dx\\\\[0.6em]&=\\frac{1}{30}\\int_2^8x^{3/2}\\,dx\\\\[0.6em]&=\\left[\\frac{x^{5/2}}{75}\\right]_2^8\\\\[0.6em]&=\\frac{8^{5/2}-2^{5/2}}{75}\\\\[0.6em]&=\\frac{124\\sqrt{2}}{75}.\\end{aligned}$$",
+        "计算一阶 moment 得 $$\\begin{aligned}E(X)&=\\int_2^8x\\,\\frac{x}{30}\\,dx\\\\[0.6em]&=\\left[\\frac{x^3}{90}\\right]_2^8\\\\[0.6em]&=\\frac{8^3-2^3}{90}\\\\[0.6em]&=\\frac{28}{5}.\\end{aligned}$$",
+        "计算二阶 moment 得 $$\\begin{aligned}E(X^2)&=\\int_2^8x^2\\,\\frac{x}{30}\\,dx\\\\[0.6em]&=\\left[\\frac{x^4}{120}\\right]_2^8\\\\[0.6em]&=\\frac{8^4-2^4}{120}\\\\[0.6em]&=34.\\end{aligned}$$",
+        "将两个 moment 代入得 $$\\begin{aligned}\\operatorname{Var}(X)&=E(X^2)-[E(X)]^2\\\\[0.6em]&=34-\\left(\\frac{28}{5}\\right)^2\\\\[0.6em]&=\\frac{66}{25}.\\end{aligned}$$"
+      ],
+      "answer": "$$\\begin{aligned}E(\\sqrt{X})&=\\frac{124\\sqrt{2}}{75},\\\\[0.6em]\\operatorname{Var}(X)&=\\frac{66}{25}.\\end{aligned}$$"
+    },
+    {
+      "title": "求变换后变量的分布",
+      "method": "写出 $G(y)=P(Y\\le y)$，把事件改写为关于 $X$ 的不等式，使用 $F_X$ 后求导。若变换递减，要反转不等号。",
+      "question": "$f_X(x)=\\frac{8}{3x^3}$，适用于 $1\\le x\\le2$。求 $Y=\\frac{1}{X}$ 的 PDF。",
+      "steps": [
+        "新 support 为 $\\frac{1}{2}\\le y\\le1$。$X$ 的 CDF 为 $F_X(x)=\\frac{4}{3}-\\frac{4}{3x^2}$。",
+        "在 $\\frac12\\le y\\le1$ 内，$$\\begin{aligned}G(y)&=P\\!\\left(X\\ge\\frac1y\\right)\\\\[0.6em]&=1-F_X\\!\\left(\\frac1y\\right)\\\\[0.6em]&=1-\\left(\\frac43-\\frac{4y^2}{3}\\right)\\\\[0.6em]&=\\frac{4y^2-1}{3}.\\end{aligned}$$",
+        "在新 support 内求导。"
+      ],
+      "answer": "$f_Y(y)=\\frac{8y}{3}$ 适用于 $\\frac{1}{2}<y<1$，其他位置为零。"
+    }
+  ],
+  "inference": [
+    {
+      "title": "用 one-sample t-test 检验均值",
+      "method": "独立样本来自 variance 未知的 normal population 时可用 t-test。先计算 unbiased sample variance，再按备择假设选 tail。",
+      "question": "翼展为 $8.8,9.6,9.2,9.1,9.9,8.7$ cm。假设总体服从 normal distribution，以 10% significance level 检验 $H_0:\\mu=9.4$，备择假设为 $H_1:\\mu<9.4$。",
+      "steps": [
+        "$\\bar{x}=9.2167$、$s^2=0.213667$，所以 $t\\approx-0.972$。",
+        "$\\nu=5$，lower-tail critical value 为 $-1.476$。",
+        "检验统计量未落入 rejection region。"
+      ],
+      "answer": "不拒绝 $H_0$。证据不足以说明总体平均翼展低于 $9.4$ cm。"
+    },
+    {
+      "title": "用 normal test 比较两个独立样本的均值",
+      "method": "对两个独立大样本，把两个样本均值的估计 variance 相加。计算前先确定备择假设的方向。",
+      "question": "儿童用时 $n=50,\\bar{x}=45.3,s=3.2$ 秒，成人用时 $n=70,\\bar{y}=46.1,s=2.8$。以 5% significance level 检验儿童是否更快。",
+      "steps": [
+        "$H_0:\\mu_x-\\mu_y=0$；$H_1:\\mu_x-\\mu_y<0$。",
+        "$z=\\frac{-0.8}{\\sqrt{\\frac{3.2^2}{50}+\\frac{2.8^2}{70}}}\\approx-1.421$。",
+        "lower-tail critical value 为 $-1.645$。"
+      ],
+      "answer": "证据不足以说明儿童的总体平均完成时间更短。"
+    },
+    {
+      "title": "用 pooled t-test 比较两个独立小样本",
+      "method": "假设两个 normal populations 具有相同但未知的 variance。合并组内平方和，使用 $n_x+n_y-2$ degrees of freedom。",
+      "question": "播放音乐时的数据为 $n_x=10,\\sum x=960.1,\\sum x^2=92274.44$，不播放时为 $n_y=8,\\sum y=748.2,\\sum y^2=70041.16$。以 5% significance level 检验音乐是否提高平均销量。",
+      "steps": [
+        "$\\bar{x}=96.01$、$\\bar{y}=93.525$ 和 $s_p^2\\approx10.0621$。",
+        "$t\\approx1.6515$，其中 $\\nu=16$。",
+        "5% upper-tail critical value 为 $1.746$。"
+      ],
+      "answer": "不拒绝 $H_0$。证据不足以说明音乐提高总体平均销量。"
+    },
+    {
+      "title": "用 paired t-test 检验前后变化",
+      "method": "每对数据计算一个差值，再对差值做 one-sample t-test。假设差值总体服从 normal distribution。",
+      "question": "复习前后测试分数的增加量为 $4,2,7,3,8,6,1,5,4,8$。以 5% significance level 检验复习是否提高平均分。",
+      "steps": [
+        "$\\bar{d}=4.8$ 和 $s_d^2=\\frac{284-\\frac{48^2}{10}}{9}=5.9556$。",
+        "$t=\\frac{4.8}{\\sqrt{\\frac{5.9556}{10}}}\\approx6.22$，degrees of freedom 为 $9$。",
+        "upper-tail critical value 为 $1.833$。"
+      ],
+      "answer": "拒绝 $H_0$。有证据表明复习提高总体平均分。"
+    },
+    {
+      "title": "求单个均值的 confidence interval",
+      "method": "若样本来自 variance 未知的 normal population，使用与 confidence level 对应的 t critical value，degrees of freedom 为 $n-1$。",
+      "question": "等待时间为 $12,17,21,9,14,19$ 分钟。求均值的 90% confidence interval。",
+      "steps": [
+        "$n=6$、$\\bar{x}=\\frac{92}{6}$ 和 $s^2=\\frac{1512-\\frac{92^2}{6}}{5}=20.2667$。",
+        "使用 $t_{5,0.95}=2.015$。margin of error 约为 $3.703$。"
+      ],
+      "answer": "约为 $(11.63,19.04)$ 分钟。"
+    },
+    {
+      "title": "求均值差的 confidence interval",
+      "method": "选定差值方向后保持一致。独立大样本用 normal interval，小样本满足相同 variance 等条件时用 pooled t interval。",
+      "question": "女性的数据为 $n_x=70,\\bar{x}=46.1,s_x=2.8$，男性的数据为 $n_y=60,\\bar{y}=45.3,s_y=3.2$。求 $\\mu_x-\\mu_y$ 的 90% confidence interval。",
+      "steps": [
+        "差值为 $0.8$，standard error 为 $\\sqrt{\\frac{2.8^2}{70}+\\frac{3.2^2}{60}}\\approx0.5317$。",
+        "使用 $z_{0.95}=1.6449$。"
+      ],
+      "answer": "约为 $(-0.0745,1.6745)$ 秒。"
+    },
+    {
+      "title": "改变 confidence level",
+      "method": "由原区间还原中心和 standard error。保持中心不变，使用新的 critical value。",
+      "question": "一个 90% normal interval 为 $(-0.0745,1.6745)$。求对应的 99% confidence interval。",
+      "steps": [
+        "中心为 $0.8$，原区间半宽为 $0.8745$。",
+        "$SE=\\frac{0.8745}{1.6449}$，新半宽为 $2.5758SE\\approx1.3694$。"
+      ],
+      "answer": "约为 $(-0.5694,2.1694)$。"
+    }
+  ],
+  "chi-squared": [
+    {
+      "title": "检验 discrete uniform model 的 goodness of fit",
+      "method": "每个类别使用相同的 expected frequency。必要时合并类别，再与 right-tail critical value 比较。",
+      "question": "掷一枚骰子 $180$ 次，频数为 $29,31,34,39,23,24$。以 5% significance level 检验骰子是否公平。",
+      "steps": [
+        "在 $H_0$ 下，每一面的概率为 $\\frac{1}{6}$，expected frequency 均为 $30$。",
+        "$X^2=\\frac{1+1+16+81+49+36}{30}=6.1333$。",
+        "$\\nu=6-1=5$，5% critical value 为 $11.070$。"
+      ],
+      "answer": "不拒绝骰子公平的假设，结果未达到统计显著。"
+    },
+    {
+      "title": "检验 binomial model 的 goodness of fit",
+      "method": "用 binomial probability 求 expected frequencies。若需估计 $p$，使用 $\\hat p=\\sum \\frac{xf}{nN}$，并多扣除一个 degree of freedom。",
+      "question": "$x=0,1,\\ldots,8$ 的 observed counts 为 $12,28,28,17,7,4,2,2,0$。以 5% significance level 检验指定的 $B(10,0.2)$ model。",
+      "steps": [
+        "$N=100$。采用类别 $0,1,2,3,\\ge4$，observed counts 变为 $12,28,28,17,15$。",
+        "expected counts 约为 $10.737,26.844,30.199,20.133,12.087$。",
+        "$X^2\\approx1.548$、$\\nu=5-1=4$，critical value 为 $9.488$。"
+      ],
+      "answer": "不拒绝指定的 binomial model。"
+    },
+    {
+      "title": "检验 Poisson model 的 goodness of fit",
+      "method": "用给定均值，或用 $\\hat\\lambda=\\sum \\frac{xf}{N}$ 估计均值。纳入尾部类别，并合并 expected counts 过小的类别。",
+      "question": "计数 $0,1,2,3,4,5,6,\\ge7$ 的频数分别是 $8,34,42,28,26,5,5,2$。以 5% significance level 检验 $\\operatorname{Po}(2.5)$。",
+      "steps": [
+        "$N=150$。合并 $6$ 和 $\\ge7$ 后，最后一组的 observed count 为 $7$。",
+        "七组 expected counts 约为 $12.313,30.782,38.477,32.064,20.040,10.020,6.303$。",
+        "$X^2\\approx7.05$、$\\nu=7-1=6$，critical value 为 $12.592$。"
+      ],
+      "answer": "不拒绝 Poisson model。若均值是估计的，则多扣除一个 degree of freedom。"
+    },
+    {
+      "title": "检验 normal model 的 goodness of fit",
+      "method": "根据 class boundaries 求 normal interval probabilities，并包含两端 tail。每估计一个参数就扣除一个 degree of freedom。",
+      "question": "婴儿体重记录到一位小数，分组为 $2.0$–$2.4$、$2.5$–$2.9$、…、$4.5$–$4.9$，频数为 $8,14,54,43,22,9$。以 10% significance level 检验 variance 为 $0.4$ 的 normal model。",
+      "steps": [
+        "用组中点估计 $\\mu$，得到 $\\bar{x}=3.48$。分界点为 $2.45,2.95,3.45,3.95,4.45$，同时计入两侧 tail。",
+        "expected counts 约为 $7.755,22.397,42.010,43.532,24.922,9.385$。",
+        "$X^2\\approx6.942$；$\\nu=6-1-1=4$，10% critical value 为 $7.779$。"
+      ],
+      "answer": "不拒绝 variance 为 $0.4$ 的模型。"
+    },
+    {
+      "title": "检验 continuous uniform model 的 goodness of fit",
+      "method": "每组概率等于其在 support 内的宽度除以总宽度。等宽分组的 expected counts 相同。",
+      "question": "120 天的等车时间分成六组，每组宽 10 分钟，从 $0$ 到 $60$，计数为 $14,25,27,25,15,14$。以 10% significance level 检验 $U(0,60)$。",
+      "steps": [
+        "每组 expected frequency 为 $\\frac{120}{6}=20$。",
+        "$X^2=9.8$ 和 $\\nu=5$。10% critical value 为 $9.236$。"
+      ],
+      "answer": "在 10% significance level 下拒绝 uniform model。"
+    },
+    {
+      "title": "检验给定 PDF 的 goodness of fit",
+      "method": "对每组区间内的 PDF 积分，求出 expected frequency。除非题目要求估计参数，否则使用给定参数。",
+      "question": "$N=200$，且 $f(x)=\\frac{x(4-x)}{9}$ 在 $[0,3]$ 上。六组的组宽均为 0.5，observed counts 为 $5,23,40,41,46,45$。求前两组的 expected frequencies，再做 5% 检验。",
+      "steps": [
+        "$E_i=200[\\frac{2x^2}{9}-\\frac{x^3}{27}]_{a_i}^{b_i}$。前两组为 $10.1852$ 和 $26.8519$。",
+        "全部 expected counts 约为 $(10.1852,26.8519,37.9630,43.5185,43.5185,37.9630)$。",
+        "$X^2\\approx4.893$、$\\nu=5$，与 $11.070$ 比较。"
+      ],
+      "answer": "不拒绝给定的 PDF model。"
+    },
+    {
+      "title": "用 contingency table 检验 independence",
+      "method": "先算行、列总数，填好 expected counts 后求检验统计量。使用 $(r-1)(c-1)$ degrees of freedom。",
+      "question": "观测到的 3×3 表格各行为 $(63,31,6)$、$(26,20,14)$ 和 $(11,19,10)$。以 5% significance level 检验 independence。",
+      "steps": [
+        "各行总数为 $100,60,40$，各列总数为 $100,70,30$，$N=200$。",
+        "expected counts 各行为 $(50,35,15)$、$(30,21,9)$ 和 $(20,14,6)$。",
+        "$X^2\\approx21.098$，其中 $\\nu=4$，5% critical value 为 $9.488$。"
+      ],
+      "answer": "拒绝 independence 假设，有证据表明两个变量存在关联。"
+    }
+  ],
+  "non-parametric": [
+    {
+      "title": "使用 single-sample sign test",
+      "method": "数出大于及小于假设 median 的观测值。在 $H_0$ 下，正号个数服从参数为 $p=\\frac{1}{2}$ 的 binomial model。根据题意选择单尾或双尾。",
+      "question": "15 个样本值中，12 个大于 135，3 个小于 135。以 5% significance level 双尾检验总体 median 是否为 135。",
+      "steps": [
+        "$H_0:m=135$；$H_1:m\\ne135$。",
+        "$p=2P(B(15,\\frac{1}{2})\\le3)=2\\frac{1+15+105+455}{2^{15}}=0.03515625$。"
+      ],
+      "answer": "拒绝 $H_0$。有证据表明总体 median 与 135 不同。"
+    },
+    {
+      "title": "使用 Wilcoxon signed-rank test",
+      "method": "假设偏差独立、连续且对称。对偏差绝对值排序，恢复正负号后分别求 rank sum，按相应的 tail 查表。",
+      "question": "鲭鱼重量为 $1.6,1.1,2.1,2.4,2.2,2.9,2.6,2.3,2.7,1.9$ kg。以 5% significance level 检验 median 是否大于 $1.8$。",
+      "steps": [
+        "减去 $1.8$，对差的绝对值排序。负差对应的 ranks 为 $2$ 和 $7$。",
+        "$Q=9$、$P=46$ 和 $T=9$。",
+        "$n=10$ 的 5% 单尾 critical value 为 $10$。正差的 rank sum 较大。"
+      ],
+      "answer": "拒绝 $H_0$。有证据表明总体 median 超过 $1.8$ kg。"
+    },
+    {
+      "title": "用 normal approximation 估计 rank sum",
+      "method": "样本足够大且没有并列或零差值时，用 normal distribution 近似一个 signed-rank sum，并按检验方向做 continuity correction。",
+      "question": "19 个生存时间为 37、54、73、89、94、110、112、123、129、132、148、151、173、189、201、204、213、276、281。以 5% significance level 检验 median 是否不同于 150。",
+      "steps": [
+        "对相对于 150 的绝对偏差排序。正差 rank sum 为 $86$，负差 rank sum 为 $104$。",
+        "在 $H_0$ 下，mean 为 $95$，variance 为 $617.5$。使用 continuity correction 得 $z=\\frac{86.5-95}{\\sqrt{617.5}}\\approx-0.342$。"
+      ],
+      "answer": "双尾结果在 5% 下未达到统计显著，不拒绝 median 为 150 的假设。"
+    },
+    {
+      "title": "使用 paired-sample sign test",
+      "method": "逐对计算差值，再统计正负号，用 binomial tail 检验差值的 median 是否为零。",
+      "question": "鞋带例题中有 9 对非零差值。其中 2 对同号，其余 7 对为另一符号。以 5% significance level 做双尾检验。",
+      "steps": [
+        "使用 $s_{\\min}=2$ 和 $n=9$。",
+        "$p=2P(B(9,\\frac{1}{2})\\le2)=2\\frac{1+9+36}{512}=0.1796875$。"
+      ],
+      "answer": "不拒绝 $H_0$。证据不足以说明存在系统性差异。"
+    },
+    {
+      "title": "使用 Wilcoxon matched-pairs signed-rank test",
+      "method": "对配对差值作检验，假设差值总体连续且对称。对绝对值排序，将较小的 rank sum 与相应的 critical value 比较。",
+      "question": "抗组胺药例题有 7 个配对，rank sums 为 $12$ 和 $16$。以 5% significance level 检验药物 2 是否让睡眠时间更长。",
+      "steps": [
+        "$T=12$ 和 $n=7$。5% 单尾 critical value 为 $3$。",
+        "较小的 rank sum 还未进入 rejection region。"
+      ],
+      "answer": "不拒绝 $H_0$。证据不足以说明药物 2 让睡眠时间更长。"
+    }
+  ],
+  "pgf": [
+    {
+      "title": "由分布写出 PGF",
+      "method": "每项概率乘以 $t$ 的相应幂次，再求和。用 $G(1)=1$ 检查结果。",
+      "question": "Hassan 有三枚独立投掷的硬币，正面概率为 $\\frac{1}{3},\\frac{1}{3},\\frac{1}{4}$。求正面次数的 PGF。",
+      "steps": [
+        "三枚硬币各给出一个 Bernoulli factor，依次为 $(\\frac{2}{3}+\\frac{t}{3})$、$(\\frac{2}{3}+\\frac{t}{3})$ 和 $(\\frac{3}{4}+\\frac{t}{4})$。",
+        "相乘并合并同次幂。"
+      ],
+      "answer": "$G_Y(t)=\\frac{1}{3}+\\frac{4t}{9}+\\frac{7t^2}{36}+\\frac{t^3}{36}$。"
+    },
+    {
+      "title": "使用标准分布的 PGF",
+      "method": "识别分布和 support，将参数代入对应公式。这里的 geometric distribution 从第 1 次试验开始计数。",
+      "question": "写出 binomial 分布 $X\\sim B(10,0.2)$ 的 PGF。",
+      "steps": [
+        "代入 $n=10$、$p=0.2$ 和 $1-p=0.8$。"
+      ],
+      "answer": "$G_X(t)=(0.8+0.2t)^{10}$。"
+    },
+    {
+      "title": "对 PGF 求导以求 mean 和 variance",
+      "method": "先求导再代入 $t=1$，然后应用 factorial moment 对应的 variance 公式。",
+      "question": "已知 $G_X(t)=\\frac{1}{2}+\\frac{t}{3}+\\frac{t^2}{6}$。求 mean 和 variance。",
+      "steps": [
+        "求导后代入 $t=1$，得到 $$\\begin{aligned}G_X'(t)&=\\frac13+\\frac{t}{3},\\\\[0.6em]E(X)=G_X'(1)&=\\frac13+\\frac13\\\\[0.6em]&=\\frac23.\\end{aligned}$$",
+        "再求一次导得 $$G_X^{\\prime\\prime}(t)=\\frac13,\\qquad G_X^{\\prime\\prime}(1)=\\frac13.$$",
+        "使用 variance 公式得 $$\\begin{aligned}\\operatorname{Var}(X)&=G_X^{\\prime\\prime}(1)+G_X'(1)-[G_X'(1)]^2\\\\[0.6em]&=\\frac13+\\frac23-\\left(\\frac23\\right)^2\\\\[0.6em]&=\\frac59.\\end{aligned}$$"
+      ],
+      "answer": "$E(X)=\\frac{2}{3},\\qquad\\operatorname{Var}(X)=\\frac{5}{9}$。"
+    },
+    {
+      "title": "求 stopping time 的 PGF",
+      "method": "先列出前几项概率，按奇数次和偶数次分组，再分别用 geometric series 求和。",
+      "question": "Jamil 和 Yao 轮流独立尝试，成功概率分别为 $\\frac{1}{4}$ 和 $\\frac{1}{5}$。Jamil 先开始，首次成功时结束。求尝试总次数 $X$ 的 PGF。",
+      "steps": [
+        "两人均失败的概率为 $(\\frac{3}{4})(\\frac{4}{5})=\\frac{3}{5}$。",
+        "奇数次贡献为 $\\frac{\\frac{t}{4}}{1-\\frac{3t^2}{5}}$，偶数次贡献为 $\\frac{\\frac{3t^2}{20}}{1-\\frac{3t^2}{5}}$。"
+      ],
+      "answer": "$G_X(t)=\\frac{5t+3t^2}{20-12t^2}$。"
+    },
+    {
+      "title": "求独立变量之和的 PGF",
+      "method": "将 PGFs 相乘。若有 $n$ 个独立同分布的变量，则取单个 PGF 的 $n$ 次幂。",
+      "question": "Keira 投两枚公平硬币，正面数记为 $X$。Hassan 独立投三枚正面概率为 $\\frac{1}{3},\\frac{1}{3},\\frac{1}{4}$ 的硬币，正面数记为 $Y$。求 $G_{X+Y}(t)$。",
+      "steps": [
+        "$G_X(t)=\\frac{(1+t)^2}{4}$ 和 $G_Y(t)=\\frac{12+16t+7t^2+t^3}{36}$。",
+        "将多项式相乘。"
+      ],
+      "answer": "$$\\begin{aligned}G_{X+Y}(t)&=\\frac{12+40t+51t^2}{144}\\\\[0.6em]&\\quad+\\frac{31t^3+9t^4+t^5}{144}.\\end{aligned}$$"
+    },
+    {
+      "title": "求 aX+b 变换后的 PGF",
+      "method": "将原 PGF 中的 $t$ 替换成 $t^a$，再乘以 $t^b$。",
+      "question": "已知 $G_X(t)=\\frac{1}{2}+\\frac{t}{3}+\\frac{t^2}{6}$。求 $2X+1$ 的 PGF。",
+      "steps": [
+        "$G_{2X+1}(t)=t[\\frac{1}{2}+\\frac{t^2}{3}+\\frac{t^4}{6}]$。"
+      ],
+      "answer": "$\\frac{t}{2}+\\frac{t^3}{3}+\\frac{t^5}{6}$。"
+    }
+  ],
+  "equilibrium": [
+    {
+      "title": "求 moment 或列 moments 平衡方程",
+      "method": "每个力乘以 pivot 到其作用线的垂直距离。选定一个转动方向为正。平衡时，顺时针与逆时针的 moments 大小相等。",
+      "question": "7 N 的力产生顺时针 moment，垂直距离为 3 m。5.5 N 的力产生逆时针 moment，垂直距离为 2 m。求 resultant moment。",
+      "steps": [
+        "取顺时针为正，得 $M=7(3)-5.5(2)=10\\text{ N m}$。"
+      ],
+      "answer": "$10\\text{ N m}$，方向为顺时针。"
+    },
+    {
+      "title": "求 particles 或 framework 的 centre of mass",
+      "method": "选定原点。每个坐标分别用质量乘坐标后求和，再除以总质量。",
+      "question": "轻质矩形框架四角为 $A(0,0)$、$B(5,0)$、$C(5,3)$ 和 $D(0,3)$，坐标单位为米。A、B、C、D 分别放置 2 kg、4 kg、7 kg 和 2.5 kg 的物体。求 centre of mass。",
+      "steps": [
+        "总质量为 $M=2+4+7+2.5=15.5\\text{ kg}$。",
+        "$15.5\\bar{x}=2(0)+4(5)+7(5)+2.5(0)=55$。",
+        "$15.5\\bar{y}=2(0)+4(0)+7(3)+2.5(3)=28.5$。"
+      ],
+      "answer": "$G\\left(\\frac{110}{31},\\frac{57}{31}\\right)\\text{ m}$。"
+    },
+    {
+      "title": "用积分求 lamina 的 centre of mass",
+      "method": "取一条竖直薄条。质量与面积成正比，其 centre of mass 在薄条高度的中点。",
+      "question": "求顶点为 $O(0,0)$、$Q(d,0)$ 和 $P(d,h)$ 的均匀三角形 lamina 的 centre of mass。",
+      "steps": [
+        "上边界为 $y=\\frac{h}{d}x$，面积为 $A=\\frac12dh$。",
+        "$\\bar{x}=\\frac{\\int_0^d x(hx/d)\\,dx}{dh/2}=\\frac{2d}{3}$。",
+        "$\\bar{y}=\\frac{\\frac12\\int_0^d(hx/d)^2\\,dx}{dh/2}=\\frac{h}{3}$。"
+      ],
+      "answer": "$G\\left(\\frac{2d}{3},\\frac{h}{3}\\right)$。"
+    },
+    {
+      "title": "求 circular sector 的 centre of mass",
+      "method": "总夹角用弧度表示为 2α。centre of mass 在角平分线上。lamina 用面积公式，wire 用弧长公式。",
+      "question": "求半径为 $r$ 的均匀四分之一圆盘的 centre of mass 到圆心 O 的距离。",
+      "steps": [
+        "总夹角为 $2\\alpha=\\pi/2$，所以 $\\alpha=\\pi/4$。",
+        "$OG=\\frac{2r\\sin(\\pi/4)}{3\\pi/4}=\\frac{4\\sqrt2\\,r}{3\\pi}$。",
+        "centre of mass 在角平分线上。若两条直边为坐标轴，坐标为 $\\left(\\frac{4r}{3\\pi},\\frac{4r}{3\\pi}\\right)$。"
+      ],
+      "answer": "$OG=\\frac{4\\sqrt2\\,r}{3\\pi}$。"
+    },
+    {
+      "title": "挖去部分面积后求 centre of mass",
+      "method": "均匀 lamina 可用面积作为权重。挖去的部分面积为负，相应的 moments 也要减去。",
+      "question": "均匀圆形 lamina 半径为 15 cm，圆心为 O。挖去半径为 4 cm、2 cm 和 5 cm 的圆孔，圆心分别为 $(-6,7)$、$(10,3)$ 和 $(-3,-6)$。求剩余部分的 centre of mass。",
+      "steps": [
+        "约去公因子 $\\pi$，剩余面积的系数为 $225-16-4-25=180$。",
+        "$180\\bar{x}=225(0)-16(-6)-4(10)-25(-3)=131$。",
+        "$180\\bar{y}=225(0)-16(7)-4(3)-25(-6)=26$。"
+      ],
+      "answer": "$G\\left(\\frac{131}{180},\\frac{13}{90}\\right)\\text{ cm}$。"
+    },
+    {
+      "title": "求 composite wire 的 centre of mass",
+      "method": "每一段的质量等于 linear density 乘长度。半圆弧的 centre of mass 在对称轴上，距圆心 2r/π。",
+      "question": "字母 P 由从 $(0,0)$ 到 $(0,4a)$ 的直线 wire 与半径为 $a$、圆心在 $(0,3a)$ 的右半圆 wire 组成。弧线的 linear density 是直线的三倍。求 centre of mass。",
+      "steps": [
+        "设直线的 linear density 为 $\\lambda$，两段质量分别为 $4a\\lambda$ 和 $3\\pi a\\lambda$。",
+        "两段各自的 centre of mass 为 $(0,2a)$ 和 $(2a/\\pi,3a)$。",
+        "$\\bar{x}=\\frac{3\\pi a\\lambda(2a/\\pi)}{(4+3\\pi)a\\lambda}=\\frac{6a}{4+3\\pi}$。",
+        "$\\bar{y}=\\frac{4a\\lambda(2a)+3\\pi a\\lambda(3a)}{(4+3\\pi)a\\lambda}=\\frac{(8+9\\pi)a}{4+3\\pi}$。"
+      ],
+      "answer": "$G\\left(\\frac{6a}{4+3\\pi},\\frac{(8+9\\pi)a}{4+3\\pi}\\right)$。"
+    },
+    {
+      "title": "求 composite solid 的 centre of mass",
+      "method": "用 density 乘体积求质量。挖去的部分需同时扣去质量和 moment。所有距离从同一个参考平面量起。",
+      "question": "一个均匀 cone 的高为 $3a$，底面半径为 $a$。从顶点切去高为 $a$ 的相似小 cone，留下 frustum。求其 centre of mass 到较小平面的距离。",
+      "steps": [
+        "小 cone 半径为 $a/3$，原 cone 与小 cone 的质量比为 $27:1$。",
+        "从原顶点量起，两者的 centre of mass 分别位于 $9a/4$ 和 $3a/4$。",
+        "$\\bar{x}=\\frac{27(9a/4)-3a/4}{27-1}=\\frac{30a}{13}$。",
+        "小平面到原顶点的距离为 $a$，因此所求距离为 $\\frac{30a}{13}-a=\\frac{17a}{13}$。"
+      ],
+      "answer": "到较小平面的距离为 $\\frac{17a}{13}$。"
+    },
+    {
+      "title": "求自由悬挂时的角度",
+      "method": "先求组合体的 centre of mass。由 A 悬挂时，AG 竖直。用 A、G 和对称轴构成的直角三角形求角度。",
+      "question": "半径为 $r$、高为 $3r$ 的实心 cone 与半径为 $r$ 的实心 hemisphere 在底面拼合。cone 的 density 是 hemisphere 的四倍。AB 为公共平面的直径。求 centre of mass 相对 AB 的位置，以及从 A 悬挂时 AB 与竖直方向的夹角。",
+      "steps": [
+        "取公共平面为 $x=0$，朝 cone 的方向为正。两部分质量比为 $6:1$。",
+        "两者的 centre of mass 分别位于 $3r/4$ 和 $-3r/8$，所以 $\\bar{x}=\\frac{6(3r/4)-3r/8}{7}=\\frac{33r}{56}$。",
+        "悬挂点到轴线的距离为 $r$，所以 $\\tan\\theta=\\frac{33r/56}{r}=\\frac{33}{56}$。"
+      ],
+      "answer": "centre of mass 位于 AB 朝 cone 一侧 $\\frac{33r}{56}$ 处，$\\theta=\\tan^{-1}(33/56)\\approx30.5^\\circ$。"
+    },
+    {
+      "title": "求开始 toppling 的坡度",
+      "method": "到达 toppling 极限时，经过 centre of mass 的竖直线穿过下坡侧边缘。用该边缘与 centre of mass 构成的直角三角形求角度。",
+      "question": "均匀长方体在粗糙斜面上，沿坡底宽为 $a$，垂直坡面的高度为 $2a$。缓慢增大坡度，且 friction 足以防止滑动。求刚要 toppling 时的坡角。",
+      "steps": [
+        "centre of mass 在长方体中央，所以 $b=a/2$ 和 $h=a$。",
+        "临界时 $\\tan\\theta=\\frac{a/2}{a}=\\frac12$。"
+      ],
+      "answer": "$\\theta=\\tan^{-1}(1/2)\\approx26.6^\\circ$。"
+    },
+    {
+      "title": "求 ladder 的 limiting friction",
+      "method": "画出所有作用力。smooth wall 只提供 normal reaction。沿水平和竖直方向分解力，再对梯脚取 moments。limiting equilibrium 时 F = μR。",
+      "question": "长度为 $a$、质量为 $2m$ 的均匀梯子，下端位于粗糙水平地面，上端靠在光滑竖直墙上，与墙夹角为 $30^\\circ$。质量为 $5m$ 的油漆工站在离梯脚四分之一梯长处。求最小 coefficient of friction。",
+      "steps": [
+        "设墙的 reaction 为 $S$，地面的 friction 为 $F$，地面的 normal reaction 为 $R$。分解得 $F=S$ 和 $R=7mg$。",
+        "对梯脚取 moments，得 $Sa\\cos30^\\circ=2mg\\frac{a}{2}\\sin30^\\circ+5mg\\frac{a}{4}\\sin30^\\circ$。",
+        "$S=\\frac{3\\sqrt3}{4}mg$。coefficient of friction 取最小值时，$\\mu R=F=S$。",
+        "$\\mu_{\\min}=\\frac{3\\sqrt3\\,mg/4}{7mg}=\\frac{3\\sqrt3}{28}$。"
+      ],
+      "answer": "$\\mu_{\\min}=\\frac{3\\sqrt3}{28}$。"
+    },
+    {
+      "title": "求由 string 支撑的 rod 的 equilibrium",
+      "method": "画出沿 string 方向的 tension 和垂直墙面的 normal reaction。先对接触点取 moments 求 tension，再分解力求 friction 和 normal reaction。",
+      "question": "均匀 rod AB 的长为 $2a$，质量为 $m$。A 与粗糙竖直墙接触，AB 从 A 向上倾斜。B 由长度为 $2a$ 的轻质不可伸长 string 连到墙上 A 上方的 C。角 ABC 为 $60^\\circ$。求阻止 A 向下滑所需的最小 coefficient of friction。",
+      "steps": [
+        "三角形 ABC 为等边三角形，所以 rod 与水平方向的夹角为 $30^\\circ$。",
+        "对 A 取 moments，得 $2aT\\sin60^\\circ=mga\\cos30^\\circ$，所以 $T=mg/2$。",
+        "水平方向得 $R=T\\cos30^\\circ=\\sqrt3\\,mg/4$。",
+        "竖直方向得 $F+T\\sin30^\\circ=mg$，所以 $F=3mg/4$。",
+        "平衡要求 $\\mu\\ge F/R=\\sqrt3$。"
+      ],
+      "answer": "$\\mu\\ge\\sqrt3$。"
+    },
+    {
+      "title": "判断物体会 sliding 还是 toppling",
+      "method": "分别求 friction 极限与 toppling 极限。即将 toppling 时，normal reaction 经过边缘。把外力与两个极限比较。",
+      "question": "均匀直角三角形 prism 的质量为 $m$，截面顶点为 $(0,0)$、$(a,0)$ 和 $(0,2a)$。物体置于水平底面上，顶点受到水平向右的力 $X$。判断三种情况 (a) $X=mg/5$、$\\mu=3/4$，(b) $X=mg/4$、$\\mu=1/5$，(c) $X=mg/3$、$\\mu=1/2$。",
+      "steps": [
+        "centre of mass 位于 $(a/3,2a/3)$。沿竖直方向分解得 $R=mg$，所以 sliding 极限为 $X=\\mu mg$。",
+        "在 toppling 极限时对底部右侧边缘取 moments，得到 $X(2a)=mg(2a/3)$，所以 $X_{\\rm topple}=mg/3$。",
+        "(a) $mg/5$ 小于 $3mg/4$ 和 $mg/3$，物体保持平衡。",
+        "(b) $mg/4>mg/5$ 但 $mg/4<mg/3$，所以发生 sliding。",
+        "(c) $X=mg/3<mg/2$，在 sliding 前先到达 toppling 极限。"
+      ],
+      "answer": "(a) 平衡，(b) sliding，(c) 刚要 toppling。"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 topicId: integration
-description: "Develop the substitutions, recurrences and geometric arguments behind further integration."
+description: "推导 substitution、reduction formula 和积分的几何应用。"
 sources:
   - "FP2 CH4 Integration 1 更新.pdf, pp. 1–6"
   - "FP2 CH4 Integration 2.pdf, pp. 1–4"
@@ -8,31 +8,39 @@ sources:
 
 import Graph from '../../components/ExampleGraph.astro';
 
-## Choose a substitution from the expression
+<span className="legacy-anchor" id="choose-a-substitution-from-the-expression"/>
 
-The notes match radicals to identities. For $\sqrt{a^2-x^2}$ use $x=a\sin\theta$ on a branch with $\cos\theta\ge0$. For $\sqrt{a^2+x^2}$ use $x=a\sinh t$, since $1+\sinh^2t=\cosh^2t$. For $\sqrt{x^2-a^2}$ on $x>a>0$, $x=a\cosh t$ with $t>0$ gives $a\sinh t$. Carry the differential and any integration limits through the substitution.
+### 按被积式选择 substitution
 
-For $a>0$ the second choice makes $\int dx/\sqrt{a^2+x^2}=\int dt$, giving $\operatorname{arsinh}(x/a)+C$. For a quadratic without a radical, completing the square often exposes an inverse-function derivative. For example $x^2+2x+2=(x+1)^2+1$, so its reciprocal integrates to $\arctan(x+1)+C$.
+原笔记将不同根式与恒等式配对。遇到 $\sqrt{a^2-x^2}$，取 $x=a\sin\theta$，选择满足 $\cos\theta\ge0$ 的分支。遇到 $\sqrt{a^2+x^2}$，取 $x=a\sinh t$，因为 $1+\sinh^2t=\cosh^2t$。遇到 $\sqrt{x^2-a^2}$ 且 $x>a>0$ 时，用 $x=a\cosh t$ 并取 $t>0$，可化为 $a\sinh t$。记得一并变换微分和积分上下限。
 
-## Parts and reduction formulas
+当 $a>0$ 时，第二种 substitution 将 $\int dx/\sqrt{a^2+x^2}=\int dt$，结果为 $\operatorname{arsinh}(x/a)+C$。二次式没有根号时，completing the square 往往能找出 inverse function 的导数。例如 $x^2+2x+2=(x+1)^2+1$，其倒数积分为 $\arctan(x+1)+C$。
 
-Integrate the product rule $(uv)'=u'v+uv'$ and rearrange to get $\int u\,dv=uv-\int v\,du$. Choose $u$ so its derivative is simpler, as with a polynomial times an exponential.
+<span className="legacy-anchor" id="parts-and-reduction-formulas"/>
 
-For $I_n=\int_0^1x^ne^x\,dx$ with $n\ge1$, take $u=x^n$, $dv=e^x\,dx$. The boundary term is $e$, so $I_n=e-nI_{n-1}$. Start from $I_0=e-1$, then $I_1=1$ and $I_2=e-2$. For powers of trig or hyperbolic functions, use an identity after applying parts so the remaining integral has the same pattern at a lower power.
+### Integration by parts 与 reduction formula
 
-## Arc length and surface area
+对 product rule $(uv)'=u'v+uv'$ 积分并整理，得到 $\int u\,dv=uv-\int v\,du$。选择求导后更简单的 $u$，例如多项式乘指数函数时选择多项式。
 
-A short curve segment has length approximately $\sqrt{(\Delta x)^2+(\Delta y)^2}$. In the limit the Cartesian length element is $\sqrt{1+(dy/dx)^2}\,dx$ for increasing $x$. With a parameter use $\sqrt{(dx/dt)^2+(dy/dt)^2}\,dt$. In polar coordinates the radial and angular contributions are perpendicular, giving $\sqrt{(dr/d\theta)^2+r^2}\,d\theta$.
+对 $I_n=\int_0^1x^ne^x\,dx$ 且 $n\ge1$，取 $u=x^n$ 和 $dv=e^x\,dx$。边界项是 $e$，因此 $I_n=e-nI_{n-1}$。从 $I_0=e-1$ 出发，依次得到 $I_1=1$ 和 $I_2=e-2$。对于 trigonometric 或 hyperbolic functions 的幂，做完 integration by parts 后用恒等式整理，使剩下的积分具有相同形式但幂次更低。
 
-For $y=\cosh x$ the square root simplifies to $\cosh x$, so the length from $0$ to $\ln2$ is $\sinh(\ln2)=3/4$.
+<span className="legacy-anchor" id="arc-length-and-surface-area"/>
+
+### Arc length 与 surface area
+
+短曲线段的长度约为 $\sqrt{(\Delta x)^2+(\Delta y)^2}$。取极限后，Cartesian form 的长度微元为 $\sqrt{1+(dy/dx)^2}\,dx$，这里 $x$ 递增。用参数表示时取 $\sqrt{(dx/dt)^2+(dy/dt)^2}\,dt$。在 polar coordinates 中，沿半径和沿切向的微小位移互相垂直，因此长度微元为 $\sqrt{(dr/d\theta)^2+r^2}\,d\theta$。
+
+对 $y=\cosh x$，根号可化简为 $\cosh x$，因此从 $0$ 到 $\ln2$ 的长度是 $\sinh(\ln2)=3/4$。
 
 <Graph name="arc-length"/>
 
-When rotating the segment about an axis, it sweeps a thin band. Multiply its length by the circumference $2\pi R$, where $R$ is the distance to the axis. Integrate $2\pi R\,ds$. Rotation about the $x$-axis uses $R=|y|$, while rotation about the $y$-axis uses $R=|x|$.
+曲线小段绕轴转一周扫出一条窄带。用长度微元乘圆周长 $2\pi R$，其中 $R$ 是到旋转轴的距离，再对 $2\pi R\,ds$ 积分。绕 $x$ 轴旋转时取 $R=|y|$，绕 $y$ 轴旋转时取 $R=|x|$。
 
-## Compare a sum with areas
+<span className="legacy-anchor" id="compare-a-sum-with-areas"/>
 
-For a positive decreasing $f$, the rectangles with left endpoints sit above the curve. Those with right endpoints sit below it. This gives
+### 用面积比较级数的和
+
+对正的递减函数 $f$，用左端点定高的矩形在曲线上方，右端点定高的矩形在曲线下方，因此有下式。
 
 $$
 \int_1^{n+1} f(x)\,dx
@@ -40,4 +48,4 @@ $$
 \;\le\; f(1)+\int_1^n f(x)\,dx.
 $$
 
-With $f(x)=1/x^2$ the upper bound is at most $2$. Positive terms make the partial sums increasing, so the bounded sequence converges. With $f(x)=1/x$, the lower bound $\ln(n+1)$ grows without limit, which proves divergence.
+取 $f(x)=1/x^2$ 时，上界至多为 $2$。各项为正使 partial sums 递增，所以有上界的数列收敛。取 $f(x)=1/x$ 时，下界 $\ln(n+1)$ 不断增大，故级数发散。

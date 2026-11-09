@@ -1,49 +1,59 @@
 ---
 topicId: matrices1
-description: "Develop matrix multiplication and inversion, then interpret matrices as transformations of the plane."
+description: "理解矩阵的乘法和 inverse，再用矩阵描述平面 transformation。"
 sources:
   - "FP1 CH4 Matrix.pdf, pp. 1–6"
 ---
 
-## Multiplication and the identity
+<span className="legacy-anchor" id="multiplication-and-the-identity"/>
 
-An entry of $AB$ is a row of $A$ dotted with a column of $B$. In a transformation, $AB\mathbf v$ applies $B$ first because $B$ acts directly on $\mathbf v$. The identity matrix leaves every vector fixed. An inverse undoes the effect of the original matrix, so $A^{-1}A=AA^{-1}=I$.
+### 矩阵乘法与 identity matrix
 
-## Determinants, cofactors and inverse matrices
+$AB$ 的每个元素都是 $A$ 的一行与 $B$ 的一列做 dot product。在 transformation $AB\mathbf v$ 中先做 $B$，因为 $B$ 直接作用于 $\mathbf v$。identity matrix 保持所有向量不变。inverse 撤销原矩阵的作用，所以 $A^{-1}A=AA^{-1}=I$。
 
-For $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, the determinant $ad-bc$ gives signed area scaling. A zero determinant collapses area and gives a singular matrix. Multiplying by the cofactor transpose verifies the two-by-two inverse:
+<span className="legacy-anchor" id="determinants-cofactors-and-inverse-matrices"/>
+
+### Determinant、cofactor 和 inverse
+
+对于 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$，determinant $ad-bc$ 表示有符号的面积缩放倍数。determinant 为零时，平面图形被压到低维空间，矩阵为 singular matrix。将矩阵乘以 cofactor matrix 的 transpose，可验证二阶 inverse 的公式。
 
 $$
 A\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
 =(ad-bc)I.
 $$
 
-For a three-by-three matrix, obtain a minor by deleting one row and one column. Apply the checkerboard signs $(-1)^{i+j}$ to make the cofactor matrix $C$. Expansion along a row computes the determinant, and $A^{-1}=C^{\mathsf T}/\det A$ when the determinant is nonzero. The transpose puts the cofactors in the positions required for the product $AC^{\mathsf T}$.
+对三阶矩阵，删去一行一列可得到 minor 对应的子矩阵。对各 minor 加上符号 $(-1)^{i+j}$，组成 cofactor matrix $C$。沿一行展开求 determinant，determinant 非零时 $A^{-1}=C^{\mathsf T}/\det A$。transpose 将 cofactors 放在乘积 $AC^{\mathsf T}$ 所需的位置。
 
-## Row operations as another route to the inverse
+<span className="legacy-anchor" id="row-operations-as-another-route-to-the-inverse"/>
 
-The notes also place $A$ next to $I$. A row operation acts on the whole augmented row. If the accumulated operations turn $A$ into $I$, those same operations have turned $I$ into $A^{-1}$:
+### 用 row operations 求 inverse
+
+把 $A$ 与 $I$ 并排写成 augmented matrix。每次操作作用在整行上。若一系列操作将 $A$ 化为 $I$，同一组操作就把 $I$ 化为 $A^{-1}$。
 
 $$
 [A\mid I]\longrightarrow[I\mid A^{-1}].
 $$
 
-For $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$, subtract three times row 1 from row 2 to get $[0,-2\mid -3,1]$. Divide row 2 by $-2$ and subtract twice the new row 2 from row 1. The right-hand rows are then $(-2,1)$ and $(3/2,-1/2)$, which agree with the cofactor formula. A missing pivot after checking for a row swap signals singularity.
+对 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$，用第二行减去第一行的三倍得 $[0,-2\mid -3,1]$。第二行除以 $-2$，再用第一行减去新第二行的两倍。右侧两行变成 $(-2,1)$ 和 $(3/2,-1/2)$，与 cofactor 方法一致。如果换行后仍无法找到 pivot，矩阵为 singular matrix。
 
-## Read transformations from the columns
+<span className="legacy-anchor" id="read-transformations-from-the-columns"/>
 
-The two columns are the images of $(1,0)$ and $(0,1)$. That gives a practical way to construct or identify a matrix.
+### 从列向量识别 transformation
 
-| Transformation | Image of $(1,0)$ | Image of $(0,1)$ |
+矩阵两列分别是 $(1,0)$ 和 $(0,1)$ 的像。用这个规律可以构造矩阵，也可以识别已有矩阵表示的 transformation。
+
+| 变换 | 像 $(1,0)$ | 像 $(0,1)$ |
 | --- | --- | --- |
-| Reflect in the horizontal axis | $(1,0)$ | $(0,-1)$ |
-| Reflect in $y=x$ | $(0,1)$ | $(1,0)$ |
-| Rotate anticlockwise by $\theta$ | $(\cos\theta,\sin\theta)$ | $(-\sin\theta,\cos\theta)$ |
-| Horizontal shear | $(1,0)$ | $(k,1)$ |
-| Stretch horizontally by $k$ | $(k,0)$ | $(0,1)$ |
+| 关于横轴作 reflection | $(1,0)$ | $(0,-1)$ |
+| 关于以下直线作 reflection $y=x$ | $(0,1)$ | $(1,0)$ |
+| 逆时针 rotation，角度 $\theta$ | $(\cos\theta,\sin\theta)$ | $(-\sin\theta,\cos\theta)$ |
+| 水平 shear | $(1,0)$ | $(k,1)$ |
+| 水平 stretch，倍数 $k$ | $(k,0)$ | $(0,1)$ |
 
-For example, rotate $(1,0)$ anticlockwise by $90^\circ$ and then reflect in $y=x$. The intermediate vector is $(0,1)$ and the final vector is $(1,0)$. Reversing the operation order changes this answer. To undo both, undo the reflection first and then undo the rotation, which explains $(AB)^{-1}=B^{-1}A^{-1}$.
+例如，将 $(1,0)$ 逆时针旋转 $90^\circ$，再关于 $y=x$ 作 reflection。中间结果为 $(0,1)$，最终为 $(1,0)$。调换顺序会改变结果。若要撤销这两个操作，先撤销 reflection，再撤销 rotation，因此 $(AB)^{-1}=B^{-1}A^{-1}$。
 
-## Invariant lines and fixed points
+<span className="legacy-anchor" id="invariant-lines-and-fixed-points"/>
 
-On an invariant line, the transformed points stay on the same line. Individual points can move. For a line through the origin with direction $\mathbf v$, seek $A\mathbf v=k\mathbf v$ with $k\ne0$ so the image still spans the line. The special value $k=1$ gives fixed points along that line. For a line away from the origin, check both its direction and that the image of one chosen point lies back on it.
+### Invariant lines 与 fixed points
+
+invariant line 上的点经过变换仍在原直线上，但点的位置可以移动。对过原点、方向为 $\mathbf v$ 的直线，令 $A\mathbf v=k\mathbf v$，其中 $k\ne0$，使变换后的向量仍张成原直线。$k=1$ 时线上各点都是 fixed points。若直线不过原点，既要检查方向，也要检查线上一点的像是否还在该直线上。

@@ -672,7 +672,7 @@
       "number": 3,
       "id": "type-3",
       "title": "Find and classify a parametric stationary point",
-      "method": "Solve $\\frac{dy}{dt}=0$ where $dx/dt\ne0$. Substitute the parameter into $(x,y)$ and use the second derivative to classify it.",
+      "method": "Solve $\\frac{dy}{dt}=0$ where $dx/dt\\ne0$. Substitute the parameter into $(x,y)$ and use the second derivative to classify it.",
       "formula": "$$\\frac{dy}{dx}=0;\\qquad y''<0:\\text{ maximum},\\quad y''>0:\\text{ minimum}.$$ ",
       "question": "For $x=t^4+t$, $y=t^3-3t^2$, find the stationary points and their nature.",
       "steps": [

@@ -1,5 +1,7 @@
 # Roll back / 回滚到上一个版本
 
+Use **`before-merged-chinese-notes-2026-11-09`** as **revision** to publish the separate English Learn and Revision Notes pages (commit **`fc9f4071bc36fcfa421cb4c9c058e3021c7bc2a9`**).
+
 The version immediately before adding Learn is saved as **`before-learning-section-2026-11-09`** at commit **`d4f392b6b2fc25733fb0d7d9cc790b7e0c52fa2f`**. Enter that tag in **revision** to publish the previous version.
 
 The version before pairing Mechanics diagrams with questions is saved as **`before-mechanics-diagrams-2026-11-05`** at commit **`db0182b426e8e0fc36f1ff3f530c9a0684e1dc2b`**. Enter that tag in **revision** to restore it.

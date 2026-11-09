@@ -1,34 +1,40 @@
 ---
 topicId: series
-description: "Derive summation formulas by cancellation and use finite partial sums to decide convergence."
+description: "通过相消推导求和公式，再用 finite partial sums 判断 convergence。"
 sources:
   - "FP1 CH2 Rational functions &CH3  series.pdf, pp. 6–8"
 ---
 
-## From terms to partial sums
+<span className="legacy-anchor" id="from-terms-to-partial-sums"/>
 
-The index $r$ tells you which term to substitute. The upper limit $n$ tells you where to stop. For example, $1+3+\cdots+(2n-1)=\sum_{r=1}^n(2r-1)$. Split the sum into $2\sum r-\sum1$ to get $n(n+1)-n=n^2$.
+### 从通项到 partial sum
 
-## Why the standard power sums work
+下标 $r$ 决定代入哪一项，上限 $n$ 决定加到哪里。例如 $1+3+\cdots+(2n-1)=\sum_{r=1}^n(2r-1)$。将和拆为 $2\sum r-\sum1$，得到 $n(n+1)-n=n^2$。
 
-The notes obtain the power sums by expanding successive differences. Write out $(r+1)^3-r^3=3r^2+3r+1$ and sum from $1$ to $n$. On the left, every middle cube cancels. The result is
+<span className="legacy-anchor" id="why-the-standard-power-sums-work"/>
+
+### 推导标准 power sums
+
+原笔记从相邻幂次的差入手。展开 $(r+1)^3-r^3=3r^2+3r+1$，从 $1$ 加到 $n$。左侧中间的立方项两两相消，得到下式。
 
 $$
 (n+1)^3-1
 =3\sum_{r=1}^n r^2+3\frac{n(n+1)}2+n.
 $$
 
-Rearranging gives $\sum r^2=n(n+1)(2n+1)/6$. Using $(r+1)^4-r^4$ and the already-known sums similarly gives $\sum r^3=[n(n+1)/2]^2$. If a sum starts at $r=m$, subtract the partial sum up to $m-1$.
+整理得 $\sum r^2=n(n+1)(2n+1)/6$。同理，展开 $(r+1)^4-r^4$ 并使用已知的和，可得到 $\sum r^3=[n(n+1)/2]^2$。若从 $r=m$ 开始求和，则减去到 $m-1$ 为止的 partial sum。
 
-## The method of differences
+<span className="legacy-anchor" id="the-method-of-differences"/>
 
-Rewrite each term as a difference of nearby expressions. For example, partial fractions give
+### 使用 method of differences
+
+把每一项写成相近两项的差。例如，用 partial fractions 得到下式。
 
 $$
 \frac1{r(r+1)}=\frac1r-\frac1{r+1}.
 $$
 
-Writing out the first two terms and the last term shows exactly what remains:
+写出前两项和最后一项，就能看清哪些项保留下来。
 
 $$
 \begin{aligned}
@@ -38,8 +44,10 @@ S_n&=(1-\tfrac12)+(\tfrac12-\tfrac13)+\cdots+
 \end{aligned}
 $$
 
-With a difference such as $f(r)-f(r+2)$, two terms survive at each end. The same pattern works with trigonometric differences after a product-to-sum identity has produced the matching expressions.
+像 $f(r)-f(r+2)$ 这样的差会在首尾各留下两项。若用 product-to-sum identity 把三角式写成相近两项的差，也可用相同方法。
 
-## Decide what happens at infinity
+<span className="legacy-anchor" id="decide-what-happens-at-infinity"/>
 
-The infinite sum is the limit of the *finite partial sums*. In the example above, $1/(n+1)\to0$ and the sum is $1$. A geometric partial sum tends to a finite value when the nonzero first term has common ratio with $|q|<1$. A telescoping boundary term that oscillates or grows can stop the sum from converging. For instance $\sum_{r=1}^n[(-1)^{r+1}-(-1)^r]=1-(-1)^n$ alternates between $0$ and $2$.
+### 判断无穷级数的 convergence
+
+无穷级数的和是 finite partial sums 的极限。上例中，$1/(n+1)\to0$，故无穷和为 $1$。首项非零的 geometric series 在公比满足 $|q|<1$ 时收敛。相消后剩下的边界项若振荡或不断增大，极限可能不存在。例如 $\sum_{r=1}^n[(-1)^{r+1}-(-1)^r]=1-(-1)^n$ 在 $0$ 和 $2$ 之间交替。

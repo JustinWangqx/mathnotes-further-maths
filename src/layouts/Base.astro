@@ -13,18 +13,18 @@ interface Props {
   learningResourceType?: string;
   documents?: {name:string;href:string}[];
 }
-const {title='CIE A Level Mathematics & Further Mathematics',seoTitle=title==='CIE A Level Mathematics & Further Mathematics'?`${title} | MathNotes`:`${title} | CIE A Level Further Maths | MathNotes`,description='Free Cambridge International (CIE/CAIE) A Level Further Mathematics 9231 lessons, revision notes, worked examples, past-paper question collections and the MF19 formula sheet.',active='home',noindex=false,learningResourceType,documents=[]}=Astro.props;
-const nav=[['home','Overview','','home'],['learn','Learn','learn/','book'],['notes','Revision Notes','notes/','map'],['papers','Question papers','papers/','papers']];
+const {title='CIE A Level Mathematics & Further Mathematics',seoTitle=title==='CIE A Level Mathematics & Further Mathematics'?`${title} | MathNotes`:`${title} | CIE A Level Further Maths | MathNotes`,description='Cambridge International (CIE/CAIE) A Level Further Mathematics 9231 中文笔记、例题、历年试题和 MF19 公式表。',active='home',noindex=false,learningResourceType,documents=[]}=Astro.props;
+const nav=[['home','首页','','home'],['notes','专题笔记','notes/','map'],['papers','历年试题','papers/','papers']];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const home = new URL(url(),Astro.site).href;
 const image = new URL(url('social-preview.png'),Astro.site).href;
-const breadcrumbs = Astro.props.breadcrumbs || (canonical.href===home?[]:[{name:'Home',href:url()},{name:title,href:Astro.url.pathname}]);
+const breadcrumbs = Astro.props.breadcrumbs || (canonical.href===home?[]:[{name:'首页',href:url()},{name:title,href:Astro.url.pathname}]);
 const structuredData = {
   '@context':'https://schema.org','@graph':[
-    {'@type':'WebSite','@id':`${home}#website`,url:home,name:'MathNotes',alternateName:['CIE A Level Maths Notes','CAIE Further Mathematics Notes'],inLanguage:'en',description:'Cambridge International A Level Mathematics and Further Mathematics revision resources. Current notes and question collections focus on Further Mathematics 9231.'},
-    {'@type':learningResourceType?['WebPage','LearningResource']:'WebPage','@id':`${canonical}#webpage`,url:canonical.href,name:seoTitle,description,inLanguage:'en',isPartOf:{'@id':`${home}#website`},isAccessibleForFree:true,
+    {'@type':'WebSite','@id':`${home}#website`,url:home,name:'MathNotes',alternateName:['CIE A Level Maths Notes','CAIE Further Mathematics Notes'],inLanguage:'zh-CN',description:'Cambridge International A Level Further Mathematics 9231 中文专题笔记与历年试题。'},
+    {'@type':learningResourceType?['WebPage','LearningResource']:'WebPage','@id':`${canonical}#webpage`,url:canonical.href,name:seoTitle,description,inLanguage:'zh-CN',isPartOf:{'@id':`${home}#website`},isAccessibleForFree:true,
       ...(learningResourceType?{learningResourceType,educationalLevel:'A Level',educationalAlignment:{'@type':'AlignmentObject',alignmentType:'educationalSubject',targetName:'Cambridge International A Level Further Mathematics (9231)'}}:{}),
-      ...(learningResourceType==='Revision notes'?{author:{'@type':'Person',name:'Justin Wang'}}:{}),
+      ...(learningResourceType==='Lesson'?{author:{'@type':'Person',name:'Justin Wang'}}:{}),
       ...(breadcrumbs.length?{breadcrumb:{'@id':`${canonical}#breadcrumbs`}}:{}),
       ...(documents.length?{associatedMedia:documents.map(doc=>({'@type':'MediaObject',name:doc.name,contentUrl:new URL(doc.href,Astro.site).href,encodingFormat:'application/pdf'}))}:{})},
     ...(breadcrumbs.length?[{'@type':'BreadcrumbList','@id':`${canonical}#breadcrumbs`,itemListElement:breadcrumbs.map((crumb,i)=>({'@type':'ListItem',position:i+1,name:crumb.name,item:new URL(crumb.href,Astro.site).href}))}]:[])
@@ -32,31 +32,31 @@ const structuredData = {
 };
 ---
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{seoTitle}</title><meta name="description" content={description}/><meta name="author" content="Justin Wang"/>
   <link rel="icon" type="image/svg+xml" href={url('favicon.svg')}/><link rel="canonical" href={canonical}/>
   <link rel="sitemap" type="application/xml" href={url('sitemap-index.xml')}/>
-  <meta property="og:title" content={seoTitle}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:site_name" content="MathNotes"/><meta property="og:locale" content="en_GB"/>
+  <meta property="og:title" content={seoTitle}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:site_name" content="MathNotes"/><meta property="og:locale" content="zh_CN"/>
   <meta property="og:image" content={image}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="MathNotes: CIE A Level Mathematics and Further Mathematics notes and question papers"/>
   <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={seoTitle}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={image}/><meta name="twitter:image:alt" content="MathNotes: CIE A Level maths revision"/>
   {!noindex&&<script type="application/ld+json" set:html={JSON.stringify(structuredData).replaceAll('<','\\u003c')}/>}
   {noindex && <meta name="robots" content="noindex"/>}
 </head>
 <body data-base={import.meta.env.BASE_URL}>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">跳到正文</a>
 <header class="site-header" data-pagefind-ignore>
-  <a class="brand" href={url()} aria-label="MathNotes home"><span class="brand-mark">m<span>·</span></span><span>MathNotes<span class="brand-sub">CIE A LEVEL MATHS NOTES</span></span></a>
+  <a class="brand" href={url()} aria-label="MathNotes 首页"><span class="brand-mark">m<span>·</span></span><span>MathNotes<span class="brand-sub">CIE A LEVEL 数学笔记</span></span></a>
   <div class="header-course"><span class="tiny-dot"></span> CIE A LEVEL <span class="divider">/</span> FURTHER MATHEMATICS <span class="course-code">9231</span></div>
-  <div class="header-actions"><a class="search-trigger" href={url('search/')} aria-label="Search lessons, revision notes and question papers"><Icon name="search" size={17}/><span>Search anything</span><kbd>/</kbd></a><button class="mobile-toggle icon-button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><Icon name="menu"/></button></div>
+  <div class="header-actions"><a class="search-trigger" href={url('search/')} aria-label="搜索笔记和试题"><Icon name="search" size={17}/><span>搜索笔记和试题</span><kbd>/</kbd></a><button class="mobile-toggle icon-button" aria-label="打开导航" aria-controls="sidebar" aria-expanded="false"><Icon name="menu"/></button></div>
 </header>
 <aside class="sidebar" id="sidebar" data-pagefind-ignore>
-  <nav aria-label="Main navigation"><p class="nav-label">YOUR STUDY DESK</p>{nav.map(([key,label,href,icon])=><a class:list={['nav-item',{active:active===key}]} aria-current={active===key?'page':undefined} href={url(href)}><Icon name={icon} size={19}/><span>{label}</span></a>)}</nav>
-  <nav class="module-nav" aria-label="Modules"><p class="nav-label">EXPLORE THE COURSE</p>{modules.map(m=><a class="module-link" href={url(`9231/${m.id}/`)}><span class={`module-dot ${m.color}`}></span>{m.title}</a>)}</nav>
-  <div class="sidebar-bottom"><a class="utility-link" href={formulaSheetUrl} target="_blank" rel="noopener"><Icon name="formula" size={17}/> MF19 formula sheet <Icon name="external" size={12}/></a><a class="utility-link" href={url('resources/')}><Icon name="link" size={17}/> Resources</a><a class="utility-link" href={url('about/')}><Icon name="info" size={17}/> About & corrections</a><span class="sidebar-edition">2026–2027 syllabus edition</span></div>
+  <nav aria-label="主导航"><p class="nav-label">学习资料</p>{nav.map(([key,label,href,icon])=><a class:list={['nav-item',{active:active===key}]} aria-current={active===key?'page':undefined} href={url(href)}><Icon name={icon} size={19}/><span>{label}</span></a>)}</nav>
+  <nav class="module-nav" aria-label="模块"><p class="nav-label">按模块浏览</p>{modules.map(m=><a class="module-link" href={url(`9231/${m.id}/`)}><span class={`module-dot ${m.color}`}></span>{m.title}</a>)}</nav>
+  <div class="sidebar-bottom"><a class="utility-link" href={formulaSheetUrl} target="_blank" rel="noopener"><Icon name="formula" size={17}/> MF19 公式表 <Icon name="external" size={12}/></a><a class="utility-link" href={url('resources/')}><Icon name="link" size={17}/> 参考资料</a><a class="utility-link" href={url('about/')}><Icon name="info" size={17}/> 关于与勘误</a><span class="sidebar-edition">适用 2026–2027 考纲</span></div>
 </aside>
-<div class="page-shell"><main id="main" data-pagefind-body={!noindex || undefined} data-pagefind-ignore={noindex || undefined}>{!noindex&&breadcrumbs.length>0&&<nav class="breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore><ol>{breadcrumbs.map((crumb,i)=><li>{i===breadcrumbs.length-1?<span aria-current="page">{crumb.name}</span>:<a href={crumb.href}>{crumb.name}</a>}</li>)}</ol></nav>}<slot/></main><footer data-pagefind-ignore><a href={url()} class="footer-brand">MathNotes<span>·</span></a><p>Made for the moment it finally makes sense.</p>{!noindex&&<VisitCounter/>}<div><a href={url('about/')}>About</a><a href={repoUrl}>GitHub <Icon name="external" size={12}/></a></div></footer></div>
+<div class="page-shell"><main id="main" data-pagefind-body={!noindex || undefined} data-pagefind-ignore={noindex || undefined}>{!noindex&&breadcrumbs.length>0&&<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol>{breadcrumbs.map((crumb,i)=><li>{i===breadcrumbs.length-1?<span aria-current="page">{crumb.name}</span>:<a href={crumb.href}>{crumb.name}</a>}</li>)}</ol></nav>}<slot/></main><footer data-pagefind-ignore><a href={url()} class="footer-brand">MathNotes<span>·</span></a><p>概念、推导与例题</p>{!noindex&&<VisitCounter/>}<div><a href={url('about/')}>关于</a><a href={repoUrl}>GitHub <Icon name="external" size={12}/></a></div></footer></div>
 <script>
   import '../scripts/global';
   import '../scripts/visits';

@@ -1,46 +1,54 @@
 ---
 topicId: differentiation
-description: "Understand implicit and parametric derivatives, inverse-function rules and how Maclaurin coefficients are built."
+description: "从 chain rule 理解 implicit 和 parametric derivatives，再推导 inverse function 的导数与 Maclaurin 系数。"
 sources:
   - "FP2 CH3 Differentiation 1.pdf, pp. 1–3"
   - "FP1 CH3 Part2.pdf, pp. 1–4 (Differentiation continuation)"
 ---
 
-## Implicit differentiation follows the chain rule
+<span className="legacy-anchor" id="implicit-differentiation-follows-the-chain-rule"/>
 
-An equation can define $y$ as a function of $x$ without isolating it. Treat each occurrence of $y$ as $y(x)$, so differentiating $y^3$ gives $3y^2y'$ and differentiating $x^2y$ uses the product rule.
+### 从 chain rule 到 implicit differentiation
 
-For the notes' curve $y^3+x^2y=e^x$, the first derivative satisfies
+即使方程里没有单独写出 $y$，它也可以是 $x$ 的函数。把每一处 $y$ 看作 $y(x)$，所以对 $y^3$ 求导得 $3y^2y'$，而对 $x^2y$ 求导需要 product rule。
+
+以笔记中的曲线 $y^3+x^2y=e^x$ 为例，一阶导数满足下式。
 
 $$
 3y^2y'+x^2y'+2xy=e^x.
 $$
 
-At $(0,1)$ this gives $y'=1/3$. To find $y''$, differentiate the entire first-derivative equation while $x,y,y'$ still vary. At $(0,1)$ the resulting equation is $6(1/3)^2+3y''+2=1$, so $y''=-5/9$.
+代入 $(0,1)$ 得 $y'=1/3$。要求 $y''$，在 $x,y,y'$ 仍视为变量时对整个一阶导数方程再求导。代入 $(0,1)$ 后得 $6(1/3)^2+3y''+2=1$，因此 $y''=-5/9$。
 
-## Parametric curves have two rates
+<span className="legacy-anchor" id="parametric-curves-have-two-rates"/>
 
-When $x$ and $y$ both depend on $t$, divide the vertical rate by the horizontal rate. Applying the same rule to the slope gives the second derivative:
+### Parametric curve 的两个变化率
+
+当 $x$ 和 $y$ 都依赖于 $t$ 时，纵坐标变化率除以横坐标变化率就是斜率。对斜率再用一次相同规则，即得二阶导数。
 
 $$
 \frac{dy}{dx}=\frac{dy/dt}{dx/dt},\qquad
 \frac{d^2y}{dx^2}=\frac{d(dy/dx)/dt}{dx/dt}.
 $$
 
-For $x=1/(t+1)$ and $y=t^2$, the slope is $-2t(t+1)^2$. Differentiating it in $t$ and dividing again by $dx/dt=-(t+1)^{-2}$ gives $2(t+1)^3(1+3t)$. Where $dx/dt\ne0$, a stationary point satisfies $dy/dt=0$. Check the second derivative or how the slope changes to classify it.
+对 $x=1/(t+1)$ 和 $y=t^2$，斜率是 $-2t(t+1)^2$。对 $t$ 求导后再次除以 $dx/dt=-(t+1)^{-2}$，得到 $2(t+1)^3(1+3t)$。在 $dx/dt\ne0$ 的条件下，stationary point 满足 $dy/dt=0$。可用二阶导数或斜率变号判断类型。
 
-## Derive an inverse-function rule
+<span className="legacy-anchor" id="derive-an-inverse-function-rule"/>
 
-For $y=\arcsin x$ use $x=\sin y$ on $[-\pi/2,\pi/2]$. Thus $1=\cos y\,dy/dx$. On the interior of the branch $\cos y=\sqrt{1-x^2}$, so $dy/dx=1/\sqrt{1-x^2}$. The arccos derivative has the opposite sign. The same approach for $x=\sinh y$ gives $(\operatorname{arsinh}x)'=1/\sqrt{1+x^2}$ because $\cosh^2 y-\sinh^2 y=1$ and $\cosh y>0$.
+### 推导 inverse function 的导数
 
-For compositions, multiply by the inner derivative. For instance $(\cosh(x^2))'=2x\sinh(x^2)$.
+对 $y=\arcsin x$，在 $x=\sin y$ 所示的关系和 $[-\pi/2,\pi/2]$ 所给区间上求导，得 $1=\cos y\,dy/dx$。在分支内部 $\cos y=\sqrt{1-x^2}$，故 $dy/dx=1/\sqrt{1-x^2}$。arccos 的导数符号相反。对 $x=\sinh y$ 使用同一思路可得 $(\operatorname{arsinh}x)'=1/\sqrt{1+x^2}$，因为 $\cosh^2 y-\sinh^2 y=1$ 且 $\cosh y>0$。
 
-## Maclaurin series match derivatives at zero
+遇到复合函数，还要乘内层的导数。例如 $(\cosh(x^2))'=2x\sinh(x^2)$。
 
-Write $f(x)=a_0+a_1x+a_2x^2+\cdots$. At zero, $f(0)=a_0$ and $f'(0)=a_1$. After two derivatives the $x^2$ term contributes $2!a_2$. After $k$ derivatives the surviving term is $k!a_k$. Thus
+<span className="legacy-anchor" id="maclaurin-series-match-derivatives-at-zero"/>
+
+### 用零点的导数确定 Maclaurin series
+
+设 $f(x)=a_0+a_1x+a_2x^2+\cdots$。在零点，$f(0)=a_0$ 且 $f'(0)=a_1$。求两次导数后，$x^2$ 项贡献 $2!a_2$。求 $k$ 次导数后，在零点只留下 $k!a_k$，所以得到下式。
 
 $$
 f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots.
 $$
 
-For $e^x$, every derivative at zero is $1$. For $\sin x$, the derivatives at zero cycle through $0,1,0,-1$, giving $x-x^3/3!+x^5/5!-\cdots$. Work only to the required degree. To find the expansion of $\sin(x^2)$ through degree six, substitute $x^2$ into the sine series and keep $x^2-x^6/6$. Substitution and termwise integration within the interval of convergence can reuse a series you already know.
+对 $e^x$，各阶导数在零点均为 $1$。对 $\sin x$，零点的导数按 $0,1,0,-1$ 循环，得到 $x-x^3/3!+x^5/5!-\cdots$。只保留到题目要求的次数。比如把 $\sin(x^2)$ 展开到六次，将 $x^2$ 代入 sine series 并保留 $x^2-x^6/6$。在 convergence interval 内，也可以用 substitution 或逐项积分重用已知级数。

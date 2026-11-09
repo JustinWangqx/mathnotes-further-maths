@@ -1,13 +1,15 @@
 ---
 topicId: roots
-description: "Build the link between roots and coefficients, then use it to derive power sums and transform equations."
+description: "从因式展开理解根与系数的关系，再推导 power sums 和根的变换。"
 sources:
   - "FP1 CH1 Roots of Polynomials Equations(1).pdf, pp. 1–6"
 ---
 
-## Start with the factors
+<span className="legacy-anchor" id="start-with-the-factors"/>
 
-Let $ax^2+bx+c$ have roots $\alpha$ and $\beta$. Each root gives a factor. Expand the factors and compare coefficients of the same powers of $x$.
+### 从因式展开开始
+
+设 $ax^2+bx+c$ 的根是 $\alpha$ 和 $\beta$。每个根对应一个因式。将因式展开，再比较 $x$ 同次幂的系数。
 
 $$
 \begin{aligned}
@@ -17,26 +19,30 @@ a(x-\alpha)(x-\beta)&=ax^2-a(\alpha+\beta)x+a\alpha\beta,\\
 \end{aligned}
 $$
 
-The minus sign in the sum comes from selecting one negative root term. The product is positive in the expansion because two negative root terms multiply together. The same argument gives the alternating signs for higher degrees.
+求根的和时，每项只选了一个带负号的根，所以有负号。求积时，两个负号相乘得到正号。次数更高时也同理，符号交替出现。
 
-For $ax^3+bx^2+cx+d$, the sum of the roots is $-b/a$, the sum of pairwise products is $c/a$, and the triple product is $-d/a$. For a quartic the fourth elementary sum is the product of all four roots and is the constant divided by the leading coefficient.
+对于 $ax^3+bx^2+cx+d$，根的和为 $-b/a$，两两乘积之和为 $c/a$，三根的积为 $-d/a$。四次式的第四个 elementary symmetric sum 是四根的积，等于常数项除以首项系数。
 
-## Reciprocal roots
+<span className="legacy-anchor" id="reciprocal-roots"/>
 
-With nonzero roots, $\alpha^{-1}+\beta^{-1}=(\alpha+\beta)/(\alpha\beta)$ and $\alpha^{-1}\beta^{-1}=1/(\alpha\beta)$. These can be used as the sum and product of the new roots. The same result comes from substituting $x=1/y$ and multiplying by $y^2$:
+### 求 reciprocal roots
+
+根均非零时，$\alpha^{-1}+\beta^{-1}=(\alpha+\beta)/(\alpha\beta)$，且 $\alpha^{-1}\beta^{-1}=1/(\alpha\beta)$。这两个值就是新根的和与积。也可以代入 $x=1/y$，再乘以 $y^2$，结果相同。
 
 $$
 a(1/y)^2+b(1/y)+c=0
 \quad\Longrightarrow\quad cy^2+by+a=0.
 $$
 
-This explains why the coefficients reverse. The constant $c$ must be nonzero for the reciprocal construction.
+这解释了为什么系数顺序会反过来。要构造 reciprocal roots，常数项 $c$ 必须非零。
 
-## Power sums and identities
+<span className="legacy-anchor" id="power-sums-and-identities"/>
 
-Write $S_k=\alpha^k+\beta^k+\cdots$. Squaring $S_1$ introduces two copies of every pairwise product. Subtract those copies to isolate $S_2$. For two roots, expanding the cube similarly gives $S_3=(\alpha+\beta)^3-3\alpha\beta(\alpha+\beta)$.
+### 用恒等式求 power sums
 
-For the example $2x^2+3x-2=0$ in the notes, the sum is $-3/2$ and the product is $-1$. Thus
+记 $S_k=\alpha^k+\beta^k+\cdots$。将 $S_1$ 平方时，每对根的乘积出现两次。减去这部分便得到 $S_2$。对于两个根，同样可以通过展开三次幂得到 $S_3=(\alpha+\beta)^3-3\alpha\beta(\alpha+\beta)$。
+
+以笔记中的 $2x^2+3x-2=0$ 为例，根的和为 $-3/2$，积为 $-1$，于是得到下列结果。
 
 $$
 \begin{aligned}
@@ -45,18 +51,22 @@ S_3&=(-3/2)^3-3(-1)(-3/2)=-63/8.
 \end{aligned}
 $$
 
-## Build a recurrence from the original equation
+<span className="legacy-anchor" id="build-a-recurrence-from-the-original-equation"/>
 
-Every root satisfies its polynomial. For $x^3+2x^2+5=0$, multiply the equation for each root by its $k$th power and add:
+### 由原方程建立 recurrence relation
+
+每个根都满足原方程。对 $x^3+2x^2+5=0$，将各根代入等式，再乘以该根的 $k$ 次幂后相加。
 
 $$
 S_{k+3}+2S_{k+2}+5S_k=0.
 $$
 
-Here $S_0=3$ because there are three roots. Coefficient comparison gives $S_1=-2$ and $S_2=4$. Taking $k=0$ gives $S_3=-2(4)-5(3)=-23$. Since the constant is nonzero, negative powers are allowed. Taking $k=-1$ gives $S_2+2S_1+5S_{-1}=0$, hence $S_{-1}=0$.
+因为有三个根，所以 $S_0=3$。比较系数得 $S_1=-2$ 和 $S_2=4$。取 $k=0$ 得 $S_3=-2(4)-5(3)=-23$。常数项非零，因此可以用负次幂。取 $k=-1$ 得 $S_2+2S_1+5S_{-1}=0$，于是 $S_{-1}=0$。
 
-## Change the roots by substitution
+<span className="legacy-anchor" id="change-the-roots-by-substitution"/>
 
-State the new root as a function of the old root, then solve that relation for the old variable. For example, to divide the roots of $x^2-2x+12=0$ by three, write $y=x/3$, so $x=3y$. The new equation is $9y^2-6y+12=0$, or $3y^2-2y+4=0$.
+### 用 substitution 变换根
 
-For a reciprocal shift $y=1/(x-2)$, use $x=2+1/y$ and clear the denominators. Check the original restrictions before accepting the transformed roots. The substitution acts on the variable in the whole equation, including each power.
+先用旧根表示新根，再解出旧变量。例如要把 $x^2-2x+12=0$ 的根都除以三，可写 $y=x/3$，于是 $x=3y$。新方程是 $9y^2-6y+12=0$，化简后是 $3y^2-2y+4=0$。
+
+对于 $y=1/(x-2)$ 这样的 reciprocal shift，用 $x=2+1/y$ 代入并消去分母。接受新根前先检查原来的限制。原方程里的每一处变量都要替换。

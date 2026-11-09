@@ -1,12 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {syllabusUrl,formulaSheetUrl,url} from '../data/curriculum';
-const resources=[
- {icon:'formula',title:'MF19 formula sheet',description:'Cambridge’s List of formulae and statistical tables for Mathematics (9709) and Further Mathematics (9231).',label:'Open formula sheet PDF',href:formulaSheetUrl},
- {icon:'map',title:'The official syllabus',description:'Cambridge’s 2026–2027 9231 syllabus, including subject content and assessment details.',label:'Open syllabus PDF',href:syllabusUrl},
- {icon:'papers',title:'Practice questions',description:'Complete original question PDFs from the source collection, with separate answer files where available.',label:'Open question papers',href:url('papers/')},
- {icon:'book',title:'Topic map',description:'The topics in the current notes, grouped by module and ordered by syllabus topic.',label:'Browse the topic map',href:url('notes/')},
+import { syllabusUrl, formulaSheetUrl, url } from '../data/curriculum';
+const resources = [
+  { icon: 'formula', title: 'MF19 公式表', description: 'Cambridge 官方公式和 statistical tables，适用于 Mathematics (9709) 与 Further Mathematics (9231)。', label: '打开公式表 PDF', href: formulaSheetUrl },
+  { icon: 'map', title: '官方考纲', description: 'Cambridge 9231 考纲（2026–2027），含课程内容和考试要求。', label: '打开考纲 PDF', href: syllabusUrl },
+  { icon: 'papers', title: '历年试题', description: '按专题收录的完整试题原件。各套试题所附答案可单独打开。', label: '浏览历年试题', href: url('papers/') },
+  { icon: 'book', title: '专题笔记', description: '按考纲顺序整理概念、推导、常见题型与例题。', label: '浏览专题笔记', href: url('notes/') },
 ];
 ---
-<Base title="Resources" seoTitle="CIE A Level Maths Resources & MF19 Formula Sheet | MathNotes" description="Official Cambridge MF19 formula sheet for A Level Mathematics 9709 and Further Mathematics 9231, plus the 2026–2027 syllabus, revision notes and question collections." active="resources"><div class="page-heading"><span class="eyebrow">KEEP THE REFERENCES CLOSE</span><h1>The sheet.<br/><em>And the sources.</em></h1><p>The official formula booklet and syllabus, alongside revision notes and practice questions.</p></div><div class="resource-grid">{resources.map(r=><article class="resource-card"><Icon name={r.icon} size={27}/><h2>{r.title}</h2><p>{r.description}</p><a class="text-link" href={r.href}>{r.label} <Icon name="external" size={14}/></a></article>)}</div></Base>
+<Base title="参考资料" description="Cambridge A Level Mathematics 9709 与 Further Mathematics 9231 的 MF19 公式表、2026–2027 考纲、笔记及试题。" active="resources">
+  <div class="page-heading"><h1>参考资料</h1><p>查阅官方公式表和考纲，或浏览本站的笔记和试题。</p></div>
+  <div class="resource-grid">{resources.map(r => <article class="resource-card">
+    <Icon name={r.icon} size={27}/><h2>{r.title}</h2><p>{r.description}</p>
+    <a class="text-link" href={r.href}>{r.label} <Icon name="external" size={14}/></a>
+  </article>)}</div>
+</Base>

@@ -1,26 +1,79 @@
 ---
-import {getCollection,render} from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import {learnUrl,moduleFor,topics,url,repoUrl} from '../../../data/curriculum';
-import {papersForTopic} from '../../../data/paper-collections';
-import {questionTypes} from '../../../data/question-types';
-export async function getStaticPaths(){const notes=await getCollection('notes');return notes.map(note=>({params:{module:note.data.module,slug:note.id.split('/').pop()},props:{note}}));}
-const {note}=Astro.props;
-const {Content}=await render(note);
-const module=moduleFor(note.data.module);
-const topic=topics.find(t=>t.id===note.data.topicId)!;
-const papers=papersForTopic(topic.id);
-const types=questionTypes[topic.id];
-const issueUrl=`${repoUrl}/issues/new?title=${encodeURIComponent(`Correction: ${note.data.title}`)}&body=${encodeURIComponent('Page: '+note.data.title+'\n\nSection / question:\n\nWhat should change:\n\nReason or working:\n')}`;
----
-<Base title={`${note.data.title} Notes`} description={`${note.data.title} revision for CIE A Level Further Mathematics 9231, ${module.title}: ${types.length} exam question types with short methods, formulas and worked examples.`} active="notes" learningResourceType="Revision notes" breadcrumbs={[{name:'Home',href:url()},{name:'Revision Notes',href:url('notes/')},{name:module.title,href:url(`9231/${module.id}/`)},{name:note.data.title,href:Astro.url.pathname}]}><span class="sr-only" data-pagefind-meta="type">Study notes</span><span class="sr-only" data-pagefind-filter="module">{module.title}</span><div class="sr-only" data-pagefind-weight="0.5">{topic.aliases.join(' ')}</div>
+import { moduleFor, topics, topicUrl, url, repoUrl } from '../../../data/curriculum';
+import { papersForTopic } from '../../../data/paper-collections';
+import { questionTypes } from '../../../data/question-types';
 
-<div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><div class="lesson-meta"><a class="text-link" href={learnUrl(topic)}>Learn this topic →</a><span class="type-count">{types.length} question types</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
-<details class="lesson-jump" data-pagefind-ignore><summary>Jump to question type <span>{types.length} types ↓</span></summary><nav aria-label="Jump to question type">{types.map(type=><a href={`#${type.id}`}>Type {String(type.number).padStart(2,'0')}: {type.title}</a>)}{papers.length>0&&<a href="#papers">Practice collections</a>}</nav></details>
-<div class="prose exam-guide"><Content/></div>
-<div class="lesson-links" id="papers">
-  {papers.length>0&&<a href={`${url('papers/')}?topic=${topic.id}`}>Question papers for this topic ↗</a>}
-  <a href={issueUrl}>Suggest a correction ↗</a>
-</div>
-</article><aside class="toc" aria-label="Question types" data-pagefind-ignore><p class="nav-label">QUESTION TYPES</p><nav>{types.map(type=><a href={`#${type.id}`}><span class="toc-type-number">{String(type.number).padStart(2,'0')}</span>{type.title}</a>)}{papers.length>0&&<a href="#papers">Question collections</a>}</nav></aside></div>
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  const lessons = new Map((await getCollection('learn')).map(lesson => [lesson.data.topicId, lesson]));
+  return notes.map(note => {
+    const topic = topics.find(topic => topic.id === note.data.topicId);
+    const lesson = lessons.get(note.data.topicId);
+    if (!topic?.slug || !lesson) throw new Error('Missing topic or lesson for ' + note.id);
+    return { params: { module: topic.module, slug: topic.slug }, props: { note, topic, lesson } };
+  });
+}
+
+const { note, topic, lesson } = Astro.props;
+const { Content: Concepts, headings } = await render(lesson);
+const { Content: Examples } = await render(note);
+const sections = headings.filter(heading => heading.depth === 3);
+const module = moduleFor(topic.module);
+const papers = papersForTopic(topic.id);
+const types = questionTypes[topic.id];
+const issueUrl = repoUrl + '/issues/new?title=' + encodeURIComponent('笔记勘误：' + topic.title);
+---
+<Base title={topic.title + ' 笔记'} description={lesson.data.description + ' Cambridge International A Level Further Mathematics 9231 · ' + module.title}
+  active="notes" learningResourceType="Lesson" breadcrumbs={[{name:'首页',href:url()},{name:'专题笔记',href:url('notes/')},{name:module.title,href:url('9231/' + module.id + '/')},{name:topic.title,href:topicUrl(topic)}]}>
+  <span class="sr-only" data-pagefind-filter="module">{module.title}</span>
+  <div class="sr-only" data-pagefind-weight="0.5">{topic.aliases.join(' ')}</div>
+  <div class="reading-layout">
+    <article class="lesson">
+      <header class="lesson-heading">
+        <span class="eyebrow">{module.short} / 考纲 {topic.ref}</span>
+        <h1 lang="en">{topic.title}</h1>
+        <p>{lesson.data.description}</p>
+        <div class="lesson-meta">
+          <a class="text-link" href="#concepts">概念与推导 ↓</a>
+          <a class="text-link" href="#question-types">题型与例题 ↓</a>
+          <button class="print-button" onclick="window.print()">打印笔记</button>
+        </div>
+      </header>
+      <details class="lesson-jump" data-pagefind-ignore>
+        <summary>本页目录 <span>展开 ↓</span></summary>
+        <nav aria-label="本页目录">
+          <a href="#concepts">概念与推导</a>
+          {sections.map(heading => <a href={'#' + heading.slug}>{heading.text}</a>)}
+          <a href="#question-types">题型与例题</a>
+          {types.map(type => <a href={'#' + type.id}>题型 {String(type.number).padStart(2,'0')} · {type.title}</a>)}
+        </nav>
+      </details>
+      <section id="concepts" class="topic-part" aria-labelledby="concepts-title">
+        <h2 id="concepts-title">概念与推导</h2>
+        <div class="prose learning-content"><Concepts/></div>
+      </section>
+      <section id="question-types" class="topic-part" aria-labelledby="question-types-title">
+        <h2 id="question-types-title">题型与例题</h2>
+        <div class="prose exam-guide"><Examples/></div>
+      </section>
+      <details class="learning-sources" data-pagefind-ignore>
+        <summary>参考笔记</summary>
+        <ul>{lesson.data.sources.map(source => <li>{source}</li>)}</ul>
+      </details>
+      <div class="lesson-links" id="papers">
+        {papers.length > 0 && <a href={url('papers/?topic=' + topic.id)}>本专题的历年试题 ↗</a>}
+        <a href={issueUrl}>提交勘误 ↗</a>
+      </div>
+    </article>
+    <aside class="toc topic-toc" aria-label="本页目录" data-pagefind-ignore>
+      <nav>
+        <p class="nav-label"><a href="#concepts">概念与推导</a></p>
+        {sections.map(heading => <a href={'#' + heading.slug}>{heading.text}</a>)}
+        <p class="nav-label"><a href="#question-types">题型与例题</a></p>
+        {types.map(type => <a href={'#' + type.id}><span class="toc-type-number">{String(type.number).padStart(2,'0')}</span>{type.title}</a>)}
+      </nav>
+    </aside>
+  </div>
 </Base>

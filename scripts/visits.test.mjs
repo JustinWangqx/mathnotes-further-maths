@@ -46,7 +46,7 @@ test('counter failures do not cause duplicate increments or invent a zero total'
 test('the total appears only as a compact footer count, with no statistics page',()=>{
  const home=readFileSync('dist/index.html','utf8');
  const missing=readFileSync('dist/404.html','utf8');
- assert.ok(home.includes('Total views:'));
+ assert.ok(home.includes('总浏览量'));
  assert.ok(/<span class="visit-counter"[^>]*>/.test(home));
  assert.ok(home.includes('aria-live="polite"'));
  assert.ok(!home.includes('Site statistics'));

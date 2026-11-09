@@ -1,6 +1,6 @@
 ---
 topicId: complex
-description: "Follow complex multiplication around the Argand plane, then derive identities, roots and trigonometric sums."
+description: "从 Argand plane 上的乘法出发，推导三角恒等式、complex roots 和三角级数的和。"
 sources:
   - "FP2 CH5 Complex Number.pdf, pp. 1–7"
   - "FP2 CH5 Complex Number 1.pdf, pp. 1–4"
@@ -8,40 +8,48 @@ sources:
 
 import Graph from '../../components/ExampleGraph.astro';
 
-## Multiplication rotates and scales
+<span className="legacy-anchor" id="multiplication-rotates-and-scales"/>
 
-Write $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$ with $r=|z|$. The real and imaginary parts give the horizontal and vertical coordinates. Multiplying two polar forms multiplies the moduli and adds the arguments. This follows from the sine and cosine addition rules. Repeating the multiplication gives de Moivre’s formula:
+### 乘法对应 rotation 和 scaling
+
+写成 $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$，其中 $r=|z|$。real part 与 imaginary part 分别给出横、纵坐标。两个 polar forms 相乘时，moduli 相乘，arguments 相加。这可以由 sine 和 cosine 的和角公式验证。重复相乘就得到 de Moivre’s theorem。
 
 $$
 (\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta).
 $$
 
-## Extract the real or imaginary part
+<span className="legacy-anchor" id="extract-the-real-or-imaginary-part"/>
 
-Expand the left-hand side by the binomial theorem, using $i^2=-1$. For $n=3$, the real part is $\cos^3\theta-3\cos\theta\sin^2\theta$, so $\cos3\theta=4\cos^3\theta-3\cos\theta$. The imaginary part similarly gives a multiple-angle sine identity. Dividing the imaginary part by the real part gives a multiple-angle tangent formula wherever the quotient is defined.
+### 取 real part 或 imaginary part
 
-To go the other way, write $\cos\theta=(z+z^{-1})/2$ and $\sin\theta=(z-z^{-1})/(2i)$ for $z=e^{i\theta}$. After expanding powers, pair $z^k$ with $z^{-k}$. For example, $\sin^3\theta=(3\sin\theta-\sin3\theta)/4$, which can be integrated term by term.
+用 binomial theorem 展开左边，并用 $i^2=-1$ 化简。取 $n=3$ 时，real part 为 $\cos^3\theta-3\cos\theta\sin^2\theta$，因此 $\cos3\theta=4\cos^3\theta-3\cos\theta$。取 imaginary part 同理可得 sine 的 multiple-angle identity。在商有定义时，两部分相除得到 tangent 的倍角公式。
 
-## Take all the roots
+反过来，先写 $\cos\theta=(z+z^{-1})/2$ 和 $\sin\theta=(z-z^{-1})/(2i)$，其中 $z=e^{i\theta}$。展开幂次后，把 $z^k$ 与 $z^{-k}$ 配对。例如 $\sin^3\theta=(3\sin\theta-\sin3\theta)/4$，这样可以逐项积分。
 
-If $w^n=re^{i\theta}$, the argument of the right-hand side could be $\theta+2k\pi$. Divide the *whole* argument by $n$:
+<span className="legacy-anchor" id="take-all-the-roots"/>
+
+### 找出所有 complex roots
+
+若 $w^n=re^{i\theta}$，右侧的 argument 也可写成 $\theta+2k\pi$。整个 argument 都要除以 $n$。
 
 $$
 w=r^{1/n}e^{i(\theta+2k\pi)/n},
 \qquad k=0,\ldots,n-1.
 $$
 
-This gives equally spaced points on a circle. For the sixth roots of $4+4\sqrt3\,i=8e^{i\pi/3}$, the radius is $\sqrt2$ and the first argument is $\pi/18$. Each next point adds $\pi/3$. The same construction for $z^n=1$ gives the roots of unity.
+这些点在圆上等间隔分布。对 $4+4\sqrt3\,i=8e^{i\pi/3}$ 求六次根时，圆半径是 $\sqrt2$，第一个 argument 是 $\pi/18$，每次再增加 $\pi/3$。对 $z^n=1$ 作同样处理即可求 roots of unity。
 
 <Graph name="complex-roots"/>
 
-## Sum first, then take the desired part
+<span className="legacy-anchor" id="sum-first-then-take-the-desired-part"/>
 
-Replace $\cos(k\theta)$ and $\sin(k\theta)$ by the real and imaginary parts of $e^{ik\theta}$. For example, to sum $\sum_{k=0}^{\infty} 2^{-k}\cos(k\theta)$, sum the complex geometric series with ratio $e^{i\theta}/2$. Its modulus is $1/2$, so its sum is $1/(1-e^{i\theta}/2)$. Multiply numerator and denominator by the conjugate of the denominator before taking the real part:
+### 先求和，再取需要的部分
+
+将 $\cos(k\theta)$ 和 $\sin(k\theta)$ 看成 $e^{ik\theta}$ 的 real part 与 imaginary part。例如要求 $\sum_{k=0}^{\infty} 2^{-k}\cos(k\theta)$，先求公比为 $e^{i\theta}/2$ 的 complex geometric series 的和。公比的 modulus 是 $1/2$，所以和为 $1/(1-e^{i\theta}/2)$。分子分母同乘分母的 conjugate 后再取 real part。
 
 $$
 \sum_{k=0}^{\infty}2^{-k}\cos(k\theta)
 =\frac{1-\tfrac12\cos\theta}{\tfrac54-\cos\theta}.
 $$
 
-For a finite sum, keep the final-power term in the geometric formula. If its ratio equals $1$, add the equal terms directly.
+若是有限和，要保留 geometric series 公式中的最后一个幂次项。公比为 $1$ 时直接把相等的项相加。

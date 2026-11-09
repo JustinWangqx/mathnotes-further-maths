@@ -1,43 +1,51 @@
 ---
 topicId: chi-squared
-description: "Build expected counts from a model, measure the discrepancy and distinguish fit from association."
+description: "由模型计算 expected counts，衡量偏差，再分别检验 goodness of fit 和 independence。"
 sources:
   - "FS CH3 Chi-Squared Tests.pdf, pp. 1–8"
 ---
 
-## Turn a model into expected counts
+<span className="legacy-anchor" id="turn-a-model-into-expected-counts"/>
 
-A goodness-of-fit test compares observed counts $O_i$ with counts $E_i=Np_i$ predicted by the null model. A category with probability $p_i$ should receive about that fraction of the $N$ observations. Squaring the differences lets excesses and deficits both increase the statistic. Dividing by $E_i$ scales the contribution relative to the expected count.
+### 由模型计算 expected counts
+
+goodness-of-fit test 比较 observed counts $O_i$ 和 null model 给出的 expected counts $E_i=Np_i$。概率为 $p_i$ 的类别应占 $N$ 个观测值的大约相同比例。将偏差平方后，偏高或偏低都会增大统计量。除以 $E_i$，可按 expected count 衡量该组偏差。
 
 $$
 X^2=\sum_i\frac{(O_i-E_i)^2}{E_i}=\sum_i\frac{O_i^2}{E_i}-N.
 $$
 
-The second form follows by expanding the squares and using $\sum O_i=\sum E_i=N$. Large values show a larger discrepancy, so use the right tail of the reference distribution.
+将平方展开，并用 $\sum O_i=\sum E_i=N$，便得到第二种形式。数值越大说明偏差越大，所以用 reference distribution 的 right tail。
 
-## Allow for totals, fitted parameters and pooling
+<span className="legacy-anchor" id="allow-for-totals-fitted-parameters-and-pooling"/>
 
-With $k$ final categories the total count is fixed, leaving $k-1$ degrees of freedom. If $p$ parameters were estimated from the same data, use $\nu=k-1-p$. A parameter specified in the question costs no degree of freedom. When expected frequencies are too small for the approximation required in the question, combine suitable categories, typically adjacent ones or tail classes. Combine both observed and expected counts before computing contributions and use the resulting $k$.
+### 处理总数、估计参数和小频数
 
-For a fair die rolled 180 times with counts $(29,31,34,39,23,24)$, the expected count is 30 on every face. Thus
+最终有 $k$ 个类别且总数固定，因此有 $k-1$ 个 degrees of freedom。若从同一批数据估计了 $p$ 个参数，则用 $\nu=k-1-p$。题目直接给定的参数不占自由度。若 expected frequencies 太小，无法使用题目要求的近似，可合并相邻类别或尾部类别。先合并 observed 和 expected counts，再计算统计量，并使用新的 $k$。
+
+例如掷一枚公平骰子 180 次，observed counts 为 $(29,31,34,39,23,24)$，每一面的 expected count 为 30，因此有下式。
 
 $$
 X^2=\frac{1+1+16+81+49+36}{30}\approx6.133.
 $$
 
-There are five degrees of freedom. The statistic is below the 5% critical value $11.070$, giving insufficient evidence against fairness.
+这里有五个 degrees of freedom。统计量小于 5% critical value $11.070$，证据不足以拒绝骰子公平的假设。
 
-## Use the right probabilities for each model
+<span className="legacy-anchor" id="use-the-right-probabilities-for-each-model"/>
 
-- For a binomial model with fixed trial count $n$, compute $P(X=i)$ for each category. If the success probability is estimated, use $\hat p=\bar x/n$.
-- For a Poisson model with an estimated rate, use $\hat\lambda=\bar x$. A final category such as “four or more” includes the entire upper tail.
-- For a normal model, use the probability between the class boundaries, including open-ended tail classes. Allow for each parameter estimated from the sample.
-- For a continuous uniform model, the probability of a class is its width within the support divided by the total width. For a given density $f$, integrate $f$ over the class instead.
+### 按模型计算类别概率
 
-Check that the expected counts add to $N$ before evaluating the statistic. Keep unrounded expectations in the calculation.
+- 对试验次数为 $n$ 的 binomial model，逐类求 $P(X=i)$。若成功概率需要估计，取 $\hat p=\bar x/n$。
+- 对 rate 未知的 Poisson model，用 $\hat\lambda=\bar x$ 估计。最后一组若是「至少四次」，要纳入整个 upper tail。
+- 对 normal model，求各组边界间的概率，并纳入两端开放区间。每估计一个参数就扣除一个 degree of freedom。
+- 对 continuous uniform model，每组概率等于该组在 support 内的宽度除以总宽度。若已给定 PDF $f$，就在该组上对 $f$ 积分。
 
-## Test independence in a contingency table
+计算统计量前，检查 expected counts 之和是否为 $N$。计算时保留未舍入的 expected counts。
 
-For an independence test the null model says the chance of a column outcome is the same in each row. The overall fraction in column $j$ is $C_j/N$, so row $i$, with total $R_i$, has expected cell count $R_iC_j/N$. The row and column totals constrain the table. The upper-left $(r-1)\times(c-1)$ block determines the remaining cells, which gives the degrees of freedom.
+<span className="legacy-anchor" id="test-independence-in-a-contingency-table"/>
 
-For the observed rows $(63,31,6)$, $(26,20,14)$ and $(11,19,10)$, the first row total is 100, the first column total is 100 and the grand total is 200. The top-left expectation is $100\times100/200=50$, so that cell contributes $(63-50)^2/50=3.38$. The nine contributions total about $21.098$. With four degrees of freedom this exceeds the 5% critical value $9.488$, giving evidence of an association.
+### 用 contingency table 检验 independence
+
+在 independence 的 null model 下，每行落在同一列的概率相同。第 $j$ 列的总体比例为 $C_j/N$，所以第 $i$ 行总数为 $R_i$ 时，该单元格的 expected count 为 $R_iC_j/N$。固定行总数与列总数后，左上角的 $(r-1)\times(c-1)$ 个单元格决定其他格子的值，因此也给出 degrees of freedom。
+
+对 observed rows $(63,31,6)$、$(26,20,14)$ 和 $(11,19,10)$，第一行合计 100，第一列合计 100，总计 200。左上角的 expected count 为 $100\times100/200=50$，对统计量的贡献为 $(63-50)^2/50=3.38$。九格的贡献合计约 $21.098$。四个 degrees of freedom 下，该结果超过 5% critical value $9.488$，有证据表明变量之间有关联。

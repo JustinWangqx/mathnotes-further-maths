@@ -1,15 +1,17 @@
 ---
 topicId: hyperbolic
-description: "Build the hyperbolic functions from exponentials, sketch their curves and derive their inverses."
+description: "由指数函数定义 hyperbolic functions，画出图像并推导 inverse。"
 sources:
   - "FP2 CH1 Hyperbolic Functions.pdf, pp. 1–5"
 ---
 
 import Graph from '../../components/ExampleGraph.astro';
 
-## Exponential definitions and basic curves
+<span className="legacy-anchor" id="exponential-definitions-and-basic-curves"/>
 
-Take the half-difference and half-sum of $e^x$ and $e^{-x}$:
+### 指数定义与基本图像
+
+取 $e^x$ 和 $e^{-x}$ 的差的一半与和的一半，得到以下定义。
 
 $$
 \sinh x=\frac{e^x-e^{-x}}2,\qquad
@@ -17,7 +19,7 @@ $$
 \tanh x=\frac{\sinh x}{\cosh x}.
 $$
 
-Changing $x$ to $-x$ swaps the two exponentials. The difference changes sign and the sum stays the same, so sinh is odd and cosh is even. Differentiating the exponentials gives $(\sinh x)'=\cosh x$ and $(\cosh x)'=\sinh x$. Since $\cosh x>0$, sinh increases throughout. Cosh has its minimum $1$ at zero. The ratio $\tanh x=(e^{2x}-1)/(e^{2x}+1)$ tends to $\pm1$ at either end.
+将 $x$ 换成 $-x$ 会交换两个指数项。差的符号改变，和不变，所以 sinh 是 odd function，cosh 是 even function。对指数项求导得到 $(\sinh x)'=\cosh x$ 和 $(\cosh x)'=\sinh x$。由于 $\cosh x>0$，sinh 一直递增。cosh 在零点取最小值 $1$。比值 $\tanh x=(e^{2x}-1)/(e^{2x}+1)$ 在两端分别趋于 $\pm1$。
 
 | Function | Domain | Range |
 | --- | --- | --- |
@@ -30,26 +32,32 @@ Changing $x$ to $-x$ swaps the two exponentials. The difference changes sign and
 
 <Graph name="tanh"/>
 
-## Identities and transformations
+<span className="legacy-anchor" id="identities-and-transformations"/>
 
-Subtract the squared exponential definitions. The $e^{2x}$ and $e^{-2x}$ terms cancel, leaving $\cosh^2x-\sinh^2x=1$. Divide by $\cosh^2x$ to get $1-\tanh^2x=\operatorname{sech}^2x$. The quotient rule then gives $(\tanh x)'=\operatorname{sech}^2x$. Applying the reciprocal rule gives $(\operatorname{sech}x)'=-\operatorname{sech}x\tanh x$.
+### 恒等式与图像变换
 
-For the transformed cosh curve in the notes, shift left one unit, multiply the heights by three and move down four. The unreflected minimum is $-1$ at $x=-1$. Finally reflect the negative piece upwards.
+将两个指数定义平方后相减。$e^{2x}$ 和 $e^{-2x}$ 两项相消，剩下 $\cosh^2x-\sinh^2x=1$。同除以 $\cosh^2x$ 得 $1-\tanh^2x=\operatorname{sech}^2x$。用 quotient rule 可得 $(\tanh x)'=\operatorname{sech}^2x$，再用 reciprocal rule 得 $(\operatorname{sech}x)'=-\operatorname{sech}x\tanh x$。
+
+笔记中的 cosh 图像先左移一单位，纵坐标乘三，再下移四单位。翻折前的最小值为 $-1$，在 $x=-1$ 处取得。最后把负值部分向上翻折。
 
 <Graph name="hyperbolic"/>
 
-## Solve through exponentials
+<span className="legacy-anchor" id="solve-through-exponentials"/>
 
-For $4\cosh x-3\sinh x=4$, let $u=e^x$. The exponential definitions give $(u+7/u)/2=4$. Since $u>0$, multiply by $2u$ and factor:
+### 用指数形式解方程
+
+对 $4\cosh x-3\sinh x=4$，令 $u=e^x$。由指数定义得到 $(u+7/u)/2=4$。由于 $u>0$，可同乘 $2u$ 后因式分解。
 
 $$
 u^2-8u+7=(u-1)(u-7)=0.
 $$
 
-Both values of $u$ are positive, so $x=0$ or $x=\ln 7$. For a homogeneous equation $A\sinh x+B\cosh x=0$, dividing by $\cosh x$ instead gives a linear equation in $\tanh x$. Check the resulting value against its range.
+$u$ 的两个值均为正，所以 $x=0$ 或 $x=\ln 7$。对于形如 $A\sinh x+B\cosh x=0$ 的齐次方程，也可同除以 $\cosh x$，得到关于 $\tanh x$ 的一次方程。求得的值还要满足 range。
 
-## Inverses and their domains
+<span className="legacy-anchor" id="inverses-and-their-domains"/>
 
-To invert $\sinh y=x$, let $u=e^y>0$. Solving $u^2-2xu-1=0$ gives $u=x+\sqrt{x^2+1}$, so $\operatorname{arsinh}x=\ln(x+\sqrt{x^2+1})$. For $\cosh$, first restrict the original curve to $y\ge0$ to make it one-to-one. This gives $\operatorname{arcosh}x=\ln(x+\sqrt{x^2-1})$ for $x\ge1$.
+### Inverse functions 的 domain
 
-Solving $x=(e^{2y}-1)/(e^{2y}+1)$ gives $\operatorname{artanh}x=\tfrac12\ln((1+x)/(1-x))$ for $-1<x<1$. Thus $\tanh y=2/3$ gives $y=\tfrac12\ln5$. Inverse graphs reflect the corresponding one-to-one branch across $y=x$.
+要求 $\sinh y=x$ 的 inverse，令 $u=e^y>0$。解 $u^2-2xu-1=0$ 得 $u=x+\sqrt{x^2+1}$，所以 $\operatorname{arsinh}x=\ln(x+\sqrt{x^2+1})$。对 $\cosh$，先把原图像限制在 $y\ge0$，使其成为 one-to-one function。这样得到 $\operatorname{arcosh}x=\ln(x+\sqrt{x^2-1})$，适用于 $x\ge1$。
+
+解 $x=(e^{2y}-1)/(e^{2y}+1)$ 得 $\operatorname{artanh}x=\tfrac12\ln((1+x)/(1-x))$，适用于 $-1<x<1$。因此由 $\tanh y=2/3$ 得 $y=\tfrac12\ln5$。将原来一一对应的分支关于 $y=x$ 对称，就得到 inverse function 的图像。

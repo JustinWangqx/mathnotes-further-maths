@@ -9,8 +9,8 @@ const module = moduleFor(topic.module);
 const papers=papersForTopic(topic.id);
 ---
 <a href={topicUrl(topic)} class={`topic-card ${module.color}`}>
-  <div class="card-meta"><span class="tag">{module.short} <span>·</span> {topic.ref}</span>{topic.slug ? <span class="available-dot">Available</span> : <span class="muted">Planned</span>}</div>
+  <div class="card-meta"><span class="tag">{module.short} <span>·</span> {topic.ref}</span>{topic.slug ? <span class="available-dot">已收录</span> : <span class="muted">待补充</span>}</div>
   <div class="topic-glyph"><Icon name={module.icon} size={30}/></div>
   <h3>{topic.title}</h3><p>{topic.description}</p>
-  <div class="card-bottom"><span>{topic.minutes ? `${questionTypes[topic.id].length} question types${papers.length?` · ${papers.length} collections`:``}` : topic.sourceAvailable ? 'Source notes collected' : 'Content planned'}</span><Icon name="arrow" size={19}/></div>
+  <div class="card-bottom"><span>{topic.minutes ? `${questionTypes[topic.id].length} 个题型${papers.length?` · ${papers.length} 套试题`:``}` : topic.sourceAvailable ? '已有原笔记' : '待补充'}</span><Icon name="arrow" size={19}/></div>
 </a>

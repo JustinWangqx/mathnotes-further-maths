@@ -1,35 +1,41 @@
 ---
 topicId: inference
-description: "Choose a sampling model, connect standard errors to test statistics, and interpret confidence intervals."
+description: "根据数据选择检验模型，从 standard error 推导检验统计量，并解释 confidence interval。"
 sources:
   - "FS CH2 Inferential Statistics.pdf, pp. 1–6"
 ---
 
-## Start with the sampling variation
+<span className="legacy-anchor" id="start-with-the-sampling-variation"/>
 
-A sample mean changes from sample to sample. For independent observations its variance is $\sigma^2/n$, so its standard deviation, called the standard error, is $\sigma/\sqrt n$. Subtract the mean specified by the null hypothesis and divide by the standard error. This expresses the observed difference in units of sampling variation.
+### 从抽样波动出发
 
-For a small sample from a normal population with unknown variance, estimate $\sigma^2$ with $s^2=\sum(x_i-\bar x)^2/(n-1)$. The deviations from $\bar x$ sum to zero, so there are $n-1$ independent pieces of variation. Under $H_0$, the resulting statistic has a $t$ distribution with $n-1$ degrees of freedom. Its heavier tails account for the uncertainty in the estimated standard error.
+每次抽样得到的 sample mean 都可能不同。对独立观测，sample mean 的 variance 为 $\sigma^2/n$，其标准差叫作 standard error，等于 $\sigma/\sqrt n$。用样本均值减去 null hypothesis 给出的均值，再除以 standard error，就能用抽样波动的尺度衡量观测差异。
+
+对于来自 variance 未知的 normal population 的小样本，用 $\sigma^2$ 的估计式 $s^2=\sum(x_i-\bar x)^2/(n-1)$。各值减去 $\bar x$ 后的偏差之和为零，因此只有 $n-1$ 个独立的变动量。在 $H_0$ 下，所得统计量服从 $t$ distribution，具有 $n-1$ degrees of freedom。较厚的 tails 反映了估计 standard error 带来的不确定性。
 
 $$
 t=\frac{\bar x-\mu_0}{s/\sqrt n}.
 $$
 
-## Let the alternative choose the tail
+<span className="legacy-anchor" id="let-the-alternative-choose-the-tail"/>
 
-Set the hypotheses before comparing with a critical value. An alternative $\mu<\mu_0$ uses the lower tail. An alternative $\mu>\mu_0$ uses the upper tail. A two-sided alternative divides the significance level between both tails. A $p$-value is a probability calculated under the null model, using outcomes at least as extreme in the direction or directions specified.
+### 由 alternative hypothesis 选择 tail
 
-For six normally distributed wingspans, $8.8,\ 9.6,\ 9.2,\ 9.1,\ 9.9,\ 8.7$ cm, test whether the mean is below $9.4$ cm at 10%. The mean is $9.2167$ and the sample variance is $0.213667$, giving
+先写假设，再与 critical value 比较。$\mu<\mu_0$ 对应 lower tail，$\mu>\mu_0$ 对应 upper tail。two-sided alternative 将 significance level 分给两侧。$p$-value 是在 null model 下，沿备择假设指定的方向得到与观测一样或更极端结果的概率。
+
+六个服从 normal distribution 的翼展为 $8.8,\ 9.6,\ 9.2,\ 9.1,\ 9.9,\ 8.7$ cm。以 10% significance level 检验平均翼展是否低于 $9.4$ cm。sample mean 为 $9.2167$，sample variance 为 $0.213667$，代入得下式。
 
 $$
 t=\frac{9.2167-9.4}{\sqrt{0.213667/6}}\approx-0.972.
 $$
 
-The lower-tail critical value for five degrees of freedom is $-1.476$. The observed statistic falls outside the rejection region. At the 10% level there is insufficient evidence that the mean wingspan is below $9.4$ cm.
+五个 degrees of freedom 对应的 lower-tail critical value 为 $-1.476$。观测值落在 rejection region 外。在 10% significance level 下，证据不足以说明平均翼展低于 $9.4$ cm。
 
-## Compare two independent means
+<span className="legacy-anchor" id="compare-two-independent-means"/>
 
-For independent samples, the variances of their means add when you take the difference. For large samples, use the estimated standard error $\sqrt{s_1^2/n_1+s_2^2/n_2}$ and a normal approximation. With small independent samples from normal populations that share a variance, estimate that variance by pooling the two within-sample sums of squares.
+### 比较两个独立均值
+
+样本独立时，均值差的 variance 等于两个均值各自的 variance 之和。大样本可用估计的 standard error $\sqrt{s_1^2/n_1+s_2^2/n_2}$ 和 normal approximation。若是两个独立小样本，且来自 variance 相同的 normal populations，则可合并组内平方和来估计共同 variance。
 
 $$
 \begin{aligned}
@@ -38,14 +44,18 @@ s_p^2&=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2},\\
 \end{aligned}
 $$
 
-Each sample uses one degree of freedom to estimate its own mean. There are $n_1+n_2-2$ left for the pooled estimate and for the $t$ reference distribution. This pooling relies on the common-variance assumption.
+每组各用一个 degree of freedom 估计均值，剩下 $n_1+n_2-2$ 个用于 pooled estimate 和 $t$ reference distribution。合并前要满足共同 variance 的假设。
 
-## Reduce paired measurements to one sample
+<span className="legacy-anchor" id="reduce-paired-measurements-to-one-sample"/>
 
-If measurements share a subject or are naturally matched, compute a difference for each pair in a fixed order. Then test the mean difference against zero using a one-sample $t$ statistic. The model assumption concerns the distribution of the differences and independence between pairs. Reversing the order reverses the sign of every difference, so reverse the direction of the alternative as well.
+### 把 paired data 转成一个差值样本
 
-## Build and interpret a confidence interval
+同一对象前后测量，或数据能自然配对时，按固定顺序计算每一对的差值。用 one-sample $t$ statistic 检验差值均值是否为零。模型假设针对差值分布，并要求不同配对相互独立。调换相减顺序会改变所有差值的符号，备择假设的方向也要随之改变。
 
-An interval for a mean or mean difference has the form $\text{estimate}\pm(\text{critical value})\times\operatorname{SE}$. Use the reference distribution and degrees of freedom from the relevant sampling model. A 95% procedure would produce intervals covering the fixed population parameter in 95% of repeated samples under the model assumptions.
+<span className="legacy-anchor" id="build-and-interpret-a-confidence-interval"/>
 
-To change the confidence level from a given interval, use its midpoint as the estimate. Its half-width divided by the original critical value recovers the standard error. Multiply that standard error by the new critical value. If the data were recoded as $Y=aX+b$, then $\bar y=a\bar x+b$ and $s_Y=|a|s_X$. Convert both interval endpoints back to the original scale and put them in increasing order.
+### 构造并解释 confidence interval
+
+均值或均值差的区间形式为 $\text{estimate}\pm(\text{critical value})\times\operatorname{SE}$。根据抽样模型选 reference distribution 和 degrees of freedom。若模型成立，重复抽样并用同一种 95% 方法构造区间，长期来看有 95% 的区间包含固定的总体参数。
+
+若要根据现有区间改变 confidence level，取区间中点作为估计值。用半宽除以原 critical value 还原 standard error，再乘新的 critical value。若数据曾变换为 $Y=aX+b$，则 $\bar y=a\bar x+b$ 且 $s_Y=|a|s_X$。将两个区间端点变回原尺度，再从小到大排列。

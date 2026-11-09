@@ -1,6 +1,6 @@
 ---
 topicId: rational
-description: "Learn to build a rational-function sketch from its domain, asymptotes, turning points and transformations."
+description: "从 domain、asymptotes 和 stationary points 出发，画出 rational function 的图像。"
 sources:
   - "FP1 CH2 Rational functions &CH3  series.pdf, pp. 1–5"
   - "FP1 CH2 Rational functions.pdf, pp. 1–6"
@@ -8,42 +8,52 @@ sources:
 
 import Graph from '../../components/ExampleGraph.astro';
 
-## Begin with the reciprocal curve
+<span className="legacy-anchor" id="begin-with-the-reciprocal-curve"/>
 
-The equation $y=1/x$ means $xy=1$. When $x$ is positive so is $y$, and when $x$ is negative so is $y$. Near zero the magnitude of $1/x$ grows without bound, while far from zero it becomes small. This gives the two branches and the asymptotes $x=0$ and $y=0$.
+### 从 reciprocal function 开始
 
-Replacing $x$ by $x-2$ moves the excluded input to $2$. More generally $y=k/(x-h)+v$ has vertical asymptote $x=h$ and horizontal asymptote $y=v$ when $k\ne0$.
+方程 $y=1/x$ 意味着 $xy=1$。$x$ 为正时 $y$ 为正，$x$ 为负时 $y$ 为负。靠近零时 $1/x$ 的绝对值无限增大，远离零时趋近于零。因此图像分成两支，asymptotes 为 $x=0$ 和 $y=0$。
+
+把 $x$ 换成 $x-2$ 后，domain 排除的输入移到 $2$。更一般地，$y=k/(x-h)+v$ 的 vertical asymptote 为 $x=h$，horizontal asymptote 为 $y=v$，其中 $k\ne0$。
 
 <Graph name="reciprocal"/>
 
-## Use division to see the asymptotes
+<span className="legacy-anchor" id="use-division-to-see-the-asymptotes"/>
 
-First identify the denominator zeros. Cancel common factors for algebra while carrying the original restrictions into the sketch. A cancelled factor can leave a hole. A denominator zero with an uncancelled pole gives a vertical asymptote.
+### 用除法判断 asymptotes
 
-For linear over linear, division gives a constant plus a shifted reciprocal. For equal degrees, the leading coefficient ratio gives the horizontal asymptote. For a numerator one degree higher, the quotient is a straight line. For example:
+先找分母零点。约掉公因式后，作图仍要保留原来的 domain 限制。被约掉的因式可能留下一个空点，未约掉的 pole 则给出 vertical asymptote。
+
+一次式除以一次式，得到常数加平移后的 reciprocal term。分子分母同次时，首项系数之比给出 horizontal asymptote。分子次数比分母高一次时，商是一条直线。下面是一个例子。
 
 $$
 \frac{x^2}{x+1}=x-1+\frac{1}{x+1}.
 $$
 
-The remainder term tends to zero as $|x|$ grows, so $y=x-1$ is the oblique asymptote.
+当 $|x|$ 的绝对值增大时，余下的分式趋于零，所以 $y=x-1$ 是 oblique asymptote。
 
 <Graph name="oblique"/>
 
-## Find turning points and the range
+<span className="legacy-anchor" id="find-turning-points-and-the-range"/>
 
-Mark intercepts, use $y'=0$ to locate possible stationary points, and inspect signs on the intervals between poles. For the notes' example $y=1/((x-1)(x-2))$, the two outside branches are positive. The middle branch is negative and reaches $-4$ at $x=3/2$, where the product in the denominator is $-1/4$. Its range is $(-\infty,-4]\cup(0,\infty)$.
+### 找 turning points 和 range
+
+标出 intercepts，用 $y'=0$ 寻找可能的 stationary points，并逐段判断各 pole 之间的符号。笔记中的 $y=1/((x-1)(x-2))$ 在两侧为正，中间一支为负，最高值为 $-4$，对应输入 $x=3/2$，此时分母中的乘积为 $-1/4$。range 为 $(-\infty,-4]\cup(0,\infty)$。
 
 <Graph name="two-poles"/>
 
-To check a range algebraically, fix a possible output $y$ and solve for $x$. When the resulting equation is quadratic, the discriminant must be nonnegative. Check any $y$ that makes the quadratic coefficient vanish separately, and discard any excluded $x$.
+若要用代数求 range，先给定输出 $y$，再解出 $x$。若得到二次方程，discriminant 必须非负。使二次项系数为零的 $y$ 要单独检查，同时排除不在 domain 内的 $x$。
 
-## Transform the sketch
+<span className="legacy-anchor" id="transform-the-sketch"/>
 
-For $y=|f(x)|$, reflect the negative pieces upwards. For $y=f(|x|)$, keep the right-hand half and reflect it across the vertical axis. For $y=1/f(x)$, zeros of $f$ can become poles, signs are preserved wherever defined, and points with $f(x)=\pm1$ keep their heights. For $y^2=f(x)$, sketch $y=\pm\sqrt{f(x)}$ over the inputs with $f(x)\ge0$.
+### 变换已有图像
+
+对于 $y=|f(x)|$，把负值部分向上翻折。对于 $y=f(|x|)$，保留右半边，并沿竖轴翻到左边。对于 $y=1/f(x)$，$f$ 的零点可能变成 poles，有定义处符号不变，$f(x)=\pm1$ 的点高度不变。对于 $y^2=f(x)$，先取 $y=\pm\sqrt{f(x)}$ 的图像，只保留输入满足 $f(x)\ge0$ 的部分。
 
 <Graph name="reciprocal-f"/>
 
-## Read inequalities from the branches
+<span className="legacy-anchor" id="read-inequalities-from-the-branches"/>
 
-Find the intersections by solving the corresponding equality. Split the real line at intersections and excluded inputs, then compare curve heights on each interval. For example, $|1/(x-2)|<1$ gives $|x-2|>1$. The graph lies between $y=-1$ and $y=1$ for $x<1$ or $x>3$. The endpoints are excluded because the comparison is strict.
+### 用图像解不等式
+
+先解对应等式找交点。在实数轴上用交点和排除的输入划分区间，再逐段比较图像高度。例如 $|1/(x-2)|<1$ 可化成 $|x-2|>1$。图像在 $y=-1$ 和 $y=1$ 之间时，输入满足 $x<1$ 或 $x>3$。这里是不含等号的比较，端点不取。

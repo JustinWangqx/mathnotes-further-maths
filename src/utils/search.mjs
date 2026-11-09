@@ -4,14 +4,14 @@ export const normalise=text=>text.normalize('NFKC').toLowerCase()
   .replace(/chi[\s-]*square[d]?/g,'chi squared').replace(/[-–—]/g,' ').replace(/\s+/g,' ').trim();
 const escaped=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const phrasePattern=phrase=>new RegExp(`${/^[a-z0-9]/.test(phrase)?'(?<![a-z0-9])':''}${escaped(phrase)}${/[a-z0-9]$/.test(phrase)?'(?![a-z0-9])':''}`,'gu');
-const kinds={learn:/\b(?:learn(?:ing)?|lessons?)\b|学习/gu,notes:/\b(?:notes?|methods?|worked examples?|revision notes?)\b|笔记/gu,papers:/\b(?:papers?|questions?|worksheets?|homework|qp|answers?|mark schemes?)\b|真题|试卷|答案/gu,resources:/\b(?:mf19|formula (?:sheet|booklet)|syllabus|resources?)\b|公式表|考纲|大纲/gu};
+const kinds={notes:/\b(?:notes?|methods?|worked examples?|revision notes?|learn(?:ing)?|lessons?)\b|专题笔记|笔记|学习/gu,papers:/\b(?:papers?|questions?|worksheets?|homework|qp|answers?|mark schemes?)\b|真题|试卷|答案/gu,resources:/\b(?:mf19|formula (?:sheet|booklet)|syllabus|resources?)\b|公式表|考纲|大纲/gu};
 const modulePatterns=[['fp1',/\b(?:fp\s*1|(?:further )?pure\s*1|paper\s*1)\b/gu],['fp2',/\b(?:fp\s*2|(?:further )?pure\s*2|paper\s*2)\b/gu],['mechanics',/\b(?:fm|(?:further )?mechanics|paper\s*3)\b|力学/gu],['statistics',/\b(?:fs|(?:further )?statistics|paper\s*4)\b/gu]];
 const stopWords=new Set('cie cambridge international assessment examinations education alevel a as level maths further 9231 free revision study exam board past topic collection collections the of and for in to with'.split(' '));
 export function planSearch(catalog,query,filters={}){
   let remaining=normalise(query).replace(/\bquestion types?\b/gu,' ');
   const needsAnswers=/\b(?:answers?|mark schemes?)\b|答案/u.test(remaining);
   let inferredKind='all';
-  for(const kind of ['resources','learn','notes','papers'])if(remaining.match(kinds[kind])){inferredKind=kind;break;}
+  for(const kind of ['resources','notes','papers'])if(remaining.match(kinds[kind])){inferredKind=kind;break;}
   let inferredModule='all';
   for(const [id,pattern] of modulePatterns)if(remaining.match(pattern)){inferredModule=id;remaining=remaining.replace(pattern,' ');}
   const matchedTopics=[];

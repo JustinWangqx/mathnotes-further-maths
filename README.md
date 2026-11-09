@@ -2,9 +2,8 @@
 
 A public Cambridge International (CIE/CAIE) A Level maths learning and revision website. The current collection focuses on Further Mathematics 9231: 15 topics represented in the supplied notes, comprising 5 FP1, 4 FP2, 1 Further Mechanics and 5 Further Statistics topics. The shared MF19 reference also supports Mathematics 9709.
 
-- Learn contains 15 chapters adapted from the original notes, with explanations, derivations, diagrams and worked examples.
-- Revision Notes groups the revision guides by module and syllabus topic.
-- 15 guides contain 90 numbered question types, short methods, essential formulas and worked examples.
+- 专题笔记 groups 15 topics by module and syllabus order. Each topic combines explanations, derivations and diagrams with numbered question types and worked examples.
+- Instructions and worked examples are in Simplified Chinese, with English mathematics terminology. The 90 original question-type anchors remain available.
 - One Question papers library contains 15 original collections with 121 complete questions, plus 13 separately supplied answer files.
 - Every question page also has a full-page lossless preview for browsers without a PDF viewer. The source question and answer PDFs are copied intact, preserving page order, numbering, subparts, diagrams and supplied commentary. Byte-identical duplicate files are included once.
 - The official Cambridge MF19 formula sheet is linked in the sidebar, resources and paper reader. There is no separate formula index.
@@ -31,16 +30,16 @@ The workflow checks and deploys `dist/` on pushes to `main`. Repository Settings
 
 ## Content and provenance
 
-- `src/content/learn/`: chapter content and source-note references.
+- `src/content/learn/`: the concept sections and source-note references for the combined topic pages.
 - `src/content/notes/`: note metadata and shared question-type layout.
-- `src/data/question-types.json`: all numbered methods, formulas, examples and source references.
+- `src/data/question-types.json` and `src/data/question-types.zh.json`: original question types and their Chinese prose. Mathematical formulas and source references are shared.
 - `src/data/curriculum.ts`: the 15 topics, syllabus ordering, aliases and reference links.
 - `src/data/paper-collections.json`: source filenames, question counts, PDF metadata and SHA-256 digests.
 - `public/papers/`: the 28 selected source question/answer PDFs. The ignore rules permit PDFs only here.
 - `docs/paper-collections.md`: exact collection and answer pairings.
 - `docs/content-scope.md`: source-note coverage.
 
-Only question collections supplied by the user are included in the paper library. The full coursebook and lesson-note PDFs are excluded. The previous generated practice questions and external-paper archive have been removed. `/practice/` and `/past-papers/` redirect to `/papers/`; `/syllabus/` redirects to the `/notes/` revision topic map. Guide URLs are unchanged.
+Only question collections supplied by the user are included in the paper library. The full coursebook and lesson-note PDFs are excluded. The previous generated practice questions and external-paper archive have been removed. `/practice/` and `/past-papers/` redirect to `/papers/`; `/syllabus/` redirects to the `/notes/` revision topic map. Guide URLs and numbered anchors are unchanged. Old `/learn/` URLs forward to the topic map or the matching concept section.
 
 Math working uses stacked fractions and vertical display equations. `src/utils/math-layout.mjs` formats successive equalities; use explicit `aligned` blocks for authored working and retain matrices and cases as authored. Split long expressions at meaningful mathematical boundaries for narrow screens.
 
@@ -52,9 +51,9 @@ Checks cover routes and anchors, base-path handling, all 15 guides and 90 questi
 
 ## Search and discovery
 
-Every indexable page has a unique subject-specific title and description, canonical URL, social preview and structured page/breadcrumb metadata. The sitemap lists 55 useful pages and all 28 original question/answer PDFs; search, errors and legacy redirects are excluded. See `docs/search-discovery.md` for indexing details.
+Every indexable page has a unique subject-specific title and description, canonical URL, social preview and structured page/breadcrumb metadata. The sitemap lists 39 useful pages and all 28 original question/answer PDFs; search, errors and legacy redirects are excluded. See `docs/search-discovery.md` for indexing details.
 
-On-site search recognises CIE/CAIE/Cambridge, A Level/A-level/Alevel, Mathematics/Maths, English/Chinese topic names, module names and learning, revision and paper intent. It matches the learning chapters, the revision notes and text extracted from the original question PDFs, returning whole collections. `src/data/paper-search.json` also contains original paper references printed in the supplied answer PDFs where available. Refresh that file after changing a source collection with `python3 scripts/index-paper-text.py` (optional authoring dependency: `pypdf`); normal builds need no Python.
+On-site search recognises CIE/CAIE/Cambridge, A Level/A-level/Alevel, Mathematics/Maths, English/Chinese topic names, module names and note and paper intent. It matches concepts, question types and text extracted from the original question PDFs, returning whole collections. `src/data/paper-search.json` also contains original paper references printed in the supplied answer PDFs where available. Refresh that file after changing a source collection with `python3 scripts/index-paper-text.py` (optional authoring dependency: `pypdf`); normal builds need no Python.
 
 ## Footer view count
 
@@ -64,7 +63,7 @@ The footer shows the public site-wide page-view total supplied by Hits Counter, 
 
 ## Reading and rollback
 
-The site version immediately before Learn is available as `before-learning-section-2026-11-09`. See [rollback instructions](docs/rollback.md).
+The separate English Learn and Revision Notes release is available as `before-merged-chinese-notes-2026-11-09`. See [rollback instructions](docs/rollback.md).
 
 Each question type presents a short method, essential formulas and an example with its working visible. Relevant examples include function graphs, probability plots or an Argand diagram. Mechanics methods include concept diagrams, and every Mechanics question is paired with its setup diagram before the worked solution. Wide layouts show the question and diagram side by side, while narrow layouts place the diagram directly below the question. Practice is available through the Question papers library. Below 981px, a compact contents menu replaces the desktop contents column.
 

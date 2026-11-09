@@ -1,21 +1,21 @@
 ---
-interface Props { name: string }
-const {name} = Astro.props;
+interface Props { name: string; scope?: string }
+const {name, scope = 'revision'} = Astro.props;
 const captions: Record<string, string> = {
-  moments: 'Clockwise and anticlockwise moments about O.',
-  framework: 'Point masses at the corners of a light frame.',
-  sector: 'Uniform quarter-disc of radius r.',
-  string: 'The string tension, weight and two wall contact forces.',
-  triangle: 'Uniform triangular lamina with vertices O, Q and P.',
-  holes: 'Centres of the three removed circular areas.',
-  wire: 'Straight wire and denser semicircular wire.',
-  frustum: 'The smaller cone is removed from the original cone.',
-  suspension: 'Cone and hemisphere joined at their common face AB.',
-  toppling: 'At the limit, the line of action of the weight passes through C.',
-  ladder: 'Normal reactions, friction and the two weights.',
-  prism: 'Take moments about the right-hand base edge O.',
+  moments: '绕 O 的顺时针和逆时针 moments。',
+  framework: '轻质框架四角的 point masses。',
+  sector: '均匀三角形 lamina 的顶点为 O、Q 和 P。',
+  string: '半径为 r 的均匀四分之一圆盘。',
+  triangle: 'string 的 tension、重量和墙施加的两种 contact forces。',
+  holes: '被挖去的三个圆形区域的圆心。',
+  wire: '直线 wire 与 linear density 更大的半圆 wire。',
+  frustum: '从原 cone 中切去较小的 cone。',
+  suspension: 'cone 与 hemisphere 在公共平面 AB 上拼合。',
+  toppling: '刚要 toppling 时，重力作用线穿过 C。',
+  ladder: 'normal reactions、friction 和两处重量。',
+  prism: '绕底部右侧边缘 O 取 moments。',
 };
-const arrowId = `mechanics-arrow-${name}`;
+const arrowId = `mechanics-arrow-${scope}-${name}`;
 const arrow = `url(#${arrowId})`;
 ---
 <figure class="example-graph mechanics-diagram">
@@ -27,7 +27,7 @@ const arrow = `url(#${arrowId})`;
       <path d="M180 75H305" class="force-line" marker-end={arrow}/><path d="M280 225V155" class="force-line" marker-end={arrow}/>
       <text x="250" y="58">7 N</text><text x="290" y="180">5.5 N</text>
       <text x="125" y="155">3 m</text><text x="220" y="249">2 m</text><text x="158" y="249">O</text>
-      <text x="49" y="299">Perpendicular distances shown</text>
+      <text x="49" y="299">图中标注为垂直距离</text>
     </>}
     {name === 'framework' && <>
       <path d="M110 245H360V95H110Z" class="body-line"/>
@@ -73,7 +73,7 @@ const arrow = `url(#${arrowId})`;
       <path d="M190 55A55 55 0 0 1 190 165" fill="none" stroke="var(--primary)" stroke-width="6"/>
       <path d="M190 275H335" class="graph-axis"/><path d="M190 110H245" class="graph-asymptote"/>
       <text x="163" y="297">O</text><text x="80" y="58">(0, 4a)</text><text x="80" y="172">(0, 2a)</text>
-      <text x="260" y="108">radius a</text><text x="280" y="72">density 3λ</text><text x="62" y="226">density λ</text>
+      <text x="260" y="108">半径 a</text><text x="280" y="72">density 3λ</text><text x="62" y="226">density λ</text>
       <circle cx="190" cy="110" r="3" class="mass-dot"/><text x="202" y="133">(0, 3a)</text>
     </>}
     {name === 'frustum' && <>

@@ -1,40 +1,48 @@
 ---
 topicId: vectors
-description: "Build dot and cross products into geometric tools for lines, planes, distances and angles."
+description: "用 dot product 和 cross product 推导直线、平面、距离及夹角的计算方法。"
 sources:
   - "FP1 CH6 Vectors(1).pdf, pp. 1–7"
 ---
 
-## Projections, perpendiculars and area
+<span className="legacy-anchor" id="projections-perpendiculars-and-area"/>
 
-The dot product is $\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf b|\cos\theta$. Dividing by $|\mathbf b|$ gives the signed component of $\mathbf a$ along $\mathbf b$. The cross product points perpendicular to both vectors, and its magnitude is $|\mathbf a||\mathbf b|\sin\theta$. That is base times height for the parallelogram, so the triangle has half that area.
+### Projection、垂直关系与面积
 
-The scalar triple product $\mathbf a\cdot(\mathbf b\times\mathbf c)$ is the signed volume of the parallelepiped. It takes the perpendicular component of one edge and multiplies it by the opposite face area. Take the absolute value for volume, and divide by six for the tetrahedron with those three edges from a common vertex.
+dot product 为 $\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf b|\cos\theta$。除以 $|\mathbf b|$，就得到 $\mathbf a$ 沿 $\mathbf b$ 方向的有符号分量。cross product 垂直于两个向量，其大小为 $|\mathbf a||\mathbf b|\sin\theta$，等于平行四边形的底乘高。相应三角形的面积是它的一半。
 
-## Describe a line and a plane
+scalar triple product $\mathbf a\cdot(\mathbf b\times\mathbf c)$ 等于平行六面体的有符号体积。它用一条边垂直于对面的分量乘该面的面积。体积要取绝对值。若这三条边从同一点出发构成四面体，体积还要除以六。
 
-A line is $\mathbf r=\mathbf a+\lambda\mathbf u$, where $\mathbf a$ is a position vector on the line and $\mathbf u$ is its direction. A plane has two independent directions, so $\mathbf r=\mathbf a+\lambda\mathbf u+\mu\mathbf v$. Its normal is $\mathbf n=\mathbf u\times\mathbf v$.
+<span className="legacy-anchor" id="describe-a-line-and-a-plane"/>
 
-Because every displacement within the plane is perpendicular to $\mathbf n$, $\mathbf n\cdot(\mathbf r-\mathbf a)=0$. For example, a plane through $(2,1,0)$ with normal $(1,2,3)$ has equation $x+2y+3z=4$. Substituting a line into that equation gives the parameter of its intersection. If the parameter cancels, the line is either contained in the plane or parallel to it, according to whether the remaining equation is true.
+### 写出直线与平面的方程
 
-## Distances are perpendicular projections
+直线写成 $\mathbf r=\mathbf a+\lambda\mathbf u$，其中 $\mathbf a$ 是线上一点的 position vector，$\mathbf u$ 是方向。平面需要两个独立方向，写成 $\mathbf r=\mathbf a+\lambda\mathbf u+\mu\mathbf v$，其 normal 为 $\mathbf n=\mathbf u\times\mathbf v$。
 
-For a point $P$ and plane through $A$, project $\overrightarrow{AP}$ onto the normal and take its magnitude:
+平面内的位移都垂直于 $\mathbf n$，所以 $\mathbf n\cdot(\mathbf r-\mathbf a)=0$。例如，过 $(2,1,0)$ 且 normal 为 $(1,2,3)$ 的平面方程是 $x+2y+3z=4$。将直线方程代入即可求交点的参数。若参数消掉，剩余等式恒成立时直线在平面内，否则直线平行于平面。
+
+<span className="legacy-anchor" id="distances-are-perpendicular-projections"/>
+
+### 用垂直 projection 求距离
+
+要求点 $P$ 到过 $A$ 的平面的距离，把 $\overrightarrow{AP}$ 投影到 normal 上并取绝对值。
 
 $$
 d=\frac{|\mathbf n\cdot(\mathbf p-\mathbf a)|}{|\mathbf n|}.
 $$
 
-For a point and line, the perpendicular distance is the height of the parallelogram formed by $\overrightarrow{AP}$ and the line direction $\mathbf u$. Its value is $|(\mathbf p-\mathbf a)\times\mathbf u|/|\mathbf u|$. To obtain the *foot* as well, put it on the line and set the dot product of the displacement from $P$ and $\mathbf u$ to zero.
+点到直线的垂直距离等于 $\overrightarrow{AP}$ 与直线方向 $\mathbf u$ 张成的平行四边形的高，计算式是 $|(\mathbf p-\mathbf a)\times\mathbf u|/|\mathbf u|$。若还要找垂足，将垂足写成线上一点，并令从 $P$ 指向垂足的向量与 $\mathbf u$ 的 dot product 为零。
 
-For nonparallel lines, the common normal is $\mathbf u\times\mathbf v$. Project the displacement between any points on the two lines onto this normal for their shortest distance. For parallel lines, use the point-to-line formula.
+对于不平行的两条直线，common normal 是 $\mathbf u\times\mathbf v$。在两条线上各取一点，将它们之间的位移投影到 common normal 上，取绝对值即得最短距离。两线平行时用点到直线的公式。
 
-## Angles and intersections
+<span className="legacy-anchor" id="angles-and-intersections"/>
 
-The acute angle between planes is the acute angle between their normals. The angle between a line and plane is complementary to the angle between the line and the normal, which gives
+### 求夹角与交线
+
+两个平面的锐夹角等于其 normals 的锐夹角。直线与平面的夹角和直线与 normal 的锐夹角互余，因此得到下式。
 
 $$
 \sin\theta=\frac{|\mathbf u\cdot\mathbf n|}{|\mathbf u||\mathbf n|}.
 $$
 
-For two nonparallel planes, their line of intersection is perpendicular to both normals. Use $\mathbf n_1\times\mathbf n_2$ for its direction, then solve the two plane equations together to obtain one point. For $x+y=3$ and $y+z=4$, setting $y=0$ gives $(3,0,4)$. The cross product of $(1,1,0)$ and $(0,1,1)$ is $(1,-1,1)$, so the intersection is $(3,0,4)+\lambda(1,-1,1)$.
+两个不平行平面的交线同时垂直于两个 normals。方向取 $\mathbf n_1\times\mathbf n_2$，再联立平面方程求出一点。对 $x+y=3$ 和 $y+z=4$，令 $y=0$ 得到 $(3,0,4)$。对 $(1,1,0)$ 和 $(0,1,1)$ 做 cross product 得 $(1,-1,1)$，所以交线为 $(3,0,4)+\lambda(1,-1,1)$。

@@ -1,35 +1,43 @@
 ---
 topicId: non-parametric
-description: "Understand how signs and ranked deviations give evidence about a median or a paired change."
+description: "用符号与 rank 判断总体 median 或配对差异。"
 sources:
   - "FS CH11 Non-Parametric tests.pdf, pp. 1–5"
 ---
 
-## Choose what information to keep
+<span className="legacy-anchor" id="choose-what-information-to-keep"/>
 
-The sign test counts the directions of deviations from a hypothesised median. It can be used with independent observations from a continuous population without assuming symmetry. The Wilcoxon signed-rank test uses directions and the order of the magnitudes. For its one-sample form, assume the continuous population is symmetric about its centre. With paired data, work on the within-pair differences and apply the relevant assumptions to those differences.
+### 选择要保留的信息
 
-## Why signs follow a binomial model
+sign test 只统计观测值相对假设 median 的偏差方向。对连续总体的独立观测，不需要假设总体对称。Wilcoxon signed-rank test 还使用偏差大小的顺序。one-sample 版本要求连续总体关于中心对称。遇到 paired data，先计算每对的差值，再检查差值是否满足相应假设。
 
-For a continuous distribution with median $m_0$, half of the probability lies on each side. Under the null, independent observations therefore give independent signs with positive probability $1/2$. Subtract $m_0$, omit zero differences as directed, and use the number of remaining signs as $n$. The positive count $S$ has the null distribution $B(n,1/2)$.
+<span className="legacy-anchor" id="why-signs-follow-a-binomial-model"/>
 
-If 12 of 15 observations lie above 135 and three below, the two tails are equally likely under the null. The two-sided $p$-value is
+### 为什么正号计数服从 binomial distribution
+
+连续分布的 median 为 $m_0$ 时，两边的概率各占一半。在 null hypothesis 下，各独立观测的符号独立，正号概率为 $1/2$。各值减去 $m_0$，按题意处理零差值，剩余符号数记为 $n$。正号个数 $S$ 在 null hypothesis 下服从 $B(n,1/2)$。
+
+若 15 个观测中有 12 个大于 135，3 个小于 135，则在 null hypothesis 下两端的 tail 概率相同。two-sided $p$-value 如下。
 
 $$
 2P(S\le3)=2\frac{1+15+105+455}{2^{15}}\approx0.0352.
 $$
 
-This gives evidence at the 5% level that the median differs from 135. For a one-sided alternative that the median is higher, use the probability of at least as many positive signs.
+在 5% significance level 下，有证据表明 median 与 135 不同。若单侧备择假设认为 median 更高，就计算正号个数至少达到观测值的概率。
 
-## Why signed ranks add information
+<span className="legacy-anchor" id="why-signed-ranks-add-information"/>
 
-Rank the absolute deviations from smallest to largest and restore the original signs. When magnitudes tie, assign their average rank and follow the stated procedure for ties. Let $P$ and $Q$ be the sums of ranks for positive and negative deviations, with both sums recorded as non-negative numbers. Their total is $n(n+1)/2$. Under a symmetric null, conditional on the magnitudes, each sign is equally likely in either direction.
+### Signed ranks 如何利用偏差大小
 
-For the mackerel example, testing against $1.8$ kg gives negative ranks $2$ and $7$, hence $Q=9$ and $P=55-9=46$. A shift upwards makes the negative rank sum small. At the one-tailed 5% critical value of 10 for ten observations, this provides evidence that the median weight exceeds $1.8$ kg. For a two-sided test, either unusually small sum counts as evidence.
+将偏差绝对值由小到大排序，再给每个 rank 加回原符号。绝对值相同就取平均 rank，并按题意处理并列。用 $P$ 和 $Q$ 分别表示正差与负差的 rank sums，两者都记成非负数，总和为 $n(n+1)/2$。在对称的 null model 下，给定各偏差的绝对值，正负两个符号等可能。
 
-## Approximate a large rank sum
+鲭鱼例题以 $1.8$ kg 为基准，两个负差的 ranks 为 $2$ 和 $7$，所以 $Q=9$、$P=55-9=46$。整体偏高时负差的 rank sum 会偏小。十个观测的 5% 单尾 critical value 为 10，因此有证据表明重量的 median 超过 $1.8$ kg。双尾检验时，任一侧的 rank sum 异常偏小都构成证据。
 
-For untied ranks, each rank $r$ contributes either $r$ or zero to $P$, with equal probability under the null. Add the means $r/2$ and the variances $r^2/4$ to get
+<span className="legacy-anchor" id="approximate-a-large-rank-sum"/>
+
+### 用 normal approximation 近似 rank sum
+
+在没有并列 rank 时，每个 rank $r$ 贡献 $r$ 或零到 $P$，两种情况在 null hypothesis 下等可能。将各项的 mean $r/2$ 和 variance $r^2/4$ 相加，得到下式。
 
 $$
 E(P)=\frac{n(n+1)}4,
@@ -37,8 +45,10 @@ E(P)=\frac{n(n+1)}4,
 \operatorname{Var}(P)=\frac{n(n+1)(2n+1)}{24}.
 $$
 
-When the normal approximation is appropriate, standardise using these moments. Use a continuity correction for integer rank sums. For instance, $P(P\le q)$ is approximated using a boundary of $q+0.5$. Choose the tail from the alternative and from which rank sum you are using.
+适合使用 normal approximation 时，用这些 moments 做 standardisation。整数 rank sum 要做 continuity correction。例如 $P(P\le q)$ 的近似边界应取 $q+0.5$。根据备择假设及采用的 rank sum 选择 tail。
 
-## Work with paired data
+<span className="legacy-anchor" id="work-with-paired-data"/>
 
-For before-and-after measurements, choose a fixed subtraction such as “after minus before”. A positive difference then means an increase. The paired sign test counts increases, while the matched-pairs signed-rank test ranks the absolute changes and gives larger changes more weight. Rank the differences across the pairs, keeping the original pairing intact.
+### 处理 paired data
+
+前后测量要固定相减方向，例如「之后减之前」，这样正差表示增加。paired sign test 统计增加次数。matched-pairs signed-rank test 对变化量的绝对值排序，让较大的变化有更高权重。先保留原始配对，再对所有配对差值统一排序。

@@ -16,7 +16,7 @@ export default defineConfig({
   base,
   trailingSlash: 'always',
   integrations: [mdx(), sitemap({
-    filter:page=>!/(?:\/(?:search|practice|past-papers|syllabus)\/?$|\/404(?:\.html|\/)?$|\.json$)/.test(new URL(page).pathname),
+    filter:page=>!new URL(page).pathname.startsWith(base+'learn/') && !/(?:\/(?:search|practice|past-papers|syllabus)\/?$|\/404(?:\.html|\/)?$|\.json$)/.test(new URL(page).pathname),
     customPages:pdfUrls,
   })],
   markdown: { processor: unified({ remarkPlugins: [remarkMath], rehypePlugins: [[rehypeKatex, { throwOnError: true }]] }) },

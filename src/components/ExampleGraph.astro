@@ -41,7 +41,7 @@ const plots: Record<string, Plot> = {
     x: [-6, 7], y: [-1, 2], horizontal: [1],
   },
   tanh: {
-    label: 'y = tanh x approaches y = −1 and y = 1',
+    label: 'y = tanh x 趋近于 y = −1 和 y = 1',
     fn: Math.tanh, x: [-4, 4], y: [-1.5, 1.5], horizontal: [-1, 1],
   },
   hyperbolic: {
@@ -60,17 +60,17 @@ const plots: Record<string, Plot> = {
     reference: {label: 'g(x) = (x² + 2x + 2)/(x² + 1)', fn: x => (x * x + 2 * x + 2) / (x * x + 1)},
   },
   density: {
-    label: 'PDF f(x) = x/12 on [1, 5]; zero elsewhere',
+    label: 'PDF 在 [1, 5] 上为 f(x) = x/12，其余位置为零',
     fn: x => x < 1 || x > 5 ? 0 : x / 12,
     x: [-0.5, 6], y: [-0.08, 0.5], breaks: [1, 5],
   },
   cdf: {
-    label: 'CDF F(x) = (x² − 1)/24 on [1, 5]',
+    label: 'CDF 在 [1, 5] 上为 F(x) = (x² − 1)/24',
     fn: x => x < 1 ? 0 : x > 5 ? 1 : (x * x - 1) / 24,
     x: [-0.5, 6], y: [-0.15, 1.2],
   },
   'arc-length': {
-    label: 'y = cosh x; orange arc from x = 0 to x = ln 2',
+    label: 'y = cosh x。橙色弧段从 x = 0 到 x = ln 2',
     fn: x => Math.cosh(x), x: [-0.5, 1.5], y: [-0.25, 2.5], highlight: [0, Math.log(2)],
   },
 };
@@ -118,7 +118,7 @@ const roots = argand ? Array.from({length: 6}, (_, k) => ({
 ---
 <figure class="example-graph">
   <svg viewBox={`0 0 ${width} ${height}`} role="img"
-    aria-label={argand ? 'Argand diagram: six roots of modulus square root of two and arguments pi/18 + k pi/3' : plot.label}>
+    aria-label={argand ? 'Argand diagram 上的六个根，modulus 为 √2，argument 为 π/18 + kπ/3' : plot.label}>
     {ticksX.map(x => <line x1={X(x)} x2={X(x)} y1={padding} y2={height-padding} class="graph-grid"/>)}
     {ticksY.map(y => <line x1={padding} x2={width-padding} y1={Y(y)} y2={Y(y)} class="graph-grid"/>)}
     <line x1={padding} x2={width-padding} y1={Y(0)} y2={Y(0)} class="graph-axis"/>
@@ -147,8 +147,8 @@ const roots = argand ? Array.from({length: 6}, (_, k) => ({
     </>}
   </svg>
   <figcaption>
-    {argand ? 'Six roots · equal angular spacing π/3' : plot.label}
+    {argand ? '六个根，角间距均为 π/3' : plot.label}
     {plot?.reference && <span class="graph-legend"><span class="reference-key"></span>{plot.reference.label}<span class="curve-key"></span>Reciprocal</span>}
-    {(plot?.poles?.length || plot?.horizontal?.length || plot?.oblique) && <span class="graph-legend">Dashed orange lines show asymptotes.</span>}
+    {(plot?.poles?.length || plot?.horizontal?.length || plot?.oblique) && <span class="graph-legend">橙色虚线是 asymptotes。</span>}
   </figcaption>
 </figure>

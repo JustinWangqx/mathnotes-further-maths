@@ -123,3 +123,18 @@ test('all 90 question types render a method, formula and visible worked example 
   assert.ok(type.answer&&type.source.file&&type.source.pages&&type.source.label);
  }
 });
+
+test('Chinese worked examples preserve the math and step counts of all source examples',()=>{
+ const original=JSON.parse(readFileSync('src/data/question-types.json','utf8'));
+ const translated=JSON.parse(readFileSync('src/data/question-types.zh.json','utf8'));
+ const tex=text=>text.match(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g)||[];
+ for(const [topic,types] of Object.entries(original)){
+  assert.equal(translated[topic].length,types.length,topic);
+  for(const [i,example] of types.entries()){
+   const zh=translated[topic][i];
+   assert.match(zh.title,/\p{Script=Han}/u,topic);
+   for(const field of ['method','question','answer'])assert.deepEqual(tex(zh[field]),tex(example[field]),topic+' '+example.id+' '+field);
+   assert.deepEqual(zh.steps.map(tex),example.steps.map(tex),topic+' '+example.id);
+  }
+ }
+});

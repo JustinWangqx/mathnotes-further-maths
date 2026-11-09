@@ -1,4 +1,5 @@
 import data from './question-types.json';
+import translations from './question-types.zh.json';
 
 export interface QuestionType {
   number: number;
@@ -13,5 +14,13 @@ export interface QuestionType {
   source: {file: string; pages: string; label: string; kind: string};
 }
 
-export const questionTypes = data as Record<string, QuestionType[]>;
+const originalTypes: Record<string, QuestionType[]> = data;
+const localizedTypes: Record<string, Pick<QuestionType, 'title' | 'method' | 'question' | 'steps' | 'answer'>[]> = translations;
+export const questionTypes = Object.fromEntries(
+  Object.entries(originalTypes).map(([topic, types]) => [topic, types.map((type, index) => {
+    const translation = localizedTypes[topic]?.[index];
+    if (!translation) throw new Error('Missing Chinese translation for ' + topic + '/' + type.id);
+    return { ...type, ...translation };
+  })]),
+);
 export const totalTypes = Object.values(questionTypes).reduce((sum, types) => sum + types.length, 0);

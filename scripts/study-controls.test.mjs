@@ -9,7 +9,7 @@ const htmlFor=href=>readFileSync(`dist/${new URL(href,'https://example.org').pat
 test('specific method searches link to the matching type with clean readable descriptions',()=>{
  const results=searchCatalog(catalog,'reciprocal').results;
  assert.ok(results[0].href.endsWith('/roots-of-polynomials/#type-2'));
- assert.match(results[0].title,/Type 02:.*reciprocal roots/);
+ assert.match(results[0].title,/题型 02 ·.*reciprocal roots/);
  assert.ok(results.some(r=>r.href.endsWith('/rational-functions/#type-1')));
  for(const result of results)assert.doesNotMatch(result.description,/katex|<[^>]+>|\\[a-z]+|\$|application\/x-tex/);
  const reduction=searchCatalog(catalog,'integration reduction').results;
@@ -19,7 +19,7 @@ test('all 90 indexed method anchors lead to a directly readable example and solu
  let count=0;
  for(const entry of catalog.records.filter(r=>r.kind==='notes')){
   const html=htmlFor(entry.href);
-  assert.ok(html.includes('aria-label="Jump to question type"'));
+  assert.ok(html.includes('aria-label="本页目录"'));
   for(const section of entry.sections){
    const id=new URL(section.href,'https://example.org').hash.slice(1);
    assert.ok(html.includes(`id="${id}"`));

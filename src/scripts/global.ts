@@ -10,7 +10,7 @@ mobileLayout.addEventListener('change', syncNavigation);
 toggle?.addEventListener('click', () => {
   const expanded = toggle.getAttribute('aria-expanded') === 'true';
   toggle.setAttribute('aria-expanded', String(!expanded));
-  toggle.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  toggle.setAttribute('aria-label', expanded ? '打开导航' : '关闭导航');
   sidebar?.classList.toggle('is-open', !expanded);
   syncNavigation();
   if (expanded) toggle.focus();
