@@ -1,0 +1,49 @@
+---
+topicId: rational
+description: "Learn to build a rational-function sketch from its domain, asymptotes, turning points and transformations."
+sources:
+  - "FP1 CH2 Rational functions &CH3  series.pdf, pp. 1–5"
+  - "FP1 CH2 Rational functions.pdf, pp. 1–6"
+---
+
+import Graph from '../../components/ExampleGraph.astro';
+
+## Begin with the reciprocal curve
+
+The equation $y=1/x$ means $xy=1$. When $x$ is positive so is $y$, and when $x$ is negative so is $y$. Near zero the magnitude of $1/x$ grows without bound, while far from zero it becomes small. This gives the two branches and the asymptotes $x=0$ and $y=0$.
+
+Replacing $x$ by $x-2$ moves the excluded input to $2$. More generally $y=k/(x-h)+v$ has vertical asymptote $x=h$ and horizontal asymptote $y=v$ when $k\ne0$.
+
+<Graph name="reciprocal"/>
+
+## Use division to see the asymptotes
+
+First identify the denominator zeros. Cancel common factors for algebra while carrying the original restrictions into the sketch. A cancelled factor can leave a hole. A denominator zero with an uncancelled pole gives a vertical asymptote.
+
+For linear over linear, division gives a constant plus a shifted reciprocal. For equal degrees, the leading coefficient ratio gives the horizontal asymptote. For a numerator one degree higher, the quotient is a straight line. For example:
+
+$$
+\frac{x^2}{x+1}=x-1+\frac{1}{x+1}.
+$$
+
+The remainder term tends to zero as $|x|$ grows, so $y=x-1$ is the oblique asymptote.
+
+<Graph name="oblique"/>
+
+## Find turning points and the range
+
+Mark intercepts, use $y'=0$ to locate possible stationary points, and inspect signs on the intervals between poles. For the notes' example $y=1/((x-1)(x-2))$, the two outside branches are positive. The middle branch is negative and reaches $-4$ at $x=3/2$, where the product in the denominator is $-1/4$. Its range is $(-\infty,-4]\cup(0,\infty)$.
+
+<Graph name="two-poles"/>
+
+To check a range algebraically, fix a possible output $y$ and solve for $x$. When the resulting equation is quadratic, the discriminant must be nonnegative. Check any $y$ that makes the quadratic coefficient vanish separately, and discard any excluded $x$.
+
+## Transform the sketch
+
+For $y=|f(x)|$, reflect the negative pieces upwards. For $y=f(|x|)$, keep the right-hand half and reflect it across the vertical axis. For $y=1/f(x)$, zeros of $f$ can become poles, signs are preserved wherever defined, and points with $f(x)=\pm1$ keep their heights. For $y^2=f(x)$, sketch $y=\pm\sqrt{f(x)}$ over the inputs with $f(x)\ge0$.
+
+<Graph name="reciprocal-f"/>
+
+## Read inequalities from the branches
+
+Find the intersections by solving the corresponding equality. Split the real line at intersections and excluded inputs, then compare curve heights on each interval. For example, $|1/(x-2)|<1$ gives $|x-2|>1$. The graph lies between $y=-1$ and $y=1$ for $x<1$ or $x>3$. The endpoints are excluded because the comparison is strict.

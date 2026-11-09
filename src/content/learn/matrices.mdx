@@ -1,0 +1,49 @@
+---
+topicId: matrices1
+description: "Develop matrix multiplication and inversion, then interpret matrices as transformations of the plane."
+sources:
+  - "FP1 CH4 Matrix.pdf, pp. 1–6"
+---
+
+## Multiplication and the identity
+
+An entry of $AB$ is a row of $A$ dotted with a column of $B$. In a transformation, $AB\mathbf v$ applies $B$ first because $B$ acts directly on $\mathbf v$. The identity matrix leaves every vector fixed. An inverse undoes the effect of the original matrix, so $A^{-1}A=AA^{-1}=I$.
+
+## Determinants, cofactors and inverse matrices
+
+For $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, the determinant $ad-bc$ gives signed area scaling. A zero determinant collapses area and gives a singular matrix. Multiplying by the cofactor transpose verifies the two-by-two inverse:
+
+$$
+A\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
+=(ad-bc)I.
+$$
+
+For a three-by-three matrix, obtain a minor by deleting one row and one column. Apply the checkerboard signs $(-1)^{i+j}$ to make the cofactor matrix $C$. Expansion along a row computes the determinant, and $A^{-1}=C^{\mathsf T}/\det A$ when the determinant is nonzero. The transpose puts the cofactors in the positions required for the product $AC^{\mathsf T}$.
+
+## Row operations as another route to the inverse
+
+The notes also place $A$ next to $I$. A row operation acts on the whole augmented row. If the accumulated operations turn $A$ into $I$, those same operations have turned $I$ into $A^{-1}$:
+
+$$
+[A\mid I]\longrightarrow[I\mid A^{-1}].
+$$
+
+For $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$, subtract three times row 1 from row 2 to get $[0,-2\mid -3,1]$. Divide row 2 by $-2$ and subtract twice the new row 2 from row 1. The right-hand rows are then $(-2,1)$ and $(3/2,-1/2)$, which agree with the cofactor formula. A missing pivot after checking for a row swap signals singularity.
+
+## Read transformations from the columns
+
+The two columns are the images of $(1,0)$ and $(0,1)$. That gives a practical way to construct or identify a matrix.
+
+| Transformation | Image of $(1,0)$ | Image of $(0,1)$ |
+| --- | --- | --- |
+| Reflect in the horizontal axis | $(1,0)$ | $(0,-1)$ |
+| Reflect in $y=x$ | $(0,1)$ | $(1,0)$ |
+| Rotate anticlockwise by $\theta$ | $(\cos\theta,\sin\theta)$ | $(-\sin\theta,\cos\theta)$ |
+| Horizontal shear | $(1,0)$ | $(k,1)$ |
+| Stretch horizontally by $k$ | $(k,0)$ | $(0,1)$ |
+
+For example, rotate $(1,0)$ anticlockwise by $90^\circ$ and then reflect in $y=x$. The intermediate vector is $(0,1)$ and the final vector is $(1,0)$. Reversing the operation order changes this answer. To undo both, undo the reflection first and then undo the rotation, which explains $(AB)^{-1}=B^{-1}A^{-1}$.
+
+## Invariant lines and fixed points
+
+On an invariant line, the transformed points stay on the same line. Individual points can move. For a line through the origin with direction $\mathbf v$, seek $A\mathbf v=k\mathbf v$ with $k\ne0$ so the image still spans the line. The special value $k=1$ gives fixed points along that line. For a line away from the origin, check both its direction and that the image of one chosen point lies back on it.

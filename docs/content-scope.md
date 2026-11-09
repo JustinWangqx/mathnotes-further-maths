@@ -13,14 +13,14 @@ This selection follows the user’s instruction to include only topics represent
 | FP2 | Differentiation | 2.3 | FP2 CH3 Differentiation 1.pdf |
 | FP2 | Integration | 2.4 | FP2 CH4 Integration 1 更新.pdf |
 | FP2 | Complex numbers | 2.5 | FP2 CH5 Complex Number.pdf |
-| FM | Equilibrium of a rigid body | 3.2 | FM CH2 Equilibrium of a rigid body.pdf |
+| FM | Equilibrium of a rigid body | 3.2 | FM CH2 Equilibrium of a rigid body.pdf and FM CH2 COM.pdf |
 | Statistics | Probability density & distribution | 4.1 | FS CH1 PDF CDF.pdf |
 | Statistics | Statistical inference | 4.2 | FS CH2 Inferential Statistics.pdf |
 | Statistics | Chi-squared tests | 4.3 | FS CH3 Chi-Squared Tests.pdf |
 | Statistics | Non-parametric tests | 4.4 | FS CH11 Non-Parametric tests.pdf |
 | Statistics | Probability generating functions | 4.5 | FS CH5 PGF.pdf |
 
-The chapter numbers in source filenames are retained as provenance; navigation uses the official syllabus reference where a mapping exists. Each guide follows the same exam-oriented format: numbered question type → short method and formulas → one source-identified worked example. The collection contains 90 question types. The separate question-paper library contains 15 intact source collections with 121 complete question entries and 13 supplied answer collections. Broad conceptual introductions and extended derivations have been removed. Sources are recorded with each example in the content data.
+The chapter numbers in source filenames are retained as provenance; navigation uses the official syllabus reference where a mapping exists. Each guide follows the same exam-oriented format: numbered question type → short method and formulas → one source-identified worked example. The collection contains 90 question types. The separate question-paper library contains 15 intact source collections with 121 complete question entries and 13 supplied answer collections. The Learn chapters adapt the original definitions, derivations, diagrams and examples into a reading sequence. Source references are recorded per chapter and per revision example.
 
 Visual source correction: `FP1 CH3 Part2.pdf` actually contains Chapter 21 differentiation, inverse-function derivatives and Maclaurin series. It is mapped to Differentiation. The actual summation chapter is in the combined rational-functions/series PDF, pages 6–8.
 

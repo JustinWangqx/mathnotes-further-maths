@@ -1,0 +1,47 @@
+---
+topicId: complex
+description: "Follow complex multiplication around the Argand plane, then derive identities, roots and trigonometric sums."
+sources:
+  - "FP2 CH5 Complex Number.pdf, pp. 1–7"
+  - "FP2 CH5 Complex Number 1.pdf, pp. 1–4"
+---
+
+import Graph from '../../components/ExampleGraph.astro';
+
+## Multiplication rotates and scales
+
+Write $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$ with $r=|z|$. The real and imaginary parts give the horizontal and vertical coordinates. Multiplying two polar forms multiplies the moduli and adds the arguments. This follows from the sine and cosine addition rules. Repeating the multiplication gives de Moivre’s formula:
+
+$$
+(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta).
+$$
+
+## Extract the real or imaginary part
+
+Expand the left-hand side by the binomial theorem, using $i^2=-1$. For $n=3$, the real part is $\cos^3\theta-3\cos\theta\sin^2\theta$, so $\cos3\theta=4\cos^3\theta-3\cos\theta$. The imaginary part similarly gives a multiple-angle sine identity. Dividing the imaginary part by the real part gives a multiple-angle tangent formula wherever the quotient is defined.
+
+To go the other way, write $\cos\theta=(z+z^{-1})/2$ and $\sin\theta=(z-z^{-1})/(2i)$ for $z=e^{i\theta}$. After expanding powers, pair $z^k$ with $z^{-k}$. For example, $\sin^3\theta=(3\sin\theta-\sin3\theta)/4$, which can be integrated term by term.
+
+## Take all the roots
+
+If $w^n=re^{i\theta}$, the argument of the right-hand side could be $\theta+2k\pi$. Divide the *whole* argument by $n$:
+
+$$
+w=r^{1/n}e^{i(\theta+2k\pi)/n},
+\qquad k=0,\ldots,n-1.
+$$
+
+This gives equally spaced points on a circle. For the sixth roots of $4+4\sqrt3\,i=8e^{i\pi/3}$, the radius is $\sqrt2$ and the first argument is $\pi/18$. Each next point adds $\pi/3$. The same construction for $z^n=1$ gives the roots of unity.
+
+<Graph name="complex-roots"/>
+
+## Sum first, then take the desired part
+
+Replace $\cos(k\theta)$ and $\sin(k\theta)$ by the real and imaginary parts of $e^{ik\theta}$. For example, to sum $\sum_{k=0}^{\infty} 2^{-k}\cos(k\theta)$, sum the complex geometric series with ratio $e^{i\theta}/2$. Its modulus is $1/2$, so its sum is $1/(1-e^{i\theta}/2)$. Multiply numerator and denominator by the conjugate of the denominator before taking the real part:
+
+$$
+\sum_{k=0}^{\infty}2^{-k}\cos(k\theta)
+=\frac{1-\tfrac12\cos\theta}{\tfrac54-\cos\theta}.
+$$
+
+For a finite sum, keep the final-power term in the geometric formula. If its ratio equals $1$, add the equal terms directly.

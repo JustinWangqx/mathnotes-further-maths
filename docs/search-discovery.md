@@ -6,7 +6,7 @@ MathNotes is an independent Cambridge International (CIE/CAIE) A Level Mathemati
 
 - Every useful HTML page has a unique descriptive title and summary, an absolute canonical URL and an orange social preview.
 - Visible breadcrumbs agree with the JSON-LD hierarchy. Notes and paper readers identify their educational level and actual resource type. Reader metadata links to the unchanged source PDFs.
-- Sitemap: <https://justinwangqx.github.io/mathnotes-further-maths/sitemap-index.xml>. It includes 39 indexable HTML pages and all 28 original question/answer PDFs. Search, 404 and legacy redirects are excluded.
+- Sitemap: <https://justinwangqx.github.io/mathnotes-further-maths/sitemap-index.xml>. It includes 55 indexable HTML pages and all 28 original question/answer PDFs. Search, 404 and legacy redirects are excluded.
 - Titles, descriptions and page text use Cambridge International, CIE, CAIE, A Level Mathematics, Further Mathematics, revision notes and past-paper questions where appropriate. There are no keyword-stuffed hidden passages or claims of complete syllabus coverage.
 
 Search-engine indexing and ranking are external to deployment. The sitemap has **not** been submitted through an authenticated Search Console account. A verified owner can add the URL-prefix property `https://justinwangqx.github.io/mathnotes-further-maths/` in Google Search Console and submit `sitemap-index.xml`. If verification requires an HTML tag or file, add the value actually supplied by Google; never invent a verification token. No Google account or analytics setup is needed for the local search feature.
@@ -15,7 +15,7 @@ GitHub project sites live below a path. A `robots.txt` inside `/mathnotes-furthe
 
 ## On-site search
 
-The browser downloads `search-index.json` on first use. Its 32 main entries are the 15 current note guides, 15 intact question collections and two reference resources. The note entries also index all 90 question types; specific method matches link directly to their section anchors with plain-text editorial descriptions. Search runs locally; typed terms are not sent to a search provider or the footer counter.
+The browser downloads `search-index.json` on first use. Its 47 main entries are 15 learning chapters, 15 revision guides, 15 intact question collections and two reference resources. The revision entries also index all 90 question types; specific method matches link directly to their section anchors with plain-text editorial descriptions. Search runs locally; typed terms are not sent to a search provider or the footer counter.
 
 Examples:
 

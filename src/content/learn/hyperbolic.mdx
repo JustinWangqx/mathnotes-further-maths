@@ -1,0 +1,55 @@
+---
+topicId: hyperbolic
+description: "Build the hyperbolic functions from exponentials, sketch their curves and derive their inverses."
+sources:
+  - "FP2 CH1 Hyperbolic Functions.pdf, pp. 1–5"
+---
+
+import Graph from '../../components/ExampleGraph.astro';
+
+## Exponential definitions and basic curves
+
+Take the half-difference and half-sum of $e^x$ and $e^{-x}$:
+
+$$
+\sinh x=\frac{e^x-e^{-x}}2,\qquad
+\cosh x=\frac{e^x+e^{-x}}2,\qquad
+\tanh x=\frac{\sinh x}{\cosh x}.
+$$
+
+Changing $x$ to $-x$ swaps the two exponentials. The difference changes sign and the sum stays the same, so sinh is odd and cosh is even. Differentiating the exponentials gives $(\sinh x)'=\cosh x$ and $(\cosh x)'=\sinh x$. Since $\cosh x>0$, sinh increases throughout. Cosh has its minimum $1$ at zero. The ratio $\tanh x=(e^{2x}-1)/(e^{2x}+1)$ tends to $\pm1$ at either end.
+
+| Function | Domain | Range |
+| --- | --- | --- |
+| $\sinh x$ | $\mathbb R$ | $\mathbb R$ |
+| $\cosh x$ | $\mathbb R$ | $[1,\infty)$ |
+| $\tanh x$ | $\mathbb R$ | $(-1,1)$ |
+| $\operatorname{sech}x=1/\cosh x$ | $\mathbb R$ | $(0,1]$ |
+| $\operatorname{cosech}x=1/\sinh x$ | $x\ne0$ | $y\ne0$ |
+| $\coth x=1/\tanh x$ | $x\ne0$ | $(-\infty,-1)\cup(1,\infty)$ |
+
+<Graph name="tanh"/>
+
+## Identities and transformations
+
+Subtract the squared exponential definitions. The $e^{2x}$ and $e^{-2x}$ terms cancel, leaving $\cosh^2x-\sinh^2x=1$. Divide by $\cosh^2x$ to get $1-\tanh^2x=\operatorname{sech}^2x$. The quotient rule then gives $(\tanh x)'=\operatorname{sech}^2x$. Applying the reciprocal rule gives $(\operatorname{sech}x)'=-\operatorname{sech}x\tanh x$.
+
+For the transformed cosh curve in the notes, shift left one unit, multiply the heights by three and move down four. The unreflected minimum is $-1$ at $x=-1$. Finally reflect the negative piece upwards.
+
+<Graph name="hyperbolic"/>
+
+## Solve through exponentials
+
+For $4\cosh x-3\sinh x=4$, let $u=e^x$. The exponential definitions give $(u+7/u)/2=4$. Since $u>0$, multiply by $2u$ and factor:
+
+$$
+u^2-8u+7=(u-1)(u-7)=0.
+$$
+
+Both values of $u$ are positive, so $x=0$ or $x=\ln 7$. For a homogeneous equation $A\sinh x+B\cosh x=0$, dividing by $\cosh x$ instead gives a linear equation in $\tanh x$. Check the resulting value against its range.
+
+## Inverses and their domains
+
+To invert $\sinh y=x$, let $u=e^y>0$. Solving $u^2-2xu-1=0$ gives $u=x+\sqrt{x^2+1}$, so $\operatorname{arsinh}x=\ln(x+\sqrt{x^2+1})$. For $\cosh$, first restrict the original curve to $y\ge0$ to make it one-to-one. This gives $\operatorname{arcosh}x=\ln(x+\sqrt{x^2-1})$ for $x\ge1$.
+
+Solving $x=(e^{2y}-1)/(e^{2y}+1)$ gives $\operatorname{artanh}x=\tfrac12\ln((1+x)/(1-x))$ for $-1<x<1$. Thus $\tanh y=2/3$ gives $y=\tfrac12\ln5$. Inverse graphs reflect the corresponding one-to-one branch across $y=x$.

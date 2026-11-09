@@ -1,7 +1,7 @@
 ---
 import {getCollection,render} from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import {moduleFor,topics,url,repoUrl} from '../../../data/curriculum';
+import {learnUrl,moduleFor,topics,url,repoUrl} from '../../../data/curriculum';
 import {papersForTopic} from '../../../data/paper-collections';
 import {questionTypes} from '../../../data/question-types';
 export async function getStaticPaths(){const notes=await getCollection('notes');return notes.map(note=>({params:{module:note.data.module,slug:note.id.split('/').pop()},props:{note}}));}
@@ -13,9 +13,9 @@ const papers=papersForTopic(topic.id);
 const types=questionTypes[topic.id];
 const issueUrl=`${repoUrl}/issues/new?title=${encodeURIComponent(`Correction: ${note.data.title}`)}&body=${encodeURIComponent('Page: '+note.data.title+'\n\nSection / question:\n\nWhat should change:\n\nReason or working:\n')}`;
 ---
-<Base title={`${note.data.title} Notes`} description={`${note.data.title} revision for CIE A Level Further Mathematics 9231, ${module.title}: ${types.length} exam question types with short methods, formulas and worked examples.`} active="notes" learningResourceType="Revision notes" breadcrumbs={[{name:'Home',href:url()},{name:'Topic map',href:url('notes/')},{name:module.title,href:url(`9231/${module.id}/`)},{name:note.data.title,href:Astro.url.pathname}]}><span class="sr-only" data-pagefind-meta="type">Study notes</span><span class="sr-only" data-pagefind-filter="module">{module.title}</span><div class="sr-only" data-pagefind-weight="0.5">{topic.aliases.join(' ')}</div>
+<Base title={`${note.data.title} Notes`} description={`${note.data.title} revision for CIE A Level Further Mathematics 9231, ${module.title}: ${types.length} exam question types with short methods, formulas and worked examples.`} active="notes" learningResourceType="Revision notes" breadcrumbs={[{name:'Home',href:url()},{name:'Revision Notes',href:url('notes/')},{name:module.title,href:url(`9231/${module.id}/`)},{name:note.data.title,href:Astro.url.pathname}]}><span class="sr-only" data-pagefind-meta="type">Study notes</span><span class="sr-only" data-pagefind-filter="module">{module.title}</span><div class="sr-only" data-pagefind-weight="0.5">{topic.aliases.join(' ')}</div>
 
-<div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><div class="lesson-meta"><span class="type-count">{types.length} question types</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
+<div class="reading-layout"><article class="lesson"><div class="lesson-heading"><span class="eyebrow">{module.short} <span> / </span> SYLLABUS {note.data.syllabus}</span><h1>{note.data.title}</h1><div class="lesson-meta"><a class="text-link" href={learnUrl(topic)}>Learn this topic →</a><span class="type-count">{types.length} question types</span><button class="print-button" onclick="window.print()">Print notes</button></div></div>
 <details class="lesson-jump" data-pagefind-ignore><summary>Jump to question type <span>{types.length} types ↓</span></summary><nav aria-label="Jump to question type">{types.map(type=><a href={`#${type.id}`}>Type {String(type.number).padStart(2,'0')}: {type.title}</a>)}{papers.length>0&&<a href="#papers">Practice collections</a>}</nav></details>
 <div class="prose exam-guide"><Content/></div>
 <div class="lesson-links" id="papers">

@@ -42,7 +42,7 @@ test('paper readers retain direct links to related note methods', () => {
 });
 
 test('every mechanics question has its diagram before the solution and a concept beside its method', () => {
- const entry = catalog.records.find(record => record.topic === 'equilibrium');
+ const entry = catalog.records.find(record => record.topic === 'equilibrium' && record.kind === 'notes');
  const sections = htmlFor(entry.href).split('<section class="exam-type"').slice(1);
  assert.equal(sections.length, 12);
  for (const section of sections) {

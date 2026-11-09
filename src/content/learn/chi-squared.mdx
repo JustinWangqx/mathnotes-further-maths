@@ -1,0 +1,43 @@
+---
+topicId: chi-squared
+description: "Build expected counts from a model, measure the discrepancy and distinguish fit from association."
+sources:
+  - "FS CH3 Chi-Squared Tests.pdf, pp. 1–8"
+---
+
+## Turn a model into expected counts
+
+A goodness-of-fit test compares observed counts $O_i$ with counts $E_i=Np_i$ predicted by the null model. A category with probability $p_i$ should receive about that fraction of the $N$ observations. Squaring the differences lets excesses and deficits both increase the statistic. Dividing by $E_i$ scales the contribution relative to the expected count.
+
+$$
+X^2=\sum_i\frac{(O_i-E_i)^2}{E_i}=\sum_i\frac{O_i^2}{E_i}-N.
+$$
+
+The second form follows by expanding the squares and using $\sum O_i=\sum E_i=N$. Large values show a larger discrepancy, so use the right tail of the reference distribution.
+
+## Allow for totals, fitted parameters and pooling
+
+With $k$ final categories the total count is fixed, leaving $k-1$ degrees of freedom. If $p$ parameters were estimated from the same data, use $\nu=k-1-p$. A parameter specified in the question costs no degree of freedom. When expected frequencies are too small for the approximation required in the question, combine suitable categories, typically adjacent ones or tail classes. Combine both observed and expected counts before computing contributions and use the resulting $k$.
+
+For a fair die rolled 180 times with counts $(29,31,34,39,23,24)$, the expected count is 30 on every face. Thus
+
+$$
+X^2=\frac{1+1+16+81+49+36}{30}\approx6.133.
+$$
+
+There are five degrees of freedom. The statistic is below the 5% critical value $11.070$, giving insufficient evidence against fairness.
+
+## Use the right probabilities for each model
+
+- For a binomial model with fixed trial count $n$, compute $P(X=i)$ for each category. If the success probability is estimated, use $\hat p=\bar x/n$.
+- For a Poisson model with an estimated rate, use $\hat\lambda=\bar x$. A final category such as “four or more” includes the entire upper tail.
+- For a normal model, use the probability between the class boundaries, including open-ended tail classes. Allow for each parameter estimated from the sample.
+- For a continuous uniform model, the probability of a class is its width within the support divided by the total width. For a given density $f$, integrate $f$ over the class instead.
+
+Check that the expected counts add to $N$ before evaluating the statistic. Keep unrounded expectations in the calculation.
+
+## Test independence in a contingency table
+
+For an independence test the null model says the chance of a column outcome is the same in each row. The overall fraction in column $j$ is $C_j/N$, so row $i$, with total $R_i$, has expected cell count $R_iC_j/N$. The row and column totals constrain the table. The upper-left $(r-1)\times(c-1)$ block determines the remaining cells, which gives the degrees of freedom.
+
+For the observed rows $(63,31,6)$, $(26,20,14)$ and $(11,19,10)$, the first row total is 100, the first column total is 100 and the grand total is 200. The top-left expectation is $100\times100/200=50$, so that cell contributes $(63-50)^2/50=3.38$. The nine contributions total about $21.098$. With four degrees of freedom this exceeds the 5% critical value $9.488$, giving evidence of an association.

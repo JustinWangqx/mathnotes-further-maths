@@ -3,13 +3,13 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import {modules,topics,url} from '../data/curriculum';
 ---
-<Base title="Search notes & question papers" active="notes" noindex>
-<div class="page-heading"><span class="eyebrow">CIE / CAIE · CAMBRIDGE INTERNATIONAL</span><h1>Find the notes.<br/><em>Find the questions.</em></h1><p>Search A Level Further Mathematics (9231) notes, methods and original question collections. English and Chinese topic names both work.</p></div>
-<div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search notes and question papers</label><input id="site-search" type="search" placeholder="Try integration papers, 复数, MF19…" autocomplete="off" autofocus aria-controls="search-results"/></div>
-<div class="filter-bar search-filters"><label>Show<select id="search-kind"><option value="all">All resources</option><option value="notes">Notes</option><option value="papers">Question papers</option><option value="resources">Reference resources</option></select></label><label>Module<select id="search-module"><option value="all">All modules</option>{modules.map(m=><option value={m.id}>{m.title}</option>)}</select></label></div>
-<div class="search-suggestions"><span>Try a search</span>{['CIE A Level maths notes','integration papers','复数','MF19'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div>
+<Base title="Search lessons, revision notes & question papers" active="search" noindex>
+<div class="page-heading"><span class="eyebrow">CIE / CAIE · CAMBRIDGE INTERNATIONAL</span><h1>Search MathNotes</h1><p>Search A Level Further Mathematics (9231) lessons, revision notes and original question collections. English and Chinese topic names both work.</p></div>
+<div class="search-box"><Icon name="search" size={21}/><label for="site-search" class="sr-only">Search lessons, revision notes and question papers</label><input id="site-search" type="search" placeholder="Try integration papers, 复数, MF19…" autocomplete="off" autofocus aria-controls="search-results"/></div>
+<div class="filter-bar search-filters"><label>Show<select id="search-kind"><option value="all">All resources</option><option value="learn">Learn</option><option value="notes">Revision Notes</option><option value="papers">Question papers</option><option value="resources">Reference resources</option></select></label><label>Module<select id="search-module"><option value="all">All modules</option>{modules.map(m=><option value={m.id}>{m.title}</option>)}</select></label></div>
+<div class="search-suggestions"><span>Try a search</span>{['learn matrices','integration papers','复数','MF19'].map(q=><button class="search-chip" data-search-term={q}>{q}</button>)}</div>
 <p class="search-status" id="search-status" role="status" aria-live="polite">Enter a topic, method or phrase from a question.</p><div id="search-results" aria-busy="false"></div>
-<noscript><p class="search-fallback">Search needs JavaScript. Browse the <a href={url('notes/')}>topic map</a> or <a href={url('papers/')}>question papers</a>.</p></noscript>
+<noscript><p class="search-fallback">Search needs JavaScript. Browse <a href={url('learn/')}>lessons</a>, <a href={url('notes/')}>revision notes</a> or <a href={url('papers/')}>question papers</a>.</p></noscript>
 <details class="search-aliases"><summary>English and Chinese topic names</summary><p>{topics.map(t=>`${t.title}: ${t.aliases.filter(a=>/[^\x00-\x7F]/.test(a)).join(', ')}`).join(' · ')}</p></details>
 <script>
   import {searchCatalog} from '../utils/search.mjs';
@@ -18,7 +18,7 @@ import {modules,topics,url} from '../data/curriculum';
   const base=document.body.dataset.base!;
   type Entry={title:string;href:string;description:string;kind:string;module:string;section?:boolean};
   let catalogPromise:Promise<any>|undefined,sequence=0;
-  const labels:Record<string,string>={notes:'Notes',papers:'Question collection',resources:'Reference resource'};
+  const labels:Record<string,string>={learn:'Learn',notes:'Revision Notes',papers:'Question collection',resources:'Reference resource'};
   const moduleLabels:Record<string,string>={fp1:'Further Pure 1',fp2:'Further Pure 2',mechanics:'Further Mechanics',statistics:'Further Statistics'};
   function addResult(record:Entry){
     const result=document.createElement('article');result.className='search-result';
@@ -31,7 +31,7 @@ import {modules,topics,url} from '../data/curriculum';
     const params=new URLSearchParams();if(query)params.set('q',query);if(kind.value!=='all')params.set('type',kind.value);if(module.value!=='all')params.set('module',module.value);
     history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}`);
     if(!query&&kind.value==='all'&&module.value==='all'){output.setAttribute('aria-busy','false');status.textContent='Enter a topic, method or phrase from a question.';return;}
-    status.textContent='Searching notes and complete question collections…';output.setAttribute('aria-busy','true');
+    status.textContent='Searching lessons, revision notes and question papers…';output.setAttribute('aria-busy','true');
     try{
       catalogPromise??=fetch(`${base}search-index.json`).then(r=>{if(!r.ok)throw new Error('Search index unavailable');return r.json();});
       const catalog=await catalogPromise;if(current!==sequence)return;
@@ -40,8 +40,9 @@ import {modules,topics,url} from '../data/curriculum';
       status.textContent=results.length?`${results.length} result${results.length===1?'':'s'}${query?` for “${query}”`:''}${scope?' · '+scope:''}`:`No matching resources${query?` for “${query}”`:''}. Try a broader term or another filter.`;
     }catch{
       catalogPromise=undefined;if(current!==sequence)return;
-      status.textContent='Search could not load. Please try again or browse the topic map and question papers.';
-      addResult({title:'Topic map',href:`${base}notes/`,description:'Browse every available note by module.',kind:'notes',module:''});
+      status.textContent='Search could not load. Please try again or browse by topic.';
+      addResult({title:'Learn',href:base+'learn/',description:'Browse concept lessons by topic.',kind:'learn',module:''});
+      addResult({title:'Revision Notes',href:`${base}notes/`,description:'Browse every available note by module.',kind:'notes',module:''});
       addResult({title:'Question papers',href:`${base}papers/`,description:'Browse all complete source collections.',kind:'papers',module:''});
     }finally{if(current===sequence)output.setAttribute('aria-busy','false');}
   }
@@ -50,7 +51,7 @@ import {modules,topics,url} from '../data/curriculum';
   [kind,module].forEach(select=>select.addEventListener('change',search));
   document.querySelectorAll<HTMLButtonElement>('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.searchTerm!;kind.value='all';module.value='all';input.focus();search();}));
   const initial=new URLSearchParams(location.search);input.value=initial.get('q')||'';
-  if(['notes','papers','resources'].includes(initial.get('type')||''))kind.value=initial.get('type')!;
+  if(['learn','notes','papers','resources'].includes(initial.get('type')||''))kind.value=initial.get('type')!;
   if(['fp1','fp2','mechanics','statistics'].includes(initial.get('module')||''))module.value=initial.get('module')!;
   if(input.value||kind.value!=='all'||module.value!=='all')search();
 </script>

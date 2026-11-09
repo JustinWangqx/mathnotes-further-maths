@@ -11,4 +11,12 @@ const notes = defineCollection({
     updated: z.string(),
   }),
 });
-export const collections = { notes };
+const learn = defineCollection({
+  loader: glob({ pattern: '*.mdx', base: './src/content/learn' }),
+  schema: z.object({
+    topicId: z.string(),
+    description: z.string(),
+    sources: z.array(z.string()).min(1),
+  }),
+});
+export const collections = { notes, learn };

@@ -1,0 +1,119 @@
+---
+topicId: equilibrium
+description: "Build centre-of-mass formulas from strips and discs, then use force diagrams to study equilibrium."
+sources:
+  - "FM CH2 Equilibrium of a rigid body.pdf, pp. 1–7"
+  - "FM CH2 COM.pdf, pp. 1–5"
+---
+
+import Concept from '../../components/MechanicsConcept.astro';
+import Diagram from '../../components/MechanicsDiagram.astro';
+import MathText from '../../components/MathText.astro';
+
+## Moments and rigid-body equilibrium
+
+A force causes a turning effect about a point $O$. Its moment has magnitude $Fd_\perp$, where $d_\perp$ is the perpendicular distance from $O$ to the line of action. If a force passes through the pivot, its moment is zero. Choose one sense as positive and give forces turning in the opposite sense a negative moment.
+
+<Concept name="moments"/>
+
+For a body in equilibrium the horizontal and vertical resultants are zero, and the resultant moment about any point is zero. Taking moments about a contact often eliminates one or more unknown reactions. At a smooth contact the reaction is perpendicular to the surface. A rough contact can also exert a tangential friction force $F$ with $|F|\le\mu R$. Equality applies at impending sliding. The magnitude of the combined contact force is $\sqrt{R^2+F^2}$.
+
+## Replace distributed weight by a single force
+
+Let particles have masses $m_i$ and positions $(x_i,y_i)$ measured from a common origin. The total weight $Mg$ can be applied at $G$ if it produces the same moments as the individual weights. Dividing the moment equations by $g$ gives the mass-weighted coordinates.
+
+$$
+\bar x=\frac{\sum m_ix_i}{\sum m_i},
+\qquad
+\bar y=\frac{\sum m_iy_i}{\sum m_i}.
+$$
+
+<Concept name="framework"/>
+
+The same calculation works for parts of a rigid body once you know the centre and mass of each part. For uniform material, mass is proportional to length for a wire, area for a lamina, and volume for a solid. For mixed densities use the actual mass of each part. A removed piece contributes a negative mass and a negative moment. Symmetry can give one coordinate immediately.
+
+<Concept name="holes"/>
+
+## A lamina built from strips
+
+Under $y=f(x)$ above the $x$-axis, a thin vertical strip has area $dA=y\,dx$ and centre approximately $(x,y/2)$. Add the strip moments and divide by the total area $A$.
+
+<Concept name="triangle"/>
+
+$$
+A=\int_a^b y\,dx,
+\qquad
+\bar x=\frac{1}{A}\int_a^b xy\,dx,
+\qquad
+\bar y=\frac{1}{2A}\int_a^b y^2\,dx.
+$$
+
+<div className="mechanics-question">
+  <p><strong>Example.</strong> <MathText text={String.raw`Find the centre of mass of the uniform triangular lamina with vertices $O(0,0)$, $Q(d,0)$ and $P(d,h)$.`}/></p>
+  <Diagram name="triangle"/>
+</div>
+
+Here $y=hx/d$ on $0\le x\le d$, and $A=hd/2$. For the horizontal moment, integrate $x(hx/d)$ to get $hd^2/3$. For the vertical moment, integrate $(hx/d)^2/2$ to get $h^2d/6$. Dividing each by $hd/2$ gives $G=(2d/3,h/3)$. This is also the intersection of the three medians.
+
+## Circular sectors and arcs
+
+Place the bisector of a sector of radius $r$ and angle $2\alpha$ on the horizontal axis, with $\alpha$ in radians. A thin wedge at angle $\theta$ has area $(r^2/2)\,d\theta$ and its centre is $2r/3$ from the vertex, as in a thin triangle. Its horizontal distance is therefore $(2r/3)\cos\theta$. A thin piece of the boundary arc has length $r\,d\theta$ and lies at distance $r$ from the vertex. Both vertical moments cancel by symmetry.
+
+<Concept name="sector"/>
+
+$$
+\begin{aligned}
+\bar x_{\text{lamina}}
+&=\frac{\int_{-\alpha}^{\alpha}(2r/3)\cos\theta\,(r^2/2)\,d\theta}{r^2\alpha}
+=\frac{2r\sin\alpha}{3\alpha},\\
+\bar x_{\text{arc}}
+&=\frac{\int_{-\alpha}^{\alpha}r\cos\theta\cdot r\,d\theta}{2r\alpha}
+=\frac{r\sin\alpha}{\alpha}.
+\end{aligned}
+$$
+
+For a quarter-disc use $\alpha=\pi/4$. Each Cartesian coordinate is $\bar x_{\text{lamina}}\cos(\pi/4)=4r/(3\pi)$. In a composite wire, use the arc formula for the curved part and the midpoint for each straight part, with weightings $\lambda_i L_i$.
+
+## Solids built from discs
+
+If $y=f(x)$ is revolved about the $x$-axis, a cross-section perpendicular to the axis is a disc. Its volume contribution is $\pi y^2\,dx$, and its centre lies on the axis. For a uniform solid,
+
+$$
+\bar x=\frac{\int_a^b x\pi y^2\,dx}{\int_a^b \pi y^2\,dx}.
+$$
+
+<Concept name="frustum"/>
+
+For a cone of height $h$ with its vertex at $x=0$, $y=rx/h$. The denominator is proportional to $\int_0^h x^2\,dx=h^3/3$. The numerator is proportional to $\int_0^h x^3\,dx=h^4/4$. Their ratio is $3h/4$ from the vertex. The same reasoning works for a pyramid because its cross-sectional area also scales as $x^2$. To handle a frustum, subtract the small cone's volume and moment using the same origin.
+
+For a solid hemisphere of radius $r$, take $x=0$ at the flat face and use $y^2=r^2-x^2$. The denominator is $2\pi r^3/3$ and the numerator is $\pi r^4/4$, so $\bar x=3r/8$. For a thin hemispherical shell, a horizontal band of height $dx$ has area $2\pi r\,dx$. This constant area per unit height gives $\bar x=r/2$. Use the formula that matches how the mass is distributed.
+
+## Suspension and toppling
+
+When a body hangs freely from $A$, the weight is the only force with a possible moment about $A$. The stable position places $G$ vertically below $A$. Find the vector from $A$ to $G$ in the original shape, then use its components to calculate the angle the shape makes with the vertical.
+
+<Concept name="suspension"/>
+
+As a body tilts on a slope, the vertical through $G$ moves towards the downhill edge. At the toppling limit it passes through that edge. If $G$ is a distance $b$ uphill and height $h$ above it in axes aligned with the slope, the critical angle satisfies $\tan\theta=b/h$. Sliding becomes possible when $W\sin\theta$ reaches $\mu W\cos\theta$, giving $\tan\theta=\mu$. Compare the two thresholds to determine which happens first. For a horizontal push on level ground, compare the sliding threshold $X=\mu W$ with the moment condition $Xh=Wb$ at the tipping edge.
+
+<Concept name="toppling"/>
+
+## Work through a ladder in equilibrium
+
+<div className="mechanics-question">
+  <p><strong>Example.</strong> <MathText text={String.raw`A uniform ladder of length $a$ and mass $2m$ rests with its upper end $A$ against a smooth wall and its lower end $B$ on a rough horizontal floor. The ladder makes $30^\circ$ with the wall. A painter of mass $5m$ stands $a/4$ from $B$. Find the least coefficient of friction at the floor.`}/></p>
+  <Diagram name="ladder"/>
+</div>
+
+The floor carries the total weight, so its normal reaction is $R=7mg$. The wall reaction $S$ is horizontal and the floor friction balances it, so $F=S$. Take moments about $B$ to eliminate both forces at the floor. The wall reaction uses the vertical height, and each weight uses its horizontal distance from $B$.
+
+$$
+\begin{aligned}
+S a\cos30^\circ
+&=2mg\frac a2\sin30^\circ+5mg\frac a4\sin30^\circ,\\
+S&=\frac{3\sqrt3}{4}mg,\\
+\mu_{\min}&=\frac{F}{R}=\frac{3\sqrt3}{28}.
+\end{aligned}
+$$
+
+In a rod supported by a string, draw the tension along the string towards its support. Take moments about the other end of the rod to isolate tension, then resolve to obtain the remaining contact forces.

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopicRows from '../../components/TopicRows.astro';
+import { modules, topics, url } from '../../data/curriculum';
+---
+<Base title="Learn Further Mathematics" active="learn" description="Learn Cambridge International Further Mathematics 9231 through explanations, derivations, diagrams and worked examples arranged by topic.">
+  <div class="page-heading">
+    <h1>Learn Further Maths</h1>
+    <p>Work through each topic from the definitions to the worked examples. Use Revision Notes when you want to review question types and methods.</p>
+    <a class="text-link" href={url('notes/')}>Browse Revision Notes →</a>
+  </div>
+  {modules.map(module => (
+    <section class="section syllabus-section" id={module.id}>
+      <div class="section-heading"><h2>{module.title}</h2></div>
+      <TopicRows topics={topics.filter(topic => topic.module === module.id)} mode="learn"/>
+    </section>
+  ))}
+</Base>

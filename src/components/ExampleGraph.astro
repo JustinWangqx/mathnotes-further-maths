@@ -40,6 +40,10 @@ const plots: Record<string, Plot> = {
     fn: x => (x * x - x - 2) / (x * x - x + 5),
     x: [-6, 7], y: [-1, 2], horizontal: [1],
   },
+  tanh: {
+    label: 'y = tanh x approaches y = −1 and y = 1',
+    fn: Math.tanh, x: [-4, 4], y: [-1.5, 1.5], horizontal: [-1, 1],
+  },
   hyperbolic: {
     label: 'y = |3 cosh(x + 1) − 4|',
     fn: x => Math.abs(3 * Math.cosh(x + 1) - 4), x: [-4, 2], y: [-0.5, 9],

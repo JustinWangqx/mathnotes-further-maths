@@ -27,6 +27,7 @@ export const availableTopics = topics.filter(t => t.slug);
 export const moduleFor = (id: string) => modules.find(m => m.id === id)!;
 export const url = (path = '') => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 export const topicUrl = (topic: Topic) => topic.slug ? url(`9231/${topic.module}/${topic.slug}/`) : url(`notes/#${topic.id}`);
+export const learnUrl = (topic: Topic) => url(`learn/${topic.module}/${topic.slug}/`);
 export const syllabusUrl = 'https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf';
 export const repoUrl = 'https://github.com/JustinWangqx/mathnotes-further-maths';
 

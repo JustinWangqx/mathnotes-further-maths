@@ -38,6 +38,21 @@ test('English and Chinese paper intent preserves complete collections; note inte
  }
  assert.ok(search('cubic equation papers').length>0);
 });
+test('learning searches use chapter text and each chapter links to the existing revision guide',()=>{
+ assert.deepEqual(search('learn matrices').map(r=>r.id),['learn-matrices1']);
+ assert.deepEqual(search('学习概率密度').map(r=>r.id),['learn-pdf-cdf']);
+ assert.deepEqual(search('learn factorial moment').map(r=>r.id),['learn-pgf']);
+ const lessons=catalog.records.filter(r=>r.kind==='learn');
+ assert.equal(lessons.length,15);
+ for(const lesson of lessons){
+  const revision=catalog.records.find(r=>r.kind==='notes'&&r.topic===lesson.topic);
+  const load=href=>readFileSync(join('dist',href.slice(base.length),'index.html'),'utf8');
+  const chapter=load(lesson.href);
+  assert.ok(chapter.includes('class="katex"'),lesson.title);
+  assert.ok(chapter.includes('href="'+revision.href+'"'),lesson.title);
+  assert.ok(load(revision.href).includes('href="'+lesson.href+'"'),lesson.title);
+ }
+});
 test('formula sheet, syllabus, available answers and original printed paper references are searchable',()=>{
  assert.deepEqual(search('formula sheet').map(r=>r.id),['mf19']);
  assert.deepEqual(search('MF19').map(r=>r.id),['mf19']);
@@ -45,11 +60,11 @@ test('formula sheet, syllabus, available answers and original printed paper refe
  assert.equal(search('answers').length,13);
  assert.ok(search('2025 winter').length>0);
  assert.ok(search('2025 winter').every(r=>r.kind==='papers'));
- assert.equal(catalog.records.length,32);
+ assert.equal(catalog.records.length,47);
  assert.ok(!JSON.stringify(catalog).includes('/Users/'));
 });
 test('indexable pages have unique subject-specific metadata, canonical URLs and social previews',()=>{
- assert.equal(indexable.length,39);
+ assert.equal(indexable.length,55);
  const titles=new Set(),descriptions=new Set();
  for(const {path,html} of indexable){
   const title=html.match(/<title>(.*?)<\/title>/s)?.[1];
@@ -83,7 +98,7 @@ test('structured educational metadata and breadcrumbs match the visible page hie
 test('sitemap lists useful pages and all intact PDFs, excluding search, errors and redirects',()=>{
  const xml=readFileSync('dist/sitemap-0.xml','utf8');
  const urls=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
- assert.equal(new Set(urls).size,67);
+ assert.equal(new Set(urls).size,83);
  assert.equal(urls.filter(u=>u.endsWith('.pdf')).length,28);
  assert.ok(urls.every(u=>u.startsWith(origin+base)));
  assert.ok(urls.every(u=>!/(?:\/(?:search|practice|past-papers|syllabus)\/?$|\/404|\.json$)/.test(u)));
